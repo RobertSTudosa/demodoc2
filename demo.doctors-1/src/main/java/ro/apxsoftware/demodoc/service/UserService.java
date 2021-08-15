@@ -60,15 +60,14 @@ public class UserService implements UserDetailsService {
 		return userAccountRepo.findByEmailIgnoreCase(userEmail);
 	}
 	
-	public List<User> getAllAffiliatedUsersByAgencyId(long agencyId) {
-		return userAccountRepo.getAffiliatedUsersByAgencyID(agencyId);
+	
+	public int getHowManyUserOfType(String type) {
+		return userAccountRepo.getNumberOfUsersOfType(type);
 	}
 	
-	public List<User> getAllPendingUsersByAgencyId(long agencyId) {
-		return userAccountRepo.getPendingUsersByAgencyID(agencyId);
+	public List<Long> getListOfUsersIdsOfType(String type) {
+		return userAccountRepo.getListOfUsersIdsOfType(type);
 	}
-	
-	
 
 
 }

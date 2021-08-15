@@ -12,7 +12,12 @@
     <meta name="description"
         content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Ample Admin Lite Template by WrapPixel</title>
+    <title>Dr. Ion Popescu's admin</title>
+    
+    <!-- Bootstrap to test for nav bar -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    
     <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="pacient/assets/img/apple-touch-icon.png">
@@ -21,6 +26,29 @@
     <link rel="stylesheet" href="doctor/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
     <!-- Custom CSS -->
     <link href="doctor/css/style.min.css" rel="stylesheet">
+    
+      <!-- Datepicker CSS files  -->
+  <link href="/doctor/css/datepicker.css" rel="stylesheet" type="text/css"/>
+  
+  <!-- Custom CSS and JS for multiple select -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  
+  <script
+  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+  crossorigin="anonymous"></script>
+  
+  <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+  
+ 
 </head>
 
 <body>
@@ -47,7 +75,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="dashboard.html">
+                    <a class="navbar-brand" th:href="@{/}">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
@@ -83,20 +111,47 @@
                         <!-- Search -->
                         <!-- ============================================================== -->
                         <li class=" in">
-                            <form role="search" class="app-search d-none d-md-block me-3">
-                                <input type="text" placeholder="Search..." class="form-control mt-0">
+                            <form role="search" class="app-search d-none d-md-block me-3"  method="get" th:action="@{/searchAppointments}" id="searchApp">
+	                           	<input type="hidden" value="appointSearch" name="search" id="appointSearch">
+	                           	<input type="text" placeholder="search..." class="form-control mt-0" name="keyword" th:value="${keyword}" id="keyword">
                                 <a href="" class="active">
-                                    <i class="fa fa-search"></i>
+	                                <button type="submit" id="searchBtn" class="active"><i class="fa fa-search"></i></button>
+                                
                                 </a>
+								<script type="text/javascript" th:inline="javascript">
+                                	
+                                
+                                </script>
+
+
+                                
+                                
                             </form>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li>
-                            <a class="profile-pic" href="#">
+                        	<a class="profile-pic" href="#">
+                                        <span class="iconify thumb-sm img-circle"  th:if="${#lists.isEmpty(lastPicList)}" data-icon="bx:bxs-user-rectangle" data-inline="false" 
+                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
+                                        <span class="text-white font-medium" th:if="${#lists.isEmpty(lastPicList)}" th:text="${#authentication.name}">Steave</span>
+                                       
+                                        
+										<img th:if="${not #lists.isEmpty(lastPicList)}"
+												th:src="@{/doctor/img(imgId=${lastPicList[#lists.size(lastPicList)-1].picId})}" 
+												class="thumb-sm img-circle" style="border: 0.3px solid white;width:40px;height:40px;object-fit: cover;">
+										<span th:if="${not #lists.isEmpty(lastPicList)}" class="text-white font-medium" th:text="${#authentication.name}">Steave</span>
+										
+										
+										
+                                        
+                                        
+                             </a>
+                        
+                            <!-- <a class="profile-pic" href="#">
                                 <img src="doctor/plugins/images/users/varun.jpg" alt="user-img" width="36"
-                                    class="img-circle"><span class="text-white font-medium" th:text="${#authentication.name}">Steave</span></a>
+                                    class="img-circle"><span class="text-white font-medium" th:text="${#authentication.name}">Steave</span></a> -->
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -119,24 +174,24 @@
                     <ul id="sidebarnav">
                         <!-- User Profile-->
                         <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="doctor/dashboard.html"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/}"
                                 aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Dashboard</span>
+                                <span class="hide-menu">Progamari</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="doctor/profile.html"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{doctor/profile}"
                                 aria-expanded="false">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <span class="hide-menu">Profile</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="doctor/basic-table.html"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{doctor/clients}"
                                 aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Basic Table</span>
+                                <span class="hide-menu">Clients</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -192,16 +247,49 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title"><span sec:authorize="hasAuthority('DOCTOR')">Doctor's</span> Dashboard</h4>
+                        <h4 class="page-title" th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy')}"> <span>Progamari pentru</span> serviceprovider</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
+
+                        	
                             <ol class="breadcrumb ms-auto">
-                                <li><a href="#" class="fw-normal">Dashboard</a></li>
+                            <li class=" in">
+                            <form role="search" class="app-search d-block d-sm-block d-md-none me-3 row"  method="get" th:action="@{/searchAppointments}" id="searchApp">
+
+
+										<div class="input-group mb-3">
+
+											<input type="text" placeholder="search..."
+												class="form-control mt-0" name="keyword"
+												th:value="${keyword}" id="keyword">
+
+											<button type="submit" id="button-addon1"
+												class="btn btn-sm active">
+												<i class="fa fa-search"></i>
+											</button>
+										</div>
+
+
+										<script type="text/javascript" th:inline="javascript">
+                                	
+                                
+                                </script>
+
+                                
+                                
+                            </form>
+                        	</li>
+                                <li><a href="#" class="fw-normal" data-bs-toggle="modal"
+                                     data-bs-target="#recurrentAppointment1" >Progamare recurenta</a></li>
+                                     
+                                     
                             </ol>
-                            <a href="https://www.wrappixel.com/templates/ampleadmin/" target="_blank"
-                                class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Buton
-                                de urgenta</a>
+                            
+                            <div th:replace="usermodals :: reAppointmentSelect"></div>
+                            
+                            <a th:href="@{/logout}" target="_blank"
+                                class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -217,7 +305,7 @@
                 <!-- ============================================================== -->
                 <!-- Three charts -->
                 <!-- ============================================================== -->
-                <div class="row justify-content-center">
+          		<!--       <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-12">
                         <div class="white-box analytics-info">
                             <h3 class="box-title">Total Visit</h3>
@@ -259,22 +347,805 @@
                         </div>
                     </div>
                 </div>
+-->
+              
                 
+                <!-- ============= TAB EXAMPLE ==================== -->
+		     <!-- <div class="bd-example">
+  <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <p><strong>This is some placeholder content the Home tab's associated content.</strong> Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <p><strong>This is some placeholder content the Profile tab's associated content.</strong> Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <p><strong>This is some placeholder content the Contact tab's associated content.</strong> Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+    </div>
+  </div>
+</div> -->
+                <!-- ============= END TAB EXAMPLE ==================== -->
+                
+                
+                
+     <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2" role="alert" th:if="${searchMessage}!=null" id="alertMessage">
+  	 <div class="wrapper">
+  	 	<i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i><span class="wrapper">You searched for  </span><span th:text="' : ' + ${searchMessage}">You should check your results.</span>
+ 	 	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  	 </div>
+  	 
+	</div>
+	
+	<div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 " 
+		role="alert" th:if="${lastAppointment}!=null" id="lastAppointment" style="border-left: 3px solid #3FBBC0;">
+		<div class="wrapper">
+		
+			<span class="iconify" data-icon="icon-park-outline:appointment" style="font-size: 1.2rem;"></span>
+			<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
+			<span class="fw-bold" >Urmatoarea progamare  </span>  	 
+		  	<span th:text="' : ' + ${#temporals.format(lastAppointment.date,'dd-MM-yyyy')}" >You should check your results.</span>	
+			<span class="fw-bold">, pacient: </span>
+			<span th:text="' ' + ${lastAppointment.pacientName}">You should check your results.</span>	
+			<span class="fw-bold">, requested: </span>
+			<span th:text="' ' + ${lastAppointment.getStringCompanyServicesNames()} ">You should check your results.</span>	
+		
+		</div>
+  	 
+ 	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	
+	
+	
+           
+	<div class="row alert d-flex align-items-center alert-dismissible fade show mx-2 mt-2"  th:if="${keywords}!=null">
+			<div class="col-md-12 col-lg-12 col-sm-12 tab-pane fade active show" id="search" role="tabpanel" aria-labelledby="future-tab" >
+                        <div class="white-box">
+                            <div class="d-md-flex mb-3">
+                                <h3 class="box-title mb-0">Rezultat cautari : </h3>
+
+                                
+                            </div>
+                            <div class="table-responsive next-appointments" id="searchResults">
+                                <table class="table no-wrap" >
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">Nume</th>
+                                            <th class="border-top-0">Ora</th>
+                                            <th class="border-top-0">Date</th>
+                                            <th class="border-top-0">Procedura</th>
+                                            <th class="border-top-0">reprogramat</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody  >
+                                        <tr  th:each="doctorApp, iterApp : ${keywords}" th:style="${doctorApp.rescheduled}? 'background-color: #fce0e5' ">
+                                            <td th:text="${iterApp.index} + 1">1</td>
+                                            <td class="txt-oflo" >
+                                            	<a class="d-flex align-items-center profile-pic" type="button" href="#" data-bs-toggle="modal"
+                                            	th:data-bs-target="'#detailAppointment' + ${doctorApp.appointmentId}">
+                                            	<span class="iconify thumb-sm img-circle"  th:if="${doctorApp.pacient == null OR doctorApp.pacient.lastImgId < 1}" 
+                                            	
+                                            	data-icon="bx:bxs-user-circle" data-inline="false" 
+                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
+                                        	 
+                                        	 <span class="iconify thumb-sm img-circle"  th:if="${doctorApp.pacient != null AND doctorApp.pacient.lastImgId < 1}"                                            	
+                                            	data-icon="bx:bxs-user-circle" data-inline="false" 
+                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
+                                        
+                                       
+                                        
+										<img th:if="${doctorApp.pacient != null AND doctorApp.pacient.lastImgId != null}"
+												th:src="@{/doctor/lastImg(personId=${doctorApp.pacient.getPersonId()})}" 
+												class="thumb-sm img-circle" 
+												style="border: 0.3px solid white;width:40px;height:40px;object-fit: cover;border-radius: 50%;">
+										<span  class="text-black font-medium ms-1" th:text="${doctorApp.pacientName}">Steave</span></a>
+										
+										<div th:replace="usermodals :: detailAppointment "></div>
+										
+                                           </td>
+                                            <td th:text="${doctorApp.appointmentTime}">SALE</td>
+                                            <td class="txt-oflo" th:text="${#temporals.format(doctorApp.date, 'dd-MM-yyyy')}">April 18, 2021</td>
+                                            <td><span class="text-info" th:text="${doctorApp.getStringCompanyServicesNames()}">$24</span></td>
+                                            <td><span th:text="${doctorApp.rescheduled}"></span></td>
+                                                                                
+                                        </tr>
+                                        
+                                        
+                                       	<tr>
+                                       		<td class="d-none d-sm-block"></td>
+                                       		<td></td>
+                                       		<td class="text-center">
+                                       			
+                                 				<button type="button" class="btn btn-outline-primary load_more_app align-self-center" th:if="${not #lists.isEmpty(keywords) OR #lists.size(keywords) > 0}"
+													th:attr="onclick=|seeMoreSearchResults('${keywords[#lists.size(keywords)-1].appointmentId}','${searchMessage}')|">load more</button>
+                           						
+                           						
+                           						
+                           						
+                           					</td>        
+                                        </tr>
+                                    </tbody>
+                                
+                                    
+                                </table>
+                                
+                                
+                                </div>
+                                
+                                
+                          <script type="text/javascript" th:inline="javascript">
+                          function seeMoreSearchResults(lastAppId, keyword) {
+                          		
+                          		console.log(keyword);
+                          		console.log('lastAppId load more search ' + lastAppId);
+                          	
+                          		$.ajax({
+                            		type: "GET",
+                            		url: "/loadMoreSearchAppointments?keyword=" + keyword + "&lastAppId=" + lastAppId,
+                            		beforeSend: function () {},
+									complete: function () {},					
+									success: function (data) {
+									//console.log(JSON.stringify(data));	
+														
+									$("#searchResults").html(data);	
+									},
+									
+									});
+									
+								}
+                          
+                          </script>
+                            
+                            
+                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+ 
+                    </div>
+                
+	
+		
+	</div>	
+	
+
+                
+                   <!-- ============================================================== -->
+                <!-- APPOINTMENTS IN PENDING -->
+                <!-- ============================================================== -->
+                
+                
+                
+                <div class="row bd-example"> 
+                
+					  <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+					    <li class="nav-item" role="presentation">
+					      <button class="nav-link active" id="future-tab" data-bs-toggle="tab" data-bs-target="#future" type="button" role="tab" aria-controls="home" aria-selected="true">Progamari viitoare</button>
+					    </li>
+					    <li class="nav-item" role="presentation">
+					      <button class="nav-link" id="past-tab" data-bs-toggle="tab" data-bs-target="#past" type="button" role="tab" aria-controls="profile" aria-selected="false">Progamari trecute</button>
+					    </li>					    
+					    <li class="nav-item" role="presentation">
+					      <button class="nav-link" id="past-tab" data-bs-toggle="tab" data-bs-target="#cancel" type="button" role="tab" aria-controls="profile" aria-selected="false">Progamari anulate</button>
+					    </li>
+					  </ul>
+					
+					<div class="tab-content">
+					
+					<div class="col-md-12 col-lg-12 col-sm-12 tab-pane fade active show" id="future" role="tabpanel" aria-labelledby="future-tab" >
+                        <div class="white-box">
+                            <div class="d-md-flex mb-3">
+                                <h3 class="box-title mb-0">Programari viitoare</h3>
+                                
+                                <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
+                                    <select class="form-select shadow-none row border-top" id="select-month" name="month" >
+                                      
+                                    </select>
+         
+                                </div>
+                                
+                                <script type="text/javascript" th:inline="javascript">
+                                	
+																		
+										let dateDropdown = document.getElementById('select-month');
+										
+										const monthNames = ["January", "February", "March", "April", "May", "June",
+  															"July", "August", "September", "October", "November", "December"
+															];
+
+   									 	let currentYear = new Date().getFullYear();
+   									 	
+    									let futureMonth = new Date();
+    									let currentMonth = new Date();
+    									console.log('futureMonth before plus ---> ' + futureMonth.getMonth());
+										console.log('currentMonth before plus ---> ' + currentMonth.getMonth());  
+										var monthToAdd = 11 - futureMonth.getMonth() - 2; 
+										if(monthToAdd > 0) { 									
+    										futureMonth.setMonth(futureMonth.getMonth() + monthToAdd);
+    										currentMonth.setMonth(currentMonth.getMonth() + 1);
+    									} else {
+    										monthToAdd = 2;
+    										futureMonth.setMonth(futureMonth.getMonth() + monthToAdd);
+    										currentMonth.setMonth(currentMonth.getMonth() + 1);
+    									
+    									}    
+    									console.log('futureMonth after plus ' + futureMonth.getMonth());	
+    									console.log('currentMonth after plus ' + currentMonth.getMonth());								
+
+    									console.log('before while');
+
+									    while (currentMonth.getMonth() <= futureMonth.getMonth()) {
+									    	console.log('currentMonth is now updating to ' + currentMonth.getMonth());
+	      									let dateOption = document.createElement('option');
+	      									dateOption.text = monthNames[currentMonth.getMonth()-1] + ' ' + currentYear;
+	      									console.log('month Name is ' + monthNames[currentMonth.getMonth()-1] );
+	     									dateOption.value = currentMonth.getMonth();
+	     									console.log('currentMonth value set is ---> ' + currentMonth.getMonth());
+	      									dateDropdown.add(dateOption);
+	      									console.log('currentMonth before adding 1 --->' + currentMonth.getMonth() );
+	      									var theDays = 30;
+	      									currentMonth.setDate(currentMonth.getDate() + theDays);
+	      									console.log('new currentMonth ' + currentMonth.getMonth());
+    									};
+    									
+										    									
+    									
+    									var theSelectedMonth = $('select option').filter(':selected').val();
+    									
+    									console.log("the selected month global --> " + theSelectedMonth);
+              							
+	
+
+    									
+		
+									</script>       
+									
+
+                                
+                            </div>
+                            <div class="table-responsive next-appointments" id="futureAppointments">
+                                <table class="table no-wrap" >
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">Nume</th>
+                                            <th class="border-top-0">Ora</th>
+                                            <th class="border-top-0">Date</th>
+                                            <th class="border-top-0">Procedura</th>
+                                            <th class="border-top-0">reprogramat</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody  >
+                                        <tr  th:each="doctorApp, iterApp : ${doctorAppointments}" th:style="${doctorApp.rescheduled}? 'background-color: #fce0e5' ">
+                                            <td th:text="${iterApp.index} + 1">1</td>
+                                            <td class="txt-oflo" >
+                                            	<a class="d-flex align-items-center profile-pic" type="button" href="#" data-bs-toggle="modal"
+                                            	th:data-bs-target="'#detailAppointment' + ${doctorApp.appointmentId}">
+                                            	<span class="iconify thumb-sm img-circle"  th:if="${doctorApp.pacient == null OR doctorApp.pacient.lastImgId < 1}" 
+                                            	
+                                            	data-icon="bx:bxs-user-circle" data-inline="false" 
+                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
+                                        	 
+                                        	 <span class="iconify thumb-sm img-circle"  th:if="${doctorApp.pacient != null AND doctorApp.pacient.lastImgId < 1}"                                            	
+                                            	data-icon="bx:bxs-user-circle" data-inline="false" 
+                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
+                                        
+                                       
+                                        
+										<img th:if="${doctorApp.pacient != null AND doctorApp.pacient.lastImgId != null}"
+												th:src="@{/doctor/lastImg(personId=${doctorApp.pacient.getPersonId()})}" 
+												class="thumb-sm img-circle" 
+												style="border: 0.3px solid white;width:40px;height:40px;object-fit: cover;border-radius: 50%;">
+										<span  class="text-black font-medium ms-1" th:text="${doctorApp.pacientName}">Steave</span></a>
+										
+										<div th:replace="usermodals :: detailAppointment "></div>
+										
+                                           </td>
+                                            <td th:text="${doctorApp.appointmentTime}">SALE</td>
+                                            <td class="txt-oflo" th:text="${#temporals.format(doctorApp.date, 'dd-MM-yyyy')}">April 18, 2021</td>
+                                            <td><span class="text-info" th:text="${doctorApp.getStringCompanyServicesNames()}">$24</span></td>
+                                            <td><span th:text="${doctorApp.rescheduled}"></span></td>
+                                                                                
+                                        </tr>
+                                        
+                                        
+                                       	<tr>
+                                       		<td class="d-none d-sm-block"></td>
+                                       		<td></td>
+                                       		<td class="text-center">
+                                       			
+                                 				<button type="button" class="btn btn-outline-primary load_more_app align-self-center" 
+                                 				th:if="${not #lists.isEmpty(doctorAppointments) OR #lists.size(doctorAppointments) > 0}"
+													th:attr="onclick=|seeMoreAppoints('${doctorAppointments[#lists.size(doctorAppointments)-1].appointmentId}')|">load more</button>
+                           						
+                           					</td>        
+                                        </tr>
+                                    </tbody>
+                                
+                                    
+                                </table>
+                                
+                                
+                                </div>
+                                
+                                
+                            <script type="text/javascript" th:inline="javascript">
+                            
+                            				function seeMoreAppoints(lastAppId) {
+                            					var theSelectedMonth = $('select option').filter(':selected').val();
+                            					console.log('calling more appointments from the month ' + theSelectedMonth);
+                            					console.log('lastAppId is ' + lastAppId);
+                            					
+                            					event.preventDefault();	//how important is this?
+                            					$.ajax({
+                            						type: "GET",
+                            						url: "/getMoreMonthAppointments?month=" + theSelectedMonth + "&lastAppId=" + lastAppId,
+                            						beforeSend: function () {},
+													complete: function () {},					
+													success: function (data) {
+													//console.log(JSON.stringify(data));	
+																								
+														
+														$("#futureAppointments").html(data);	
+													},
+	                            				
+                            						
+                            					});
+                            					
+                            					
+                            				
+                            				}
+      
+                            	    		$("#select-month").on('change', function () {
+								
+    										var month = this.value;
+    										var goodmonth = month + '1';
+    										console.log('the selected Month on change is ' + this.value);
+    										console.log('goodmonth is ----> ' + goodmonth);
+    										console.log('the selected Month text is ' + $(this).find('option').filter(':selected').text());
+    										
+    										$.ajax({
+												type: "GET",
+												url: "/getMonthAppointments?month=" + month,
+												beforeSend: function () {},
+												complete: function () {},					
+												success: function (data) {
+												//console.log(JSON.stringify(data));													
+													
+													$("#futureAppointments").html(data);	
+											},
+											});
+    										
+    										
+    										
+    										
+    										
+    										
+    										
+    									});
+                            
+                            
+                            </script>
+                            
+                            
+                            
+                        </div>
+                    </div>
+                	
+                	 <div class="col-md-12 col-lg-12 col-sm-12 tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-tab">
+                        <div class="white-box">
+                            <div class="d-md-flex mb-3">
+                                <h3 class="box-title mb-0">Progamari trecute</h3>
+                                
+                                <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
+                                    <select class="form-select shadow-none row border-top" id="select-past-month" name="month" >
+                                      
+                                    </select>
+         
+                                </div>
+                                
+                                <script type="text/javascript" th:inline="javascript">
+                                	
+									
+										let pastDateDropdown = document.getElementById('select-past-month');
+										
+										const pastMonthNames = ["January", "February", "March", "April", "May", "June",
+  															"July", "August", "September", "October", "November", "December"
+															];
+
+   									 	var pastcurrentYear = new Date().getFullYear();
+   									 	
+    									var pastfutureMonth = new Date();
+    									var pastcurrentMonth = new Date();
+    									console.log("start month without minus 4 is " + pastfutureMonth.getMonth());
+    									pastfutureMonth.setMonth(pastfutureMonth.getMonth() - 4);
+    									pastcurrentMonth.setMonth(pastcurrentMonth.getMonth());    
+    									console.log('futureMonth is ' + pastfutureMonth.getMonth());									
+    																
+    									
+    									
+    									console.log('before while');
+
+									    while (pastcurrentMonth.getMonth() >= pastfutureMonth.getMonth()) {
+									    	console.log('currentMonth is now ' + pastcurrentMonth.getMonth());
+	      									let dateOption = document.createElement('option');
+	      									dateOption.text = pastMonthNames[pastcurrentMonth.getMonth()] + ' ' + pastcurrentYear;
+	     									dateOption.value = pastcurrentMonth.getMonth();
+	      									pastDateDropdown.add(dateOption);
+	      									pastcurrentMonth.setMonth(pastcurrentMonth.getMonth() - 1);
+    									};
+    									
+										    									
+    									
+    									var theSelectedMonth = $('select#select-past-month option').filter(':selected').val();
+    									
+    									console.log("the selected month global --> " + theSelectedMonth);
+              							
+
+
+    									
+		
+									</script>       
+									
+
+                                
+                            </div>
+                            <div class="table-responsive next-appointments member" id="doctorPastAppointments">
+                                <table class="table no-wrap" >
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">Nume</th>
+                                            <th class="border-top-0">Ora</th>
+                                            <th class="border-top-0">Data</th>
+                                            <th class="border-top-0">Procedura</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                        <tr  th:each="doctorApp, iterApp : ${pastDoctorAppointments}" th:style="${doctorApp.rescheduled}? 'background-color: #fce0e5' ">
+                                            <td th:text="${iterApp.index} + 1">1</td>
+                                            <td class="txt-oflo" >
+                                            <a
+													class="d-flex align-items-center profile-pic" type="button"
+													href="#" data-bs-toggle="modal"
+													th:data-bs-target="'#detailAppointment' + ${doctorApp.appointmentId}">
+														<span class="iconify thumb-sm img-circle"
+														th:if="${doctorApp.pacient == null OR doctorApp.pacient.lastImgId < 1}"
+														data-icon="bx:bxs-user-circle" data-inline="false"
+														style="border: 0.3px solid white; width: 40px; height: 40px;"></span>
+
+														<span class="iconify thumb-sm img-circle"
+														th:if="${doctorApp.pacient != null AND doctorApp.pacient.lastImgId < 1}"
+														data-icon="bx:bxs-user-circle" data-inline="false"
+														style="border: 0.3px solid white; width: 40px; height: 40px;"></span>
+
+
+
+														<img
+														th:if="${doctorApp.pacient != null AND doctorApp.pacient.lastImgId != null}"
+														th:src="@{/doctor/lastImg(personId=${doctorApp.pacient.getPersonId()})}"
+														class="thumb-sm img-circle"
+														style="border: 0.3px solid white; width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
+														<span class="text-black font-medium ms-1"
+														th:text="${doctorApp.pacientName}">Steave</span>
+												</a>
+
+													<div th:replace="usermodals :: detailAppointment "></div>
+
+												</td>
+                                           	<td class="txt-oflo" th:if="${doctorApp.doctor}==null" th:text="${doctorApp.doctor}">Elite admin</td> 
+                                            <td th:text="${doctorApp.appointmentTime}">SALE</td>
+                                            <td class="txt-oflo" th:text="${#temporals.format(doctorApp.date, 'dd-MM-yyyy')}">April 18, 2021</td>
+                                            <td><span class="text-info" th:text="${doctorApp.getStringCompanyServicesNames()}">$24</span></td>
+                                                                                
+                                        </tr>
+                                        
+                                        
+                                       	<tr>
+                                       		<td class="d-none d-sm-block"></td>
+                                       		<td></td>
+                                       		<td class="text-center">
+                                       			
+                                 				<button type="button" class="btn btn-outline-primary load_more_app align-self-center" th:if="${not #lists.isEmpty(pastDoctorAppointments) OR #lists.size(pastDoctorAppointments) > 0}"
+													th:attr="onclick=|seeMorePastAppoints('${pastDoctorAppointments[#lists.size(pastDoctorAppointments)-1].appointmentId}')|">load more</button>
+                           						
+                           					</td>        
+                                        </tr>
+                                    </tbody>
+                                   
+                                    
+                                </table>
+                                </div>
+                                
+                                
+                            <script type="text/javascript" th:inline="javascript">
+                            
+                            				function seeMorePastAppoints(lastAppId) {
+                            					var theSelectedMonth = $('select#select-past-month option').filter(':selected').val();
+                            					console.log('calling more past appointments from the month ' + theSelectedMonth);
+                            					console.log('calling from past appointments');
+                            					console.log('lastAppId is ' + lastAppId);
+                            					//theSelectedMonth--;
+                            					console.log('theSelectedMonth from past appointments is --> ' + theSelectedMonth);
+                            					
+                            					event.preventDefault();	//how important is this?
+                            					$.ajax({
+                            						type: "GET",
+                            						url: "/getMoreMonthAppointments?month=" + theSelectedMonth + "&lastAppId=" + lastAppId,
+                            						beforeSend: function () {},
+													complete: function () {},					
+													success: function (data) {
+													//console.log(JSON.stringify(data));	
+																								
+														
+														$("#doctorPastAppointments").html(data);	
+													},
+	                            				
+                            						
+                            					});
+                            					
+                            					
+                            				
+                            				}
+      
+                            	    		$("#select-past-month").on('change', function () {
+								
+    										var month = this.value;
+    										var goodmonth = month ;
+    										console.log('the selected Month on change is ' + this.value);
+    										console.log('goodmonth is ----> ' + goodmonth);
+    										console.log('the selected Month text is ' + $(this).find('option').filter(':selected').text());
+    										
+    										$.ajax({
+												type: "GET",
+												url: "/getMonthAppointments?month=" + month,
+												beforeSend: function () {},
+												complete: function () {},					
+												success: function (data) {
+												//console.log(JSON.stringify(data));													
+													
+													$("#doctorPastAppointments").html(data);	
+											},
+											});
+    										
+    										
+    										
+    										
+    										
+    										
+    										
+    									});
+                            
+                            
+                            </script>
+                            
+                            
+                            
+                        </div>
+                    </div>
+                
+                
+                	 <div class="col-md-12 col-lg-12 col-sm-12 tab-pane fade" id="cancel" role="tabpanel" aria-labelledby="cancel-tab">
+                        <div class="white-box">
+                            <div class="d-md-flex mb-3">
+                                <h3 class="box-title mb-0">Progamari anulate</h3>
+                                
+                                <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
+                                    <select class="form-select shadow-none row border-top" id="select-cancel-month" name="month" >
+                                      
+                                    </select>
+         
+                                </div>
+                                
+                                <script type="text/javascript" th:inline="javascript">
+                                	
+									
+										let cancelDateDropdown = document.getElementById('select-cancel-month');
+										
+										const cancelMonthNames = ["January", "February", "March", "April", "May", "June",
+  															"July", "August", "September", "October", "November", "December"
+															];
+
+   									 	var cancelcurrentYear = new Date().getFullYear();
+   									 	
+    									var cancelfutureMonth = new Date();
+    									var cancelcurrentMonth = new Date();
+    									console.log("canceled start month without minus 4 is " + cancelfutureMonth.getMonth());
+    									cancelfutureMonth.setMonth(cancelfutureMonth.getMonth() - 4);
+    									cancelcurrentMonth.setMonth(cancelcurrentMonth.getMonth());    
+    									console.log('cancelfutureMonth is ' + cancelfutureMonth.getMonth());									
+    																
+    									
+    									
+    									console.log('before cancel while');
+
+									    while (cancelcurrentMonth.getMonth() >= cancelfutureMonth.getMonth()) {
+									    	console.log('cancelcurrentMonth is now upgradint to ' + cancelcurrentMonth.getMonth());
+	      									let dateOption = document.createElement('option');
+	      									dateOption.text = cancelMonthNames[cancelcurrentMonth.getMonth()] + ' ' + cancelcurrentYear;
+	     									dateOption.value = cancelcurrentMonth.getMonth();
+	      									cancelDateDropdown.add(dateOption);
+	      									cancelcurrentMonth.setMonth(cancelcurrentMonth.getMonth() - 1);
+    									};
+    									
+										    									
+    									
+    									var theSelectedMonth = $('select#select-cancel-month option').filter(':selected').val();
+    									//var doctorId = $("select#doctor" + appId).children("option:selected").val();
+    									console.log("the selected cancel month global --> " + theSelectedMonth);
+              							
+
+
+    									
+		
+									</script>       
+									
+
+                                
+                            </div>
+                            <div class="table-responsive next-appointments member" id="doctorCancelAppointments">
+                                <table class="table no-wrap" >
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">Nume</th>
+                                            <th class="border-top-0">Ora</th>
+                                            <th class="border-top-0">Data</th>
+                                            <th class="border-top-0">Procedura</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                        <tr  th:each="doctorApp, iterApp : ${cancelDoctorAppointments}" th:style="${doctorApp.rescheduled}? 'background-color: #fce0e5' ">
+                                            <td th:text="${iterApp.index} + 1">1</td>
+                                            <td class="txt-oflo" >
+                                            <a
+													class="d-flex align-items-center profile-pic" type="button"
+													href="#" data-bs-toggle="modal"
+													th:data-bs-target="'#detailAppointment' + ${doctorApp.appointmentId}">
+														<span class="iconify thumb-sm img-circle"
+														th:if="${doctorApp.pacient == null OR doctorApp.pacient.lastImgId < 1}"
+														data-icon="bx:bxs-user-circle" data-inline="false"
+														style="border: 0.3px solid white; width: 40px; height: 40px;"></span>
+
+														<span class="iconify thumb-sm img-circle"
+														th:if="${doctorApp.pacient != null AND doctorApp.pacient.lastImgId < 1}"
+														data-icon="bx:bxs-user-circle" data-inline="false"
+														style="border: 0.3px solid white; width: 40px; height: 40px;"></span>
+
+
+
+														<img
+														th:if="${doctorApp.pacient != null AND doctorApp.pacient.lastImgId != null}"
+														th:src="@{/doctor/lastImg(personId=${doctorApp.pacient.getPersonId()})}"
+														class="thumb-sm img-circle"
+														style="border: 0.3px solid white; width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
+														<span class="text-black font-medium ms-1"
+														th:text="${doctorApp.pacientName}">Steave</span>
+												</a>
+
+													<div th:replace="usermodals :: detailAppointment "></div>
+
+												</td>
+                                           	<td class="txt-oflo" th:if="${doctorApp.doctor}==null" th:text="${doctorApp.doctor}">Elite admin</td> 
+                                            <td th:text="${doctorApp.appointmentTime}">SALE</td>
+                                            <td class="txt-oflo" th:text="${#temporals.format(doctorApp.date, 'dd-MM-yyyy')}">April 18, 2021</td>
+                                            <td><span class="text-info" th:text="${doctorApp.getStringCompanyServicesNames()}">$24</span></td>
+                                                                                
+                                        </tr>
+                                        
+                                        
+                                       	<tr>
+                                       		<td class="d-none d-sm-block"></td>
+                                       		<td></td>
+                                       		<td class="text-center" >
+                                       			
+                                 				<button type="button" id ="loadMoreCancel" class="btn btn-outline-primary load_more_app align-self-center" 
+                                 					th:if="${not #lists.isEmpty(cancelDoctorAppointments) OR #lists.size(cancelDoctorAppointments) > 0}"
+													th:attr="onclick=|seeMoreCancelAppoints('${cancelDoctorAppointments[#lists.size(cancelDoctorAppointments)-1].appointmentId}')|">load more</button>
+                           						
+                           					</td>        
+                                        </tr>
+                                    </tbody>
+                                   
+                                    
+                                </table>
+                                </div>
+                                
+                                
+                            <script type="text/javascript" th:inline="javascript">
+                            
+                            				function seeMoreCancelAppoints(lastAppId) {
+                            					var theSelectedMonth = $('select#select-cancel-month option').filter(':selected').val();
+                            					console.log('calling more canceled appointments from the month ' + theSelectedMonth);
+                            					console.log('calling from cancel appointments');
+                            					console.log('lastAppId is ' + lastAppId);
+                            					
+                            					
+                            					event.preventDefault();	//how important is this?
+                            					$.ajax({
+                            						type: "GET",
+                            						url: "/getMoreMonthAppointments?month=" + theSelectedMonth + "&lastAppId=" + lastAppId + "&canceled=" + 1,
+                            						beforeSend: function () {},
+													complete: function () {},					
+													success: function (data) {
+													//console.log(JSON.stringify(data));	
+														if(data == null) {
+															$("loadMoreCancel").css("display", "none");
+														}										
+														
+														$("#doctorCancelAppointments").html(data);	
+													},
+	                            				
+                            						
+                            					});
+                            					
+                            					
+                            				
+                            				}
+      
+                            	    		$("#select-cancel-month").on('change', function () {
+								
+    										var month = this.value;
+    										var goodmonth = month ;
+    										console.log('the selected Month on change is ' + this.value);
+    										console.log('goodmonth is ----> ' + goodmonth);
+    										console.log('the selected Month text is ' + $(this).find('option').filter(':selected').text());
+    										
+    										$.ajax({
+												type: "GET",
+												url: "/getMonthAppointments?month=" + month + "&canceled=" + 1,
+												beforeSend: function () {},
+												complete: function () {},					
+												success: function (data) {
+												//console.log(JSON.stringify(data));													
+													
+													$("#doctorCancelAppointments").html(data);	
+											},
+											});
+ 
+    									});
+
+                            </script>
+                            
+                            
+                            
+                        </div>
+                    </div>
+                
+                
+                	</div>
+                
+                </div>
+                
+                
+      
+                
+    
                   <!-- ============================================================== -->
                 <!-- RECENT SALES -->
                 <!-- ============================================================== -->
+                
+                
+                
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="white-box">
                             <div class="d-md-flex mb-3">
                                 <h3 class="box-title mb-0">Pacienti recenti</h3>
                                 <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
-                                    <select class="form-select shadow-none row border-top">
-                                        <option>March 2021</option>
-                                        <option>April 2021</option>
-                                        <option>May 2021</option>
-                                        <option>June 2021</option>
-                                        <option>July 2021</option>
+                                    <select class="form-select shadow-none row border-top" id="select-month" >
+                                        
                                     </select>
                                 </div>
                             </div>
@@ -582,6 +1453,11 @@
     <script src="doctor/plugins/bower_components/chartist/dist/chartist.min.js"></script>
     <script src="doctor/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
     <script src="doctor/js/pages/dashboards/dashboard1.js"></script>
+    
+     <!-- Bootstrap 5 js for nav and tabs  -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+   
 </body>
 
 </html>

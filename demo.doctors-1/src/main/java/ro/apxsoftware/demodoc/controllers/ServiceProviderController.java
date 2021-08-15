@@ -6,8 +6,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -39,11 +42,13 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
 
 import ro.apxsoftware.demodoc.entities.Appointment;
+import ro.apxsoftware.demodoc.entities.CompanyService;
 import ro.apxsoftware.demodoc.entities.Person;
 import ro.apxsoftware.demodoc.entities.ProfileImg;
 import ro.apxsoftware.demodoc.entities.User;
 import ro.apxsoftware.demodoc.service.AppointmentService;
 import ro.apxsoftware.demodoc.service.CompanyServiceService;
+import ro.apxsoftware.demodoc.service.DatesAndTimeService;
 import ro.apxsoftware.demodoc.service.EmailService;
 import ro.apxsoftware.demodoc.service.ImageResize;
 import ro.apxsoftware.demodoc.service.PersonService;
@@ -77,6 +82,10 @@ public class ServiceProviderController {
 	
 	@Autowired
 	ProfileImgService profileImgServ;
+	
+	 
+		@Autowired
+		DatesAndTimeService dtServ;
 	
 	
 	@GetMapping("/profile")
@@ -465,9 +474,9 @@ public class ServiceProviderController {
 		model.addAttribute("selectClients", searchResults);
 		model.addAttribute("searchMessage",  keyword);
 		
-		model.addAttribute("doctorAppointments", searchResults);
-		model.addAttribute("pastDoctorAppointments", searchResults);
-		model.addAttribute("cancelDoctorAppointments", searchResults);
+//		model.addAttribute("doctorAppointments", searchResults);
+//		model.addAttribute("pastDoctorAppointments", searchResults);
+//		model.addAttribute("cancelDoctorAppointments", searchResults);
 		
 		//get 6 pacients in a list to populate a table 
 		List<Person> serviceProvidersClients = persServ.getClientsForProviderByProviderId(person.getPersonId());
@@ -493,6 +502,10 @@ public class ServiceProviderController {
 			model.addAttribute("img", new ProfileImg());
 			model.addAttribute("lastPicList", new ArrayList<>());
 		}
+		
+		
+		
+		
 		
 		return "doctor/clients";
 	}
@@ -541,9 +554,9 @@ public class ServiceProviderController {
 		model.addAttribute("keywords", searchResults);
 		model.addAttribute("searchMessage",  keyword);
 		
-		model.addAttribute("doctorAppointments", searchResults);
-		model.addAttribute("pastDoctorAppointments", searchResults);
-		model.addAttribute("cancelDoctorAppointments", searchResults);
+//		model.addAttribute("doctorAppointments", searchResults);
+//		model.addAttribute("pastDoctorAppointments", searchResults);
+//		model.addAttribute("cancelDoctorAppointments", searchResults);
 		
 		//get 6 pacients in a list to populate a table 
 		List<Person> serviceProvidersClients = persServ.getClientsForProviderByProviderId(person.getPersonId());
@@ -640,7 +653,82 @@ public class ServiceProviderController {
 			model.addAttribute("lastPicList", new ArrayList<>());
 		}
 		
+		
+		List<LocalTime> fixedTimes = new ArrayList<LocalTime>() {{
+			 add(LocalTime.of(9,0,0,0));
+			 add(LocalTime.of(10,0,0,0));
+			 add(LocalTime.of(11,0,0,0));
+			 add(LocalTime.of(12,0,0,0));
+			 add(LocalTime.of(14,0,0,0));
+			 add(LocalTime.of(15,0,0,0));
+			 add(LocalTime.of(16,0,0,0));
+			 add(LocalTime.of(17,0,0,0));
+			 add(LocalTime.of(18,0,0,0));
+			 
+			 
+		 }};
+		 
+		
+		 
+		 model.addAttribute("fixedTimes", fixedTimes);
+		 
+		 //start checking for doctor 1;
+		List<String> stringBusyDates = dtServ.getAllBusyDates(model, redirAttr);
+
+			 model.addAttribute("busyDates", stringBusyDates);
+			 
+				Set<Person> doctors = persServ.getDoctors();
+				model.addAttribute("doctors", doctors);	 
+			 
+				//get all the FUTURE appointments sorted ascending in query
+				List<Appointment> doctorAppointments = appServ.getAllAppointmentsByDoctorIdByCurrentMonthNotCanceled(user.getUserId());
+				
+				model.addAttribute("doctorAppointments", doctorAppointments);
+				
+				List<Appointment> pastDoctorAppointments = appServ.getAllAppointmentsByDoctorIdAndUpToCurrentMonth(user.getUserId());					
+				model.addAttribute("pastDoctorAppointments", pastDoctorAppointments);
+				
+				
+				List<Appointment> canceledDoctorAppointments = new ArrayList<Appointment>();
+				canceledDoctorAppointments = appServ.getAllAppointmentsByDoctorIdAndUpToCurrentMonthAndCanceled(user.getUserId());
+				model.addAttribute("cancelDoctorAppointments", canceledDoctorAppointments);	 
+		
 		return "usermodals :: #modalSearchClientsWrapper";
+	}
+	
+	@GetMapping(value="/addTempAppointment", produces = {" application/json" })
+	public String addTempAppointment(Model model, @RequestParam("personId") long personId,   @RequestParam(value="doctor", required=false) Long doctorId, @RequestParam(value="service", required=false) String service,
+			@RequestParam(value="time", required=true) CharSequence time,
+			 Appointment appointment, Authentication auth, RedirectAttributes redirAttr) {
+		
+		Person client = persServ.findPersonById(personId);
+		LocalTime theTime = LocalTime.parse(time);
+		
+		Person doctor = persServ.findPersonByUserId(doctorId);
+		
+		appointment.setDoctor(doctor);
+		appointment.setPacient(client);
+		appointment.setAppointmentToken(UUID.randomUUID().toString());
+		appointment.setAppointmentTime(theTime);
+		appointment.setPacientEmail(client.getEmail());
+
+
+		
+		appServ.saveApp(appointment);
+		CompanyService coServ = new CompanyService();
+		coServ.setName(service+ "");
+		coServ.setAppointment(appointment);
+		coservServ.saveCompanyService(coServ);
+		
+		//create query for the temp appoint of the client
+		List<Appointment> tempAppointments = appServ.getTemporaryAppointmentsByPacientId(personId);
+		tempAppointments.add(appointment);
+		redirAttr.addFlashAttribute("tempAppointments", tempAppointments);
+		///git
+
+		
+		return "usermodals :: #tempAppointList" ;
+		
 	}
 
 }

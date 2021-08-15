@@ -7,6 +7,21 @@
 (function() {
   "use strict";
 
+
+
+	var multipleCancelButton = new Choices('#department', {
+removeItemButton: true,
+maxItemCount:5,
+searchResultLimit:5,
+renderChoiceLimit:8
+});
+	
+
+
+
+
+
+
   /**
    * Easy selector helper function
    */

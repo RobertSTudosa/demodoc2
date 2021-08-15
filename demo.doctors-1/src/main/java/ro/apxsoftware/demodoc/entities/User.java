@@ -262,7 +262,8 @@ public class User implements UserDetails, Serializable{
 	public void setJobApproved(boolean jobApproved) {
 		this.jobApproved = jobApproved;
 	}
-	
+
+
 	
 
 

@@ -1,5 +1,7 @@
 package ro.apxsoftware.demodoc.service;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,14 @@ public class CompanyServiceService {
 	
 	public CompanyService saveCompanyService(CompanyService companyServ) {
 		 return coservRepo.save(companyServ);
+	}
+	
+	public void deleteCompanyServicesSet (Set<CompanyService> coServ) {
+		coservRepo.deleteAll(coServ);
+	}
+	
+	public void deleteAllByAppointmentId(long appointmentId) {
+		coservRepo.deleteAllByAppointmentId(appointmentId);
 	}
 
 }
