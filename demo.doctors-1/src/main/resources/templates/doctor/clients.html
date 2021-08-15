@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org"  
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+        content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Ample Admin Lite Template by WrapPixel</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
+    <!-- Custom CSS -->
+   <link href="css/style.min.css" rel="stylesheet">
+   
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+    
+   <!-- Custom CSS and JS for multiple select -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+   
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	 
+	 <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+
+</head>
+
+
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin6">
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" th:href="@{/}">
+                        <!-- Logo icon -->
+                        <b class="logo-icon">
+                            <!-- Dark Logo icon -->
+                            <img src="img/logo.png" class="img-fluid" alt="homepage" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                       <!--  <span class="logo-text">
+                            dark Logo text
+                            <img src="pacient/assets/img/logo.png" class="img-fluid" alt="homepage" />
+                        </span> -->
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
+                        href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5" style="background-color:#3FBBC0">
+                   
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav ms-auto d-flex align-items-center">
+
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class=" in">
+                            <form role="search" class="app-search d-none d-md-block me-3" method="get" th:action="@{/doctor/searchClients}" id="searchApp">
+                                <input type="hidden" value="clientSearch" name="search" id="clientSearch">
+                                <input type="text" placeholder="search..." class="form-control mt-0" name="keyword" th:value="${keyword}" id="keyword">
+                               
+                                    <a href="" class="active">
+	                                <button type="submit" id="searchBtn" class="active" style="border: none;"><i class="fa fa-search"></i></button>
+                                
+                                </a>
+                                
+                            </form>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li>
+                        	<a class="profile-pic" href="#">
+                                        <span class="iconify thumb-sm img-circle"  th:if="${#lists.isEmpty(lastPicList)}" data-icon="bx:bxs-user-rectangle" data-inline="false" 
+                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
+                                        <span class="text-white font-medium" th:if="${#lists.isEmpty(lastPicList)}" th:text="${#authentication.name}">Steave</span>
+                                       
+                                        
+										<img th:if="${not #lists.isEmpty(lastPicList)}"
+												th:src="@{/doctor/img(imgId=${lastPicList[#lists.size(lastPicList)-1].picId})}" 
+												class="thumb-sm img-circle" style="border: 0.3px solid white;width:40px;height:40px;object-fit: cover;">
+										<span th:if="${not #lists.isEmpty(lastPicList)}" class="text-white font-medium" th:text="${#authentication.name}">Steave</span>
+										
+										
+										
+                                        
+                                        
+                             </a>
+                        
+                            <!-- <a class="profile-pic" href="#">
+                                <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
+                                    class="img-circle"><span class="text-white font-medium" th:text="${#authentication.name}">Steave</span></a> -->
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin6">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <!-- User Profile-->
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/}"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Progamari</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/doctor/profile}"
+                                aria-expanded="false">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span class="hide-menu">Profile</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/doctor/clients}"
+                                aria-expanded="false">
+                                <i class="fa fa-table" aria-hidden="true"></i>
+                                <span class="hide-menu">Clients</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="fontawesome.html"
+                                aria-expanded="false">
+                                <i class="fa fa-font" aria-hidden="true"></i>
+                                <span class="hide-menu">Icon</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="map-google.html"
+                                aria-expanded="false">
+                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                <span class="hide-menu">Google Map</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="blank.html"
+                                aria-expanded="false">
+                                <i class="fa fa-columns" aria-hidden="true"></i>
+                                <span class="hide-menu">Blank Page</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="404.html"
+                                aria-expanded="false">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                <span class="hide-menu">Error 404</span>
+                            </a>
+                        </li>
+                        <li class="text-center p-20 upgrade-btn">
+                            <a th:href="@{/logout}"
+                                class="btn d-grid btn-danger text-white" >
+                                Logout</a>
+                        </li>
+                    </ul>
+
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb bg-white">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title" th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy')}"> <span>Progamari pentru</span> serviceprovider</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <div class="d-md-flex">
+                            <ol class="breadcrumb ms-auto">
+							<li class=" in">
+                            <form role="search" class="app-search d-block d-sm-block d-md-none me-3 row"  method="get" th:action="@{/doctor/searchClients}" id="searchApp">
+
+								<div class="input-group mb-3">
+									<input type="hidden" value="clientSearch" name="search" id="clientSearch">
+									<input type="text" placeholder="search..." class="form-control mt-0" name="keyword" th:value="${keyword}" id="keyword">
+										<button type="submit" id="button-addon1" class="btn btn-sm active">
+												<i class="fa fa-search"></i>
+										</button>
+								</div>
+
+
+								<script type="text/javascript" th:inline="javascript">
+                                	
+                                
+                                </script>
+
+                                
+                                
+                            </form>
+                        	</li>
+                                <li><a href="#" class="fw-normal">Progamare recurenta</a></li>
+                            </ol>
+                            <a href="https://www.wrappixel.com/templates/ampleadmin/" target="_blank"
+                                class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Buton
+                                de urgenta</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Three charts -->
+                <!-- ============================================================== -->
+          		<!--       <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Total Visit</h3>
+                            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                                <li>
+                                    <div id="sparklinedash"><canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                    </div>
+                                </li>
+                                <li class="ms-auto"><span class="counter text-success">659</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Total Page Views</h3>
+                            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                                <li>
+                                    <div id="sparklinedash2"><canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                    </div>
+                                </li>
+                                <li class="ms-auto"><span class="counter text-purple">869</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Unique Visitor</h3>
+                            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                                <li>
+                                    <div id="sparklinedash3"><canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                    </div>
+                                </li>
+                                <li class="ms-auto"><span class="counter text-info">911</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+-->
+              
+                
+                <!-- ============= TAB EXAMPLE ==================== -->
+		     <!-- <div class="bd-example">
+  <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <p><strong>This is some placeholder content the Home tab's associated content.</strong> Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <p><strong>This is some placeholder content the Profile tab's associated content.</strong> Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <p><strong>This is some placeholder content the Contact tab's associated content.</strong> Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+    </div>
+  </div>
+</div> -->
+                <!-- ============= END TAB EXAMPLE ==================== -->
+                
+                
+                                
+     <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2" role="alert" th:if="${searchMessage}!=null" id="alertMessage">
+  	 <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i><span>You searched for  </span><span th:text="' : ' + ${searchMessage}">You should check your results.</span>
+ 	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+                
+	<div class="row alert d-flex align-items-center alert-dismissible fade show mx-2 mt-2" th:if="${keywords}!=null">
+			<div class="col-md-12 col-lg-12 col-sm-12 tab-pane fade active show" id="search" role="tabpanel" aria-labelledby="future-tab" >
+                        <div class="white-box">
+                            <div class="d-md-flex mb-3">
+                                <h3 class="box-title mb-0">Rezultat cautari : </h3>
+
+                                
+                            </div>
+                            
+							<div class="table-responsive next-appointments" id="searchResults">
+                                <table class="table no-wrap" >
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">Nume</th>
+                                            <th class="border-top-0">Email</th>
+                                            <th class="border-top-0">Telefon</th>
+                                            <th class="border-top-0">Data nasterii</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody  >
+                                        <tr  th:each="client, iterApp : ${keywords}">
+                                            <td th:text="${iterApp.index} + 1">1</td>
+                                            <td class="txt-oflo" >
+                                            	<a class="d-flex align-items-center profile-pic" type="button" href="#" data-bs-toggle="modal"
+                                            	
+                                            	th:data-bs-target="'#detailClient' + ${client.personId}">
+                                            	
+                                            	<!-- replace with detailClient  -->
+                                            	<span class="iconify thumb-sm img-circle"  th:if="${client.lastImgId < 1}" 
+                                            	
+                                            	data-icon="bx:bxs-user-circle" data-inline="false" 
+                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
+                                        	 
+                                        	 <!-- <span class="iconify thumb-sm img-circle"  th:if="${client.lastImgId < 1}"                                            	
+                                            	data-icon="bx:bxs-user-circle" data-inline="false" 
+                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span> -->
+                                        
+                                       
+                                        
+										<img th:if="${client.lastImgId != null}"
+												th:src="@{/doctor/lastImg(personId=${client.getPersonId()})}" 
+												class="thumb-sm img-circle" 
+												style="border: 0.3px solid white;width:40px;height:40px;object-fit: cover;border-radius: 50%;">
+										<span  class="text-black font-medium ms-1" th:text="${client.firstName}">Steave</span></a>
+										
+										<div th:replace="usermodals :: clientDetails"></div>
+										
+                                           </td>
+                                            <td th:text="${client.email}">EMAIL</td>
+                                            <td><span class="text-info" th:text="${client.phone}">0722 222 222</span></td>
+                                            <td class="txt-oflo" th:text="${#dates.format(client.BirthDate, 'dd-MM-yyyy')}">April 18, 2021</td>
+                                                                                
+                                        </tr>
+                                        
+                                        
+                                       	<tr>
+                                       		<td class="d-none d-sm-block"></td>
+                                       		<td></td>
+                                       		<td class="text-center">
+                                       			
+                                 				<button type="button" class="btn btn-outline-primary load_more_app align-self-center" th:if="${not #lists.isEmpty(keywords) OR #lists.size(keywords) > 0}"
+													th:attr="onclick=|seeMoreSearchResults('${keywords[#lists.size(keywords)-1].personId}','${searchMessage}')|">load more</button>
+                           						
+                           					</td>        
+                                        </tr>
+                                    </tbody>
+                                
+                                    
+                                </table>
+                                
+                                
+                                </div>
+                                
+                                 <script type="text/javascript" th:inline="javascript">
+                          function seeMoreSearchResults(lastPersonId, keyword) {
+                          		
+                          		console.log(keyword);
+                          		console.log('lastPersonId load more search ' + lastPersonId);
+                          	
+                          		$.ajax({
+                            		type: "GET",
+                            		url: "/doctor/loadMoreSearchClients?keyword=" + keyword + "&lastPersonId=" + lastPersonId,
+                            		beforeSend: function () {},
+									complete: function () {},					
+									success: function (data) {
+									//console.log(JSON.stringify(data));	
+														
+									$("#searchResults").html(data);	
+									},
+									
+									});
+									
+								}
+                          
+                          </script>
+                          
+                           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+                            
+                        </div>
+                    </div>
+                
+	
+	
+	</div>	
+             
+                
+                
+                
+                
+                
+                
+                   <!-- ============================================================== -->
+                <!-- APPOINTMENTS IN PENDING -->
+                <!-- ============================================================== -->
+                
+                
+                
+                <div class="row bd-example"> 
+                
+					  <!-- <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+					    <li class="nav-item" role="presentation">
+					      <button class="nav-link active" id="future-tab" data-bs-toggle="tab" data-bs-target="#future" type="button" role="tab" aria-controls="home" aria-selected="true">Progamari viitoare</button>
+					    </li>
+					    <li class="nav-item" role="presentation">
+					      <button class="nav-link" id="past-tab" data-bs-toggle="tab" data-bs-target="#past" type="button" role="tab" aria-controls="profile" aria-selected="false">Progamari trecute</button>
+					    </li>
+					  </ul> -->
+					
+					<div class="tab-content">
+					
+					<div class="col-md-12 col-lg-12 col-sm-12 tab-pane fade active show" id="future" role="tabpanel" aria-labelledby="future-tab" >
+                        <div class="white-box">
+                            <div class="d-md-flex mb-3">
+                                <h3 class="box-title mb-0">Clients</h3>
+                                
+                                <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
+                                    <select class="form-select shadow-none row border-top" id="select-client-month" name="month" >
+                                      
+                                    </select>
+         
+                                </div>
+                                
+                               <script type="text/javascript" th:inline="javascript">
+                                	
+									
+										let clientDateDropdown = document.getElementById('select-client-month');
+										
+										const pastMonthNames = ["January", "February", "March", "April", "May", "June",
+  															"July", "August", "September", "October", "November", "December"
+															];
+
+   									 	var pastcurrentYear = new Date().getFullYear();
+   									 	
+    									var pastfutureMonth = new Date();
+    									var pastcurrentMonth = new Date();
+    									console.log("start month without minus 4 is " + pastfutureMonth.getMonth());
+    									pastfutureMonth.setMonth(pastfutureMonth.getMonth() - 4);
+    									pastcurrentMonth.setMonth(pastcurrentMonth.getMonth());    
+    									console.log('futureMonth is ' + pastfutureMonth.getMonth());									
+    																
+    									
+    									
+    									console.log('before while');
+
+									    while (pastcurrentMonth.getMonth() >= pastfutureMonth.getMonth()) {
+									    	console.log('currentMonth is now ' + pastcurrentMonth.getMonth());
+	      									let dateOption = document.createElement('option');
+	      									dateOption.text = pastMonthNames[pastcurrentMonth.getMonth()] + ' ' + pastcurrentYear;
+	     									dateOption.value = pastcurrentMonth.getMonth();
+	      									clientDateDropdown.add(dateOption);
+	      									pastcurrentMonth.setMonth(pastcurrentMonth.getMonth() - 1);
+    									};
+    									
+										    									
+    									
+    									var theSelectedMonth = $('select#select-client-month option').filter(':selected').val();
+    									
+    									console.log("the selected month global --> " + theSelectedMonth);
+              							
+
+
+    									
+		
+									</script>       
+									
+
+                                
+                            </div>
+                            <div class="table-responsive next-appointments" id="clientsByProvider">
+                                <table class="table no-wrap" >
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">Nume</th>
+                                            <th class="border-top-0">Email</th>
+                                            <th class="border-top-0">Telefon</th>
+                                            <th class="border-top-0">Data nasterii</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody  >
+                                        <tr  th:each="client, iterApp : ${clientsByProvider}">
+                                            <td th:text="${iterApp.index} + 1">1</td>
+                                            <td class="txt-oflo" >
+                                            	<a class="d-flex align-items-center profile-pic" type="button" href="#" data-bs-toggle="modal"
+                                            	
+                                            	th:data-bs-target="'#detailClient' + ${client.personId}">
+                                            	
+                                            	<!-- replace with detailClient  -->
+                                            	<span class="iconify thumb-sm img-circle"  th:if="${client.lastImgId < 1}" 
+                                            	
+                                            	data-icon="bx:bxs-user-circle" data-inline="false" 
+                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
+                                        	 
+                                        	 <!-- <span class="iconify thumb-sm img-circle"  th:if="${client.lastImgId < 1}"                                            	
+                                            	data-icon="bx:bxs-user-circle" data-inline="false" 
+                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span> -->
+                                        
+                                       
+                                        
+										<img th:if="${client.lastImgId != null}"
+												th:src="@{/doctor/lastImg(personId=${client.getPersonId()})}" 
+												class="thumb-sm img-circle" 
+												style="border: 0.3px solid white;width:40px;height:40px;object-fit: cover;border-radius: 50%;">
+										<span  class="text-black font-medium ms-1" th:text="${client.firstName}">Steave</span></a>
+										
+										<div th:replace="usermodals :: clientDetails"></div>
+										
+                                           </td>
+                                            <td th:text="${client.email}">EMAIL</td>
+                                            <td><span class="text-info" th:text="${client.phone}">0722 222 222</span></td>
+                                            <td class="txt-oflo" th:text="${#dates.format(client.BirthDate, 'dd-MM-yyyy')}">April 18, 2021</td>
+                                                                                
+                                        </tr>
+                                        
+                                        
+                                       	<tr>
+                                       		<td class="d-none d-sm-block"></td>
+                                       		<td></td>
+                                       		<td class="text-center">
+                                       			
+                                 				<button type="button" class="btn btn-outline-primary load_more_app align-self-center" th:if="${not #lists.isEmpty(clientsByProvider) OR #lists.size(clientsByProvider) > 0}"
+													th:attr="onclick=|seeMoreClients('${clientsByProvider[#lists.size(clientsByProvider)-1].personId}')|">load more</button>
+                           						
+                           					</td>        
+                                        </tr>
+                                    </tbody>
+                                
+                                    
+                                </table>
+                                
+                                
+                                </div>
+                                
+                                
+                           <script type="text/javascript" th:inline="javascript">
+                            
+                            				function seeMoreClients(personId) {
+                            					var theSelectedMonth = $('select#select-client-month option').filter(':selected').val();
+                            					console.log('calling more clients from the month ' + theSelectedMonth);
+                            					console.log('calling from past clients');
+                            					console.log('lastPersonId is ' + personId);
+                            					
+                            					console.log('theSelectedMonth from past appointments is --> ' + theSelectedMonth);
+                            					
+                            					event.preventDefault();	//how important is this?
+                            					$.ajax({
+                            						type: "GET",
+                            						url: "/doctor/getMoreClientsByMonth?month=" + theSelectedMonth + "&lastPersonId=" + personId,
+                            						beforeSend: function () {},
+													complete: function () {},					
+													success: function (data) {
+													//console.log(JSON.stringify(data));	
+																								
+														
+														$("#clientsByProvider").html(data);	
+													},
+	                            				
+                            						
+                            					});
+                            					
+                            					
+                            				
+                            				}
+      
+                            	    		$("#select-client-month").on('change', function () {
+								
+    										var month = this.value;
+    										var goodmonth = month ;
+    										console.log('the selected Month on change is ' + this.value);
+    										console.log('goodmonth is ----> ' + goodmonth);
+    										console.log('the selected Month text is ' + $(this).find('option').filter(':selected').text());
+    										
+    										$.ajax({
+												type: "GET",
+												url: "/doctor/getClientsByMonth?month=" + month,
+												beforeSend: function () {},
+												complete: function () {},					
+												success: function (data) {
+												//console.log(JSON.stringify(data));													
+													
+													$("#clientsByProvider").html(data);	
+											},
+											});
+    										    										
+    									});
+              
+                            </script>
+                                        
+                            
+                        </div>
+                    </div>
+                	
+
+                
+                	</div>
+                
+                </div>
+                
+                
+     
+              
+                <!-- ============================================================== -->
+                <!-- Recent Comments -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- .col -->
+                    <div class="col-md-12 col-lg-8 col-sm-12">
+                        <div class="card white-box p-0">
+                            <div class="card-body">
+                                <h3 class="box-title mb-0">Recent Comments</h3>
+                            </div>
+                            <div class="comment-widgets">
+                                <!-- Comment Row -->
+                                <div class="d-flex flex-row comment-row p-3 mt-0">
+                                    <div class="p-2"><img src="plugins/images/users/varun.jpg" alt="user" width="50" class="rounded-circle"></div>
+                                    <div class="comment-text ps-2 ps-md-3 w-100">
+                                        <h5 class="font-medium">James Anderson</h5>
+                                        <span class="mb-3 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry.It has survived not only five centuries. </span>
+                                        <div class="comment-footer d-md-flex align-items-center">
+                                             <span class="badge bg-primary rounded">Pending</span>
+                                             
+                                            <div class="text-muted fs-2 ms-auto mt-2 mt-md-0">April 14, 2021</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Comment Row -->
+                                <div class="d-flex flex-row comment-row p-3">
+                                    <div class="p-2"><img src="plugins/images/users/genu.jpg" alt="user" width="50" class="rounded-circle"></div>
+                                    <div class="comment-text ps-2 ps-md-3 active w-100">
+                                        <h5 class="font-medium">Michael Jorden</h5>
+                                        <span class="mb-3 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry.It has survived not only five centuries. </span>
+                                        <div class="comment-footer d-md-flex align-items-center">
+
+                                            <span class="badge bg-success rounded">Approved</span>
+                                            
+                                            <div class="text-muted fs-2 ms-auto mt-2 mt-md-0">April 14, 2021</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Comment Row -->
+                                <div class="d-flex flex-row comment-row p-3">
+                                    <div class="p-2"><img src="plugins/images/users/ritesh.jpg" alt="user" width="50" class="rounded-circle"></div>
+                                    <div class="comment-text ps-2 ps-md-3 w-100">
+                                        <h5 class="font-medium">Johnathan Doeting</h5>
+                                        <span class="mb-3 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry.It has survived not only five centuries. </span>
+                                        <div class="comment-footer d-md-flex align-items-center">
+
+                                            <span class="badge rounded bg-danger">Rejected</span>
+                                            
+                                            <div class="text-muted fs-2 ms-auto mt-2 mt-md-0">April 14, 2021</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="card white-box p-0">
+                            <div class="card-heading">
+                                <h3 class="box-title mb-0">Chat Listing</h3>
+                            </div>
+                            <div class="card-body">
+                                <ul class="chatonline">
+                                    <li>
+                                        <div class="call-chat">
+                                            <button class="btn btn-success text-white btn-circle btn" type="button">
+                                                <i class="fas fa-phone"></i>
+                                            </button>
+                                            <button class="btn btn-info btn-circle btn" type="button">
+                                                <i class="far fa-comments text-white"></i>
+                                            </button>
+                                        </div>
+                                        <a href="javascript:void(0)" class="d-flex align-items-center"><img
+                                                src="plugins/images/users/varun.jpg" alt="user-img" class="img-circle">
+                                            <div class="ms-2">
+                                                <span class="text-dark">Varun Dhavan <small
+                                                        class="d-block text-success d-block">online</small></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="call-chat">
+                                            <button class="btn btn-success text-white btn-circle btn" type="button">
+                                                <i class="fas fa-phone"></i>
+                                            </button>
+                                            <button class="btn btn-info btn-circle btn" type="button">
+                                                <i class="far fa-comments text-white"></i>
+                                            </button>
+                                        </div>
+                                        <a href="javascript:void(0)" class="d-flex align-items-center"><img
+                                                src="plugins/images/users/genu.jpg" alt="user-img" class="img-circle">
+                                            <div class="ms-2">
+                                                <span class="text-dark">Genelia
+                                                    Deshmukh <small class="d-block text-warning">Away</small></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="call-chat">
+                                            <button class="btn btn-success text-white btn-circle btn" type="button">
+                                                <i class="fas fa-phone"></i>
+                                            </button>
+                                            <button class="btn btn-info btn-circle btn" type="button">
+                                                <i class="far fa-comments text-white"></i>
+                                            </button>
+                                        </div>
+                                        <a href="javascript:void(0)" class="d-flex align-items-center"><img
+                                                src="plugins/images/users/ritesh.jpg" alt="user-img" class="img-circle">
+                                            <div class="ms-2">
+                                                <span class="text-dark">Ritesh
+                                                    Deshmukh <small class="d-block text-danger">Busy</small></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="call-chat">
+                                            <button class="btn btn-success text-white btn-circle btn" type="button">
+                                                <i class="fas fa-phone"></i>
+                                            </button>
+                                            <button class="btn btn-info btn-circle btn" type="button">
+                                                <i class="far fa-comments text-white"></i>
+                                            </button>
+                                        </div>
+                                        <a href="javascript:void(0)" class="d-flex align-items-center"><img
+                                                src="plugins/images/users/arijit.jpg" alt="user-img" class="img-circle">
+                                            <div class="ms-2">
+                                                <span class="text-dark">Arijit
+                                                    Sinh <small class="d-block text-muted">Offline</small></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="call-chat">
+                                            <button class="btn btn-success text-white btn-circle btn" type="button">
+                                                <i class="fas fa-phone"></i>
+                                            </button>
+                                            <button class="btn btn-info btn-circle btn" type="button">
+                                                <i class="far fa-comments text-white"></i>
+                                            </button>
+                                        </div>
+                                        <a href="javascript:void(0)" class="d-flex align-items-center"><img
+                                                src="plugins/images/users/govinda.jpg" alt="user-img"
+                                                class="img-circle">
+                                            <div class="ms-2">
+                                                <span class="text-dark">Govinda
+                                                    Star <small class="d-block text-success">online</small></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="call-chat">
+                                            <button class="btn btn-success text-white btn-circle btn" type="button">
+                                                <i class="fas fa-phone"></i>
+                                            </button>
+                                            <button class="btn btn-info btn-circle btn" type="button">
+                                                <i class="far fa-comments text-white"></i>
+                                            </button>
+                                        </div>
+                                        <a href="javascript:void(0)" class="d-flex align-items-center"><img
+                                                src="plugins/images/users/hritik.jpg" alt="user-img" class="img-circle">
+                                            <div class="ms-2">
+                                                <span class="text-dark">John
+                                                    Abraham<small class="d-block text-success">online</small></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
+                    href="https://www.wrappixel.com/">wrappixel.com</a>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app-style-switcher.js"></script>
+    <script src="plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <!--Wave Effects -->
+    <script src="js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="js/custom.js"></script>
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="plugins/bower_components/chartist/dist/chartist.min.js"></script>
+    <script src="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="js/pages/dashboards/dashboard1.js"></script>
+    
+     <!-- Bootstrap 5 js for nav and tabs  -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+   
+</body>
+
+</html>
+
