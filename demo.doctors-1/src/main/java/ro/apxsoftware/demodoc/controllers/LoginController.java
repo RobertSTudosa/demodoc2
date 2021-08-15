@@ -1,6 +1,5 @@
 package ro.apxsoftware.demodoc.controllers;
 
-import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,7 +9,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -78,15 +76,19 @@ public class LoginController {
 		User userAccount = new User();
 		model.addAttribute("userAccount", userAccount);
 		
-		
+//		if (!model.containsAttribute("person")) {
+//			
+//			
+//		}
+//
+//		if (!model.containsAttribute("userAccount")) {
+//		
+//		}
 		
 		System.out.println("is the login controller here");
 		
 		return "login";
 	}
-	
-	
-	 
 	
 	
 	@GetMapping("/forgot")
@@ -98,7 +100,7 @@ public class LoginController {
 		
 		model.addAttribute("sendPassChange", sendPassChange);
 		
-		return "forgot";
+		return "user/forgot";
 	}
 	
 	@PostMapping("/sendPassChange")
@@ -130,7 +132,6 @@ public class LoginController {
 		ConfirmationToken checkedToken = confTokenServ.findConfirmationTokenByConfirmationToken(confirmationToken);
 		User userAccount = checkedToken.getUser();
 		System.out.println("User found by token " + userAccount.getUsername());
-		Person person = persServ.findPersonByUserId(userAccount.getUserId());
 		
 		
 //		if(auth != null) {
@@ -153,10 +154,9 @@ public class LoginController {
 		model.addAttribute("newPassword", newPassword);
 		model.addAttribute("token", checkedToken);
 		model.addAttribute("userAccount", userAccount);
-		model.addAttribute("person", person);
 		model.addAttribute("userEmail", userAccount.getEmail());
 
-		return "changePassword";
+		return "user/changePassword";
 	}
 	
 	
@@ -230,7 +230,7 @@ public class LoginController {
 		Authentication authentication = new UsernamePasswordAuthenticationToken(user,null, user.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
-		return "confirmation";
+		return "user/confirmation";
 		
 	}
 	

@@ -48,7 +48,7 @@ public class CompanyService {
 	}
 
 	public void setName(String name) {
-		this.name = name + " ";
+		this.name = name;
 	}
 
 	public Appointment getAppointment() {
@@ -79,12 +79,8 @@ public class CompanyService {
 
 		@Override
 		public String toString() {
-			return name;
+			return "CompanyService [companyservId=" + companyservId + ", name=" + name + "]";
 		}
-
-
-
-		
 
 		
 	

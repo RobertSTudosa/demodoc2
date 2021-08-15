@@ -9160,9 +9160,8 @@ ol li {
 Thumb size
 *******************/
 .thumb-sm {
-  height: 40px;
-  width: 40px; }
-  
+  height: 32px;
+  width: 32px; }
 
 .thumb-md {
   height: 48px;
@@ -9368,10 +9367,6 @@ Card
   height: 100%;
   z-index: 9999;
   overflow: auto; }
-  .custom-modal-size {
-  	width: 200px;
-    min-height: 400px;
-  }
 
 .oh {
   overflow: hidden; }
@@ -9735,7 +9730,7 @@ Main sidebar
 ******************/
 .left-sidebar {
   position: absolute;
-  width: 70px;
+  width: 250px;
   height: 100%;
   top: 0px;
   z-index: 10;
@@ -9756,7 +9751,7 @@ sidebar navigation
          Small cap
          ******************/ }
   .sidebar-nav ul .sidebar-item {
-    width: 70px;
+    width: 250px;
     /*******************
            First level
            ******************/ }
@@ -10380,12 +10375,7 @@ File: scss
   .bc-content {
     -webkit-box-pack: end;
     -ms-flex-pack: end;
-    justify-content: flex-end; } 
-
-}
-
-
-
+    justify-content: flex-end; } }
 
 /*-- ============================================================== 
  Phone and below ipad(767px) 

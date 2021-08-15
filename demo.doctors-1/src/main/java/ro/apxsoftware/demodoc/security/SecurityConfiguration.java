@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -31,14 +29,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UserService userServ;
 	
-	
 	@Autowired(required=true)
 	UserRepository userAccountRepo;
 
 	@Autowired
 	BCryptPasswordEncoder bCryptEncoder;
 	
-
+	// implement an authenticationProvider to be called on necessary controllers 
+//	@Autowired
+//	CustomAuthenticationProvider authenticationProvider;
 	
 	@Bean
 	public AuthenticationSuccessHandler successHandler() {
@@ -48,7 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    return handler;
 	}
 	
-
+	
+	
 
 	//--> set for custom authenticationProvider
 //	@Override
@@ -84,8 +84,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
             .formLogin()
             .loginPage("/login")
-            .failureUrl("/login-error")
-//            .usernameParameter("email")
             .successHandler(successHandler())
             .permitAll().defaultSuccessUrl("/", true)
             .and()

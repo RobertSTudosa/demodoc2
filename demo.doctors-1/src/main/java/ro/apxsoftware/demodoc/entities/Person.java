@@ -3,7 +3,6 @@ package ro.apxsoftware.demodoc.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -153,6 +151,8 @@ public class Person implements Serializable {
 
 	private int workExperience;
 
+
+	
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date BirthDate;
@@ -176,14 +176,9 @@ public class Person implements Serializable {
 	
 	@OneToMany(mappedBy="pacient" ,
 			cascade= {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST})
-	@OrderBy("appointmentId")
 	private Set<Appointment> pacientAppointments = new HashSet<>();
 	
 	private String phone;
-	
-	@OneToMany(mappedBy="person" ,
-			cascade= {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST})
-	private List<ProfileImg> profileImg;
 	
 	
 	public Person() {
@@ -398,13 +393,7 @@ public class Person implements Serializable {
 	public Set<Appointment> getPacientAppointments() {
 		return pacientAppointments;
 	}
-	
-	/*
-	 * public List<Appointment> getSortedPacientAppointments() { List<Appointment>
-	 * sortedList = new ArrayList<>(); sortedList.addAll(this.pacientAppointments);
-	 * Collections.sort( sortedList); return sortedList; }
-	 */
- 
+
 
 	public void setPacientAppointments(Set<Appointment> pacientAppointments) {
 		this.pacientAppointments = pacientAppointments;
@@ -571,6 +560,7 @@ public class Person implements Serializable {
 	
 	
 	
+	
 	public String getPhone() {
 		return phone;
 	}
@@ -578,18 +568,6 @@ public class Person implements Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-	
-	
-
-
-	public List<ProfileImg> getProfileImg() {
-		return profileImg;
-	}
-
-
-	public void setProfileImg(List<ProfileImg> profileImg) {
-		this.profileImg = profileImg;
 	}
 
 

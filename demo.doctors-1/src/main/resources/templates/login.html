@@ -33,10 +33,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
   
   <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
-  
-    <!-- Custom CSS and JS for multiple select -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
-  <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
 
   <!-- =======================================================
   * Template Name: Medicio - v4.3.0
@@ -162,12 +158,11 @@
   
 		<section class="inner-page appointment section-bg"  id="appointment">
       <div class="container">
-    	<div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+    
             
             <form th:action="@{/login}" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
             
-            	 <div th:if="${param.error}" class="alert alert-error" >
-            	 	
+            	 <div th:if="${param.error}" class="alert alert-error">
             		Invalid username and/or password
             		
             	</div>

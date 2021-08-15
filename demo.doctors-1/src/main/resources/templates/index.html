@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Cabinet Medical Dr.John</title>
+  <title>Medicio Bootstrap Template - Index</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -30,26 +30,7 @@
   <!-- Template Main CSS File -->
   <link href="pacient/assets/css/style.css" rel="stylesheet">
   
-  <!-- Datepicker CSS files  -->
-  <link href="pacient/assets/css/datepicker.css" rel="stylesheet" type="text/css"/>
-
-  
-  <!-- FONTAWESOME -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
-  
-  <!-- ICONIFY  -->
-  <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
-  
-  <!-- Custom CSS and JS for multiple select -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
-  <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  
-  <script
-  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
-  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
-  crossorigin="anonymous"></script>
   
   <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 
@@ -87,20 +68,16 @@
         <ul>
           
                     <li class="nav-link scrollto dropdown nav-link scrollto d-block d-sm-inline d-md-inline d-lg-none d-xl-none" sec:authorize="isAuthenticated()">
-						<a href="#"> 
-							<span class="iconify rounded-circle img-thumbnail"  th:if="${#lists.isEmpty(lastPicList)}" data-icon="bx:bxs-user-rectangle" data-inline="false" 
-                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
-							<img th:if="${not #lists.isEmpty(lastPicList)}"
-							th:src="@{/doctor/img(imgId=${lastPicList[#lists.size(lastPicList)-1].picId})}" 
-							alt="user-img" width="36" class="rounded-circle img-thumbnail img-fluid"
-							style="margin-left: auto;object-fit: cover;width: 40px;height:40px;"><span
+						<a
+						href="#"> <img src="doctor/plugins/images/users/varun.jpg"
+							alt="user-img" width="36" class="rounded-circle img-thumbnail"
+							style="margin-left: auto;"><span
 							class="text-black font-small text-center text-wrap ms-1"
 							style="font-size: 0.7rem;" th:text="${#authentication.name}">Steave</span><i class="bi bi-chevron-down"></i></a>
 							
 							<ul>
-								 <li><a class="nav-link scrollto" href="#contact">Contact us</a></li>
-								 <li><a class="nav-link scrollto" th:href="@{/client/profile}">Profile</a></li>								 
-								 <li><a class="nav-link scrollto" th:href="@{/client/historyAppointments(personId=${person.personId})}">Istoric programari</a></li>
+								 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+								 <li><a class="nav-link scrollto" href="#contact">Istoric programari</a></li>
 								<li><a class="nav-link scrollto" th:href="@{/logout}">Logout</a></li>
 							</ul>
 					</li>
@@ -129,23 +106,17 @@
           </li>
          
           <li class="dropdown" sec:authorize="isAuthenticated()">
-						<a class="d-none d-md-none d-lg-inline d-xl-inline"
-						href="#"> 
-						<span class="iconify rounded-circle img-thumbnail"  th:if="${#lists.isEmpty(lastPicList)}" data-icon="bx:bxs-user-rectangle" data-inline="false" 
-                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
-                                      
-						<img th:if="${not #lists.isEmpty(lastPicList)}"
-							th:src="@{/doctor/img(imgId=${lastPicList[#lists.size(lastPicList)-1].picId})}" 
+						<a
+						class="d-none d-md-none d-lg-inline d-xl-inline"
+						href="#"> <img src="doctor/plugins/images/users/varun.jpg"
 							alt="user-img" width="36" class="rounded-circle img-thumbnail"
-							style="margin-left: auto;object-fit: cover;width: 40px;height:40px;">
-							<span
+							style="margin-left: auto;"><span
 							class="text-black font-small text-center text-wrap ms-1"
 							style="font-size: 0.7rem;" th:text="${#authentication.name}">Steave</span><i class="bi bi-chevron-down"></i></a>
 							
 							<ul>
 								 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-								  <li><a class="nav-link scrollto" th:href="@{/client/profile}">Profile</a></li>	
-								  <li><a class="nav-link scrollto" th:href="@{/client/historyAppointments(personId=${person.personId})}">Istoric programari</a></li>
+								 <li><a class="nav-link scrollto" href="#contact">Istoric programari</a></li>
 								<li><a class="nav-link scrollto" th:href="@{/logout}">Logout</a></li>
 							</ul>
 					</li>
@@ -436,11 +407,11 @@
     </section><!-- End Services Section -->
 
     <!-- ======= Appointment Section ======= -->
-    <section id="appointment" class="appointment section-bg mb-4">
+    <section id="appointment" class="appointment section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Faceti o programare</h2>
+          <h2>Make an Appointment</h2>
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
@@ -457,275 +428,43 @@
             </div>
           </div>
           <div class="row">
-            
-
             <div class="col-md-4 form-group mt-3">
-              <select name="doctor" id="doctor" class="form-select doctor" th:attr="onchange=|(getDoctorBusyDates())|">
-                <option th:value=null >Selecteaza Doctor</option>
-                <option th:each="doctor : ${doctors}" th:value="${doctor.personId}" id="doctorId" th:text="${doctor.firstName}" >Doctor's name</option>
-              
-              </select>
-              
-              <script type="text/javascript" th:inline="javascript">
-              	
-              		var busyDatesArray = [[${busyDates}]];
-   	
-              	function getDoctorBusyDates () {
-              			console.log("getDoctorBusyDates is calling");
-              			var doctorId = $("select.doctor").children("option:selected").val(); //use again in the function select hours by doctor 
-              			console.log("doctor's id is selected --> " + doctorId);
-              			var dateVal = $("#date").val(); 
-              			var now = new Date();
-              			
-              			if(doctorId > 0 ) {
-			
-							$.ajax({
-							type: "GET",
-							url: "/allBusyDates",
-							beforeSend: function () {},
-							complete: function () {},					
-							success: function (data) {
-								console.log(data);
-								busyDatesArray = data;
-							},
-						});
-						
-							if(dateVal == "") {
-              					
-              					console.log("date is not selected");
-              				
-              					} else {
-              					
-              					console.log("date is selected");              						
-              					getTimes();
-
-              					};
-							
-              			} 
-              			
-              			if(doctorId === ""){ 
-              				
-              				$.ajax({
-							type: "GET",
-							url: "/",
-							beforeSend: function () {},
-							complete: function () {},					
-							success: function () {
-								console.log("success");
-								busyDatesArray = [[${busyDates}]];
-							},
-						});
-						
-						if(dateVal == "") {
-              					
-              					console.log("date is not selected");
-              				
-              					} else {
-              					
-              					console.log("date is selected");              						
-              					getTimes();
-
-              					
-              					
-              					};
-              			
-              			}
-              	
-              	}
-              
-              
-              </script>
+              <input type="date" th:field="${appointment.date}" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" required>
             </div>
             <div class="col-md-4 form-group mt-3">
-              <input type="date" th:field="${appointment.date}"  name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" 
-              		th:attr="onchange=|(getTimes())|" readonly required >
-              <!--  -->
-                          <!--   th:attr="onclick=|insertBusyDates('${busyDates}')|" -->
-             <!--  <ul style="display: none;" id="busyDates">
-              	<li th:each="date : ${busyDates}" th:value="date">date</li>
-              </ul>     -->       
-            </div>
-           <script type="text/javascript" th:inline="javascript">
-           			
-					var busyDatesArray = [[${busyDates}]];
-					
-					console.log(busyDatesArray);
-	            	$("#date").datepicker({ 
-	            	
-	            			beforeShowDay: function(date) {
-	            			  var string2 = formatDate(date);
-						      var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-						      if (contains(busyDatesArray,string2)) {
-						        debugger;
-						        return [false, '']
-						      } else {
-						        var day = date.getDay();
-						        return [(day != 0) && (day != 6), ''];
-						      }
-						    },
-	            			minDate: 0,
-      						showButtonPanel: true,
-	            			inline: true,
-						    showOtherMonths: true,
-      						dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-	            			changeMonth: true,
-							changeYear: true,
-	            			dateFormat:'yy-mm-dd' });
-	            			
-	            	function contains(a, obj) {
-					    var i = a.length;
-					    while (i--) {
-					       if (a[i] === obj) {
-					           return true;
-					       }
-					    }
-					    return false;
-					}	
-					
-					
-					function formatDate(date) {
-					    var d = new Date(date),
-					        month = '' + (d.getMonth() + 1),
-					        day = '' + d.getDate(),
-					        year = d.getFullYear();
-					
-					    if (month.length < 2) 
-					        month = '0' + month;
-					    if (day.length < 2) 
-					        day = '0' + day;
-					
-					    return [year, month, day].join('-');
-					}	
-					
-					
-			// keep this here in case the datepicker beforeShowDay is not working	
-	        //  beforeShowDay: function(date){
-       			//			var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-        			//			return [ busyDatesArray.indexOf(string) == -1 ]
-    					//	},  	
-		          
-            		
-            </script> 
-            
-             <div class="col-md-4 form-group mt-3" >
-             <!--  <input type="time" th:field="${appointment.appointmentTime}" th:value="${appointment.getFixedTimes()}" name="time" 
-              	step="3600" class="form-control datepicker" id="time" placeholder="Ora programarii" required>  -->
-              	
-               	<select th:name="time" id="time" class="form-select">
-              		<option id="optionTime" value="selecteaza ora">Ora</option>
-              		<option id="optionTime" th:each="time : ${fixedTimes}" th:text="${time}" th:value="${time}">time</option>
-              	
-              	
-              	</select> 
-              
-            </div>
-            
-           <script type="text/javascript" th:inline="javascript">
-           		 
-           		 function getTimes () {
-						
-
-						console.log('calling getTime()');
-						
-						var dateVal = $("#date").val(); //this is in the getTimes() scope
-						var doctorId = $("select.doctor").children("option:selected").val(); //use again in the function select hours by doctor 
-              			console.log("doctor's id is selected --> " + doctorId);
-						
-						if(doctorId > 0) {
-						
-							console.log("doctor is present");
-							$.ajax({
-							type: "GET",
-							url: "/selectTimeByDateByDoctor?date=" + dateVal + "&doctor=" + doctorId,
-							beforeSend: function () {},
-							complete: function () {},					
-							success: function (data) {
-								console.log(data);
-								var select = $("#time");
-								select.empty().append('<option value="">Selecteaza ora</option>');
-								for(var i = 0; i < data.length; i++) {
-									console.log("added the time by date and doctor" + data[i]);
-									select.append("<option value='" + data[i] + "'>" + data[i] + "</option>");
-								}
-								
-								
-								
-							},
-							});
-						
-						};
-						
-						if(doctorId === "") {
-							console.log("doctor is NOT present");
-							console.log("dateVal checked is " + dateVal);
-							$.ajax({
-							type: "GET",
-							url: "/selectTimeByDate?date=" + dateVal,
-							beforeSend: function () {},
-							complete: function () {},					
-							success: function (data) {
-							
-								console.log(data);
-								var select = $("#time");
-								select.empty().append('<option value="">Selecteaza ora</option>');
-								for(var i = 0; i < data.length; i++) {
-									console.log("added the time by date " + data[i]);
-									select.append("<option value='" + data[i] + "'>" + data[i] + "</option>");
-								}
-								
-								
-								
-							},
-							
-							failure: function (data) {
-                    			alert(data);
-                			}
-						});
-							
-						
-						}
-						
-												
-						
-					
-					};
-            	
-            </script>
-          </div>
-          
-          <!-- onclick="(this.type='time')" onblur="(this.type='text')" -->
-
-          <div class="form-group mt-3 d-flex flex-column flex-md-column flex-xl-row justify-content-between g-3">
-          	  <div class="col-md-4 form-group mt-0 me-2" >
-
-            <select name="service" id="department" placeholder="Selecteaza tratament" class="form-select" multiple>
-                <!-- <option value="">Selecteaza Tratament</option> -->
+              <select name="service" id="department" class="form-select">
+                <option value="">Selecteaza Tratament</option>
                 <option th:value="Extractie">Extractie</option>
                 <option th:value="Plomba">Plomba</option>
                 <option th:value="Obturare_de_canal">Obturare de canal</option>
                 <option th:value="Detartraj">Detartraj</option>
-                <option th:value="Albire">Albire</option>
-			</select>
-							
-			
+                <option th:value="ALbire">Albire</option>
+              </select>
             </div>
-            
-            <textarea class="form-control " name="message" rows="5" placeholder="Message (Optional)"></textarea>
-            
+            <div class="col-md-4 form-group mt-3">
+              <select name="doctor" id="doctor" class="form-select">
+                <option th:value=null >Selecteaza Doctor</option>
+                <option th:each="doctor : ${doctors}" th:value="${doctor.personId}" th:text="${doctor.firstName}">Doctor's name</option>
+               <!--  <option value="Doctor 1">Doctor 1</option>
+                <option value="Doctor 2">Doctor 2</option>
+                <option value="Doctor 3">Doctor 3</option> -->
+              </select>
+            </div>
           </div>
-          
-         
+
+          <div class="form-group mt-3">
+            <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+          </div>
           <div class="my-3">
             <div class="loading">Loading</div>
             <div class="error-message"></div>
             <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
           </div>
-          <div class="text-center mb-5"><button type="submit">Faceti programarea</button></div>
+          <div class="text-center"><button type="submit">Faceti programarea</button></div>
         </form>
 
       </div>
     </section><!-- End Appointment Section -->
-    <br><br>
 
     <!-- ======= Departments Section ======= -->
     <section id="departments" class="departments">
@@ -1317,12 +1056,6 @@
 
   <!-- Template Main JS File -->
   <script src="pacient/assets/js/main.js"></script>
-  
-
-  
-  <!--ReactJS  -->
-<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
 
 </body>
 

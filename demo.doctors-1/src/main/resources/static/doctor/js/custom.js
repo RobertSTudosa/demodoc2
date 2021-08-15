@@ -1,16 +1,6 @@
 $(function() {
     "use strict";
 
-
-
-var multipleCancelButton = new Choices('#department', {
-removeItemButton: true,
-maxItemCount:5,
-searchResultLimit:5,
-renderChoiceLimit:8
-});
-	
-
     $(".preloader").fadeOut();
     // this is for close icon when navigation open in mobile view
     $(".nav-toggler").on('click', function() {

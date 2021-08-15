@@ -83,17 +83,6 @@ public class EmailService {
 		 
 	 }
 	 
-	 public SimpleMailMessage simpleAppointmentConfirmation (String to, String subject, String appointmentToken) {
-		 SimpleMailMessage mailMessage = new SimpleMailMessage();
-		 mailMessage.setTo(to);
-		 mailMessage.setSubject(subject);
-		 mailMessage.setFrom("robert@bpeople.ro");
-		 mailMessage.setText("To see your appointment, please click here: " + 
-				 			"http:/localhost:8080/pacientAppointment?at=" + 
-				 			appointmentToken);
-		 return mailMessage;
-	 }
-	 
 	
 	
 }

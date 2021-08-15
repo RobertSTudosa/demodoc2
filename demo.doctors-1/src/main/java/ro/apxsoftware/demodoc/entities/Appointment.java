@@ -1,19 +1,15 @@
 package ro.apxsoftware.demodoc.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,9 +21,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="appointment")
@@ -40,13 +33,7 @@ public class Appointment implements Serializable {
 	private long appointmentId;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
-//	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-	private LocalDate date;
-	
-//	@Temporal(TemporalType.TIME)
-	@DateTimeFormat(iso = ISO.TIME)
-	private LocalTime appointmentTime;
+	private Date date; 
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
 	private Date dateCreated = new Date(); 
@@ -71,42 +58,12 @@ public class Appointment implements Serializable {
 	 
 	 private String pacientPhone;
 	 
-	 @Column(name="canceled_id")
-	 private long canceledId;
-	 
-	 @Column(name="rescheduled_id")
-	 private long rescheduledId;
-	 
-	 @Column(name="canceled")
-	 private boolean canceled;
-	 
-	 @Column(name="rescheduled")
-	 private boolean rescheduled; 
-	 
-	 @ElementCollection
-	 private List<LocalTime> fixedTimes = new ArrayList<LocalTime>() {{
-		 add(LocalTime.of(9,0,0,0));
-		 add(LocalTime.of(10,0,0,0));
-		 add(LocalTime.of(11,0,0,0));
-		 add(LocalTime.of(12,0,0,0));
-		 add(LocalTime.of(14,0,0,0));
-		 add(LocalTime.of(15,0,0,0));
-		 add(LocalTime.of(16,0,0,0));
-		 add(LocalTime.of(17,0,0,0));
-		 add(LocalTime.of(18,0,0,0));
-		 
-		 
-	 }};
-	 
-	 
 
 	public Appointment() {
 		
 	}
 
-
-
-	public Appointment(LocalDate date, Person doctor, Person pacient, String pacientName, String pacientEmail, String pacientPhone) {
+	public Appointment(Date date, Person doctor, Person pacient, String pacientName, String pacientEmail, String pacientPhone) {
 		
 		this.date = date;
 		this.appointmentToken=UUID.randomUUID().toString();
@@ -116,32 +73,9 @@ public class Appointment implements Serializable {
 		this.pacientPhone = pacientPhone;
 		
 		
-		
 	}
 	
 	
-	public Appointment(LocalDate date, LocalTime appointmentTime, Date dateCreated, Person doctor, Person pacient,
-			Set<CompanyService> companyServices, String appointmentToken, String pacientName, String pacientEmail,
-			String pacientPhone, long canceledId, long rescheduledId, boolean canceled, boolean rescheduled,
-			List<LocalTime> fixedTimes) {
-		super();
-		this.date = date;
-		this.appointmentTime = appointmentTime;
-		this.dateCreated = dateCreated;
-		this.doctor = doctor;
-		this.pacient = pacient;
-		this.companyServices = companyServices;
-		this.appointmentToken = appointmentToken;
-		this.pacientName = pacientName;
-		this.pacientEmail = pacientEmail;
-		this.pacientPhone = pacientPhone;
-		this.canceledId = canceledId;
-		this.rescheduledId = rescheduledId;
-		this.canceled = canceled;
-		this.rescheduled = rescheduled;
-		this.fixedTimes = fixedTimes;
-	}
-
 	public long getAppointmentId() {
 		return appointmentId;
 	}
@@ -150,11 +84,11 @@ public class Appointment implements Serializable {
 		this.appointmentId = appointmentId;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -174,6 +108,8 @@ public class Appointment implements Serializable {
 		this.pacient = pacient;
 	}
 	
+	
+
 	public String getAppointmentToken() {
 		return appointmentToken;
 	}
@@ -181,6 +117,7 @@ public class Appointment implements Serializable {
 	public void setAppointmentToken(String appointmentToken) {
 		this.appointmentToken = appointmentToken;
 	}
+	
 	
 	
 	public Date getDateCreated() {
@@ -223,109 +160,10 @@ public class Appointment implements Serializable {
 	public Set<CompanyService> getCompanyServices() {
 		return companyServices;
 	}
-	
-	//generate a String in the form of row list
-	public String getStringCompanyServicesNames() {
-		List<String> list = new ArrayList<>();
-		for(CompanyService coServ : this.getCompanyServices()) {
-			list.add(coServ.getName());
-		}
-		//used to generate a String version of the collection 
-		return list.stream().map(Object::toString).collect(Collectors.joining(""+"," + ""));
-	}
 
 	public void setCompanyServices(Set<CompanyService> companyServices) {
 		this.companyServices = companyServices;
 	}
-	
-	
-
-	public LocalTime getAppointmentTime() {
-		if(this.appointmentTime != null) {
-			return this.appointmentTime.minusHours(2);			
-		}
-		return null;
-
-	}
-
-	public void setAppointmentTime(LocalTime time) {
-		this.appointmentTime = time.plusHours(2);
-	}
-	
-	public void removeAppointmentFixedTime(LocalTime time) {
-		this.fixedTimes.remove(time);
-	}
-	
-	public void addAppointmentFixedTime(LocalTime time) {
-		this.fixedTimes.add(time);
-	}
-	
-
-	public List<LocalTime> getFixedTimes() {
-		return fixedTimes;
-	}
-
-
-
-	public void setFixedTimes(List<LocalTime> fixedTimes) {
-		this.fixedTimes = fixedTimes;
-	}
-	
-	public String getDoctorName () {
-		if (this.getDoctor() == null) {
-			return null;
-		}
-		return this.getDoctor().getFirstName();
-	}
-
-
-	public long getCanceledId() {
-		return canceledId;
-	}
-
-
-
-	public void setCanceledId(long canceledId) {
-		this.canceledId = canceledId;
-	}
-
-
-
-	public long getRescheduledId() {
-		return rescheduledId;
-	}
-
-
-
-	public void setRescheduledId(long rescheduledId) {
-		this.rescheduledId = rescheduledId;
-	}
-
-
-
-	public boolean isCanceled() {
-		return canceled;
-	}
-
-
-
-	public void setCanceled(boolean canceled) {
-		this.canceled = canceled;
-	}
-
-
-
-	public boolean isRescheduled() {
-		return rescheduled;
-	}
-
-
-
-	public void setRescheduled(boolean rescheduled) {
-		this.rescheduled = rescheduled;
-	}
-
-
 
 	//overridden methods
 	@Override
@@ -347,13 +185,9 @@ public class Appointment implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Appointment [appointmentId=" + appointmentId + ", date=" + date + ", time=" + appointmentTime + ", doctor=" + doctor + ", pacient="
+		return "Appointment [appointmentId=" + appointmentId + ", date=" + date + ", doctor=" + doctor + ", pacient="
 				+ pacient + "]";
 	}
-
-
-
-
 	
 	
 
