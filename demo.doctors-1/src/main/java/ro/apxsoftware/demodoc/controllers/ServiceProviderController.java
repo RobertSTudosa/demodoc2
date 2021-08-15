@@ -697,20 +697,26 @@ public class ServiceProviderController {
 	}
 	
 	@GetMapping(value="/addTempAppointment", produces = {" application/json" })
-	public String addTempAppointment(Model model, @RequestParam("personId") long personId,   @RequestParam(value="doctor", required=false) Long doctorId, @RequestParam(value="service", required=false) String service,
+	public String addTempAppointment(Model model, @RequestParam("personId") long personId,   @RequestParam(value="doctor", required=false) Long doctorId, 
+			@RequestParam(value="service", required=false) String service,
 			@RequestParam(value="time", required=true) CharSequence time,
 			 Appointment appointment, Authentication auth, RedirectAttributes redirAttr) {
 		
 		Person client = persServ.findPersonById(personId);
 		LocalTime theTime = LocalTime.parse(time);
 		
-		Person doctor = persServ.findPersonByUserId(doctorId);
+		if(doctorId != null) {
+			Person doctor = persServ.findPersonByUserId(doctorId);
+			
+			appointment.setDoctor(doctor);
+			
+		}
 		
-		appointment.setDoctor(doctor);
 		appointment.setPacient(client);
 		appointment.setAppointmentToken(UUID.randomUUID().toString());
 		appointment.setAppointmentTime(theTime);
 		appointment.setPacientEmail(client.getEmail());
+		appointment.setTemporary(true);
 
 
 		
@@ -724,7 +730,7 @@ public class ServiceProviderController {
 		List<Appointment> tempAppointments = appServ.getTemporaryAppointmentsByPacientId(personId);
 		tempAppointments.add(appointment);
 		redirAttr.addFlashAttribute("tempAppointments", tempAppointments);
-		///git
+		///github test 
 
 		
 		return "usermodals :: #tempAppointList" ;

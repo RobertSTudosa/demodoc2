@@ -251,7 +251,7 @@
 		<section id="appointment" class="appointment section-bg mb-4">
 		<div class="container" data-aos="fade-up">
 
-					 <form th:action="@{/makeAppointment}" th:object="${appointment}" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+		<form th:action="@{/doctor/addTempAppointment}" th:object="${appointment}" id="tempAppointForm"method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
           <div class="row">
             <!-- <div class="col-md-4 form-group" sec:authrorize="isAnonymous()">
               <input type="text" th:field="${appointment.pacientName}" name="name" class="form-control" id="name" placeholder="Numele dvs." required>
@@ -417,7 +417,7 @@
              <!--  <input type="time" th:field="${appointment.appointmentTime}" th:value="${appointment.getFixedTimes()}" name="time" 
               	step="3600" class="form-control datepicker" id="time" placeholder="Ora programarii" required>  -->
               	
-               	<select th:name="time" id="time" class="form-select">
+               	<select th:name="time" id="time" class="form-select fixedTimes">
               		<option id="optionTime" value="selecteaza ora">Ora</option>
               		<option id="optionTime" th:each="time : ${fixedTimes}" th:text="${time}" th:value="${time}">time</option>
               	
@@ -528,8 +528,24 @@
         
         
         <script type="text/javascript" th:inline="javascript">
-        	function addTemporaryAppoint() {
+        	$("#tempAppointForm").submit(function(e) {
+									console.log('preventing enter ');
+									console.log('selectedPerson exists ' + selectedPersonId);
+   										 e.preventDefault();
+   										 addTemporaryAppoint();
+									});
+        	
+        
+        	function addTemporaryAppoint() {	
         		console.log('selectedPerson exists ' + selectedPersonId);
+        		var doctorId = $("select.doctor").children("option:selected").val();
+        		
+        		console.log('doctor parameter in place ' + doctorId);
+        		var selectedServices = $("select#department").children("option:selected").toArray().map(item => item.text).join();        		
+     
+     			console.log('selected services are ' + selectedServices);   		
+        		var time = $("select.fixedTimes").children("option:selected").val(); 
+        		console.log('time selected is ' + time);
         		
         	
         	}
