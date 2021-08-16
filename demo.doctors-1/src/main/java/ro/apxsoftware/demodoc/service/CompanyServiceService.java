@@ -25,5 +25,15 @@ public class CompanyServiceService {
 	public void deleteAllByAppointmentId(long appointmentId) {
 		coservRepo.deleteAllByAppointmentId(appointmentId);
 	}
+	
+	public void saveAndFlush(CompanyService coServ) {
+		coservRepo.saveAndFlush(coServ);
+	}
+
+	public void dbflush() {
+		coservRepo.flush();
+		return;
+		
+	}
 
 }

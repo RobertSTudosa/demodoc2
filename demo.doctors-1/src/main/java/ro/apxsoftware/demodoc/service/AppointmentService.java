@@ -24,6 +24,10 @@ public class AppointmentService {
 		appRepo.save(appointment);
 	}
 	
+	public void saveAndFlush(Appointment appointment) {
+		appRepo.saveAndFlush(appointment);
+	}
+	
 	public Appointment getAppointmentByToken(String token) {
 		return appRepo.appointmentByToken(token);
 	}
@@ -236,6 +240,12 @@ public class AppointmentService {
 	
 	public List<Appointment> getTemporaryAppointmentsByPacientId(long userId) {
 		return appRepo.searchAppointmentsByPacientAndTemporary(userId);
+	}
+
+	public void dbflush() {
+		// TODO Auto-generated method stub
+		appRepo.flush();
+		return;
 	}
 	
 	

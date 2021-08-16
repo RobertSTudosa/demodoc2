@@ -1,13 +1,11 @@
 package ro.apxsoftware.demodoc.controllers;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -24,6 +22,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,12 +33,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.drew.imaging.ImageMetadataReader;
-import com.drew.imaging.ImageProcessingException;
-import com.drew.metadata.Directory;
-import com.drew.metadata.Metadata;
-import com.drew.metadata.Tag;
 
 import ro.apxsoftware.demodoc.entities.Appointment;
 import ro.apxsoftware.demodoc.entities.CompanyService;
@@ -692,6 +685,7 @@ public class ServiceProviderController {
 		return "usermodals :: #modalSearchClientsWrapper";
 	}
 	
+	@Transactional
 	@GetMapping(value="/addTempAppointment", produces = {" application/json" })
 	public String addTempAppointment(Model model, @RequestParam("personId") long personId,   @RequestParam(value="doctor", required=false) Long doctorId, 
 			@RequestParam(value="service", required=false) String service,
@@ -699,7 +693,8 @@ public class ServiceProviderController {
 			Appointment appointment, Authentication auth, RedirectAttributes redirAttr) {
 		
 		
-		
+		List<Appointment> tempAppointments = appServ.getTemporaryAppointmentsByPacientId(personId);
+		System.out.println("tempAppointments before adding " + Arrays.asList(tempAppointments));
 		Person client = persServ.findPersonById(personId);
 		LocalTime theTime = LocalTime.parse(time);
 		LocalDate theDate = LocalDate.parse(date);
@@ -721,21 +716,41 @@ public class ServiceProviderController {
 
 
 		
-		appServ.saveApp(appointment);
+//		appServ.saveApp(appointment);
+		
+		Set<CompanyService> existingCoServ = appointment.getCompanyServices();
 		CompanyService coServ = new CompanyService();
 		coServ.setName(service+ "");
 		coServ.setAppointment(appointment);
-		coservServ.saveCompanyService(coServ);
+		existingCoServ.add(coServ);
+		appointment.setCompanyServices(existingCoServ);
+		appServ.saveAndFlush(appointment);
+//		coservServ.saveCompanyService(coServ);
+		coservServ.saveAndFlush(coServ);
+		
+		appServ.dbflush();
+		coservServ.dbflush();
+		
+		System.out.println("company services just saved " + coServ.getName());
 		
 		//create query for the temp appoint of the client
-		List<Appointment> tempAppointments = appServ.getTemporaryAppointmentsByPacientId(personId);
+		
+		
 		tempAppointments.add(appointment);
 		model.addAttribute("tempAppointments", tempAppointments);
-		///github test 
-
+		
+		System.out.println(" ====== services for this appointment are ===> " + appointment.getCompanyServices().toString());
+		System.out.println(" ====== String services for this appointment are ===> " + appointment.getStringCompanyServicesNames());
 		
 		return "usermodals :: #tempAppointList" ;
 		
+	}
+	
+	@GetMapping(value="/deleteTempAppointment", produces = {" application/json" })
+	public String deleteTempAppointment(Model model, @RequestParam("appId") long appId) {
+		
+		
+		return "usermodals :: #temppAppointList" ;
 	}
 
 }

@@ -28,11 +28,11 @@
 
 
 								<script type="text/javascript" th:inline="javascript">
-									$("#searchAppClient").submit(function(e) {
-									console.log('preventing enter ');
-   										 e.preventDefault();
-   										 searchClients();
-									});
+									//$("#searchAppClient").submit(function(e) {
+									//console.log('preventing enter ');
+   									//	 e.preventDefault();
+   									//	 searchClients();
+									//});
 									
 									function searchClients() {
 										
@@ -249,13 +249,26 @@
 		tabindex=-501 aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow: auto !important;">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="staticBackdropLabel">Programare
+							recurenta - efectuati programariile</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+
+				
+			<div class="modal-body">
+			
+			
+		
 		
 		<!-- ======= Appointment Section ======= -->
 		
 		<section id="appointment" class="appointment section-bg mb-4">
 		<div class="container" data-aos="fade-up">
 
-		<form th:action="@{/doctor/addTempAppointment}" th:object="${appointment}" id="tempAppointForm"method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+		<form th:action="@{/doctor/addTempAppointment}" th:object="${appointment}" id="tempAppointForm" method="get" role="form" class="php-email-form" 
+			data-aos="fade-up" data-aos-delay="100">
           <div class="row">
             <!-- <div class="col-md-4 form-group" sec:authrorize="isAnonymous()">
               <input type="text" th:field="${appointment.pacientName}" name="name" class="form-control" id="name" placeholder="Numele dvs." required>
@@ -529,13 +542,13 @@
           <div class="text-center mb-5"><button type="button" th:attr="onclick=|addTemporaryAppoint()|">adaugati programare</button></div>
           
            <script type="text/javascript" th:inline="javascript">
-        	$("#tempAppointForm").submit(function(e) {
-									console.log('preventing enter ');
-									console.log('selectedPerson exists ' + selectedPersonId);
-									
-   										 e.preventDefault();
-   										 addTemporaryAppoint();
-									});
+        	//$("#tempAppointForm").submit(function(e) {
+			//						console.log('preventing enter ');
+			//						console.log('selectedPerson exists ' + selectedPersonId);
+			//						
+   			//							 e.preventDefault();
+   			//							 addTemporaryAppoint();
+			//						});
         	
         
         	function addTemporaryAppoint() {	
@@ -569,7 +582,7 @@
 						$("#tempAppointForm")[0].reset();
 														
 						$("#tempAppointList").html(data);	
-					
+						//$("#tempAppointList").load(window.location.href + " #tempAppointList" );
 					
 					},
 								
@@ -589,6 +602,9 @@
         </form>
         
         		<!-- ================================  insert an alert for each added appointment then when hitting close delete the appointment ===============-->
+
+			
+	
 					<div >
 						<ul  id="tempAppointList" >
 							<li th:each="appointment : ${tempAppointments}" th:if="${tempAppointments} != null" style="list-style: none;">
@@ -613,7 +629,7 @@
 											pacient: </span> <span th:text="' ' + ${appointment.pacientName}">You
 											should check your results.</span> <span class="fw-bold">,
 											requested: </span> <span
-											th:text="' ' + ${appointment.getStringCompanyServicesNames()} ">You
+											th:text="' ' + ${appointment.companyServices} ">You
 											should check your results.</span>
 									</div>
 									
@@ -636,9 +652,9 @@
 		
 
 
-				</div><!--end div ul de la modal content  -->
+				</div><!--end div ul de la modal body  -->
 
-
+		</div>
 		</div>
 	</div>
 	
