@@ -52,6 +52,8 @@
 										complete: function () {},					
 										success: function (data) {
 										//console.log(JSON.stringify(data));	
+										
+										$("#searchAppClient")[0].reset();
 														
 										$("#modalSearchClientsWrapper").html(data);	
 									},
@@ -247,7 +249,9 @@
 		tabindex=-501 aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow: auto !important;">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
-<!-- ======= Appointment Section ======= -->
+		
+		<!-- ======= Appointment Section ======= -->
+		
 		<section id="appointment" class="appointment section-bg mb-4">
 		<div class="container" data-aos="fade-up">
 
@@ -522,15 +526,13 @@
           
          
           
-          <div class="text-center mb-5"><button type="submit" th:attr="onclick=|addTemporaryAppoint()|">adaugati programare</button></div>
+          <div class="text-center mb-5"><button type="button" th:attr="onclick=|addTemporaryAppoint()|">adaugati programare</button></div>
           
-        </form>
-        
-        
-        <script type="text/javascript" th:inline="javascript">
+           <script type="text/javascript" th:inline="javascript">
         	$("#tempAppointForm").submit(function(e) {
 									console.log('preventing enter ');
 									console.log('selectedPerson exists ' + selectedPersonId);
+									
    										 e.preventDefault();
    										 addTemporaryAppoint();
 									});
@@ -547,6 +549,34 @@
         		var time = $("select.fixedTimes").children("option:selected").val(); 
         		console.log('time selected is ' + time);
         		
+        		var reDate = $("#date").val();
+				console.log('date is passed ' + reDate); 
+				
+				
+        		
+        		$.ajax({
+        			
+        			type: "GET",
+                    url: "/doctor/addTempAppointment?personId=" + selectedPersonId + "&doctor=" + doctorId + "&service=" + selectedServices + 
+                    											"&time=" + time + "&date=" + reDate,
+                    beforeSend: function () {
+                    	$(".preloader").fadeOut();
+                    },
+					complete: function () {},					
+					success: function (data) {
+					//console.log(JSON.stringify(data));
+					
+						$("#tempAppointForm")[0].reset();
+														
+						$("#tempAppointList").html(data);	
+					
+					
+					},
+								
+        		
+        		
+        		});
+        		
         	
         	}
         
@@ -555,46 +585,58 @@
         
         </script>
 						
+          
+        </form>
+        
+        		<!-- ================================  insert an alert for each added appointment then when hitting close delete the appointment ===============-->
+					<div >
+						<ul  id="tempAppointList" >
+							<li th:each="appointment : ${tempAppointments}" th:if="${tempAppointments} != null" style="list-style: none;">
+								<div
+									class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 "
+									role="alert" id="tempAppoint"
+									style="border-left: 3px solid #3FBBC0;">
+									<div class="wrapper">
+
+										<span class="iconify"
+											data-icon="icon-park-outline:appointment"
+											style="font-size: 1.2rem;"></span>
+										<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
+										<span class="fw-bold">progamare adaugata: </span> 
+										<span
+											th:text="' : ' + ${#temporals.format(appointment.date,'dd-MM-yyyy')}">You
+											should check your results.</span> 
+										 	
+											<span
+											th:text="' : ' + ${appointment.appointmentTime}">You
+											should check your results.</span> <span class="fw-bold">,
+											pacient: </span> <span th:text="' ' + ${appointment.pacientName}">You
+											should check your results.</span> <span class="fw-bold">,
+											requested: </span> <span
+											th:text="' ' + ${appointment.getStringCompanyServicesNames()} ">You
+											should check your results.</span>
+									</div>
+									
+									 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><!-- the close for the alert  -->
+									
+								</div>
+							</li>
+
+						</ul>
+
+
+
+					</div>
+        
+       
 					
 		</div>
 
 		</section>
 		
-		<!-- ================================  insert an alert for each added appointment then when hitting close delete the appointment ===============-->
 
-					<ul id=tempAppointList>  
-						<li th:if="${not #lists.isEmpty(tempAppointments)}" th:each="appointment : tempAppointments">
-							<div
-								class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 "
-								role="alert"
-								id="tempAppoint" style="border-left: 3px solid #3FBBC0;">
-								<div class="wrapper">
 
-									<span class="iconify" data-icon="icon-park-outline:appointment"
-										style="font-size: 1.2rem;"></span>
-									<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
-									<span class="fw-bold">progamare adaugata: </span> <span
-										th:text="' : ' + ${#temporals.format(appointment.date,'dd-MM-yyyy')}">You
-										should check your results.</span> 
-										<span
-										th:text="' : ' + ${appointment.appointemnt_time}">You
-										should check your results.</span>
-										<span class="fw-bold">,
-										pacient: </span> <span th:text="' ' + ${appointment.pacientName}">You
-										should check your results.</span> <span class="fw-bold">,
-										requested: </span> <span
-										th:text="' ' + ${appointment.getStringCompanyServicesNames()} ">You
-										should check your results.</span>
-								</div>
-								</div>
-						</li>
-
-					</ul>
-
-					
-
-					</div>
-					<!--end div ul de la modal content  -->
+				</div><!--end div ul de la modal content  -->
 
 
 		</div>
