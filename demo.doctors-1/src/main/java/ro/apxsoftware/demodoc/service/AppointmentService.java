@@ -247,6 +247,16 @@ public class AppointmentService {
 		appRepo.flush();
 		return;
 	}
+
+	public Appointment findAppointmentByAppointmentId(long appId) {
+		// TODO Auto-generated method stub
+		return appRepo.getById(appId);
+	}
+
+	public void deleteAppointment(Appointment toDeleteApp) {
+		appRepo.delete(toDeleteApp);
+		
+	}
 	
 	
 }

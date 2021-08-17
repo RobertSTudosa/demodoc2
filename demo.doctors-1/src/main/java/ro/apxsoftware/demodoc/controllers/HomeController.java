@@ -852,6 +852,8 @@ public class HomeController {
 				RedirectAttributes redirAttr, 
 			Authentication auth)  {
 		
+		System.out.println("method param month ---------> " + month);
+		
 		System.out.println("primul println");
 		List<Appointment> sixMoreAppointments = new ArrayList<>();
 		List<Appointment> allPersonAppointmentsByMonth = new ArrayList<>();
@@ -993,6 +995,7 @@ public class HomeController {
 				//increase the integer month because from view it comes from a zero based array 
 				//as a minus one value;
 				intMonth += 1; 
+				
 				String stringMonth = String.valueOf(intMonth);
 				System.out.println("intMonth passed is " + ld.getMonthValue());
 				

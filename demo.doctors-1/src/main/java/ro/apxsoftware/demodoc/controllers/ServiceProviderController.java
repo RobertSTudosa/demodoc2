@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -696,6 +698,7 @@ public class ServiceProviderController {
 		List<Appointment> tempAppointments = appServ.getTemporaryAppointmentsByPacientId(personId);
 		System.out.println("tempAppointments before adding " + Arrays.asList(tempAppointments));
 		Person client = persServ.findPersonById(personId);
+		
 		LocalTime theTime = LocalTime.parse(time);
 		LocalDate theDate = LocalDate.parse(date);
 		
@@ -746,11 +749,47 @@ public class ServiceProviderController {
 		
 	}
 	
-	@GetMapping(value="/deleteTempAppointment", produces = {" application/json" })
-	public String deleteTempAppointment(Model model, @RequestParam("appId") long appId) {
+	@GetMapping(value="/approveAllTempApp", produces = {" application/json"})
+	public String approveAllTemporaryAppointments(Model model, @RequestParam("personId") long personId) {
+		List<Appointment> tempAppointments = appServ.getTemporaryAppointmentsByPacientId(personId);
+		for(Appointment temp : tempAppointments) 
+			{
+				temp.setTemporary(false);
+				appServ.saveAndFlush(temp);
+			}
+		model.addAttribute("appointsMade", tempAppointments);
 		
+		return "doctor/dashboard :: #appointsMadeList";
 		
-		return "usermodals :: #temppAppointList" ;
+	}
+	
+	@GetMapping(value="/deleteOneTempAppointment", produces = {" application/json" })
+	@ResponseStatus(HttpStatus.OK)
+	public void deleteOneTempAppointment(Model model, @RequestParam("appId") long appId) {
+		
+		System.out.println("appId passed to method is ---> " + appId);
+		
+		Appointment toDeleteApp = appServ.findAppointmentByAppointmentId(appId);
+		Set<CompanyService> coServForDeletedApp = toDeleteApp.getCompanyServices();
+		
+		appServ.deleteAppointment(toDeleteApp);
+		appServ.dbflush();
+		
+	}
+	
+	
+	@GetMapping(value="/deleteTempAppointments", produces = {" application/json" })
+	@ResponseStatus(HttpStatus.OK)
+	public void deleteTempAppointments(Model model, @RequestParam("personId") long personId) {
+		
+		System.out.println("personId passed to delete temp apps method is ---> " + personId);
+		List<Appointment> tempAppointments = appServ.getTemporaryAppointmentsByPacientId(personId);
+		for(Appointment temp : tempAppointments) {
+			appServ.deleteAppointment(temp);
+			appServ.dbflush();
+		}
+	
+
 	}
 
 }

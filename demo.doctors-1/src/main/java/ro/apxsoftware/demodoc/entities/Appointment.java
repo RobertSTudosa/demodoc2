@@ -59,7 +59,7 @@ public class Appointment implements Serializable {
 	
 	
 	@OneToMany(mappedBy="appointment" ,
-			cascade= {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST})
+			cascade= {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REMOVE})
 	private Set<CompanyService> companyServices = new HashSet<>();
 	
 	 @Column(name="appointment_token")

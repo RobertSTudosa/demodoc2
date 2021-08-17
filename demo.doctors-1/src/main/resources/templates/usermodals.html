@@ -250,12 +250,54 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 					<div class="modal-header">
+						<button type="button" class=" mx-2" data-bs-target="#recurrentAppointment1" data-bs-toggle="modal" data-bs-dismiss="modal"	
+							th:attr="onclick=|deleteTempAppointments()|"
+							aria-label="Close"><span class="iconify" data-icon="bx:bx-arrow-back"style="font-size: 1,2rem;"></span></button>
+						
 						<h5 class="modal-title" id="staticBackdropLabel">Programare
 							recurenta - efectuati programariile</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
+						<button type="button" class="btn-close" data-bs-dismiss="modal" th:attr="onclick=|deleteTempAppointments()|"
 							aria-label="Close"></button>
 					</div>
-
+						
+						
+					<script type="text/javascript" th:inline="javascript">
+					
+						function deleteTempAppointments () {
+									 		console.log('personId is passed to deleteTempAppointments() ---->' + selectedPersonId);
+									 		
+									 		$.ajax ({
+									 			type: "GET",
+                    							url: "/doctor/deleteTempAppointments?personId=" + selectedPersonId,
+							                    beforeSend: function () {
+							                    	$(".preloader").fadeOut();
+							                    },
+												complete: function () {},					
+												success: function (data) {
+												
+													$("#tempAppointList").html(data);
+												}
+									 		
+									 		
+									 		});
+									 	
+									 	}
+									 
+								
+								var modalRecApp = document.getElementById('recAppoint');
+								modalRecApp.addEventListener('hidden.bs.modal', deleteTempAppointments);
+								
+								// close modal on click outside at anywhere
+  								//$(document).on('click',function(e){
+	    						//	if(!(($(e.target).closest("#recAppoint").length > 0 ) )){
+	   							//	 	console.log('IT IS HIDDEN!');
+	   							//	}
+ 								//}); 	
+									 	
+									 	
+					
+					
+					</script>	
 				
 			<div class="modal-body">
 			
@@ -539,18 +581,12 @@
           
          
           
-          <div class="text-center mb-5"><button type="button" th:attr="onclick=|addTemporaryAppoint()|">adaugati programare</button></div>
+          <div class="text-center mb-5"><button type="button" class="" th:attr="onclick=|addTemporaryAppoint()|">
+          		<span class="iconify" data-icon="carbon:add"></span>
+          		<span class="badge bg-primary rounded">adaugati programare</button></div>
           
            <script type="text/javascript" th:inline="javascript">
-        	//$("#tempAppointForm").submit(function(e) {
-			//						console.log('preventing enter ');
-			//						console.log('selectedPerson exists ' + selectedPersonId);
-			//						
-   			//							 e.preventDefault();
-   			//							 addTemporaryAppoint();
-			//						});
-        	
-        
+        	        
         	function addTemporaryAppoint() {	
         		console.log('selectedPerson exists ' + selectedPersonId);
         		var doctorId = $("select.doctor").children("option:selected").val();
@@ -559,7 +595,7 @@
         		var selectedServices = $("select#department").children("option:selected").toArray().map(item => item.text).join();        		
      
      			console.log('selected services are ' + selectedServices);   		
-        		var time = $("select.fixedTimes").children("option:selected").val(); 
+        		var time = $("select#time").children("option:selected").val(); 
         		console.log('time selected is ' + time);
         		
         		var reDate = $("#date").val();
@@ -581,8 +617,9 @@
 					
 						$("#tempAppointForm")[0].reset();
 														
-						$("#tempAppointList").html(data);	
-						//$("#tempAppointList").load(window.location.href + " #tempAppointList" );
+						$("#tempAppointList").html(data);
+						
+					
 					
 					},
 								
@@ -627,13 +664,48 @@
 											th:text="' : ' + ${appointment.appointmentTime}">You
 											should check your results.</span> <span class="fw-bold">,
 											pacient: </span> <span th:text="' ' + ${appointment.pacientName}">You
-											should check your results.</span> <span class="fw-bold">,
+											should check your results.</span>
+											<span class="fw-bold">,
+											doctor: </span> <span th:if="${appointment.doctor} != null" th:text="' ' + ${appointment.getDoctorName()}">You
+											should check your results.</span>
+											 <span class="fw-bold">,
 											requested: </span> <span
 											th:text="' ' + ${appointment.companyServices} ">You
 											should check your results.</span>
 									</div>
 									
-									 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><!-- the close for the alert  -->
+									 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" th:attr="onclick=|deleteOneTempAppointment('${appointment.appointmentId}')|"></button><!-- the close for the alert  -->
+									 
+									 <script type="text/javascript" th:inline="javascript">
+									 	function deleteOneTempAppointment (appId) {
+									 		console.log('appId is passed ---->' + appId);
+									 		
+									 		$.ajax ({
+									 			type: "GET",
+                    							url: "/doctor/deleteOneTempAppointment?appId=" + appId,
+							                    beforeSend: function () {
+							                    	$(".preloader").fadeOut();
+							                    },
+												complete: function () {},					
+												success: function (data) {
+												//console.log(JSON.stringify(data));
+												
+												
+													
+												
+												
+												},
+									 		
+									 		
+									 		
+									 		
+									 		
+									 		});
+									 	
+									 	}
+									 
+									 
+									 </script>
 									
 								</div>
 							</li>
@@ -643,12 +715,55 @@
 
 
 					</div>
-        
-       
-					
+        					
 		</div>
 
 		</section>
+		<div  id="approveAllTemp">
+							<div >
+								<button type="button" class="btn" id="approveApp" th:attr="onclick=|approveAllTempAppointments()|" data-bs-dismiss="modal">
+									<span class="iconify" data-icon="bi:check-all"></span>
+									<span class="badge bg-danger rounded">Aprobati
+										programarile</span>
+								</button>
+
+								
+
+
+							</div>
+							
+							
+							<script type="text/javascript" th:inline="javascript">
+			
+				
+				
+			
+				function approveAllTempAppointments() {
+				console.log('selectedPerson exists ' + selectedPersonId);
+				
+					$.ajax({
+        			
+        			type: "GET",
+                    url: "/doctor/approveAllTempApp?personId=" + selectedPersonId,
+                    beforeSend: function () {
+                    	$(".preloader").fadeOut();
+                    },
+					complete: function () {},					
+					success: function (data) {
+					//console.log(JSON.stringify(data));
+							
+						$("#appointsMadeList").html(data);	
+						
+					
+						}
+				
+					});
+				}
+			
+			</script>
+
+						</div>
+		
 		
 
 

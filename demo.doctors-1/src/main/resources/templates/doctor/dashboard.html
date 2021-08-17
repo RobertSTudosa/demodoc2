@@ -115,11 +115,36 @@
 	                           	<input type="hidden" value="appointSearch" name="search" id="appointSearch">
 	                           	<input type="text" placeholder="search..." class="form-control mt-0" name="keyword" th:value="${keyword}" id="keyword">
                                 <a href="" class="active">
-	                                <button type="submit" id="searchBtn" class="active"><i class="fa fa-search"></i></button>
+	                                <button type="submit" id="searchBtn" class="active"><i class="fa fa-search" ></i></button>
                                 
                                 </a>
 								<script type="text/javascript" th:inline="javascript">
+                                	function searchAppointments () {
+                                		var keywordById = $("#keyword").val();
+										console.log('searchAppointments is searched ' );
+										console.log('trying to get keyword by id --> ' + keywordById);
+                                	$.ajax({
+										
+										type: "GET",
+                            			url: "/searchAppointments?keyword=" + keywordById + "&search=appointSearch",
+                            			beforeSend: function () {
+                            				$(".preloader").fadeOut();
+                            			},
+										complete: function () {},					
+										success: function (data) {
+										//console.log(JSON.stringify(data));	
+										
+										
+														
+										$("#searchResultsWrapper").html(data);	
+									},
+								
+										
+										
+										
+										});
                                 	
+                                	}
                                 
                                 </script>
 
@@ -387,6 +412,50 @@
   	 
 	</div>
 	
+			<div id="appointsMadeList"  >
+						
+								<div th:if="${appointsMade} != null"
+									class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 "
+									role="alert" id="tempAppoint"
+									style="border-left: 3px solid #3FBBC0;">
+									<h4>Programari recurente adaugate: </h4>
+									
+						<ul >
+							<li th:each="appointment : ${appointsMade}" style="list-style: none;">
+									<div class="wrapper">
+
+										<span class="iconify"
+											data-icon="icon-park-outline:appointment"
+											style="font-size: 1.2rem;"></span>
+										<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
+										<span class="fw-bold">progamare adaugata: </span> 
+										<span
+											th:text="' : ' + ${#temporals.format(appointment.date,'dd-MM-yyyy')}">You
+											should check your results.</span> 
+										 	
+											<span
+											th:text="' : ' + ${appointment.appointmentTime}">You
+											should check your results.</span> <span class="fw-bold">,
+											pacient: </span> <span th:text="' ' + ${appointment.pacientName}">You
+											should check your results.</span> <span class="fw-bold">,
+											requested: </span> <span
+											th:text="' ' + ${appointment.companyServices} ">You
+											should check your results.</span>
+									</div>
+									
+								</li>
+
+							</ul>
+									
+									 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><!-- the close for the alert  -->
+									
+								</div>
+
+
+
+
+					</div>
+	
 	<div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 " 
 		role="alert" th:if="${lastAppointment}!=null" id="lastAppointment" style="border-left: 3px solid #3FBBC0;">
 		<div class="wrapper">
@@ -405,10 +474,7 @@
  	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
 	
-	
-	
-           
-	<div class="row alert d-flex align-items-center alert-dismissible fade show mx-2 mt-2"  th:if="${keywords}!=null">
+	 <div class="row alert d-flex align-items-center alert-dismissible fade show mx-2 mt-2"  th:if="${keywords}!=null" id="searchResultsWrapper">
 			<div class="col-md-12 col-lg-12 col-sm-12 tab-pane fade active show" id="search" role="tabpanel" aria-labelledby="future-tab" >
                         <div class="white-box">
                             <div class="d-md-flex mb-3">
@@ -518,7 +584,8 @@
 		
 	</div>	
 	
-
+   
+	
                 
                    <!-- ============================================================== -->
                 <!-- APPOINTMENTS IN PENDING -->
@@ -683,14 +750,15 @@
                             <script type="text/javascript" th:inline="javascript">
                             
                             				function seeMoreAppoints(lastAppId) {
-                            					var theSelectedMonth = $('select option').filter(':selected').val();
-                            					console.log('calling more appointments from the month ' + theSelectedMonth);
+                            					//var theSelectedMonth = $('select option').filter(':selected').val();
+                            					var month = $('select#select-month').children('option:selected').val();
+                            					console.log('calling more appointments from the month ' + month);
                             					console.log('lastAppId is ' + lastAppId);
                             					
                             					event.preventDefault();	//how important is this?
                             					$.ajax({
                             						type: "GET",
-                            						url: "/getMoreMonthAppointments?month=" + theSelectedMonth + "&lastAppId=" + lastAppId,
+                            						url: "/getMoreMonthAppointments?month=" + month + "&lastAppId=" + lastAppId,
                             						beforeSend: function () {},
 													complete: function () {},					
 													success: function (data) {
