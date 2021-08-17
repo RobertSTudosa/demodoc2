@@ -21,6 +21,9 @@
    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
     
+    <!-- Datepicker CSS files  -->
+  <link href="css/datepicker.css" rel="stylesheet" type="text/css"/>
+    
    <!-- Custom CSS and JS for multiple select -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
   <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
@@ -33,6 +36,16 @@
 <![endif]-->
 
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	 
+	  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  
+  <script
+  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+  crossorigin="anonymous"></script>
 	 
 	 <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 
@@ -351,7 +364,50 @@
 </div> -->
                 <!-- ============= END TAB EXAMPLE ==================== -->
                 
-                
+       <div id="appointsMadeList"  >
+						
+								<div th:if="${appointsMade} != null"
+									class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 "
+									role="alert" id="tempAppoint"
+									style="border-left: 3px solid #3FBBC0;">
+									<h4>Programari recurente adaugate: </h4>
+									
+						<ul >
+							<li th:each="appointment : ${appointsMade}" style="list-style: none;">
+									<div class="wrapper">
+
+										<span class="iconify"
+											data-icon="icon-park-outline:appointment"
+											style="font-size: 1.2rem;"></span>
+										<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
+										<span class="fw-bold">progamare adaugata: </span> 
+										<span
+											th:text="' : ' + ${#temporals.format(appointment.date,'dd-MM-yyyy')}">You
+											should check your results.</span> 
+										 	
+											<span
+											th:text="' : ' + ${appointment.appointmentTime}">You
+											should check your results.</span> <span class="fw-bold">,
+											pacient: </span> <span th:text="' ' + ${appointment.pacientName}">You
+											should check your results.</span> <span class="fw-bold">,
+											requested: </span> <span
+											th:text="' ' + ${appointment.companyServices} ">You
+											should check your results.</span>
+									</div>
+									
+								</li>
+
+							</ul>
+									
+									 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><!-- the close for the alert  -->
+									
+								</div>
+
+
+
+
+					</div>
+	         
                                 
      <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2" role="alert" th:if="${searchMessage}!=null" id="alertMessage">
   	 <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i><span>You searched for  </span><span th:text="' : ' + ${searchMessage}">You should check your results.</span>

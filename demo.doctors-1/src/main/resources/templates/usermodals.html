@@ -1723,13 +1723,16 @@
 
 <html>
 <body>
+<div th:fragment="clientDetails">
 
-<div th:fragment="clientDetails" class="modal fade" th:id="'detailClient' + ${client.personId}"  tabindex=-501 aria-labelledby="exampleModalLabel" aria-hidden="true" >
+
+
+<div class="modal fade" tabindex=-501 aria-labelledby="exampleModalLabel" aria-hidden="true" th:id="'detailClient' + ${client.personId}">
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
        <div class="modal-title" id="exampleModalLabel"></div>
-       	<button type="button" class="btn btn-secondary close" data-bs-dismiss="modal"
+       	<button type="button" class="btn btn-secondary close" data-bs-dismiss="modal" 
 						aria-label="Close" ><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body" >
@@ -1769,6 +1772,8 @@
 										
 									</a>
 								</div>
+								
+		
           <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
             
             
@@ -1821,7 +1826,13 @@
 
 		</div>
  
- 		  
+ 		<div class="modal-footer" >
+					<div class="text-center mb-5" id="nextModal" >
+						<button type="button" class="btn btn-primary" 
+								data-bs-target="#recAppoint" data-bs-toggle="modal" data-bs-dismiss="modal">Programare recurenta</button>								
+					</div>
+				
+				</div>  
      
 
 
@@ -1829,7 +1840,549 @@
  		
  
 	</div>
+  
+  
+  
+  
   </div>
+
+<div class="modal fade"
+		id="recAppoint"
+		tabindex=-501 aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow: auto !important;">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class=" mx-2" th:data-bs-target="'#detailClient' + ${client.personId}" data-bs-toggle="modal" data-bs-dismiss="modal"	
+							th:attr="onclick=|deleteTempAppointments()|"
+							aria-label="Close"><span class="iconify" data-icon="bx:bx-arrow-back"style="font-size: 1,2rem;"></span></button>
+						
+						<h5 class="modal-title" id="staticBackdropLabel">Programare
+							recurenta - efectuati programariile</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" th:attr="onclick=|deleteTempAppointments()|"
+							aria-label="Close"></button>
+					</div>
+						
+						
+					<script type="text/javascript" th:inline="javascript">
+						var selectedPersonId = [[${client.personId}]];
+						
+						function deleteTempAppointments () {
+									 		console.log('personId is passed to deleteTempAppointments() ---->' + selectedPersonId);
+									 		
+									 		$.ajax ({
+									 			type: "GET",
+                    							url: "/doctor/deleteTempAppointments?personId=" + selectedPersonId,
+							                    beforeSend: function () {
+							                    	$(".preloader").fadeOut();
+							                    },
+												complete: function () {},					
+												success: function (data) {
+												
+													$("#tempAppointList").html(data);
+												}
+									 		
+									 		
+									 		});
+									 	
+									 	}
+									 
+								
+								var modalRecApp = document.getElementById('recAppoint');
+								modalRecApp.addEventListener('hidden.bs.modal', deleteTempAppointments);
+								
+								// close modal on click outside at anywhere
+  								//$(document).on('click',function(e){
+	    						//	if(!(($(e.target).closest("#recAppoint").length > 0 ) )){
+	   							//	 	console.log('IT IS HIDDEN!');
+	   							//	}
+ 								//}); 	
+									 	
+									 	
+					
+					
+					</script>	
+				
+			<div class="modal-body">
+			
+			
+		
+		
+		<!-- ======= Appointment Section ======= -->
+		
+		<section id="appointment" class="appointment section-bg mb-4">
+		<div class="container" data-aos="fade-up">
+
+		<form th:action="@{/doctor/addTempAppointment}" th:object="${appointment}" id="tempAppointForm" method="get" role="form" class="php-email-form" 
+			data-aos="fade-up" data-aos-delay="100">
+          <div class="row">
+            <!-- <div class="col-md-4 form-group" sec:authrorize="isAnonymous()">
+              <input type="text" th:field="${appointment.pacientName}" name="name" class="form-control" id="name" placeholder="Numele dvs." required>
+            </div> -->
+            <div class="col-md-4 form-group mt-3 mt-md-0" sec:authorize="isAnonymous()">
+              <input type="email" th:field="${appointment.pacientEmail}" class="form-control" name="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0" sec:authorize="isAnonymous()">
+              <input type="tel" th:field="${appointment.pacientPhone}" class="form-control" name="phone" id="phone" placeholder="numarul de telefon" required>
+            </div>
+          </div>
+          <div class="row">
+            
+
+            <div class="col-md-4 form-group mt-3">
+              <select name="doctor" id="doctor" class="form-select doctor" th:attr="onchange=|(getDoctorBusyDates())|">
+                <option th:value=null >Selecteaza Doctor</option>
+                <option th:each="doctor : ${doctors}" th:value="${doctor.personId}" id="doctorId" th:text="${doctor.firstName}" >Doctor's name</option>
+              
+              </select>
+              
+              <script type="text/javascript" th:inline="javascript">
+              	
+              		var busyDatesArray = [[${busyDates}]];
+   	
+              	function getDoctorBusyDates () {
+              			console.log("getDoctorBusyDates is calling");
+              			var doctorId = $("select.doctor").children("option:selected").val(); //use again in the function select hours by doctor 
+              			console.log("doctor's id is selected --> " + doctorId);
+              			var dateVal = $("#date").val(); 
+              			var now = new Date();
+              			
+              			if(doctorId > 0 ) {
+			
+							$.ajax({
+							type: "GET",
+							url: "/allBusyDates",
+							beforeSend: function () {},
+							complete: function () {},					
+							success: function (data) {
+								console.log(data);
+								busyDatesArray = data;
+							},
+						});
+						
+							if(dateVal == "") {
+              					
+              					console.log("date is not selected");
+              				
+              					} else {
+              					
+              					console.log("date is selected");              						
+              					getTimes();
+
+              					};
+							
+              			} 
+              			
+              			if(doctorId === ""){ 
+              				
+              				$.ajax({
+							type: "GET",
+							url: "/",
+							beforeSend: function () {},
+							complete: function () {},					
+							success: function () {
+								console.log("success");
+								busyDatesArray = [[${busyDates}]];
+							},
+						});
+						
+						if(dateVal == "") {
+              					
+              					console.log("date is not selected");
+              				
+              					} else {
+              					
+              					console.log("date is selected");              						
+              					getTimes();
+
+              					
+              					
+              					};
+              			
+              			}
+              	
+              	}
+              
+              
+              </script>
+            </div>
+            <div class="col-md-4 form-group mt-3">
+              <input type="date" th:field="${appointment.date}"  name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" 
+              		th:attr="onchange=|(getTimes())|" readonly required >
+              <!--  -->
+                          <!--   th:attr="onclick=|insertBusyDates('${busyDates}')|" -->
+             <!--  <ul style="display: none;" id="busyDates">
+              	<li th:each="date : ${busyDates}" th:value="date">date</li>
+              </ul>     -->       
+            </div>
+           <script type="text/javascript" th:inline="javascript">
+           			
+					var busyDatesArray = [[${busyDates}]];
+					
+					console.log(busyDatesArray);
+	            	$("#date").datepicker({ 
+	            	
+	            			beforeShowDay: function(date) {
+	            				var string2 = formatDate(date);
+						      //var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+						      if (contains(busyDatesArray,string2)) {
+						        debugger;
+						        return [false, '']
+						      } else {
+						        var day = date.getDay();
+						        return [(day != 0) && (day != 6), ''];
+						      }
+						    },
+	            			minDate: 0,
+      						showButtonPanel: true,
+	            			inline: true,
+						    showOtherMonths: true,
+      						dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+	            			changeMonth: true,
+							changeYear: true,
+	            			dateFormat:'yy-mm-dd' });
+	            			
+	            	function contains(a, obj) {
+					    var i = a.length;
+					    while (i--) {
+					       if (a[i] === obj) {
+					           return true;
+					       }
+					    }
+					    return false;
+					}
+					
+					function formatDate(date) {
+					    var d = new Date(date),
+					        month = '' + (d.getMonth() + 1),
+					        day = '' + d.getDate(),
+					        year = d.getFullYear();
+					
+					    if (month.length < 2) 
+					        month = '0' + month;
+					    if (day.length < 2) 
+					        day = '0' + day;
+					
+					    return [year, month, day].join('-');
+					}				
+					
+					
+			// keep this here in case the datepicker beforeShowDay is not working	
+	        //  beforeShowDay: function(date){
+       			//			var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+        			//			return [ busyDatesArray.indexOf(string) == -1 ]
+    					//	},  	
+		          
+            		
+            </script> 
+            
+             <div class="col-md-4 form-group mt-3" >
+             <!--  <input type="time" th:field="${appointment.appointmentTime}" th:value="${appointment.getFixedTimes()}" name="time" 
+              	step="3600" class="form-control datepicker" id="time" placeholder="Ora programarii" required>  -->
+              	
+               	<select th:name="time" id="time" class="form-select fixedTimes">
+              		<option id="optionTime" value="selecteaza ora">Ora</option>
+              		<option id="optionTime" th:each="time : ${fixedTimes}" th:text="${time}" th:value="${time}">time</option>
+              	
+              	
+              	</select> 
+              
+            </div>
+            
+           <script type="text/javascript" th:inline="javascript">
+           		 
+           		 function getTimes () {
+						
+
+						console.log('calling getTime()');
+						
+						var dateVal = $("#date").val(); //this is in the getTimes() scope
+						var doctorId = $("select.doctor").children("option:selected").val(); //use again in the function select hours by doctor 
+              			console.log("doctor's id is selected --> " + doctorId);
+						
+						if(doctorId > 0) {
+						
+							console.log("doctor is present");
+							$.ajax({
+							type: "GET",
+							url: "/selectTimeByDateByDoctor?date=" + dateVal + "&doctor=" + doctorId,
+							beforeSend: function () {},
+							complete: function () {},					
+							success: function (data) {
+								console.log(data);
+								var select = $("#time");
+								select.empty().append('<option value="">Selecteaza ora</option>');
+								for(var i = 0; i < data.length; i++) {
+									console.log("added the time by date and doctor" + data[i]);
+									select.append("<option value='" + data[i] + "'>" + data[i] + "</option>");
+								}
+								
+								
+								
+							},
+							});
+						
+						};
+						
+						if(doctorId === "") {
+							console.log("doctor is NOT present");
+							console.log("dateVal checked is " + dateVal);
+							$.ajax({
+							type: "GET",
+							url: "/selectTimeByDate?date=" + dateVal,
+							beforeSend: function () {},
+							complete: function () {},					
+							success: function (data) {
+							
+								console.log(data);
+								var select = $("#time");
+								select.empty().append('<option value="">Selecteaza ora</option>');
+								for(var i = 0; i < data.length; i++) {
+									console.log("added the time by date " + data[i]);
+									select.append("<option value='" + data[i] + "'>" + data[i] + "</option>");
+								}
+								
+								
+								
+							},
+							
+							failure: function (data) {
+                    			alert(data);
+                			}
+						});
+							
+						
+						}
+						
+												
+						
+					
+					};
+            	
+            </script>
+          </div>
+          
+          <!-- onclick="(this.type='time')" onblur="(this.type='text')" -->
+
+          <div class="form-group mt-3 d-flex flex-column flex-md-column flex-xl-row justify-content-between g-3">
+          	  <div class="col-md-4 form-group mt-0 me-2" >
+
+            <select name="service" id="department" placeholder="Selecteaza tratament" class="form-select" multiple>
+                <!-- <option value="">Selecteaza Tratament</option> -->
+                <option th:value="Extractie">Extractie</option>
+                <option th:value="Plomba">Plomba</option>
+                <option th:value="Obturare_de_canal">Obturare de canal</option>
+                <option th:value="Detartraj">Detartraj</option>
+                <option th:value="Albire">Albire</option>
+			</select>
+							
+			
+            </div>
+            
+            <textarea class="form-control " name="message" rows="5" placeholder="Message (Optional)"></textarea>
+            
+          </div>
+          
+         
+          
+          <div class="text-center mb-5"><button type="button" class="" th:attr="onclick=|addTemporaryAppoint()|">
+          		<span class="iconify" data-icon="carbon:add"></span>
+          		<span class="badge bg-primary rounded">adaugati programare</button></div>
+          
+           <script type="text/javascript" th:inline="javascript">
+        	        
+        	function addTemporaryAppoint() {	
+        		console.log('selectedPerson exists ' + selectedPersonId);
+        		var doctorId = $("select.doctor").children("option:selected").val();
+        		
+        		console.log('doctor parameter in place ' + doctorId);
+        		var selectedServices = $("select#department").children("option:selected").toArray().map(item => item.text).join();        		
+     
+     			console.log('selected services are ' + selectedServices);   		
+        		var time = $("select#time").children("option:selected").val(); 
+        		console.log('time selected is ' + time);
+        		
+        		var reDate = $("#date").val();
+				console.log('date is passed ' + reDate); 
+				
+				
+        		
+        		$.ajax({
+        			
+        			type: "GET",
+                    url: "/doctor/addTempAppointment?personId=" + selectedPersonId + "&doctor=" + doctorId + "&service=" + selectedServices + 
+                    											"&time=" + time + "&date=" + reDate,
+                    beforeSend: function () {
+                    	$(".preloader").fadeOut();
+                    },
+					complete: function () {},					
+					success: function (data) {
+					//console.log(JSON.stringify(data));
+					
+						$("#tempAppointForm")[0].reset();
+														
+						$("#tempAppointList").html(data);
+						
+					
+					
+					},
+								
+        		
+        		
+        		});
+        		
+        	
+        	}
+        
+        
+        
+        
+        </script>
+						
+          
+        </form>
+        
+        		<!-- ================================  insert an alert for each added appointment then when hitting close delete the appointment ===============-->
+
+			
+	
+					<div >
+						<ul  id="tempAppointList" >
+							<li th:each="appointment : ${tempAppointments}" th:if="${tempAppointments} != null" style="list-style: none;">
+								<div
+									class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 "
+									role="alert" id="tempAppoint"
+									style="border-left: 3px solid #3FBBC0;">
+									<div class="wrapper">
+
+										<span class="iconify"
+											data-icon="icon-park-outline:appointment"
+											style="font-size: 1.2rem;"></span>
+										<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
+										<span class="fw-bold">progamare adaugata: </span> 
+										<span
+											th:text="' : ' + ${#temporals.format(appointment.date,'dd-MM-yyyy')}">You
+											should check your results.</span> 
+										 	
+											<span
+											th:text="' : ' + ${appointment.appointmentTime}">You
+											should check your results.</span> <span class="fw-bold">,
+											pacient: </span> <span th:text="' ' + ${appointment.pacientName}">You
+											should check your results.</span>
+											<span class="fw-bold">,
+											doctor: </span> <span th:if="${appointment.doctor} != null" th:text="' ' + ${appointment.getDoctorName()}">You
+											should check your results.</span>
+											 <span class="fw-bold">,
+											requested: </span> <span
+											th:text="' ' + ${appointment.companyServices} ">You
+											should check your results.</span>
+									</div>
+									
+									 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" th:attr="onclick=|deleteOneTempAppointment('${appointment.appointmentId}')|"></button><!-- the close for the alert  -->
+									 
+									 <script type="text/javascript" th:inline="javascript">
+									 	function deleteOneTempAppointment (appId) {
+									 		console.log('appId is passed ---->' + appId);
+									 		
+									 		$.ajax ({
+									 			type: "GET",
+                    							url: "/doctor/deleteOneTempAppointment?appId=" + appId,
+							                    beforeSend: function () {
+							                    	$(".preloader").fadeOut();
+							                    },
+												complete: function () {},					
+												success: function (data) {
+												//console.log(JSON.stringify(data));
+												
+												
+													
+												
+												
+												},
+									 		
+									 		
+									 		
+									 		
+									 		
+									 		});
+									 	
+									 	}
+									 
+									 
+									 </script>
+									
+								</div>
+							</li>
+
+						</ul>
+
+
+
+					</div>
+        					
+		</div>
+
+		</section>
+		<div  id="approveAllTemp">
+							<div >
+								<button type="button" class="btn" id="approveApp" th:attr="onclick=|approveAllTempAppointments()|" data-bs-dismiss="modal">
+									<span class="iconify" data-icon="bi:check-all"></span>
+									<span class="badge bg-danger rounded">Aprobati
+										programarile</span>
+								</button>
+
+								
+
+
+							</div>
+							
+							
+							<script type="text/javascript" th:inline="javascript">
+			
+				
+				
+			
+				function approveAllTempAppointments() {
+				console.log('selectedPerson exists ' + selectedPersonId);
+				
+					$.ajax({
+        			
+        			type: "GET",
+                    url: "/doctor/approveAllTempApp?personId=" + selectedPersonId,
+                    beforeSend: function () {
+                    	$(".preloader").fadeOut();
+                    },
+					complete: function () {},					
+					success: function (data) {
+					//console.log(JSON.stringify(data));
+							
+						$("#appointsMadeList").html(data);	
+						
+					
+						}
+				
+					});
+				}
+			
+			</script>
+
+						</div>
+		
+		
+
+
+				</div><!--end div ul de la modal body  -->
+
+		</div>
+		</div>
+	</div>
+	
+
+
+
+
+
+</div>
+
 
 
 

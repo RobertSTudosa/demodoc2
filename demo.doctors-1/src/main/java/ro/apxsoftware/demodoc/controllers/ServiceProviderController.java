@@ -275,7 +275,7 @@ public class ServiceProviderController {
 	}
 	
 	@GetMapping(value="/clients")
-	public String showClients(Model model, Authentication auth ) {
+	public String showClients(Model model, Authentication auth, RedirectAttributes redirAttr ) {
 		
 		if(auth != null ) {
 			
@@ -325,7 +325,38 @@ public class ServiceProviderController {
 				model.addAttribute("img", new ProfileImg());
 				model.addAttribute("lastPicList", new ArrayList<>());
 			}
-		
+			
+			List<LocalTime> fixedTimes = new ArrayList<LocalTime>() {{
+				 add(LocalTime.of(9,0,0,0));
+				 add(LocalTime.of(10,0,0,0));
+				 add(LocalTime.of(11,0,0,0));
+				 add(LocalTime.of(12,0,0,0));
+				 add(LocalTime.of(14,0,0,0));
+				 add(LocalTime.of(15,0,0,0));
+				 add(LocalTime.of(16,0,0,0));
+				 add(LocalTime.of(17,0,0,0));
+				 add(LocalTime.of(18,0,0,0));
+				 
+				 
+			 }};
+			 
+			
+			 
+			 model.addAttribute("fixedTimes", fixedTimes);
+			 
+			 //start checking for doctor 1;
+			List<String> stringBusyDates = dtServ.getAllBusyDates(model, redirAttr);
+	 
+				 model.addAttribute("busyDates", stringBusyDates);
+			
+
+			//get all the doctors in the house
+			//and send them to the view for the future only the names and ids
+			
+			Set<Person> doctors = persServ.getDoctors();
+			model.addAttribute("doctors", doctors);
+			
+
 		
 		
 		} else {
