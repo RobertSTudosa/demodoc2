@@ -822,5 +822,102 @@ public class ServiceProviderController {
 	
 
 	}
+	
+	
+	@GetMapping(value="/adminProfile")
+	public String showAdminPage(Model model, Authentication auth, RedirectAttributes redirAttr ) {
+		
+		model.addAttribute("appointment", new Appointment());
+		
+		
+		User user = (User) userServ.loadUserByUsername(auth.getName());
+		model.addAttribute("userAccount", user);
+		Person person = persServ.findPersonByUserId(user.getUserId());
+		model.addAttribute("person", person);
+		long personId = person.getPersonId();
+		System.out.println("person id is --->" + personId );
+		model.addAttribute("userId", user.getUserId());
+		
+		Appointment nextAppointment = new Appointment();
+		
+//		SEND AN ARRAY OF LOCALTIME FROM 09 TO 18 TO THE VIEW AS TIMES 
+		List<LocalTime> fixedTimes = new ArrayList<LocalTime>() {{
+			 add(LocalTime.of(9,0,0,0));
+			 add(LocalTime.of(10,0,0,0));
+			 add(LocalTime.of(11,0,0,0));
+			 add(LocalTime.of(12,0,0,0));
+			 add(LocalTime.of(14,0,0,0));
+			 add(LocalTime.of(15,0,0,0));
+			 add(LocalTime.of(16,0,0,0));
+			 add(LocalTime.of(17,0,0,0));
+			 add(LocalTime.of(18,0,0,0));
+			 
+			 
+		 }};
+		 
+		
+		 
+		 model.addAttribute("fixedTimes", fixedTimes);
+		 
+		 //start checking for doctor 1;
+		List<String> stringBusyDates = dtServ.getAllBusyDates(model, redirAttr);
+ 
+			 model.addAttribute("busyDates", stringBusyDates);
+		
+
+		//get all the doctors in the house
+		//and send them to the view for the future only the names and ids
+		
+		Set<Person> doctors = persServ.getDoctors();
+		model.addAttribute("doctors", doctors);
+		
+		
+		nextAppointment = appServ.findNextAppointByDoctorId(personId);
+		
+		//get all the FUTURE appointments sorted ascending in query
+		List<Appointment> doctorAppointments = appServ.getAllAppointmentsByDoctorIdByCurrentMonthNotCanceled(user.getUserId());
+		
+		model.addAttribute("doctorAppointments", doctorAppointments);
+		
+		List<Appointment> pastDoctorAppointments = appServ.getAllAppointmentsByDoctorIdAndUpToCurrentMonth(user.getUserId());					
+		model.addAttribute("pastDoctorAppointments", pastDoctorAppointments);
+		
+		
+		List<Appointment> canceledDoctorAppointments = new ArrayList<Appointment>();
+		canceledDoctorAppointments = appServ.getAllAppointmentsByDoctorIdAndUpToCurrentMonthAndCanceled(user.getUserId());
+		model.addAttribute("cancelDoctorAppointments", canceledDoctorAppointments);
+		
+		
+		System.out.println("no of future appointments of the doctor are " + doctorAppointments.size());
+		
+		//get the pics from the profileImg repo
+		List<ProfileImg> personPics = profileImgServ.getPicsByPersonId(personId);
+		
+		//get the last pic of the person's profile from profileImg repo
+		ProfileImg theImg = profileImgServ.getLastProfilePic(personId);
+		if(theImg != null) {
+			System.out.println("in the if !null of the image");
+			model.addAttribute("img", theImg);	
+			
+			List<ProfileImg> lastPicList = new ArrayList<>();
+			lastPicList.add(profileImgServ.getLastProfilePic(person.getPersonId()));
+			model.addAttribute("lastPicList", lastPicList);
+			
+		} else {
+			personPics.clear();
+			System.out.println("ALL CLEAR");
+			model.addAttribute("img", new ProfileImg());
+			model.addAttribute("lastPicList", new ArrayList<>());
+		}
+		
+		model.addAttribute("lastAppointment", nextAppointment);
+		
+		
+		
+		
+		return "doctor/admin";
+	}
+	
+	
 
 }
