@@ -257,6 +257,21 @@ public class AppointmentService {
 		appRepo.delete(toDeleteApp);
 		
 	}
+
+	public int getTotalNumberOfClients() {
+		// TODO Auto-generated method stub
+		return appRepo.getNumberOfClients();
+	}
+
+	public int getTotalAppointmentsNotCanceledPast() {
+		// TODO Auto-generated method stub
+		return appRepo.getTotalAppointmentsNotCanceledPast();
+	}
+
+	public int getTotalCanceledAppointments() {
+		// TODO Auto-generated method stub
+		return appRepo.getTotalCanceledAppointments();
+	}
 	
 	
 }

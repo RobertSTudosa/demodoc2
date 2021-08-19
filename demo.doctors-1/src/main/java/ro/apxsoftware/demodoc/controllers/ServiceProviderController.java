@@ -912,14 +912,28 @@ public class ServiceProviderController {
 		
 		model.addAttribute("lastAppointment", nextAppointment);
 		
+		//get 6 pacients in a list to populate a table 
+		//get all clients by 6 
+		List<Person> serviceProvidersClients = persServ.getClientsForProviderByProviderId(person.getPersonId());
+		model.addAttribute("clientsByProvider", serviceProvidersClients);
+		
 		//total clients
+		int totalClients = appServ.getTotalNumberOfClients();
+		model.addAttribute("totalClients", totalClients);
+		
+		int totalAppointments = appServ.getTotalAppointmentsNotCanceledPast();
+		model.addAttribute("totalAppointments", totalAppointments);
+		
+		int totalCanceledAppointments = appServ.getTotalCanceledAppointments();
+		model.addAttribute("totalCanceledAppointments", totalCanceledAppointments);
+				
 		//total appointments
 		//most used procedure and count
 		
 		
 		
 		
-		return "doctor/admin";
+		return "doctor/adminProfile";
 	}
 	
 	

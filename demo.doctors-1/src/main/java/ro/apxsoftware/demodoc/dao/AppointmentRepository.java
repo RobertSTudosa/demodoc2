@@ -303,6 +303,24 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     		+ "	 group by app.appointment_id ;")	
 	public List<Appointment> searchAppointmentsByPacientAndTemporary(long userId);
 
+    @Query(nativeQuery= true, value= " SELECT count(number_of_clients) from "
+    		+ " (SELECT count(appointment.pacient_name) as number_of_clients FROM bpeople_demo_doctors.appointment "
+    		+ " group by pacient_name) as sum;   ")	
+	public int getNumberOfClients();
+
+    @Query(nativeQuery= true, value= "select count(count)  from "
+    		+ " (select count(appointment.appointment_id) as count from appointment "
+    		+ " where appointment.date < date(now())  "
+    		+ " and appointment.canceled = 0 "
+    		+ " group by appointment_id) as mCount;   ")	
+	public int getTotalAppointmentsNotCanceledPast();
+
+    @Query(nativeQuery= true, value= "select count(count)  from "
+    		+ " (select count(appointment.appointment_id) as count from appointment "
+    		+ " where appointment.canceled = 1 \r\n"
+    		+ " group by appointment_id) as mCount;  ")	
+	public int getTotalCanceledAppointments();
+
 
 	
 }

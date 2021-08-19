@@ -1,5 +1,156 @@
 <html>
 <body>
+<div th:fragment="adminClientDetails">
+
+
+
+<div class="modal fade" tabindex=-501 aria-labelledby="exampleModalLabel" aria-hidden="true" th:id="'adminDetailClient' + ${client.personId}">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+       <div class="modal-title" id="exampleModalLabel"></div>
+       	<button type="button" class="btn btn-secondary close" data-bs-dismiss="modal" 
+						aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body" >
+      
+     
+      
+      <section id="about" class="about" sec:authorize="hasAuthority('DOCTOR')">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2 th:text="${client.firstName}">Programarea dvs</h2>
+          <p class="text-wrap" > Numar total de progamari :  <span th:text="${#lists.size(client.getPacientAppointments())}"></span></p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-right">
+									<a class="d-flex align-items-center profile-pic" type="button"
+										href="#" data-bs-toggle="modal"
+										th:data-bs-target="'#detailClient' + ${client.personId}">
+										<span class="iconify img-fluid"
+										th:if="${client.lastImgId < 1}"
+										data-icon="bx:bxs-user-rectangle" data-inline="false"
+										style="font-size:14rem;"></span>
+
+										<!-- <span class="iconify img-fluid"
+										th:if="${client.lastImgId < 1}"
+										data-icon="bx:bxs-user-rectangle" data-inline="false"
+										style="font-size:14rem;"></span> -->
+
+
+
+										<img
+										th:if="${client.lastImgId != null}"
+										th:src="@{/doctor/lastImg(personId=${client.getPersonId()})}"
+										class=" img-fluid"
+										style="border: 0.3px solid white; object-fit: cover;border-radius: 3%;">
+										
+									</a>
+								</div>
+								
+		
+          <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
+            
+            
+            
+            
+            <h3 class="text-wrap">Detaliile pacientului: </h3>
+            <p class="text-wrap" th:if="${client == null}">
+             	Pacientul aceste nu are inca un cont in aplicatia noastra. 
+            </p>
+            
+            <p class="text-wrap fst-italic" th:if="${client != null}">
+             	Detaliile pacientului fac parte din politica GDPR a companiei si implicit din codul european ce o reglementeaza. Va rugam utilizati detaliile pacientului doar in scopul acestei aplicatii.
+            </p>
+            
+            <ul th:if="${client != null}">
+              <li ><i class="bi bi-check-circle"></i> Data nasterii : <strong><span th:text="${#dates.format(client.BirthDate, 'dd-MM-yyyy')}" ></span></strong></li>
+              <li ><i class="bi bi-check-circle"></i> Telefon : <span th:text="${client.phone}"></span></li>
+              <li ><i class="bi bi-check-circle"></i> Email : <span th:text="${client.email}"></span></li>
+	
+            
+            </ul>
+            
+            
+           
+          </div>
+          
+ 
+          
+        </div>
+        
+        <div class="row">
+        	<div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
+          
+          	<h3 class="text-wrap">Istoricul progamariilor: </h3>
+            <p class="fst-italic text-wrap" >
+             Ultima programare : <span th:if="${not #lists.isEmpty(client.getPacientAppointments())}" th:text="${client.getPacientAppointments()[#lists.size(client.getPacientAppointments())-1].date}"></span>
+            </p>
+            
+             <ul th:if="${not #lists.isEmpty(client.getPacientAppointments())}">
+              <li th:each="appoint : ${client.getPacientAppointments()}">
+              			<p><i class="bi bi-check-circle"></i> Data programarii : <strong><span th:text="${#temporals.format(appoint.date, 'dd-MM-yyyy')} + ' : ' + ${appoint.appointmentTime}" ></span></strong></p>
+              			<p><i class="bi bi-check-circle"></i> Doctor : <strong><span th:text="${appoint.getDoctorName()}" ></span></strong></p>
+              		<ul th:if="${not #lists.isEmpty(appoint.getCompanyServices())}"> 
+	              		<li th:each="service : ${appoint.getCompanyServices()}"><i class="bi bi-check-circle"></i> Procedura dorita : <span th:text="${service.name} + ' '"></span></li>
+              		</ul>              			
+              </li>
+                            		
+            </ul> 
+          
+          
+          
+          </div>
+        
+        
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+	
+	 
+     
+
+		</div>
+ 
+ 		<div class="modal-footer" >
+					<div class="text-center mb-5" id="nextModal" 
+						th:if="${not #authorization.expression('hasAuthority(''ADMIN'')')}" >
+						<button type="button" class="btn btn-primary" 
+								th:data-bs-target="'#recAppointmentDetailClient' + ${client.personId}" data-bs-toggle="modal" data-bs-dismiss="modal">Programare recurenta</button>								
+					</div>
+				
+				</div>  
+
+		</div>
+ 		
+ 
+	</div>
+  
+  
+  
+  
+  </div>
+
+	
+
+
+
+</div>
+
+
+
+
+</body>
+</html>
+
+
+
+
+<html>
+<body>
 	<div th:fragment="reAppointmentSelect" class="bd-example"> 
 	
 
@@ -1845,7 +1996,8 @@
 		</div>
  
  		<div class="modal-footer" >
-					<div class="text-center mb-5" id="nextModal" >
+					<div class="text-center mb-5" id="nextModal" 
+						th:if="${not #authorization.expression('hasAuthority(''ADMIN'')')}" >
 						<button type="button" class="btn btn-primary" 
 								th:data-bs-target="'#recAppointmentDetailClient' + ${client.personId}" data-bs-toggle="modal" data-bs-dismiss="modal">Programare recurenta</button>								
 					</div>
