@@ -45,7 +45,7 @@ import ro.apxsoftware.demodoc.service.UserService;
 import ro.apxsoftware.demodoc.utils.AppDateFormater;
 
 @Controller
-@SessionAttributes({"emailAddress","userAccount","newPassword","token","userNotifs", "person","doctorAppointment","pastDoctorAppointments","cancelDoctorAppointments"})
+@SessionAttributes({"emailAddress","userAccount","newPassword","token","userNotifs", "person"})
 @RequestMapping("/")
 public class HomeController {
 	

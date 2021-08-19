@@ -912,6 +912,10 @@ public class ServiceProviderController {
 		
 		model.addAttribute("lastAppointment", nextAppointment);
 		
+		//total clients
+		//total appointments
+		//most used procedure and count
+		
 		
 		
 		
