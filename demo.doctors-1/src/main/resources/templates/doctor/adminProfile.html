@@ -111,7 +111,7 @@
                         <!-- Search -->
                         <!-- ============================================================== -->
                         <li class=" in">
-                            <form role="search" class="app-search d-none d-md-block me-3"  method="get" th:action="@{/searchAppointments}" id="searchApp">
+                            <form role="search" class="app-search d-none d-md-block me-3"  method="get" th:action="@{/doctor/searchAppointmentsAdmin}" id="searchApp">
 	                           	<input type="hidden" value="appointSearch" name="search" id="appointSearch">
 	                           	<input type="text" placeholder="search..." class="form-control mt-0" name="keyword" th:value="${keyword}" id="keyword">
                                 <a href="" class="active">
@@ -126,7 +126,7 @@
                                 	$.ajax({
 										
 										type: "GET",
-                            			url: "/searchAppointments?keyword=" + keywordById + "&search=appointSearch",
+                            			url: "/searchAppointmentsAdmin?keyword=" + keywordById + "&search=appointSearch",
                             			beforeSend: function () {
                             				$(".preloader").fadeOut();
                             			},
@@ -206,14 +206,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/profile}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/doctor/profile}"
                                 aria-expanded="false">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <span class="hide-menu">Profile</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/clients}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/doctor/clients}"
                                 aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
                                 <span class="hide-menu">Clients</span>
@@ -221,7 +221,7 @@
                         </li>
                         
                         <li class="sidebar-item" sec:authorize="hasAuthority('ADMIN')">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link text-danger" th:href="@{/adminProfile}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link text-danger" th:href="@{/doctor/adminProfile}"
                                 aria-expanded="false" >
                                 <i class="fa fa-font text-danger" aria-hidden="true"></i>
                                 <span class="hide-menu">Admin</span>
@@ -281,7 +281,7 @@
                         	
                             <ol class="breadcrumb ms-auto">
                             <li class=" in">
-                            <form role="search" class="app-search d-block d-sm-block d-md-none me-3 row"  method="get" th:action="@{/searchAppointments}" id="searchApp">
+                            <form role="search" class="app-search d-block d-sm-block d-md-none me-3 row"  method="get" th:action="@{/doctor/searchAppointments}" id="searchApp">
 
 
 										<div class="input-group mb-3">
@@ -498,7 +498,7 @@
                                             <th class="border-top-0">Ora</th>
                                             <th class="border-top-0">Date</th>
                                             <th class="border-top-0">Procedura</th>
-                                            <th class="border-top-0">reprogramat</th>
+                                            <th class="border-top-0">Doctor</th>
                                             
                                         </tr>
                                     </thead>
@@ -531,7 +531,7 @@
                                             <td th:text="${doctorApp.appointmentTime}">SALE</td>
                                             <td class="txt-oflo" th:text="${#temporals.format(doctorApp.date, 'dd-MM-yyyy')}">April 18, 2021</td>
                                             <td><span class="text-info" th:text="${doctorApp.getStringCompanyServicesNames()}">$24</span></td>
-                                            <td><span th:text="${doctorApp.rescheduled}"></span></td>
+                                            <td><span th:text="${doctorApp.getDoctorName()}"></span></td>
                                                                                 
                                         </tr>
                                         
@@ -701,7 +701,7 @@
                                             <th class="border-top-0">Ora</th>
                                             <th class="border-top-0">Date</th>
                                             <th class="border-top-0">Procedura</th>
-                                            <th class="border-top-0">reprogramat</th>
+                                            <th class="border-top-0">Doctor</th>
                                             
                                         </tr>
                                     </thead>
@@ -734,7 +734,7 @@
                                             <td th:text="${doctorApp.appointmentTime}">SALE</td>
                                             <td class="txt-oflo" th:text="${#temporals.format(doctorApp.date, 'dd-MM-yyyy')}">April 18, 2021</td>
                                             <td><span class="text-info" th:text="${doctorApp.getStringCompanyServicesNames()}">$24</span></td>
-                                            <td><span th:text="${doctorApp.rescheduled}"></span></td>
+                                            <td><span th:text="${doctorApp.getDoctorName()}"></span></td>
                                                                                 
                                         </tr>
                                         
@@ -1227,7 +1227,10 @@
                             <div class="d-md-flex mb-3">
                                 <h3 class="box-title mb-0">Clients</h3>
                                 
-                                <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
+                                
+                                
+                                <div class="d-flex flex-row col-md-3 col-sm-4 col-xs-6 ms-auto">
+	                                <input class="form-control shadow-none row border-top" type="text" id="adminClientsFilter" onkeyup="adminClientsFilter()" placeholder="Search for names.." title="Type in a name">
                                     <select class="form-select shadow-none row border-top" id="select-client-month" name="month" >
                                       
                                     </select>
@@ -1235,7 +1238,7 @@
                                 </div>
                                 
                                <script type="text/javascript" th:inline="javascript">
-                                	
+                                		
 									
 										let clientDateDropdown = document.getElementById('select-client-month');
 										
@@ -1271,7 +1274,24 @@
     									
     									console.log("the selected month global --> " + theSelectedMonth);
               							
-
+									function adminClientsFilter() {
+										  var input, filter, table, tr, td, i, txtValue;
+										  input = document.getElementById("adminClientsFilter");
+										  filter = input.value.toUpperCase();
+										  table = document.getElementById("clientsByProvider");
+										  tr = table.getElementsByTagName("tr");
+										  for (i = 0; i < tr.length; i++) {
+										    td = tr[i].getElementsByTagName("td")[1];
+										    if (td) {
+										      txtValue = td.textContent || td.innerText;
+										      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+										        tr[i].style.display = "";
+										      } else {
+										        tr[i].style.display = "none";
+										      }
+										    }       
+										  }
+									}
 
     									
 		

@@ -872,19 +872,19 @@ public class ServiceProviderController {
 		model.addAttribute("doctors", doctors);
 		
 		
-		nextAppointment = appServ.findNextAppointByDoctorId(personId);
+		nextAppointment = appServ.findNextAppointment();
 		
 		//get all the FUTURE appointments sorted ascending in query
-		List<Appointment> doctorAppointments = appServ.getAllAppointmentsByDoctorIdByCurrentMonthNotCanceled(user.getUserId());
+		List<Appointment> doctorAppointments = appServ.getAllAppointmentsByCurrentMonthNotCanceled();
 		
 		model.addAttribute("doctorAppointments", doctorAppointments);
 		
-		List<Appointment> pastDoctorAppointments = appServ.getAllAppointmentsByDoctorIdAndUpToCurrentMonth(user.getUserId());					
+		List<Appointment> pastDoctorAppointments = appServ.getAllAppointmentsAndUpToCurrentMonth();					
 		model.addAttribute("pastDoctorAppointments", pastDoctorAppointments);
 		
 		
 		List<Appointment> canceledDoctorAppointments = new ArrayList<Appointment>();
-		canceledDoctorAppointments = appServ.getAllAppointmentsByDoctorIdAndUpToCurrentMonthAndCanceled(user.getUserId());
+		canceledDoctorAppointments = appServ.getAllAppointmentsAndUpToCurrentMonthAndCanceled();
 		model.addAttribute("cancelDoctorAppointments", canceledDoctorAppointments);
 		
 		
@@ -914,7 +914,7 @@ public class ServiceProviderController {
 		
 		//get 6 pacients in a list to populate a table 
 		//get all clients by 6 
-		List<Person> serviceProvidersClients = persServ.getClientsForProviderByProviderId(person.getPersonId());
+		List<Person> serviceProvidersClients = persServ.getClientsByName();
 		model.addAttribute("clientsByProvider", serviceProvidersClients);
 		
 		//total clients
@@ -935,6 +935,142 @@ public class ServiceProviderController {
 		
 		return "doctor/adminProfile";
 	}
+	
+	
+	@GetMapping(value="/searchAppointmentsAdmin", produces = {" application/json" })
+	public <T> String simpleSearchAppointments (Model model, @RequestParam("keyword") String keyword,@RequestParam("search") String search,
+			RedirectAttributes redirAttr, 
+				Authentication auth) {
+		if(auth == null) {
+			return "redirect:/";
+		}
+		
+		
+		model.addAttribute("appointment", new Appointment());
+		
+		System.out.println("search : " + search);
+		
+		List<T> searchResults = new ArrayList<>();
+
+		System.out.println("keyword : " + keyword);
+		
+
+		
+		User user = (User) userServ.loadUserByUsername(auth.getName());
+		model.addAttribute("userAccount", user);
+		
+		Person person = persServ.findPersonByUserId(user.getUserId());
+		System.out.println("person id is --->" + person.getPersonId());
+		long personId = person.getPersonId();
+		model.addAttribute("person", person);
+		long userId = user.getUserId();		
+		if(search.equals("appointSearch")) {
+			
+			searchResults = (List<T>) appServ.listAll(userId, keyword);
+		}
+		
+		if(search.equals("clientSearch")) {
+			
+		}//end if search from client
+
+
+		
+		System.out.println(searchResults.toString());
+		
+		model.addAttribute("keywords", searchResults);
+		model.addAttribute("searchMessage",  keyword);
+		
+	
+		
+		//get the pics from the profileImg repo
+		List<ProfileImg> personPics = profileImgServ.getPicsByPersonId(personId);
+		
+		//get the last pic of the person's profile from profileImg repo
+		ProfileImg theImg = profileImgServ.getLastProfilePic(personId);
+		if(theImg != null) {
+			System.out.println("in the if !null of the image");
+			model.addAttribute("img", theImg);	
+			
+			List<ProfileImg> lastPicList = new ArrayList<>();
+			lastPicList.add(profileImgServ.getLastProfilePic(person.getPersonId()));
+			model.addAttribute("lastPicList", lastPicList);
+			
+		} else {
+			personPics.clear();
+			System.out.println("ALL CLEAR");
+			model.addAttribute("img", new ProfileImg());
+			model.addAttribute("lastPicList", new ArrayList<>());
+		}
+		
+		model.addAttribute("appointment", new Appointment());
+		
+		Appointment nextAppointment = new Appointment();
+		nextAppointment = appServ.findNextAppointment();
+		
+		model.addAttribute("lastAppointment", nextAppointment);
+		
+		//get all the FUTURE appointments sorted ascending in query
+		List<Appointment> doctorAppointments = appServ.getAllAppointmentsByCurrentMonthNotCanceled();
+		
+		model.addAttribute("doctorAppointments", doctorAppointments);
+		
+		List<Appointment> pastDoctorAppointments = appServ.getAllAppointmentsAndUpToCurrentMonth();					
+		model.addAttribute("pastDoctorAppointments", pastDoctorAppointments);
+		
+		
+		List<Appointment> canceledDoctorAppointments = new ArrayList<Appointment>();
+		canceledDoctorAppointments = appServ.getAllAppointmentsAndUpToCurrentMonthAndCanceled();
+		model.addAttribute("cancelDoctorAppointments", canceledDoctorAppointments);
+		
+		
+		List<LocalTime> fixedTimes = new ArrayList<LocalTime>() {{
+			 add(LocalTime.of(9,0,0,0));
+			 add(LocalTime.of(10,0,0,0));
+			 add(LocalTime.of(11,0,0,0));
+			 add(LocalTime.of(12,0,0,0));
+			 add(LocalTime.of(14,0,0,0));
+			 add(LocalTime.of(15,0,0,0));
+			 add(LocalTime.of(16,0,0,0));
+			 add(LocalTime.of(17,0,0,0));
+			 add(LocalTime.of(18,0,0,0));
+			 
+			 
+		 }};
+		 
+		
+		 
+		 model.addAttribute("fixedTimes", fixedTimes);
+		 
+		 //start checking for doctor 1;
+		List<String> stringBusyDates = dtServ.getAllBusyDates(model, redirAttr);
+
+			 model.addAttribute("busyDates", stringBusyDates);
+			 
+				Set<Person> doctors = persServ.getDoctors();
+				model.addAttribute("doctors", doctors);	 
+				
+				//get 6 pacients in a list to populate a table 
+				//get all clients by 6 
+				List<Person> serviceProvidersClients = persServ.getClientsByName();
+				model.addAttribute("clientsByProvider", serviceProvidersClients);
+				
+				//total clients
+				int totalClients = appServ.getTotalNumberOfClients();
+				model.addAttribute("totalClients", totalClients);
+				
+				int totalAppointments = appServ.getTotalAppointmentsNotCanceledPast();
+				model.addAttribute("totalAppointments", totalAppointments);
+				
+				int totalCanceledAppointments = appServ.getTotalCanceledAppointments();
+				model.addAttribute("totalCanceledAppointments", totalCanceledAppointments);		
+			 
+		
+		return "doctor/adminProfile";
+		
+		
+
+	}
+	
 	
 	
 

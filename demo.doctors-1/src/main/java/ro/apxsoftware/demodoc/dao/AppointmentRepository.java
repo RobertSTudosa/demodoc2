@@ -55,6 +55,15 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 			+ " LIMIT 6 ;")
 	public List<Appointment> getAppointmentByDoctorIdAndCurrentMonthNotCanceled (long doctorId);
 	
+	@Query(nativeQuery= true, value= "SELECT * FROM appointment "
+			+ " where appointment.date >= date(now()) "
+			+ " and Month(appointment.date) = MONTH(CURRENT_DATE()) "
+			+ " and YEAR(appointment.date) = YEAR(CURRENT_DATE()) "
+			+ " and appointment.canceled = 0 "
+			+ " order by appointment.date ASC "
+			+ " LIMIT 6 ;")
+	public List<Appointment> getAppointmentByCurrentMonthNotCanceled ();
+	
 	
 	@Query(nativeQuery= true, value= "SELECT * FROM appointment where pacient_person_id = ?1 "
 			+ " and Month(appointment.date) = ?2 "
@@ -128,6 +137,13 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 			+ " LIMIT 6 ;")
 	public List<Appointment> getAppointmentByDoctorIdAndUpToCurrentDate (long doctorId);
 	
+	@Query(nativeQuery= true, value= "SELECT * FROM appointment  "
+			+ " where appointment.date <= date(now()) "
+			+ " and YEAR(appointment.date) = YEAR(CURRENT_DATE()) "
+			+ " order by appointment.date ASC "
+			+ " LIMIT 6 ;")
+	public List<Appointment> getAppointmentAndUpToCurrentDate ();
+	
 	
 	@Query(nativeQuery= true, value= "SELECT * FROM appointment where doctor_person_id = ?1 "
 			+ " and appointment.date <= date(now()) "
@@ -136,6 +152,15 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 			+ " order by appointment.date ASC "
 			+ " LIMIT 6 ;")
 	public List<Appointment> getAppointmentByDoctorIdAndUpToCurrentDateAndCanceled (long doctorId);
+	
+	
+	@Query(nativeQuery= true, value= "SELECT * FROM appointment   "
+			+ " where appointment.date <= date(now()) "
+			+ " and YEAR(appointment.date) = YEAR(CURRENT_DATE()) "
+			+ " and appointment.canceled = 1 "
+			+ " order by appointment.date ASC "
+			+ " LIMIT 6 ;")
+	public List<Appointment> getAppointmentAndUpToCurrentDateAndCanceled ();
 	
 	@Query(nativeQuery= true, value= "SELECT * FROM appointment where doctor_person_id = ?1 "
 			+ " and Month(appointment.date) = ?2 "
@@ -240,6 +265,18 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     		+ " LIMIT 6 ; ")	
 	public List<Appointment> searchAppointments(long userId, String keyword);
     
+    
+    @Query(nativeQuery= true, value= "SELECT * FROM appointment app "
+    		+ " Left outer join companyserv on companyserv.appointment_appointment_id = app.appointment_id "
+    		+ " WHERE  "
+    		+ "	 "
+    		+ " and app.date > date(now()) "
+    		+ " and CONCAT( app.pacient_email, ' ', app.pacient_name, ' ', companyserv.name  ) "
+    		+ " LIKE %?1% "
+    		+ " group by app.appointment_id "
+    		+ " LIMIT 6 ; ")	
+	public List<Appointment> searchAdminAppointments(String keyword);
+    
 
     @Query(nativeQuery= true, value= "SELECT * FROM appointment app "
     		+ " Left outer join companyserv on companyserv.appointment_appointment_id = app.appointment_id "
@@ -261,6 +298,16 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     		+ "  LIMIT 6 ; ")	
 	public List<Appointment> searchAppointmentsByDate(long userId, String keyword);
     
+    
+    @Query(nativeQuery= true, value= "    SELECT * FROM appointment app "
+    		+ "	 Left outer join companyserv on companyserv.appointment_appointment_id = app.appointment_id "
+    		+ "	 WHERE "
+    		+ "	 and app.date = ?1 "
+    		+ "	 group by app.appointment_id "
+    		+ "	 order by app.date ASC "
+    		+ "  LIMIT 6 ; ")	
+	public List<Appointment> searchAdminAppointmentsByDate(String keyword);
+    
     @Query(nativeQuery= true, value= "    SELECT * FROM appointment app "
     		+ "	 Left outer join companyserv on companyserv.appointment_appointment_id = app.appointment_id "
     		+ "	 WHERE app.doctor_person_id = ?1 "
@@ -277,6 +324,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     @Query(nativeQuery = true, value="select * from appointment where pacient_person_id = ?1 "
     		+ " and appointment.date > date(now()) "
+    		+ " where pacient_person_id = ?1 "
     		+ " order by appointment.date ASC "
     		+ " limit 1 ;")
 	public Appointment findNextAppointmentByPacientId(long personId);
@@ -288,6 +336,14 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     		+ "	 group by app.appointment_id "
     		+ " Limit 6 ;")	
 	public List<Appointment> searchAppointmentsByNumber(long userId, String s);
+    
+    @Query(nativeQuery= true, value= "    SELECT * FROM appointment app "
+    		+ "	 Left outer join companyserv on companyserv.appointment_appointment_id = app.appointment_id "
+    		+ "	 WHERE  "
+    		+ "	 and app.pacient_phone like %?1% "
+    		+ "	 group by app.appointment_id "
+    		+ " Limit 6 ;")	
+	public List<Appointment> searchAdminAppointmentsByNumber(String s);
 
     @Query(nativeQuery= true, value= "    SELECT * FROM appointment app "
     		+ "	 Left outer join companyserv on companyserv.appointment_appointment_id = app.appointment_id "
@@ -320,6 +376,12 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     		+ " where appointment.canceled = 1 \r\n"
     		+ " group by appointment_id) as mCount;  ")	
 	public int getTotalCanceledAppointments();
+
+    @Query(nativeQuery= true, value= " select * from appointment where "
+    		+ " appointment.date > date(now()) "
+    		+ " order by appointment.date ASC "
+    		+ " limit 1 ;  ")	
+	public Appointment findNextAppointment();
 
 
 	

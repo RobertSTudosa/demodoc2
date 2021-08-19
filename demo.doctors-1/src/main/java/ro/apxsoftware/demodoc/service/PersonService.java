@@ -115,6 +115,11 @@ public class PersonService {
 		// TODO Auto-generated method stub
 		return persRepo.getClientsForProviderByProviderId(personId);
 	}
+	
+	public List<Person> getClientsByName() {
+		// TODO Auto-generated method stub
+		return persRepo.getClientsByName();
+	}
 
 	public List<Person> getAllClientsByServiceIdByMonth(long userId, String stringMonth) {
 		// TODO Auto-generated method stub

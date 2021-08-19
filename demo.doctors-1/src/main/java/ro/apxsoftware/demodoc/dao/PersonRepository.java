@@ -104,6 +104,13 @@ public interface PersonRepository extends CrudRepository <Person, Long>{
 				+ " limit 6 ; ")
 		public List<Person> getClientsForProviderByProviderId(long personId);
 		
+		@Query(nativeQuery = true, value = " select * "
+				+ "	 FROM bpeople_demo_doctors.persons "
+				+ "  left outer join appointment on bpeople_demo_doctors.persons.person_id = appointment.pacient_person_id "
+				+ "	 group by persons.person_id "
+				+ "	 limit 6 ; ")
+		public List<Person> getClientsByName();
+		
 		
 		@Query(nativeQuery = true, value = "select * "
 				+ " FROM bpeople_demo_doctors.persons  "

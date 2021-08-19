@@ -52,6 +52,10 @@ public class AppointmentService {
 		return appRepo.getAppointmentByDoctorIdAndCurrentMonthNotCanceled(doctorId);
 	}
 	
+	public List<Appointment> getAllAppointmentsByCurrentMonthNotCanceled() {
+		return appRepo.getAppointmentByCurrentMonthNotCanceled();
+	}
+	
 	public List<Appointment> getAllAppointmentsByPersonIdByCurrentMonthNotCanceled(long personId) {
 		return appRepo.getAppointmentByPersonIdAndCurrentMonthNotCanceled(personId);
 	}
@@ -64,8 +68,16 @@ public class AppointmentService {
 		return appRepo.getAppointmentByDoctorIdAndUpToCurrentDate(doctorId);
 	}
 	
+	public List<Appointment> getAllAppointmentsAndUpToCurrentMonth() {
+		return appRepo.getAppointmentAndUpToCurrentDate();
+	}
+	
 	public List<Appointment> getAllAppointmentsByDoctorIdAndUpToCurrentMonthAndCanceled(long doctorId) {
 		return appRepo.getAppointmentByDoctorIdAndUpToCurrentDateAndCanceled(doctorId);
+	}
+	
+	public List<Appointment> getAllAppointmentsAndUpToCurrentMonthAndCanceled() {
+		return appRepo.getAppointmentAndUpToCurrentDateAndCanceled();
 	}
 	
 	public List<Appointment> getAllAppointmentsByDoctorIdByMonth(long doctorId, String month) {
@@ -153,16 +165,31 @@ public class AppointmentService {
 				
 				if(appDF.checkIfDateOrNumber(s) == 1) {
 					s = appDF.formatDate(s);
-					eachKeyList =  appRepo.searchAppointmentsByDate(userId, s);
+					if(userId > 0) {
+						eachKeyList =  appRepo.searchAppointmentsByDate(userId, s);						
+					} else {
+						eachKeyList =  appRepo.searchAdminAppointmentsByDate(s);
+					}
+					
+					
 					System.out.println("====> is a date ===> " + Arrays.asList(eachKeyList));
 				} else  if (appDF.checkIfDateOrNumber(s) == 2){ 
-					
-					eachKeyList = appRepo.searchAppointmentsByNumber(userId, s);
+					if(userId > 0) {
+						eachKeyList = appRepo.searchAppointmentsByNumber(userId, s);
+					} else {
+						eachKeyList = appRepo.searchAdminAppointmentsByNumber(s);
+					}
+
 					System.out.println("====> is a number ===> " + Arrays.asList(eachKeyList));
 					
 				} else {
 					
-					eachKeyList =  appRepo.searchAppointments(userId, s);
+					if(userId > 0) {
+						eachKeyList =  appRepo.searchAppointments(userId, s);
+					} else {
+						eachKeyList =  appRepo.searchAdminAppointments(s);
+					}
+
 					System.out.println("===> is a string ===> " + Arrays.asList(eachKeyList));
 				}
 				
@@ -271,6 +298,11 @@ public class AppointmentService {
 	public int getTotalCanceledAppointments() {
 		// TODO Auto-generated method stub
 		return appRepo.getTotalCanceledAppointments();
+	}
+
+	public Appointment findNextAppointment() {
+		// TODO Auto-generated method stub
+		return appRepo.findNextAppointment();
 	}
 	
 	
