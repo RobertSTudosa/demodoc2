@@ -9,7 +9,7 @@
     <div class="modal-content">
       <div class="modal-header">
        <div class="modal-title" id="exampleModalLabel">
-       		<h2 th:text="${client.firstName} + ' roles: '">Nume <span th:text="${client.user.getRoles()}">[ROLE_USER, ROLE_ADMIN]</span></h2> 
+       		<h2 th:text="${client.firstName} + ' roles: '">Nume <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span></h2> 
        </div>
        	<button type="button" class="btn btn-secondary close" data-bs-dismiss="modal" 
 						aria-label="Close" ><span aria-hidden="true">&times;</span></button>
@@ -36,7 +36,7 @@
 						<!-- ================ MAKE DOCTOR ==================== -->
 						<script type="text/javascript" th:inline="javascript">
 							function makeDoctor (clientId) {
-								
+								event.preventDefault();
 							
 								$.ajax({
 										
@@ -46,11 +46,16 @@
                             				
                             			},
 										complete: function () {},					
-										success: function (data) {
-										//console.log(JSON.stringify(data));	
-										$("#formSwitch" + clientId).prop('disabled');
-										$("#adminDetailClient" + clientId).modal('hide');
-										$("#adminDetailClient" + clientId + ".modal-backdrop").modal('hide');
+										success: function () {
+										
+										
+										$( "#adminDetailClient" + clientId ).modal('hide');
+										$( "#tooth" + clientId ).load(window.location.href + " #tooth" + clientId );
+										$( "#formSwitch" + clientId ).load(window.location.href + " #formSwitch" + clientId );
+										$( "#trClients" + clientId ).load(window.location.href + " #trClients" + clientId );
+										$( ".modal-backdrop" ).remove();
+										
+										
 										
 									},
 								
@@ -64,7 +69,49 @@
 						
 						</script>
 					
-					
+						<div class="form-check form-switch" th:each="role : ${client.user.getRoles()}" th:id="'formSwitch' + ${client.personId}"
+							th:if="${#lists.contains(role.getPermission(),&quot;DOCTOR&quot;)}" 
+							th:unless="${#lists.contains(role.getPermission(),&quot;ADMIN&quot;)}">
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"  th:attr="onchange=|makePacient('${client.personId}')|"> 
+							<label class="form-check-label" for="flexSwitchCheckChecked">make pacient</label>
+						</div>
+						
+						
+												<!-- ================ MAKE PACIENT ==================== -->
+						<script type="text/javascript" th:inline="javascript">
+							function makePacient (clientId) {
+								event.preventDefault();
+							
+								$.ajax({
+										
+										type: "GET",
+                            			url: "/doctor/makePacient?personId=" + clientId,
+                            			beforeSend: function () {
+                            				
+                            			},
+										complete: function () {},					
+										success: function () {
+										
+										
+										$( "#adminDetailClient" + clientId ).modal('hide');
+										$( "#tooth" + clientId ).load(window.location.href + " #tooth" + clientId );
+										$( "#formSwitch" + clientId ).load(window.location.href + " #formSwitch" + clientId );
+										$( "#trClients" + clientId ).load(window.location.href + " #trClients" + clientId );
+										$( ".modal-backdrop" ).remove();
+										
+										
+										
+									},
+								
+										
+										
+										
+								});
+							
+							}
+													
+						
+						</script>
 					
 			</div>
         <!--   th:if="${#strings.contains(role.getPermission(),&quot;DOCTOR&quot;}" -->

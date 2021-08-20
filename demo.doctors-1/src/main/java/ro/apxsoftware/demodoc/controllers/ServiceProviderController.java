@@ -1102,18 +1102,51 @@ public class ServiceProviderController {
 		User user = userServ.findUserByPersonId(personId);
 		UserRole role = new UserRole("DOCTOR");
 		roleServ.saveRole(role);
+		//get list for iterating 
 		List<UserRole> userRoles = user.getRoles();
-		for(UserRole roleCheck : userRoles) {
-			if(roleCheck.getPermission().equals("PACIENT")) {
-				userRoles.remove(roleCheck);
+		for(int i = 0; i< userRoles.size(); i++) {
+			if(userRoles.get(i).getPermission().equals("PACIENT")) {
+				System.out.println("removing PACIENT role");
+				userRoles.remove(userRoles.get(i));
 			}
+		
 		}
+		
 		
 		
 		//take pacient out?! or double check in thymeleaf
 		
 		System.out.println("adding role to user");
-		user.addRole(role);
+		
+		userRoles.add(role);
+		user.setRoles(userRoles);
+		userServ.save(user);
+
+	}
+	
+	@GetMapping("/makePacient")
+	@ResponseStatus(HttpStatus.OK)
+	public void makeUserPacient(Model model, @RequestParam("personId") long personId, Authentication auth) {
+		Person person = persServ.findPersonById(personId);
+		User user = userServ.findUserByPersonId(personId);
+		UserRole role = new UserRole("PACIENT");
+		roleServ.saveRole(role);
+		//get list for iterating 
+		List<UserRole> userRoles = user.getRoles();
+		for(int i = 0; i< userRoles.size(); i++) {
+			if(userRoles.get(i).getPermission().equals("DOCTOR")) {
+				System.out.println("removing DOCTOR role");
+				userRoles.remove(userRoles.get(i));
+			}
+		
+		}
+		
+		
+		
+		//take pacient out?! or double check in thymeleaf
+		
+		System.out.println("adding role to user");
+		
 		userRoles.add(role);
 		user.setRoles(userRoles);
 		userServ.save(user);

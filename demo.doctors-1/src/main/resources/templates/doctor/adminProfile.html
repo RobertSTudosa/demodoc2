@@ -1281,7 +1281,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  >
-                                        <tr  th:each="client, iterApp : ${clientsByProvider}">
+                                        <tr  th:each="client, iterApp : ${clientsByProvider}" th:id="'trClients' + ${client.personId}">
                                             <td th:text="${iterApp.index} + 1">1</td>
                                             <td class="txt-oflo" >
                                             	<a class="d-flex align-items-center profile-pic" type="button" href="#" data-bs-toggle="modal"
@@ -1294,6 +1294,8 @@
                                             	data-icon="bx:bxs-user-circle" data-inline="false" 
                                         	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
                                         	 
+                                        	
+                                        	 
                                         	 <!-- <span class="iconify thumb-sm img-circle"  th:if="${client.lastImgId < 1}"                                            	
                                             	data-icon="bx:bxs-user-circle" data-inline="false" 
                                         	 style="border: 0.3px solid white;width:40px;height:40px;"></span> -->
@@ -1304,7 +1306,14 @@
 												th:src="@{/doctor/lastImg(personId=${client.getPersonId()})}" 
 												class="thumb-sm img-circle" 
 												style="border: 0.3px solid white;width:40px;height:40px;object-fit: cover;border-radius: 50%;">
-										<span  class="text-black font-medium ms-1" th:text="${client.firstName}">Steave</span></a>
+										<span  class="text-black font-medium ms-1" th:text="${client.firstName}">Steave</span>
+										
+										 <span  th:each="role : ${client.user.getRoles()}" th:if="${#lists.contains(role.getPermission(),&quot;DOCTOR&quot;)}" 
+										 		th:id="'tooth' + ${client.personId}"
+                                        	 	class="iconify" data-icon="healthicons:tooth" style="color: #3fbbc0"></span>
+                                        	 	
+                                        	 	
+                                        	 	</a>
 										
 										<div th:replace="usermodals :: adminClientDetails"></div>
 										
