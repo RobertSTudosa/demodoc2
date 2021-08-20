@@ -187,6 +187,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 			+ " order by appointment.date ASC ;")
 	public List<Appointment> getFutureAppointmentByDoctorIdAndMonthNoLimit (long doctorId, String month);
 	
+	
+	
 	@Query(nativeQuery= true, value= "SELECT * FROM appointment where doctor_person_id = ?1 "
 			+ " and appointment.date >= date(now()) "
 			+ " and Month(appointment.date) = ?2 "
@@ -382,6 +384,25 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     		+ " order by appointment.date ASC "
     		+ " limit 1 ;  ")	
 	public Appointment findNextAppointment();
+
+    
+	@Query(nativeQuery= true, value= "(SELECT * FROM appointment where doctor_person_id = ?1 "
+			+ "			 and appointment.date >= date(now()) "
+			+ "			 and Month(appointment.date) = ?2 "
+			+ "			 and YEAR(appointment.date) = YEAR(CURRENT_DATE()) "
+			+ "             and appointment_id <= ?3 "
+			+ "			 and appointment.canceled = 0 "
+			+ "			 order by appointment.date ASC) "
+			+ "	UNION "
+			+ " (SELECT * FROM appointment where doctor_person_id = ?1 "
+			+ "			 and appointment.date >= date(now()) "
+			+ "			 and Month(appointment.date) = ?2 "
+			+ "			 and YEAR(appointment.date) = YEAR(CURRENT_DATE()) "
+			+ "             and appointment_id > ?3 "
+			+ "			 and appointment.canceled = 0 "
+			+ "			 order by appointment.date ASC "
+			+ "             limit 3)    ")
+	public List<Appointment> getSixMoreFutureAppointmentsByDoctorIdByMonthByLastAppId(long userId, String month, long lastAppId);
 
 
 	

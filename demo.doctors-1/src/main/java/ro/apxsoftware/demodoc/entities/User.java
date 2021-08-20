@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -264,7 +265,14 @@ public class User implements UserDetails, Serializable{
 	}
 
 
-	
+	public String getStringUserRoles() {
+		List<String> list = new ArrayList<>();
+		for(UserRole role : this.getRoles()) {
+			list.add(role.getPermission());
+		}
+		//used to generate a String version of the collection 
+		return list.stream().map(Object::toString).collect(Collectors.joining(""+"," + ""));
+	}
 
 
 	

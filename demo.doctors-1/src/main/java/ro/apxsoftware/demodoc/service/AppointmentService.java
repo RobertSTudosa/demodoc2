@@ -304,6 +304,11 @@ public class AppointmentService {
 		// TODO Auto-generated method stub
 		return appRepo.findNextAppointment();
 	}
+
+	public List<Appointment> getSixMoreFutureAppointmentsByDoctorIdByMonthByLastAppId(long userId, String month, long lastAppId) {
+		// TODO Auto-generated method stub
+		return appRepo.getSixMoreFutureAppointmentsByDoctorIdByMonthByLastAppId(userId, month, lastAppId);
+	}
 	
 	
 }

@@ -1033,7 +1033,10 @@ public class HomeController {
 			if(canceled == 1) {
 				allPersonAppointmentsByMonth = appServ.getAllFutureAppointmentsByDoctorIdByMonthNoLimitAndCanceled(user.getUserId(), month);
 			} else {
-				allPersonAppointmentsByMonth = appServ.getAllFutureAppointmentsByDoctorIdByMonthNoLimit(user.getUserId(), month);
+				//allPersonAppointmentsByMonth = appServ.getAllFutureAppointmentsByDoctorIdByMonthNoLimit(user.getUserId(), month);
+				sixMoreAppointments = appServ.getSixMoreFutureAppointmentsByDoctorIdByMonthByLastAppId(user.getUserId(), month, lastAppId);
+				model.addAttribute("doctorAppointments", sixMoreAppointments);
+				return "doctor/dashboard :: #futureAppointments";
 
 			}
 			
@@ -1297,7 +1300,8 @@ public class HomeController {
 				model.addAttribute("doctors", doctors);	 
 			 
 		
-		return "doctor/dashboard :: #searchResults";
+		//return "doctor/dashboard :: #searchResults";
+				return null;
 	}
 	
 	

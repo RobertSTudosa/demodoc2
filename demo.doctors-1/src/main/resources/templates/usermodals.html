@@ -8,7 +8,9 @@
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-       <div class="modal-title" id="exampleModalLabel"></div>
+       <div class="modal-title" id="exampleModalLabel">
+       		<h2 th:text="${client.firstName} + ' roles: '">Nume <span th:text="${client.user.getRoles()}">[ROLE_USER, ROLE_ADMIN]</span></h2> 
+       </div>
        	<button type="button" class="btn btn-secondary close" data-bs-dismiss="modal" 
 						aria-label="Close" ><span aria-hidden="true">&times;</span></button>
       </div>
@@ -20,8 +22,53 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2 th:text="${client.firstName}">Programarea dvs</h2>
-          <p class="text-wrap" > Numar total de progamari :  <span th:text="${#lists.size(client.getPacientAppointments())}"></span></p>
+        	<div class="d-flex flex-row col-12 justify-content-between">
+	        	 <p class="text-wrap" > Numar total de progamari :  <span th:text="${#lists.size(client.getPacientAppointments())}"></span></p>
+	        	<!--  <button class="btn btn-primary mx-3 align-top" >Make doctor</button> -->
+					
+						<div class="form-check form-switch" th:each="role : ${client.user.getRoles()}" th:id="'formSwitch' + ${client.personId}"
+							th:if="${#lists.contains(role.getPermission(),&quot;PACIENT&quot;)}">
+						<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"  th:attr="onchange=|makeDoctor('${client.personId}')|"> 
+						<label class="form-check-label" for="flexSwitchCheckDefault">make doctor</label>
+						</div>
+						
+						
+						<!-- ================ MAKE DOCTOR ==================== -->
+						<script type="text/javascript" th:inline="javascript">
+							function makeDoctor (clientId) {
+								
+							
+								$.ajax({
+										
+										type: "GET",
+                            			url: "/doctor/makeDoctor?personId=" + clientId,
+                            			beforeSend: function () {
+                            				
+                            			},
+										complete: function () {},					
+										success: function (data) {
+										//console.log(JSON.stringify(data));	
+										$("#formSwitch" + clientId).prop('disabled');
+										$("#adminDetailClient" + clientId).modal('hide');
+										$("#adminDetailClient" + clientId + ".modal-backdrop").modal('hide');
+										
+									},
+								
+										
+										
+										
+								});
+							
+							}
+													
+						
+						</script>
+					
+					
+					
+			</div>
+        <!--   th:if="${#strings.contains(role.getPermission(),&quot;DOCTOR&quot;}" -->
+         
         </div>
 
         <div class="row">
@@ -52,9 +99,6 @@
 								
 		
           <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
-            
-            
-            
             
             <h3 class="text-wrap">Detaliile pacientului: </h3>
             <p class="text-wrap" th:if="${client == null}">
@@ -89,8 +133,8 @@
              Ultima programare : <span th:if="${not #lists.isEmpty(client.getPacientAppointments())}" th:text="${client.getPacientAppointments()[#lists.size(client.getPacientAppointments())-1].date}"></span>
             </p>
             
-             <ul th:if="${not #lists.isEmpty(client.getPacientAppointments())}">
-              <li th:each="appoint : ${client.getPacientAppointments()}">
+             <ul th:if="${not #lists.isEmpty(clientHistoryApp)}">
+              <li th:each="appoint : ${clientHistoryApp}">
               			<p><i class="bi bi-check-circle"></i> Data programarii : <strong><span th:text="${#temporals.format(appoint.date, 'dd-MM-yyyy')} + ' : ' + ${appoint.appointmentTime}" ></span></strong></p>
               			<p><i class="bi bi-check-circle"></i> Doctor : <strong><span th:text="${appoint.getDoctorName()}" ></span></strong></p>
               		<ul th:if="${not #lists.isEmpty(appoint.getCompanyServices())}"> 
@@ -1969,8 +2013,8 @@
              Ultima programare : <span th:if="${not #lists.isEmpty(client.getPacientAppointments())}" th:text="${client.getPacientAppointments()[#lists.size(client.getPacientAppointments())-1].date}"></span>
             </p>
             
-             <ul th:if="${not #lists.isEmpty(client.getPacientAppointments())}">
-              <li th:each="appoint : ${client.getPacientAppointments()}">
+             <ul th:if="${not #lists.isEmpty(clientHistoryApp)}">
+              <li th:each="appoint : ${clientHistoryApp}">
               			<p><i class="bi bi-check-circle"></i> Data programarii : <strong><span th:text="${#temporals.format(appoint.date, 'dd-MM-yyyy')} + ' : ' + ${appoint.appointmentTime}" ></span></strong></p>
               			<p><i class="bi bi-check-circle"></i> Doctor : <strong><span th:text="${appoint.getDoctorName()}" ></span></strong></p>
               		<ul th:if="${not #lists.isEmpty(appoint.getCompanyServices())}"> 

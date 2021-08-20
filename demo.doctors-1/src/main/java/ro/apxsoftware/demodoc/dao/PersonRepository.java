@@ -108,7 +108,7 @@ public interface PersonRepository extends CrudRepository <Person, Long>{
 				+ "	 FROM bpeople_demo_doctors.persons "
 				+ "  left outer join appointment on bpeople_demo_doctors.persons.person_id = appointment.pacient_person_id "
 				+ "	 group by persons.person_id "
-				+ "	 limit 6 ; ")
+				+ "	 limit 2 ; ")
 		public List<Person> getClientsByName();
 		
 		
@@ -152,6 +152,16 @@ public interface PersonRepository extends CrudRepository <Person, Long>{
 	    		+ " GROUP BY p.person_id "
 	    		+ " LIMIT 6 ;")	
 		public List<Person> searchPersons(long userId, String keyword);
+
+		
+		@Query(nativeQuery= true, value= "(SELECT * FROM bpeople_demo_doctors.persons "
+				+ " where person_id <= ?1 ) "
+				+ " union "
+				+ " (select * from bpeople_demo_doctors.persons "
+				+ " where person_id > ?1 "
+				+ " limit 3)	"
+				+ ";")
+		public List<Person> selectThreeMoreClients(long personId);
 	
 
 }

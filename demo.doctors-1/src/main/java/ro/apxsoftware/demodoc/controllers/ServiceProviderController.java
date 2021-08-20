@@ -41,6 +41,7 @@ import ro.apxsoftware.demodoc.entities.CompanyService;
 import ro.apxsoftware.demodoc.entities.Person;
 import ro.apxsoftware.demodoc.entities.ProfileImg;
 import ro.apxsoftware.demodoc.entities.User;
+import ro.apxsoftware.demodoc.entities.UserRole;
 import ro.apxsoftware.demodoc.service.AppointmentService;
 import ro.apxsoftware.demodoc.service.CompanyServiceService;
 import ro.apxsoftware.demodoc.service.DatesAndTimeService;
@@ -48,6 +49,7 @@ import ro.apxsoftware.demodoc.service.EmailService;
 import ro.apxsoftware.demodoc.service.ImageResize;
 import ro.apxsoftware.demodoc.service.PersonService;
 import ro.apxsoftware.demodoc.service.ProfileImgService;
+import ro.apxsoftware.demodoc.service.RoleService;
 import ro.apxsoftware.demodoc.service.UserService;
 
 @Controller
@@ -81,6 +83,9 @@ public class ServiceProviderController {
 	 
 		@Autowired
 		DatesAndTimeService dtServ;
+		
+	@Autowired
+	RoleService roleServ;
 	
 	
 	@GetMapping("/profile")
@@ -370,7 +375,9 @@ public class ServiceProviderController {
 	
 	@GetMapping(value="/getClientsByMonth", produces= {" application/json" })
 	public String getClientsByMonthByProvider (Model model, @RequestParam("month") String month, Authentication auth) {
-				
+		
+		model.addAttribute("appointment", new Appointment());
+		
 		List<Person> allClientsByProvider = new ArrayList<>();
 		
 		if(auth != null) {
@@ -410,8 +417,10 @@ public class ServiceProviderController {
 	
 	
 	@GetMapping(value="/getMoreClientsByMonth", produces= {" application/json" })
-	public String getMoreClientsByMonthByProvider (Model model, @RequestParam("month") String month, @RequestParam("lastPersonId") long lastPersonId, Authentication auth) {
-	
+	public String getMoreClientsByMonthByProvider (Model model, @RequestParam(value="month", required=false) String month, @RequestParam("lastPersonId") long lastPersonId, Authentication auth) {
+		
+		model.addAttribute("appointment", new Appointment());
+		
 		List<Person> allClientsByProvider = new ArrayList<>();
 		List<Person> sixMoreClients = new ArrayList<>();
 		
@@ -419,6 +428,16 @@ public class ServiceProviderController {
 			User user = (User) userServ.loadUserByUsername(auth.getName());
 			Person person = (Person) persServ.findPersonByUserId(user.getUserId());
 			System.out.println("Loaded user is " + user.getUserName());
+			
+			
+			//get more clients for the admin page
+			if(month == null || month.isEmpty() || month.isBlank() || month.equals("undefined")) {
+				System.out.println("select 3 more clients");
+				allClientsByProvider = persServ.selectThreeMoreClients(lastPersonId);
+				model.addAttribute("clientsByProvider", allClientsByProvider);
+				return "doctor/adminProfile :: #clientsByProvider"; 
+			}
+			
 			System.out.println("month is month --> " + month);
 			
 			
@@ -827,6 +846,10 @@ public class ServiceProviderController {
 	@GetMapping(value="/adminProfile")
 	public String showAdminPage(Model model, Authentication auth, RedirectAttributes redirAttr ) {
 		
+		if(auth == null) {
+			return "redirect:/";
+		}
+		
 		model.addAttribute("appointment", new Appointment());
 		
 		
@@ -1068,6 +1091,32 @@ public class ServiceProviderController {
 		return "doctor/adminProfile";
 		
 		
+
+	}
+	
+	
+	@GetMapping("/makeDoctor")
+	@ResponseStatus(HttpStatus.OK)
+	public void makeUserDoctor(Model model, @RequestParam("personId") long personId, Authentication auth) {
+		Person person = persServ.findPersonById(personId);
+		User user = userServ.findUserByPersonId(personId);
+		UserRole role = new UserRole("DOCTOR");
+		roleServ.saveRole(role);
+		List<UserRole> userRoles = user.getRoles();
+		for(UserRole roleCheck : userRoles) {
+			if(roleCheck.getPermission().equals("PACIENT")) {
+				userRoles.remove(roleCheck);
+			}
+		}
+		
+		
+		//take pacient out?! or double check in thymeleaf
+		
+		System.out.println("adding role to user");
+		user.addRole(role);
+		userRoles.add(role);
+		user.setRoles(userRoles);
+		userServ.save(user);
 
 	}
 	

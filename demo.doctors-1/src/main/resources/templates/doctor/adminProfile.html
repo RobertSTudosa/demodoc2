@@ -1225,51 +1225,20 @@
 					<div class="col-md-12 col-lg-12 col-sm-12 tab-pane fade active show" id="future" role="tabpanel" aria-labelledby="future-tab" >
                         <div class="white-box">
                             <div class="d-md-flex mb-3">
-                                <h3 class="box-title mb-0">Clients</h3>
+                                <h3 class="box-title mb-0">Users</h3>
                                 
                                 
                                 
-                                <div class="d-flex flex-row col-md-3 col-sm-4 col-xs-6 ms-auto">
-	                                <input class="form-control shadow-none row border-top" type="text" id="adminClientsFilter" onkeyup="adminClientsFilter()" placeholder="Search for names.." title="Type in a name">
-                                    <select class="form-select shadow-none row border-top" id="select-client-month" name="month" >
+                                <div class="d-flex flex-row col-lg-6 col-md-3 col-sm-4 col-xs-6 ms-auto">
+	                                <input class="form-control shadow-none row border-top me-4" type="text" id="adminClientsFilter" onkeyup="adminClientsFilter()" placeholder="Search for names.." title="Type in a name">
+                                  <!--   <select class="form-select shadow-none row border-top" id="select-client-month" name="month" >
                                       
-                                    </select>
+                                    </select> -->
          
                                 </div>
                                 
                                <script type="text/javascript" th:inline="javascript">
-                                		
-									
-										let clientDateDropdown = document.getElementById('select-client-month');
-										
-										const adminpastMonthNames = ["January", "February", "March", "April", "May", "June",
-  															"July", "August", "September", "October", "November", "December"
-															];
 
-   									 	var adminpastcurrentYear = new Date().getFullYear();
-   									 	
-    									var adminpastfutureMonth = new Date();
-    									var adminpastcurrentMonth = new Date();
-    									console.log("start month without minus 4 is " + adminpastfutureMonth.getMonth());
-    									adminpastfutureMonth.setMonth(adminpastfutureMonth.getMonth() - 4);
-    									adminpastcurrentMonth.setMonth(adminpastcurrentMonth.getMonth());    
-    									console.log('futureMonth is ' + adminpastfutureMonth.getMonth());									
-    																
-    									
-    									
-    									console.log('before while');
-
-									    while (adminpastcurrentMonth.getMonth() >= adminpastfutureMonth.getMonth()) {
-									    	console.log('currentMonth is now ' + adminpastcurrentMonth.getMonth());
-	      									let dateOption = document.createElement('option');
-	      									dateOption.text = adminpastMonthNames[adminpastcurrentMonth.getMonth()] + ' ' + adminpastcurrentYear;
-	     									dateOption.value = adminpastcurrentMonth.getMonth();
-	      									clientDateDropdown.add(dateOption);
-	      									adminpastcurrentMonth.setMonth(adminpastcurrentMonth.getMonth() - 1);
-    									};
-    									
-										    									
-    									
     									var theSelectedMonth = $('select#select-client-month option').filter(':selected').val();
     									
     									console.log("the selected month global --> " + theSelectedMonth);
@@ -1396,27 +1365,7 @@
                             				
                             				}
       
-                            	    		$("#select-client-month").on('change', function () {
-								
-    										var month = this.value;
-    										var goodmonth = month ;
-    										console.log('the selected Month on change is ' + this.value);
-    										console.log('goodmonth is ----> ' + goodmonth);
-    										console.log('the selected Month text is ' + $(this).find('option').filter(':selected').text());
-    										
-    										$.ajax({
-												type: "GET",
-												url: "/doctor/getClientsByMonth?month=" + month,
-												beforeSend: function () {},
-												complete: function () {},					
-												success: function (data) {
-												//console.log(JSON.stringify(data));													
-													
-													$("#clientsByProvider").html(data);	
-											},
-											});
-    										    										
-    									});
+                            	    		
               
                             </script>
                                         

@@ -207,5 +207,10 @@ public class PersonService {
 		
 		return (List<Person>) persRepo.findAll();
 	}
+
+	public List<Person> selectThreeMoreClients(long personId) {
+		// TODO Auto-generated method stub
+		return persRepo.selectThreeMoreClients(personId);
+	}
 	
 }

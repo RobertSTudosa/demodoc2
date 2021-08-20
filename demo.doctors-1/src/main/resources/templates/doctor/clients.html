@@ -485,22 +485,28 @@
                                 
                                  <script type="text/javascript" th:inline="javascript">
                           function seeMoreSearchResults(lastPersonId, keyword) {
-                          		
+                          		var selectedNav = $(".sidebar-item.selected");
                           		console.log(keyword);
                           		console.log('lastPersonId load more search ' + lastPersonId);
                           	
                           		$.ajax({
                             		type: "GET",
                             		url: "/doctor/loadMoreSearchClients?keyword=" + keyword + "&lastPersonId=" + lastPersonId,
-                            		beforeSend: function () {},
-									complete: function () {},					
+                            		beforeSend: function () {
+                            			
+                            			
+                            		},
+									complete: function () {
+									
+									},					
 									success: function (data) {
 									//console.log(JSON.stringify(data));	
 														
 									$("#searchResults").html(data);	
+										selectedNav.addClass("selected");	
 									},
 									
-									});
+								});
 									
 								}
                           
@@ -651,7 +657,8 @@
                                        		<td></td>
                                        		<td class="text-center">
                                        			
-                                 				<button type="button" class="btn btn-outline-primary load_more_app align-self-center" th:if="${not #lists.isEmpty(clientsByProvider) OR #lists.size(clientsByProvider) > 0}"
+                                 				<button type="button" class="btn btn-outline-primary load_more_app align-self-center" id="loadMoreClients"
+                                 					th:if="${not #lists.isEmpty(clientsByProvider) OR #lists.size(clientsByProvider) > 0}"
 													th:attr="onclick=|seeMoreClients('${clientsByProvider[#lists.size(clientsByProvider)-1].personId}')|">load more</button>
                            						
                            					</td>        
@@ -683,8 +690,7 @@
 													complete: function () {},					
 													success: function (data) {
 													//console.log(JSON.stringify(data));	
-																								
-														
+													
 														$("#clientsByProvider").html(data);	
 													},
 	                            				
