@@ -2,6 +2,7 @@ package ro.apxsoftware.demodoc.service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -239,6 +240,15 @@ public class DatesAndTimeService {
 		
 		
 		return theFixedTimes;
+	}
+	
+	public LocalDate formatToLocalDate (CharSequence date) {
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ISO_LOCAL_DATE;
+		LocalDate theDate = LocalDate.parse(date, dtf);
+		System.out.println("the date is the date --- > " + theDate);
+		
+		return theDate;
 	}
 
 }

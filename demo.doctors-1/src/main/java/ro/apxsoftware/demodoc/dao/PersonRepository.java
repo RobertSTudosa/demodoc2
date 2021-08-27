@@ -1,5 +1,7 @@
 package ro.apxsoftware.demodoc.dao;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
@@ -162,6 +164,13 @@ public interface PersonRepository extends CrudRepository <Person, Long>{
 				+ " limit 3)	"
 				+ ";")
 		public List<Person> selectThreeMoreClients(long personId);
+		
+		
+		@Query(nativeQuery = true, value = "select doctor_person_id from bpeople_demo_doctors.appointment "
+				+ " join persons on persons.person_id = appointment.doctor_person_id "
+				+ " where appointment.date = ?1 "
+				+ " and appointment_time = ?2 ;")
+		public List<Long> findBookedDoctorIds(LocalDate theDate, LocalTime theTime);
 	
 
 }

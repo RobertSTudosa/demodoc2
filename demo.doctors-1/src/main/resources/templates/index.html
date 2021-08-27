@@ -6,12 +6,12 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Cabinet Medical Dr.John</title>
+  <title>Cabinet Medical Dental132</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="pacient/assets/img/favicon.png" rel="icon">
+  <link href="pacient/assets/img/favicon.svg" rel="icon">
   <link href="pacient/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -53,12 +53,7 @@
   
   <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 
-  <!-- =======================================================
-  * Template Name: Medicio - v4.3.0
-  * Template URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body>
@@ -79,7 +74,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <a href="index.html" class="logo me-auto"><img src="pacient/assets/img/logo.png" alt=""></a>
+      <a th:href="@{/}" class="logo me-auto"><img src="pacient/assets/img/logo.png" alt=""></a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
 
@@ -108,7 +103,7 @@
           <li sec:authorize="isAnonymous()"><a class="nav-link scrollto d-block d-sm-inline d-md-none d-lg-none d-xl-none" href="#hero">Login</a></li>
           <li><a class="nav-link scrollto" href="#about">Despre</a></li>
           <li><a class="nav-link scrollto" href="#services">Servicii</a></li>
-          <li><a class="nav-link scrollto" href="#departments">Departmente</a></li>
+          <li><a class="nav-link scrollto" href="#testimonials">Testimoniale</a></li>
           <li><a class="nav-link scrollto" href="#doctors">Doctori</a></li>
           <li class="dropdown"><a href="#pricing"><span>Info</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -180,8 +175,8 @@
         <!-- Slide 1 -->
         <div class="carousel-item active" style="background-image: url(pacient/assets/img/slide/slide-1.jpg)">
           <div class="container">
-            <h2>Welcome to <span>Medicio</span></h2>
-            <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel.</p>
+            <h2>Bine ati venit la <span>DENTAL132</span></h2>
+            <p>Cabinetul nostru ofera servicii si tratamente stomatologice de cea mai buna calitate. Un zambet frumos aduce bucurie! O echipa de specialisti in implantologie, endodontie, si estetica dentara va asteapta! </p>
             <a href="#about" class="btn-get-started scrollto">Read More</a>
           </div>
         </div>
@@ -189,8 +184,8 @@
         <!-- Slide 2 -->
         <div class="carousel-item" style="background-image: url(pacient/assets/img/slide/slide-2.jpg)">
           <div class="container">
-            <h2>Lorem Ipsum Dolor</h2>
-            <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel.</p>
+            <h2>Noua clinica DENTAL132</h2>
+            <p>Microscopul dentar, cu treapta de marire de pana la 25 de ori, camera video incorporata si ocular inclinabil la 180 de grade, are avantaje si aplicatii multiple, in special in endodontie, iar camera video incorporata permite pacientului sa vizualizeze intreg tratamentul pe ecranul televizorului.</p>
             <a href="#about" class="btn-get-started scrollto">Read More</a>
           </div>
         </div>
@@ -198,8 +193,10 @@
         <!-- Slide 3 -->
         <div class="carousel-item" style="background-image: url(pacient/assets/img/slide/slide-3.jpg)">
           <div class="container">
-            <h2>Sequi ea ut et est quaerat</h2>
-            <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel.</p>
+            <h2>Standarde de sterilizare</h2>
+
+            <p>Conditiile de sterilizare si igiena maxima in derularea tuturor proceduriilor si tratamentelelor stomatologice, 
+            	vor asigura siguranta si protectia pacientului pe toata durata timpului petrecut la DENTAL 132. </p>
             <a href="#about" class="btn-get-started scrollto">Read More</a>
           </div>
         </div>
@@ -226,33 +223,33 @@
         <div class="row">
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon"><i class="fas fa-heartbeat"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <div class="icon"><i class="fas fa-teeth"></i></div>
+              <h4 class="title"><a href="">Estetica dentara</a></h4>
+              <p class="description">O serie de tratamente stomatologice care va vor reda zambetul.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon"><i class="fas fa-pills"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <div class="icon"><i class="fas fa-microscope"></i></div>
+              <h4 class="title"><a href="">Endodontie</a></h4>
+              <p class="description">Microscop cu grad ridicat de amplificare. </p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
               <div class="icon"><i class="fas fa-thermometer"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <h4 class="title"><a href="">Implant dentar</a></h4>
+              <p class="description">Implantologie moderna, nedureroasa cu o super recuperare.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
-              <div class="icon"><i class="fas fa-dna"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <div class="icon"><i class="fas fa-tooth"></i></div>
+              <h4 class="title"><a href="">Stomatologie digitala</a></h4>
+              <p class="description">Procedurile CAD/CAM vor asigura o lucrare de durata dintr-un singur bloc de ceramica.</p>
             </div>
           </div>
 
@@ -266,9 +263,10 @@
       <div class="container" data-aos="zoom-in">
 
         <div class="text-center">
-          <h3>In an emergency? Need help now?</h3>
-          <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a class="cta-btn scrollto" href="#appointment">Make an Make an Appointment</a>
+          <h3>Este o urgenta? Ai nevoie de ajutor?</h3>
+          <p> Programeaza o vizita la Dental132 iar la mesaj scrie-ne urgenta ta. Vom avea grija sa te primim cat mai repede posibil.
+          		De asemenea, in formularul de programare puteti sa alegeti data si ora cea mai apropiata de momentul in care cititi acest mesaj.</p>
+          <a class="cta-btn scrollto" href="#appointment">Faceti o programare</a>
         </div>
 
       </div>
@@ -279,29 +277,30 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>About Us</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Despre noi</h2>
+          <p>Suntem o echipa tanara, dinamica si ambitioasa. Investim mereu in tehnologii noi si cele mai noi tehnici de pregatire profesionala
+          	a va putea oferi un serviciu complet, comfortabil si de calitate. </p>
         </div>
 
         <div class="row">
           <div class="col-lg-6" data-aos="fade-right">
-            <img src="pacient/assets/img/about.jpg" class="img-fluid" alt="">
+            <img src="pacient/assets/img/about1.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <h3>Expertiza profesionala, integritatea si pasiunea pentru zambetul dumneavoastra.</h3>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              	Dupa ce ne veti pasi pragul ne veti da dreptate referitor la punctele noastre forte exprimate mai in jos: 
             </p>
             <ul>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+              <li><i class="bi bi-check-circle"></i> Profesionalism si intelegerea pacientului.</li>
+              <li><i class="bi bi-check-circle"></i> Tehnici si proceduri de lucru actualizate si in conformitate cu toate standardele moderne.</li>
+              <li><i class="bi bi-check-circle"></i> Accentul pe zambetul final fara durere.</li>
             </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
+              Medicii nostri specialisti sunt in masura sa ofere servicii stomatologice integrate si consultanta la cel mai inalt 
+              nivel profesional. Pacientii beneficiaza exclusiv de cele mai noi si moderne tehnologii 
+               totul desfasurandu-se in conditii sigure, aseptice si folosind metode de sterilizare conform normelor europene.
+              
             </p>
           </div>
         </div>
@@ -318,19 +317,19 @@
           <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
               <i class="fas fa-user-md"></i>
-              <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span>
 
-              <p><strong>Doctors</strong> consequuntur quae qui deca rode</p>
-              <a href="#">Find out more &raquo;</a>
+              <p><strong>Doctorii</strong> nostri sunt pregatiti</p>
+              <a href="#">Afla mai multe &raquo;</a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
               <i class="far fa-hospital"></i>
-              <span data-purecounter-start="0" data-purecounter-end="26" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Departments</strong> adipisci atque cum quia aut numquam delectus</p>
-              <a href="#">Find out more &raquo;</a>
+              <span data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Cabinete</strong> in orasul nostru si in tara</p>
+              <a href="#">Alfa mai multe &raquo;</a>
             </div>
           </div>
 
@@ -338,17 +337,17 @@
             <div class="count-box">
               <i class="fas fa-flask"></i>
               <span data-purecounter-start="0" data-purecounter-end="14" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Research Lab</strong> aut commodi quaerat. Aliquam ratione</p>
-              <a href="#">Find out more &raquo;</a>
+              <p><strong>Solutii</strong> inteligente la situatii unice.</p>
+              <a href="#">Afla mai multe &raquo;</a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
               <i class="fas fa-award"></i>
-              <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Awards</strong> rerum asperiores dolor molestiae doloribu</p>
-              <a href="#">Find out more &raquo;</a>
+              <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Certificate</strong> si premii acordate.</p>
+              <a href="#">Afla mai multe &raquo;</a>
             </div>
           </div>
 
@@ -364,27 +363,27 @@
         <div class="row">
           <div class="col-lg-6 order-2 order-lg-1" data-aos="fade-right">
             <div class="icon-box mt-5 mt-lg-0">
-              <i class="bx bx-receipt"></i>
-              <h4>Est labore ad</h4>
-              <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+              <i class="fab fa-pagelines"></i>
+              <h4>Varsta e doar un numar</h4>
+              <p>Varsta pacientiilor nostri este cuprinsa intre 6-90 de ani.</p>
             </div>
             <div class="icon-box mt-5">
               <i class="bx bx-cube-alt"></i>
-              <h4>Harum esse qui</h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+              <h4>Perspectiva 3D</h4>
+              <p>Echipamentele moderne ne ajuta sa avem o privire de ansamblu a intregul tablou dental-medical. </p>
             </div>
             <div class="icon-box mt-5">
               <i class="bx bx-images"></i>
-              <h4>Aut occaecati</h4>
-              <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+              <h4>Amintiri placute</h4>
+              <p>Este posibil ca dupa un tratament la DENTAL132 sa ramana doar amintiri placute.</p>
             </div>
             <div class="icon-box mt-5">
-              <i class="bx bx-shield"></i>
-              <h4>Beatae veritatis</h4>
-              <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
+              <i class="fas fa-hand-holding-heart"></i>
+              <h4>Pasiune profesionala</h4>
+              <p>Cand faci un lucru care iti place este un hobby, cand il faci profesional este o pasiune.</p>
             </div>
           </div>
-          <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("pacient/assets/img/features.jpg");' data-aos="zoom-in"></div>
+          <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("pacient/assets/img/features2.jpg");' data-aos="zoom-in"></div>
         </div>
 
       </div>
@@ -395,40 +394,40 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Servicii</h2>
+          <p>DENTAL132 este un spatiu unde serviciile stomatologice sunt efectuate profesional cu maxima atentie si seriozitate iar pacientii se intorc cu zambetul pe buze.</p>
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon"><i class="fas fa-heartbeat"></i></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            <div class="icon"><i class="fab iconify" data-icon="healthicons:odontology-implant" style="font-size: 2.5rem;"></i></div>
+            <h4 class="title"><a href="">Implantologie</a></h4>
+            <p class="description">Implanturi profesionale cu materiale de ultima generatie si proceduri care reduc perioada de recuperare.</p>
           </div>
           <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
-            <div class="icon"><i class="fas fa-pills"></i></div>
-            <h4 class="title"><a href="">Dolor Sitema</a></h4>
-            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+            <div class="icon"><i class="fas fa-pager"></i></div>
+            <h4 class="title"><a href="">Endodontie</a></h4>
+            <p class="description">Tehnologia avansata pe care o folosim ne permite sa salvam intr-o proportie foarte mare dentitia considerata "pierduta"</p>
           </div>
           <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon"><i class="fas fa-hospital-user"></i></div>
-            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+            <div class="icon"><i class="fas iconify" data-icon="uil:kid" style="font-size: 2.5rem;"></i></div>
+            <h4 class="title"><a href="">Stomatologie pediatrica</a></h4>
+            <p class="description">Un cabinet unde copii vin razand si dintr-o "joaca" s-au reparat si dintisorii.</p>
           </div>
           <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon"><i class="fas fa-dna"></i></div>
-            <h4 class="title"><a href="">Magni Dolores</a></h4>
-            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            <div class="icon"><i class="fas iconify"  data-icon="bx:bx-shield" style="font-size: 2.5rem;"></i></div>
+            <h4 class="title"><a href="">Protetica dentara</a></h4>
+            <p class="description">Redarea functionalitatii dentare in scop adjuvant estetic si psihic.</p>
           </div>
           <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
-            <div class="icon"><i class="fas fa-wheelchair"></i></div>
-            <h4 class="title"><a href="">Nemo Enim</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+            <div class="icon"><i class="fas fa-teeth-open"></i></div>
+            <h4 class="title"><a href="">Preventie dentara</a></h4>
+            <p class="description">Detartraj cu ultrasunete, albire profesionala si air-flow va vor reda stralucirea vibranta a zambetului. </p>
           </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
+           <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
             <div class="icon"><i class="fas fa-notes-medical"></i></div>
-            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+            <h4 class="title"><a href="">Servicii medicale EU</a></h4>
+            <p class="description">Serviciile stomatologice medicale sunt la standarde europene unde sunt urmarite toate procedurile de sterilizare, sanitizare si igienizare.</p>
           </div>
         </div>
 
@@ -441,7 +440,9 @@
 
         <div class="section-title">
           <h2>Faceti o programare</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Programarile noastre sunt automatizate 100%. In momentul in care finalizati programarea veti primi 
+          confirmarea pe adresa de email completata sau prin sms la numarul de telefon completat in formular. 
+          De asemenea, in ziua programarii un reminder va fi trimis catre dvs. prin email sau sms. </p>
         </div>
 
         <form th:action="@{/makeAppointment}" th:object="${appointment}" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
@@ -702,7 +703,7 @@
                 <!-- <option value="">Selecteaza Tratament</option> -->
                 <option th:value="Extractie">Extractie</option>
                 <option th:value="Plomba">Plomba</option>
-                <option th:value="Obturare_de_canal">Obturare de canal</option>
+                <option th:value="Obturatie_de_canal">Obturatie de canal</option>
                 <option th:value="Detartraj">Detartraj</option>
                 <option th:value="Albire">Albire</option>
 			</select>
@@ -720,7 +721,7 @@
             <div class="error-message"></div>
             <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
           </div>
-          <div class="text-center mb-5"><button type="submit">Faceti programarea</button></div>
+          <div class="text-center mb-5"><button type="submit">Programeaza</button></div>
         </form>
 
       </div>
@@ -728,7 +729,7 @@
     <br><br>
 
     <!-- ======= Departments Section ======= -->
-    <section id="departments" class="departments">
+   <!--  <section id="departments" class="departments">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -796,15 +797,17 @@
         </div>
 
       </div>
-    </section><!-- End Departments Section -->
+    </section> 
+    -->
+    <!-- End Departments Section -->
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Testimonials</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Ce spun clientii</h2>
+          <p>Mesajele trimise sunt accesibile si pe platormele de social media. Linkurile catre paginile noastre de social media le gasiti in partea de jos a paginii.</p>
         </div>
 
         <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
@@ -814,24 +817,14 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  Dr. Popescu are cele mai bune maniere de scaun al oricărui dentist pe care l-am văzut vreodată. 
+                  Toți asistenții sunt prietenoși și vă pot ajuta la fiecare pas. 
+                  Am fost întotdeauna tratată cu grijă și toată lumea este foarte profesionistă. 
+                  Acest lucru face ca venirea la dentist să fie mult mai plăcută.
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
                 <img src="pacient/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="pacient/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
+                <h3>Ioana Adrian</h3>
                 <h4>Designer</h4>
               </div>
             </div><!-- End testimonial item -->
@@ -840,12 +833,14 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                  Am avut multă durere și probleme în trecut. În timp ce se făcea tratamentul, am văzut îmbunătățiri majore.
+                  Durerea a început să dispară. De când am implant, am putut mânca alimente precum legume crude, fructe etc. Mă simt mult mai bine pentru mine.
+                  A fost întotdeauna un loc pozitiv. A costat niște bani, dar a meritat!
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="pacient/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
+                <img src="pacient/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                <h3>Mihai Mares</h3>
+                <h4>Ceo &amp; Founder</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -853,11 +848,12 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                  Excelent doctor !!! Lucreaza cu foarte mare grija. Mi-e frică teribil de dentist și dna doctor a fost sensibilă la acest aspect
+                  și a chiar isi va da silinta pentru a vă face să vă simțiți confortabil.
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="pacient/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
+                <img src="pacient/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                <h3>Radu Dragomir</h3>
                 <h4>Freelancer</h4>
               </div>
             </div><!-- End testimonial item -->
@@ -866,11 +862,28 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                  Mă bucur că am fost la dvs. Sunt foarte mulțumita de noul meu zâmbet. 
+                  Ati avut grijă de problemele dinților mei din față. Acum am un zâmbet grozav și simt ca pot sa zâmbesc mai mult. 
+                  Am avut un doctor și un staff grozav și grijuliu. Aș recomanda acest cabinet si altor persoane. M-a ajutat mult.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="pacient/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                <h3>Laura Popovici</h3>
+                <h4>Store owner</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Am făcut 6 coroane frontale. Arată atât de natural incat nu mă pot opri din zâmbet. Întregul proces a decurs foarte usor. 
+                  Personalul este excelent, extrem de prietenos. Dr. Popescu a renovat biroul și tot locul arată atât de cald și confortabil. 
+                  Foarte liniștitor.
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
                 <img src="pacient/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
+                <h3>Bogdan Stoica</h3>
                 <h4>Entrepreneur</h4>
               </div>
             </div><!-- End testimonial item -->
@@ -887,13 +900,55 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Doctors</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Doctori si Echipa </h2>
+          <p>Doctorii si echipa noastra va asteapta sa va consilieze si sa va surprinda cu tratamente moderne, usoare si simplu de implementat.</p>
         </div>
 
-        <div class="row">
+      <div class="row">
+      
+      
+      
+      
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+    <!--     <ul class="row">
+        	<li class="col-lg-4 col-md-6 d-flex align-items-stretch" th:each="doctor : ${doctors}">
+        		 <div class="">
+        		
+								<div class="member" data-aos="fade-up" data-aos-delay="100">
+									<div class="member-img">
+
+										<span class="iconify thumb-sm img-circle"
+											th:if="${doctor.lastImgId < 1}"
+											data-icon="bx:bxs-user-circle" data-inline="false"
+											style="border: 0.3px solid white; width: 300px; height: 300px; object-fit:cover;"></span> 
+										<img th:if="${doctor.lastImgId != null}"
+												th:src="@{/doctor/lastImg(personId=${doctor.getPersonId()})}" 
+												class="img-fluid" style="width:300px;height:300px;object-fit:cover;">
+
+								<img src="pacient/assets/img/doctors/doctors-1.jpg"
+											class="img-fluid" alt="">
+										<div class="social">
+											<a href=""><i class="bi bi-twitter"></i></a> <a href=""><i
+												class="bi bi-facebook"></i></a> <a href=""><i
+												class="bi bi-instagram"></i></a> <a href=""><i
+												class="bi bi-linkedin"></i></a>
+										</div>
+									</div>
+									<div class="member-info">
+										<h4 th:text="${doctor.firstName}">Walter White</h4>
+										<span th:text="${doctor.email}">Chief Medical Officer</span>
+									</div>
+								</div>
+							
+						 </div>	
+							
+						</li>
+        
+        </ul>
+       
+       -->
+
+           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="100">
               <div class="member-img">
                 <img src="pacient/assets/img/doctors/doctors-1.jpg" class="img-fluid" alt="">
@@ -965,7 +1020,7 @@
             </div>
           </div>
 
-        </div>
+      </div>  
 
       </div>
     </section><!-- End Doctors Section -->
@@ -1238,12 +1293,12 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="footer-info">
-              <h3>Medicio</h3>
+              <h3>Dental132</h3>
               <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
+                A108 Tomis Street <br>
+                CT 900533, RO<br><br>
+                <strong>Phone:</strong> +40 722 676 355<br>
+                <strong>Email:</strong> info@dental132.ro<br>
               </p>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -1256,7 +1311,7 @@
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+            <h4>Utile</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
@@ -1267,7 +1322,7 @@
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
+            <h4>Serviciile noastre</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
@@ -1278,8 +1333,8 @@
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <h4>Newsletter-ul nostru</h4>
+            <p>Introduceti adresa de email pentru ultimile oferte: </p>
             <form action="" method="post">
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
@@ -1292,14 +1347,10 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Medicio</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>Dental132</span></strong>. Toate drepturile rezervate
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medicio-free-bootstrap-theme/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Designed by <a href="https://apxsoftware.ro/">APX Software</a>
       </div>
     </div>
   </footer><!-- End Footer -->

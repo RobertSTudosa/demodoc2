@@ -256,7 +256,8 @@ public class ClientController {
 	@PostMapping("/remakeAppointment")
 	public String remakeAnAppointment(@ModelAttribute Appointment patchApp,  @RequestParam(value="doctor", required=false) Long doctorId, 
 			@RequestParam(value="service", required=false) String service,
-			@RequestParam(value="time", required=true) CharSequence time, 
+			@RequestParam(value="time", required=true) CharSequence time,
+			@RequestParam(value="date", required = false) CharSequence date,
 			@RequestParam(value="appointmentToken") String token, Model model, User userAccount, Person person, 
 			Authentication auth, HttpSession session, RedirectAttributes redirAttr) {
 
@@ -269,6 +270,8 @@ public class ClientController {
 		System.out.println("Appointment id is ---> " + appointment.getAppointmentId());
 		
 		LocalTime theTime = LocalTime.parse(time);
+		LocalDate theDate = dtServ.formatToLocalDate(date);
+		Person nextDoctor = persServ.findNextDoctorAvailable(theDate,theTime);
 		
 		long personId = 0L;
 		
@@ -280,9 +283,12 @@ public class ClientController {
 			person = persServ.findPersonByUserId(user.getUserId());
 			model.addAttribute("person", person);
 			personId = person.getPersonId();
+			//form a query to get next doctor available
+			
 			
 			if(doctorId == null) {
-				appointment.setDoctor(null);
+				//appointment.setDoctor(null);
+				appointment.setDoctor(nextDoctor);
 				appointment.setPacient(person);
 				//appointment.setAppointmentToken(UUID.randomUUID().toString());
 				appointment.setAppointmentTime(theTime);
@@ -330,7 +336,8 @@ public class ClientController {
 			//check for a doctor if selected
 			if(doctorId == null) {
 				System.out.println("is not a doctor in the house?");
-				appointment.setDoctor(null);
+				//appointment.setDoctor(null);
+				appointment.setDoctor(nextDoctor);
 				appointment.setPacient(null);
 				appointment.setPacientEmail(patchApp.getPacientEmail());
 				appointment.setAppointmentTime(theTime);
@@ -380,12 +387,6 @@ public class ClientController {
 		
 		return "redirect:/client/historyAppointments?personId=" + personId;
 	}
-	
-
-	
-
-	// when open the modal run a method and add a number of appointments to a doctor.
-	//	List<Appointment> allAppointmentsWithOneDoctor = appServ.getAllAppointsWithDoctorIdbyPersonId(doctorId, personId);
-	
+		
 	
 }

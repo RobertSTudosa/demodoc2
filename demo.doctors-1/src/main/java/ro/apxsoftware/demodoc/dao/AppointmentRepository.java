@@ -326,7 +326,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     @Query(nativeQuery = true, value="select * from appointment where pacient_person_id = ?1 "
     		+ " and appointment.date > date(now()) "
-    		+ " where pacient_person_id = ?1 "
     		+ " order by appointment.date ASC "
     		+ " limit 1 ;")
 	public Appointment findNextAppointmentByPacientId(long personId);

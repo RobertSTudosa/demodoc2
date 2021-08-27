@@ -2,6 +2,7 @@ package ro.apxsoftware.demodoc.controllers;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -226,21 +228,26 @@ public class HomeController {
 	
 	@PostMapping("/makeAppointment")
 	public String makeAnAppointment(Model model, @RequestParam(value="doctor", required=false) Long doctorId, @RequestParam(value="service", required=false) String service,
-			@RequestParam(value="time", required=true) CharSequence time,
-				 Appointment appointment, User userAccount, Person person, Authentication auth, HttpSession session, RedirectAttributes redirAttr) {
+			@RequestParam(value="time", required=true) CharSequence time, @RequestParam(value="date", required = false) CharSequence date,
+				 @ModelAttribute Appointment appointment, User userAccount, Person person, Authentication auth, HttpSession session, RedirectAttributes redirAttr) {
 
 	
-		System.out.println(session.getAttributeNames());
+	
 		System.out.println(appointment.getAppointmentTime());
+		
 
 		
 		LocalTime theTime = LocalTime.parse(time);
+		LocalDate theDate = dtServ.formatToLocalDate(date);
+		//form a query to get next doctor available
+		Person nextDoctor = persServ.findNextDoctorAvailable(theDate,theTime);
 		
 		//user logged in
 		if(auth != null) {
 			
 			if(doctorId == null) {
-				appointment.setDoctor(null);
+//				appointment.setDoctor(null);
+				appointment.setDoctor(nextDoctor);
 				appointment.setPacient(person);
 				appointment.setAppointmentToken(UUID.randomUUID().toString());
 				appointment.setAppointmentTime(theTime);
@@ -278,7 +285,12 @@ public class HomeController {
 			//check for a doctor if selected
 			if(doctorId == null) {
 				System.out.println("is not a doctor in the house?");
-				appointment.setDoctor(null);
+				
+				//get the next available doctor and assign this to him 
+				//appointment.setDoctor(null);
+				appointment.setDoctor(nextDoctor);
+				
+				
 				appointment.setPacient(null);
 				appointment.setAppointmentToken(UUID.randomUUID().toString());
 				appointment.setAppointmentTime(theTime);

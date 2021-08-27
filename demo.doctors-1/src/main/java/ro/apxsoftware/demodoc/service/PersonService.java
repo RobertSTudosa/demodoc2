@@ -1,7 +1,7 @@
 package ro.apxsoftware.demodoc.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ro.apxsoftware.demodoc.dao.PersonRepository;
+import ro.apxsoftware.demodoc.dao.UserRepository;
 import ro.apxsoftware.demodoc.entities.Person;
 import ro.apxsoftware.demodoc.utils.AppDateFormater;
 
@@ -22,6 +23,9 @@ public class PersonService {
 	
 	@Autowired 
 	PersonRepository persRepo;
+	
+	@Autowired
+	UserRepository userRepo;
 	
 	@Autowired
 	AppDateFormater appDF;
@@ -211,6 +215,56 @@ public class PersonService {
 	public List<Person> selectThreeMoreClients(long personId) {
 		// TODO Auto-generated method stub
 		return persRepo.selectThreeMoreClients(personId);
+	}
+
+	public Person findNextDoctorAvailable(LocalDate theDate, LocalTime theTime) {
+		
+		Person nextDoctor = new Person();
+		List<Long> bookedDoctorsIds = persRepo.findBookedDoctorIds(theDate, theTime);
+		List<Long> allDoctorsIds =   userRepo.getListOfUsersIdsOfType("DOCTOR"); 
+		int timeExists = 0;
+		
+		
+		
+		for(int i = 0; i < allDoctorsIds.size(); i++) {
+			
+			if(!bookedDoctorsIds.contains(allDoctorsIds.get(i))) {
+				nextDoctor = persRepo.findPersonByPersonId(allDoctorsIds.get(i));
+				timeExists = 1;
+				System.out.println("doctorul ales --> " + nextDoctor.getPersonId());
+				return nextDoctor;
+			}
+						
+		}
+		
+		//if it didn't find and I it means the hour is full. 
+		//so we add one hour to the time to check 
+		//maybe it's a while loop needed here
+		
+		
+		while(timeExists < 1) {
+			LocalTime nextTime = theTime.plusHours(1);	//the time to check		
+			
+			LocalTime timeLimit = LocalTime.of(18, 0,0); //the time limit
+
+			if(nextTime.compareTo(timeLimit) != 0) {
+				
+				findNextDoctorAvailable(theDate, nextTime);
+				
+			} else {
+				
+				//search 11... search 12... search 14... search 18 ... goes to else
+				//increases the day and resets to 9 
+				//goes to search and searches 9 and theDate(which is nextDate)...search ...18... 
+				//goes to else increase the day and searches 9 with the date increased.
+				
+				nextTime = LocalTime.of(8, 0, 0);//reset the time
+				theDate = theDate.plusDays(1);
+			}
+
+		}
+		
+		return nextDoctor; 
 	}
 	
 }
