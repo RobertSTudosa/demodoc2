@@ -23,6 +23,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -101,6 +102,9 @@ public class Appointment implements Serializable {
 		 
 	 }};
 	 
+	 @Size(min=2, max=4000)
+	private String message;
+	 
 	 
 
 	public Appointment() {
@@ -109,7 +113,7 @@ public class Appointment implements Serializable {
 
 
 
-	public Appointment(LocalDate date, Person doctor, Person pacient, String pacientName, String pacientEmail, String pacientPhone) {
+	public Appointment(LocalDate date, Person doctor, Person pacient, String pacientName, String pacientEmail, String pacientPhone, String message) {
 		
 		this.date = date;
 		this.appointmentToken=UUID.randomUUID().toString();
@@ -117,6 +121,7 @@ public class Appointment implements Serializable {
 		this.pacientName = pacientName;
 		this.pacientEmail = pacientEmail;
 		this.pacientPhone = pacientPhone;
+		this.message = message;
 		
 		
 		
@@ -339,6 +344,18 @@ public class Appointment implements Serializable {
 
 	public void setTemporary(boolean temporary) {
 		this.temporary = temporary;
+	}
+
+	
+
+	public String getMessage() {
+		return message;
+	}
+
+
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 

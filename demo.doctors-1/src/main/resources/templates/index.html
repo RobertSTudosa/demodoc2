@@ -105,21 +105,21 @@
           <li><a class="nav-link scrollto" href="#services">Servicii</a></li>
           <li><a class="nav-link scrollto" href="#testimonials">Testimoniale</a></li>
           <li><a class="nav-link scrollto" href="#doctors">Doctori</a></li>
-          <li class="dropdown"><a href="#pricing"><span>Info</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"><span>Info</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+              <li><a href="#contact">Contact</a></li>
+              <li class="dropdown"><a href="#pricing"><span>Preturi</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
+                  <li><a href="#pricing">Detartraj</a></li>
+                  <li><a href="#pricing">Extractie</a></li>
+                  <li><a href="#pricing">Obturatie de canal</a></li>
+                  <li><a href="#pricing">Implant</a></li>
+                  
                 </ul>
               </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
+              <li><a href="#">Drop Down 2?</a></li>
+              <li><a href="#">Drop Down 3?</a></li>
+              <li><a href="#">Drop Down 4?</a></li>
             </ul>
           </li>
          
@@ -711,7 +711,7 @@
 			
             </div>
             
-            <textarea class="form-control " name="message" rows="5" placeholder="Message (Optional)"></textarea>
+            <textarea class="form-control " name="message" rows="5" placeholder="Message (Optional)" th:field="${appointment.message}"></textarea>
             
           </div>
           
@@ -1186,38 +1186,61 @@
           </li>
 
           <li>
-            <div data-bs-toggle="collapse" href="#faq3" class="collapsed question">Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div data-bs-toggle="collapse" href="#faq3" class="collapsed question">Cat timp va dura restaurarea dentara?<i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
             <div id="faq3" class="collapse" data-bs-parent=".faq-list">
               <p>
-                Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                O concepție greșită obișnuită este că restaurările dentare durează pentru totdeauna, dar, din păcate, acest lucru este rareori adevărat. 
+                Cu timpul, restaurările dentare se pot defecta sau se pot desface, permițând bacteriilor să intre în zona din jurul restaurării și să devină problematică. 
+                Deși nu vă puteți aștepta ca plombele, podurile și coroanele dvs. să dureze pentru totdeauna, puteți să ajutați să dureze cât mai mult posibil. 
+                Mențineți o igienă orală excelentă și vizitați medicul dentist în mod regulat pentru a menține restaurările în stare excelentă cât mai mult timp posibil.
               </p>
             </div>
           </li>
 
           <li>
-            <div data-bs-toggle="collapse" href="#faq4" class="collapsed question">Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div data-bs-toggle="collapse" href="#faq4" class="collapsed question">Care este cel mai bun mod de a-mi albi dinții? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
             <div id="faq4" class="collapse" data-bs-parent=".faq-list">
               <p>
-                Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                Pacienții ne întreabă despre albirea dinților tot timpul. Este o întrebare dificilă, deoarece nu există un răspuns universal care să se aplice tuturor. 
+                Cea mai rapidă și mai eficientă metodă de albire a dinților este de obicei o procedură profesională de albire în cabinet. Cu toate acestea, în funcție de cât de dramatic trebuie să fie rezultatele dvs., 
+                este posibil să nu solicitați acest tip de procedură. Cel mai bun sfat al nostru este să discutați cu medicul dentist sau igienistul dentar despre ce tip de albire a dinților ar recomanda. 
+                Cele mai bune rezultate vor fi întotdeauna rezultatul unui tratament profesional, dar medicul dentist vă poate ajuta să determinați ce tratament este potrivit pentru dvs.
               </p>
             </div>
           </li>
 
           <li>
-            <div data-bs-toggle="collapse" href="#faq5" class="collapsed question">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div data-bs-toggle="collapse" href="#faq5" class="collapsed question">Sunt dulciurile și inghețata foarte rele pentru dinții mei? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
             <div id="faq5" class="collapse" data-bs-parent=".faq-list">
               <p>
-                Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
+                Da, dulciurile și alimentele cu acid, cum ar fi bomboanele și bauturile carbogazoase, ar putea să se lipească de dinți și să ducă la cavități/carii.
+				În timp ce dinții sunt suficient de puternici pentru a mesteca gheață și a rupe pachetele deschise, acest lucru le poate rupe și vă poate stresa maxilarul si mandibula. 
+				Strângerea sau măcinarea dinților atunci când sunteți stresat poate să-i crape.
+				Să-ți muști unghiile este un alt obicei prost. Îți scoate maxilarul din poziție și schimbă modul în care se potrivesc dinții.
               </p>
             </div>
           </li>
 
           <li>
-            <div data-bs-toggle="collapse" href="#faq6" class="collapsed question">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div data-bs-toggle="collapse" href="#faq6" class="collapsed question">Care sunt semnele care necesită terapia canalului radicular (obturatia de canal)? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
             <div id="faq6" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Nibh tellus molestie nunc non blandit massa enim nec.
-              </p>
+            <br>
+              <p>Semnele care arata ca este posibil să aveți nevoie de terapia canalului radicular includ:</p>
+              <br>
+				<ul class="list-group list-group-numbered"> 
+			
+				<li class="list-group-item">Durere severă de durere de dinți la mestecare sau aplicarea de presiune </li>
+				<li class="list-group-item">Sensibilitate prelungită (durere) la temperaturi calde sau reci (după îndepărtarea căldurii sau a frigului)</li>
+				<li class="list-group-item">Decolorarea (întunecarea) dintelui </li>
+				<li class="list-group-item">Umflături și sensibilitate la gingiile din apropiere</li>
+				<li class="list-group-item">Un cos persistent sau recurent pe gingii</li>
+			
+			
+			</ul>
+
+
+
+              
             </div>
           </li>
 
@@ -1232,13 +1255,16 @@
 
         <div class="section-title">
           <h2>Contact</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Locatia cabinetului nostru.</p>
         </div>
 
       </div>
 
       <div>
-        <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+      
+      <!--   <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe> -->
+      <iframe style="border:0; width: 100%; height: 350px;" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=5%20Pescarilor,%20Constanta,Romania+(APX%20Software)&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" frameborder="0" allowfullscreen></iframe>
+      
       </div>
 
       <div class="container">
@@ -1252,21 +1278,21 @@
                 <div class="info-box">
                   <i class="bx bx-map"></i>
                   <h3>Our Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
+                  <p>A108 Tomis Street, Constanta, RO 900533</p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box mt-4">
                   <i class="bx bx-envelope"></i>
                   <h3>Email Us</h3>
-                  <p>info@example.com<br>contact@example.com</p>
+                  <p>info@dental132.com<br>contact@dental132.com</p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box mt-4">
                   <i class="bx bx-phone-call"></i>
                   <h3>Call Us</h3>
-                  <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                  <p>+40 341 5548 55<br>+40 723 6651 37</p>
                 </div>
               </div>
             </div>
@@ -1274,7 +1300,7 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form th:action="@{/contactUs}" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="col form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -1334,28 +1360,28 @@
             <h4>Utile</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">Despre</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Servicii</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Termeni si conditii</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Politica de confidentialitate</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Serviciile noastre</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Implantologie</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Endodontie</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Stomatologie pediatrica</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Protetica dentara</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Preventie dentara</a></li>
             </ul>
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Newsletter-ul nostru</h4>
             <p>Introduceti adresa de email pentru ultimile oferte: </p>
-            <form action="" method="post">
+            <form th:action="@{/subscribe}" method="post">
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
 

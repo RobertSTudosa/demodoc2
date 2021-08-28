@@ -1804,7 +1804,13 @@
 
         <div class="section-title">
           <h2 th:text="'Doctorul dvs: ' + ${doctorApp.getDoctorName()}">Programarea dvs</h2>
-          <p class="text-wrap"> Message with the appointment: <span th:if="${doctorApp.canceled}" class="text-danger"> Aceasta progamare este anulata! </span> </p>
+          <div class="text-wrap"> Mesajul programarii : 
+          	<div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2" role="alert" th:if="${doctorApp.message}!=null" >
+  	 		<i class="bi flex-shrink-0 me-2 fas fa-align-justify"></i><span th:text="${doctorApp.message}">You should check in on some of those fields below.</span>
+ 	 		<!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+			</div>
+          	
+          	<span th:if="${doctorApp.canceled}" class="text-danger"> Aceasta progamare este anulata! </span> </div>
         </div>
 
         <div class="row">
@@ -1879,7 +1885,13 @@
 
         <div class="section-title">
           <h2 th:text="${doctorApp.pacientName}">Programarea dvs</h2>
-          <p class="text-wrap" > Message with the appointment: </p>
+          <div class="text-wrap"> Mesajul programarii : 
+          	<div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2" role="alert" th:if="${doctorApp.message}!=null" >
+  	 		<i class="bi flex-shrink-0 me-2 fas fa-align-justify"></i><span th:text="${doctorApp.message}">You should check in on some of those fields below.</span>
+ 	 		<!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+			</div>
+          	
+          	<span th:if="${doctorApp.canceled}" class="text-danger"> Aceasta progamare este anulata! </span> </div>
         </div>
 
         <div class="row">
