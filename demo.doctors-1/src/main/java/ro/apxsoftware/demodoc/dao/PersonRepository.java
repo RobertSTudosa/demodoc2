@@ -170,7 +170,7 @@ public interface PersonRepository extends CrudRepository <Person, Long>{
 				+ " join persons on persons.person_id = appointment.doctor_person_id "
 				+ " where appointment.date = ?1 "
 				+ " and appointment_time = ?2 ;")
-		public List<Long> findBookedDoctorIds(LocalDate theDate, LocalTime theTime);
+		public List<Long> findBookedDoctorIds(String date, String time);
 	
 
 }

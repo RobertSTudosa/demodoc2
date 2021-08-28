@@ -23,6 +23,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,12 +42,14 @@ public class Appointment implements Serializable {
 	@Column(name="appointment_id")
 	private long appointmentId;
 	
+	@NotBlank
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
 //	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate date;
 	
 //	@Temporal(TemporalType.TIME)
+	@NotBlank
 	@DateTimeFormat(iso = ISO.TIME)
 	private LocalTime appointmentTime;
 	
@@ -66,10 +70,16 @@ public class Appointment implements Serializable {
 	 @Column(name="appointment_token")
 	    private String appointmentToken=UUID.randomUUID().toString();
 	 
+	 @NotBlank
+	 @Size(min=3, max=50)
 	 private String pacientName;
 	 
+	 @NotBlank
+	 @Email(message="Introduceti o adresa valida")
+	 @Size(min=11, max=50)
 	 private String pacientEmail;
 	 
+	 @NotBlank
 	 private String pacientPhone;
 	 
 	 @Column(name="canceled_id")

@@ -30,6 +30,9 @@ public class PersonService {
 	@Autowired
 	AppDateFormater appDF;
 	
+	@Autowired
+	DatesAndTimeService dtServ;
+	
 	
 	final Pattern TRIM_UNICODE_PATTERN = Pattern.compile("^\\p{Blank}*(.*)\\p{Blank}$", Pattern.UNICODE_CHARACTER_CLASS);
 	final Pattern SPLIT_SPACE_UNICODE_PATTERN = Pattern.compile("\\p{Blank}", Pattern.UNICODE_CHARACTER_CLASS);
@@ -220,15 +223,23 @@ public class PersonService {
 	public Person findNextDoctorAvailable(LocalDate theDate, LocalTime theTime) {
 		
 		Person nextDoctor = new Person();
-		List<Long> bookedDoctorsIds = persRepo.findBookedDoctorIds(theDate, theTime);
-		List<Long> allDoctorsIds =   userRepo.getListOfUsersIdsOfType("DOCTOR"); 
+		String theDate2 = theDate.toString();
+		String theTime2 = theTime.toString();
+				
+		
+		List<Long> bookedDoctorsIds = (List<Long>) persRepo.findBookedDoctorIds(theDate2, theTime2);
+		System.out.println("bookedDoctorsIds===> " + Arrays.asList(bookedDoctorsIds));
+		List<Long> allDoctorsIds =  (List<Long>) userRepo.getListOfUsersIdsOfType("DOCTOR"); 
 		int timeExists = 0;
 		
-		
+
 		
 		for(int i = 0; i < allDoctorsIds.size(); i++) {
+			long checkId = allDoctorsIds.get(i);
+			System.out.println("checked Id is ===> " + checkId);
 			
-			if(!bookedDoctorsIds.contains(allDoctorsIds.get(i))) {
+			if(!bookedDoctorsIds.contains(checkId)) {
+				System.out.println("doctor in the find --- > " + allDoctorsIds.get(i));
 				nextDoctor = persRepo.findPersonByPersonId(allDoctorsIds.get(i));
 				timeExists = 1;
 				System.out.println("doctorul ales --> " + nextDoctor.getPersonId());
@@ -243,7 +254,8 @@ public class PersonService {
 		
 		
 		while(timeExists < 1) {
-			LocalTime nextTime = theTime.plusHours(1);	//the time to check		
+			LocalTime nextTime = theTime.plusHours(1);	//the time to check	
+			
 			
 			LocalTime timeLimit = LocalTime.of(18, 0,0); //the time limit
 

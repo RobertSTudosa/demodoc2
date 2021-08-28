@@ -2,7 +2,6 @@ package ro.apxsoftware.demodoc.controllers;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,6 +12,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -21,6 +21,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -227,12 +229,19 @@ public class HomeController {
 	
 	
 	@PostMapping("/makeAppointment")
-	public String makeAnAppointment(Model model, @RequestParam(value="doctor", required=false) Long doctorId, @RequestParam(value="service", required=false) String service,
+	public String makeAnAppointment(Model model, @Valid @ModelAttribute  Appointment appointment, @RequestParam(value="doctor", required=false) Long doctorId, @RequestParam(value="service", required=false) String service,
 			@RequestParam(value="time", required=true) CharSequence time, @RequestParam(value="date", required = false) CharSequence date,
-				 @ModelAttribute Appointment appointment, User userAccount, Person person, Authentication auth, HttpSession session, RedirectAttributes redirAttr) {
+				  BindingResult result, Errors errors, User userAccount, Person person, Authentication auth, HttpSession session, RedirectAttributes redirAttr) {
 
 	
-	
+		if(errors.hasErrors()) {
+			return "redirect:/#appointment";
+		}
+		
+		if(result.hasErrors()) {
+			return "redirect:/#appointment";
+		}
+		
 		System.out.println(appointment.getAppointmentTime());
 		
 

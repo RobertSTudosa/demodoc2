@@ -448,7 +448,9 @@
         <form th:action="@{/makeAppointment}" th:object="${appointment}" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
           <div class="row">
             <div class="col-md-4 form-group" sec:authrorize="isAnonymous()">
+            
               <input type="text" th:field="${appointment.pacientName}" name="name" class="form-control" id="name" placeholder="Numele dvs." required>
+           			<p th:if="${#fields.hasErrors('pacientName')}" th:errors="${appointment.pacientName}"></p>
             </div>
             <div class="col-md-4 form-group mt-3 mt-md-0" sec:authorize="isAnonymous()">
               <input type="email" th:field="${appointment.pacientEmail}" class="form-control" name="email" id="email" placeholder="Email" required>
