@@ -449,14 +449,17 @@
           <div class="row">
             <div class="col-md-4 form-group" sec:authrorize="isAnonymous()">
             
-              <input type="text" th:field="${appointment.pacientName}" name="name" class="form-control" id="name" placeholder="Numele dvs." required>
+              <input type="text" th:field="${appointment.pacientName}" name="name" class="form-control" id="name" placeholder="Numele dvs." 
+              		pattern="(?:\s*[a-zA-Z]+\s{0,2}){1,3}" minlength="3" title="pentru nume sunt necesare minim 3 litere, fara alte caractere speciale"	required>
            			<p th:if="${#fields.hasErrors('pacientName')}" th:errors="${appointment.pacientName}"></p>
             </div>
             <div class="col-md-4 form-group mt-3 mt-md-0" sec:authorize="isAnonymous()">
-              <input type="email" th:field="${appointment.pacientEmail}" class="form-control" name="email" id="email" placeholder="Email" required>
+              <input type="email" th:field="${appointment.pacientEmail}" class="form-control" name="email" id="email" placeholder="Email" 
+              		pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Introduceti o adresa de email valida." required>
             </div>
             <div class="col-md-4 form-group mt-3 mt-md-0" sec:authorize="isAnonymous()">
-              <input type="tel" th:field="${appointment.pacientPhone}" class="form-control" name="phone" id="phone" placeholder="numarul de telefon" required>
+              <input type="tel" th:field="${appointment.pacientPhone}" class="form-control" name="phone" id="phone" placeholder="numarul de telefon" 
+              		pattern="^\+|(?:[0-9]?){6,14}[0-9]+|\s{1,1}$" title="introduceti un numar de telefon valid" required>
             </div>
           </div>
           <div class="row">

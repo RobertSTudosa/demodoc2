@@ -74,7 +74,7 @@ public class Appointment implements Serializable {
 	 @Size(min=3, max=50)
 	 private String pacientName;
 	 
-	 @NotBlank
+	 @NotBlank(message="Introduceti o adresa de email.")
 	 @Email(message="Introduceti o adresa valida")
 	 @Size(min=11, max=50)
 	 private String pacientEmail;
@@ -296,6 +296,8 @@ public class Appointment implements Serializable {
 		}
 		return this.getDoctor().getFirstName();
 	}
+	
+
 
 
 	public long getCanceledId() {

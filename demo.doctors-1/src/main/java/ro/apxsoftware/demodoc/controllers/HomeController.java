@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -20,11 +21,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -229,7 +230,8 @@ public class HomeController {
 	
 	
 	@PostMapping("/makeAppointment")
-	public String makeAnAppointment(Model model, @Valid @ModelAttribute  Appointment appointment, @RequestParam(value="doctor", required=false) Long doctorId, @RequestParam(value="service", required=false) String service,
+	@Transactional
+	public String makeAnAppointment(Model model, @Valid  Appointment appointment, @RequestParam(value="doctor", required=false) Long doctorId, @RequestParam(value="service", required=false) String service,
 			@RequestParam(value="time", required=true) CharSequence time, @RequestParam(value="date", required = false) CharSequence date,
 				  BindingResult result, Errors errors, User userAccount, Person person, Authentication auth, HttpSession session, RedirectAttributes redirAttr) {
 
@@ -325,10 +327,15 @@ public class HomeController {
 //				appointment.removeAppointmentFixedTime(appointment.getAppointmentTime());
 				
 				appServ.saveApp(appointment);
+				appServ.dbflush();
 				CompanyService coServ = new CompanyService();
 				coServ.setName(service+ "");
 				coServ.setAppointment(appointment);
-				coservServ.saveCompanyService(coServ);
+				coservServ.saveAndFlush(coServ);
+//				coservServ.saveCompanyService(coServ);
+//				coservServ.dbflush();
+				
+				System.out.println("get appointment services after dbflush() ====> " + appointment.getStringCompanyServicesNames());
 				
 			}
 			//get the doctor by Id
@@ -341,6 +348,10 @@ public class HomeController {
 		
 //		SimpleMailMessage appointMail = emailServ.simpleAppointmentConfirmation(appointment.getPacientEmail(), 
 //				"Your Appointment with Medicio", appointment.getAppointmentToken());
+		
+		MimeMessage mimeAppointMail = emailServ.confirmAppointmentMimeEmail(appointment.getPacientEmail(), "Your Appointment with Medicio", appointment.getAppointmentToken(),appointment.getStringCompanyServicesNames());
+		emailServ.sendMimeEmail(mimeAppointMail);
+		
 //		emailServ.sendEmail(appointMail);
 		redirAttr.addFlashAttribute("appointmentMade", new String("Programarea dvs a fost efectuata. Am trimis detaliile pe adresa dvs: " + appointment.getPacientEmail() + "."));
 		
