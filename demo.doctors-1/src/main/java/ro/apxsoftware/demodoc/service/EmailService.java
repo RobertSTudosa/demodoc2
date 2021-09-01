@@ -8,6 +8,7 @@ import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -337,7 +338,7 @@ public class EmailService {
 				+ "                                            a fost efectuata cu succes.\r\n"
 				+ "                                            Doctorul dvs., " 
 				+ appointment.getDoctorName() + " va asteapta pentru procedurile dorite de dvs: \r\n"
-				+ companyServices   
+				+ "<strong>" + companyServices + "</strong>"   
 				+ "                                        </p>\r\n"
 				+ "                                        <p style=\"line-height: 24px; margin-bottom:20px;\">\r\n"
 				+ "                                            Puteti accesa si edita programarea prin butonul de mai in jos: \r\n"
@@ -397,8 +398,8 @@ public class EmailService {
 				+ "    <table border=\"0\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" bgcolor=\"2a2e36\">\r\n"
 				+ "\r\n"
 				+ "        <tr>\r\n"
-				+ "            <td align=\"center\" style=\"background-image: url(https://mdbootstrap.com/img/Photos/Others/slide.jpg); background-size: cover; background-position: top center; background-repeat: no-repeat;\"\r\n"
-				+ "                background=\"https://mdbootstrap.com/img/Photos/Others/slide.jpg\">\r\n"
+				+ "            <td align=\"center\" style=\"background-image: url(cid:smileBanner); background-size: cover; background-position: top center; background-repeat: no-repeat;\"\r\n"
+				+ "                background=\"cid:smileBanner\">\r\n"
 				+ "\r\n"
 				+ "                <table border=\"0\" align=\"center\" width=\"590\" cellpadding=\"0\" cellspacing=\"0\" class=\"container590\">\r\n"
 				+ "\r\n"
@@ -648,10 +649,13 @@ public class EmailService {
 					 
 
 			 helper.addInline("topLogo",
-		                new File("C:\\Users\\rober\\Documents\\GitHub\\demodoc2\\demo.doctors-1\\src\\main\\resources\\static\\pacient\\assets\\img\\logo.png"));
+					 new ClassPathResource("static/email/logo.png"));
 			 
 			 helper.addInline("bottomLogo",
-		                new File("C:\\Users\\rober\\Documents\\GitHub\\demodoc2\\demo.doctors-1\\src\\main\\resources\\static\\pacient\\assets\\img\\logo.png"));
+					 new ClassPathResource("static/email/logo.png"));
+			 
+			 helper.addInline("smileBanner",
+					 new ClassPathResource("static/email/slide_email2.jpg"));
 		 
 		        
 			

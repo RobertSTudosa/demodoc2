@@ -3,6 +3,7 @@ package ro.apxsoftware.demodoc.controllers;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -246,19 +247,19 @@ public class HomeController {
 		
 		System.out.println(appointment.getAppointmentTime());
 		
-
+		Appointment newApp = new Appointment();
 		
 		LocalTime theTime = LocalTime.parse(time);
 		LocalDate theDate = dtServ.formatToLocalDate(date);
 		//form a query to get next doctor available
-		Person nextDoctor = persServ.findNextDoctorAvailable(theDate,theTime);
+
 		
 		//user logged in
 		if(auth != null) {
 			
 			if(doctorId == null) {
 //				appointment.setDoctor(null);
-				appointment.setDoctor(nextDoctor);
+				appointment.setDoctor(persServ.findNextDoctorAvailable(theDate, theTime));
 				appointment.setPacient(person);
 				appointment.setAppointmentToken(UUID.randomUUID().toString());
 				appointment.setAppointmentTime(theTime);
@@ -299,7 +300,7 @@ public class HomeController {
 				
 				//get the next available doctor and assign this to him 
 				//appointment.setDoctor(null);
-				appointment.setDoctor(nextDoctor);
+				appointment.setDoctor(persServ.findNextDoctorAvailable(theDate, theTime));
 				
 				
 				appointment.setPacient(null);
@@ -326,30 +327,33 @@ public class HomeController {
 //				appointment.setDate(theDate);
 //				appointment.removeAppointmentFixedTime(appointment.getAppointmentTime());
 				
-				appServ.saveApp(appointment);
-				appServ.dbflush();
+//				appServ.saveApp(appointment);
+				newApp = appServ.saveAppAndReturn(appointment);
 				CompanyService coServ = new CompanyService();
 				coServ.setName(service+ "");
-				coServ.setAppointment(appointment);
+				coServ.setAppointment(newApp);
 				coservServ.saveAndFlush(coServ);
 //				coservServ.saveCompanyService(coServ);
 //				coservServ.dbflush();
 				
-				System.out.println("get appointment services after dbflush() ====> " + appointment.getStringCompanyServicesNames());
+					for(CompanyService coServone : newApp.getCompanyServices()) {
+						if(coServone.equals(coServ)) {
+							System.out.println("company service in the set ===> " + coServone.getName());
+						}
+					}
 				
+
 			}
-			//get the doctor by Id
-	
-			//save in the database the appointment 
-			//and use the data to store as a pacient so create a person with a useraccount 
-			//but not active, that can't log on etc.
+		
 		}
 
 		
 //		SimpleMailMessage appointMail = emailServ.simpleAppointmentConfirmation(appointment.getPacientEmail(), 
 //				"Your Appointment with Medicio", appointment.getAppointmentToken());
 		
-		MimeMessage mimeAppointMail = emailServ.confirmAppointmentMimeEmail(appointment.getPacientEmail(), "Your Appointment with Medicio", appointment.getAppointmentToken(),appointment.getStringCompanyServicesNames());
+		MimeMessage mimeAppointMail = emailServ.confirmAppointmentMimeEmail(appointment.getPacientEmail(), 
+				"Your Appointment with Medicio", appointment.getAppointmentToken(),service);
+		
 		emailServ.sendMimeEmail(mimeAppointMail);
 		
 //		emailServ.sendEmail(appointMail);

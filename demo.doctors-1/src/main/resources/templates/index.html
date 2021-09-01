@@ -466,7 +466,7 @@
             
 
             <div class="col-md-4 form-group mt-3">
-              <select name="doctor" id="doctor" class="form-select doctor" th:attr="onchange=|(getDoctorBusyDates())|">
+              <select name="doctor" id="doctor" class="form-select doctor" th:attr="onchange=|(getDoctorBusyDates())|" >
                 <option th:value=null >Selecteaza Doctor</option>
                 <option th:each="doctor : ${doctors}" th:value="${doctor.personId}" id="doctorId" th:text="${doctor.firstName}" >Doctor's name</option>
               
@@ -618,7 +618,7 @@
               	step="3600" class="form-control datepicker" id="time" placeholder="Ora programarii" required>  -->
               	
                	<select th:name="time" id="time" class="form-select" required>
-              		<option id="optionTime" value="selecteaza ora">Ora</option>
+              		<option id="optionTime" value="">Selecteaza ziua</option>
               		<option id="optionTime" th:each="time : ${fixedTimes}" th:text="${time}" th:value="${time}">time</option>
               	
               	

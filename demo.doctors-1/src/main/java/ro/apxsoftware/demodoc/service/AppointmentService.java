@@ -24,8 +24,14 @@ public class AppointmentService {
 		appRepo.save(appointment);
 	}
 	
-	public void saveAndFlush(Appointment appointment) {
+	public Appointment saveAppAndReturn(Appointment appointment) {
+		appRepo.save(appointment);
+		return appointment;
+	}
+	
+	public Appointment saveAndFlush(Appointment appointment) {
 		appRepo.saveAndFlush(appointment);
+		return appointment;
 	}
 	
 	public Appointment getAppointmentByToken(String token) {
