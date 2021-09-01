@@ -316,7 +316,7 @@
 				
 				<div class="row alert d-flex align-items-center alert-dismissible fade show mx-2 mt-2" id="modalSearchClientsWrapper" >
 				<div class="col-md-12 col-lg-12 col-sm-12 tab-pane fade active show" id="search" role="tabpanel" aria-labelledby="future-tab"  th:if="${selectClients}!=null">
-                        <div class="white-box">
+                        <div class="white-box" style="width: 10rem;">
                             <div class="d-md-flex mb-3">
                                 <h3 class="box-title mb-0">Selecteaza candidat : </h3>
 
@@ -452,7 +452,7 @@
 						selectedPersonId = personId;
 						console.log('personId is ' + personId);
 						var allCheckboxes = $('input[name=myClient]:checked');
-						console.log('allCheckboxes lenght is ' + allCheckboxes.length);
+						console.log('recurrent appointment allCheckboxes lenght is ' + allCheckboxes.length);
 
 							if(allCheckboxes.length > 0 ){
 								console.log('checked');
@@ -567,23 +567,22 @@
             
 
             <div class="col-md-4 form-group mt-3">
-              <select name="doctorModal1" id="doctor1" class="form-select doctorModal1" th:attr="onchange=|(getDoctorBusyDates())|">
-                <option th:value=null >Selecteaza Doctor</option>
-                <option th:each="doctor : ${doctors}" th:value="${doctor.personId}" id="doctorId" th:text="${doctor.firstName}" >Doctor's name</option>
+              <select name="doctorModal1" id="doctorUNO" class="form-select doctorModal1" th:attr="onchange=|(getRecAppDoctorBusyDates())|">
+               <option value="" >Selecteaza Doctor</option>
+                <option th:each="doctor : ${doctors}" th:value="${doctor.personId}" th:text="${doctor.firstName}" >Doctor's name</option>
               
               </select>
               
               <script type="text/javascript" th:inline="javascript">
               	
               		var busyDatesArray = [[${busyDates}]];
+              		
+              		
+              	function getRecAppDoctorBusyDates () {
+              		console.log("getDoctorBusyDates calling from modal recApp");
+              		var doctorId = $("select#doctorUNO").children("option:selected").val();	
+              		console.log("doctor is selected --->" + doctorId);
    	
-              	function getDoctorBusyDates () {
-              			console.log("getDoctorBusyDates is calling");
-              			var selectdoctorId = document.getElementById("doctor1");
-              			var doctorId = selectdoctorId.options[selectdoctorId.selectedIndex].value;
-              			
-              			//var doctorId = $("select.doctorModal1").children("option:selected").val(); //use again in the function select hours by doctor 
-              			console.log("doctor's id is selected --> " + doctorId);
               			var dateVal = $("#date").val(); 
               			var now = new Date();
               			
@@ -607,7 +606,7 @@
               					} else {
               					
               					console.log("date is selected");              						
-              					getTimes();
+              					getRecAppTimes();
 
               					};
 							
@@ -633,7 +632,7 @@
               					} else {
               					
               					console.log("date is selected");              						
-              					getTimes();
+              					getRecAppTimes();
 
               					
               					
@@ -648,7 +647,7 @@
             </div>
             <div class="col-md-4 form-group mt-3">
               <input type="date" th:field="${appointment.date}"  name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" 
-              		th:attr="onchange=|(getTimes())|" readonly required >
+              		th:attr="onchange=|(getRecAppTimes())|" readonly required >
               <!--  -->
                           <!--   th:attr="onclick=|insertBusyDates('${busyDates}')|" -->
              <!--  <ul style="display: none;" id="busyDates">
@@ -731,10 +730,10 @@
             
            <script type="text/javascript" th:inline="javascript">
            		 
-           		 function getTimes () {
+           		 function getRecAppTimes () {
 						
 
-						console.log('calling getTime()');
+						console.log('calling getRecAppTime()');
 						
 						var dateVal = $("#date").val(); //this is in the getTimes() scope
 						var doctorId = $("select.doctorModal1").children("option:selected").val(); //use again in the function select hours by doctor 
@@ -825,15 +824,15 @@
           
          
           
-          <div class="text-center mb-5"><button type="button" class="" th:attr="onclick=|addTemporaryAppoint()|">
+          <div class="text-center mb-5"><button type="button" class="" th:attr="onclick=|addRecAppTemporaryAppoint()|">
           		<span class="iconify" data-icon="carbon:add"></span>
           		<span class="badge bg-primary rounded">adaugati programare</button></div>
           
            <script type="text/javascript" th:inline="javascript">
         	        
-        	function addTemporaryAppoint() {	
+        	function addRecAppTemporaryAppoint() {	
         		console.log('selectedPerson exists ' + selectedPersonId);
-        		var doctorId = $("select.doctorModal1").children("option:selected").val();
+        		var doctorId = $("select#doctorUNO").children("option:selected").val();
         		
         		console.log('doctor parameter in place ' + doctorId);
         		var selectedServices = $("select#department").children("option:selected").toArray().map(item => item.text).join();        		
@@ -918,10 +917,10 @@
 											should check your results.</span>
 									</div>
 									
-									 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" th:attr="onclick=|deleteOneTempAppointment('${appointment.appointmentId}')|"></button><!-- the close for the alert  -->
+									 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" th:attr="onclick=|deleteOneRecAppTempAppointment('${appointment.appointmentId}')|"></button><!-- the close for the alert  -->
 									 
 									 <script type="text/javascript" th:inline="javascript">
-									 	function deleteOneTempAppointment (appId) {
+									 	function deleteOneRecAppTempAppointment (appId) {
 									 		console.log('appId is passed ---->' + appId);
 									 		
 									 		$.ajax ({
@@ -965,7 +964,7 @@
 		</section>
 		<div  id="approveAllTemp">
 							<div >
-								<button type="button" class="btn" id="approveApp" th:attr="onclick=|approveAllTempAppointments()|" >
+								<button type="button" class="btn" id="approveApp" th:attr="onclick=|approveAllRecAppTempAppointments()|" >
 									<span class="iconify" data-icon="bi:check-all"></span>
 									<span class="badge bg-danger rounded">Aprobati
 										programarile</span>
@@ -982,7 +981,7 @@
 				
 				
 			
-				function approveAllTempAppointments() {
+				function approveAllRecAppTempAppointments() {
 				console.log('selectedPerson exists ' + selectedPersonId);
 				
 					$.ajax({
