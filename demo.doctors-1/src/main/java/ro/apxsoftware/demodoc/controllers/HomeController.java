@@ -104,7 +104,7 @@ public class HomeController {
 		 
 		
 		 
-		 model.addAttribute("fixedTimes", fixedTimes);
+		 model.addAttribute("fixedTimes", null);
 		 
 		 //start checking for doctor 1;
 		List<String> stringBusyDates = getAllBusyDates(model, redirAttr);
@@ -233,7 +233,7 @@ public class HomeController {
 	@PostMapping("/makeAppointment")
 	@Transactional
 	public String makeAnAppointment(Model model, @Valid  Appointment appointment, @RequestParam(value="doctor", required=false) Long doctorId, @RequestParam(value="service", required=false) String service,
-			@RequestParam(value="time", required=true) CharSequence time, @RequestParam(value="date", required = false) CharSequence date,
+			@RequestParam(value="time", required=true) CharSequence time, @RequestParam(value="date", required = true) CharSequence date,
 				  BindingResult result, Errors errors, User userAccount, Person person, Authentication auth, HttpSession session, RedirectAttributes redirAttr) {
 
 	

@@ -15,9 +15,7 @@
 						aria-label="Close" ><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body" >
-      
-     
-      
+       
       <section id="about" class="about" sec:authorize="hasAuthority('DOCTOR')">
       <div class="container" data-aos="fade-up">
 
@@ -736,7 +734,7 @@
 						console.log('calling getRecAppTime()');
 						
 						var dateVal = $("#date").val(); //this is in the getTimes() scope
-						var doctorId = $("select.doctorModal1").children("option:selected").val(); //use again in the function select hours by doctor 
+						var doctorId = $("select#doctorUNO").children("option:selected").val();	//use again in the function select hours by doctor 
               			console.log("doctor's id is selected --> " + doctorId);
 						
 						if(doctorId > 0) {

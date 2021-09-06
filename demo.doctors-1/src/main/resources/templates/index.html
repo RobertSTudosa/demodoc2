@@ -58,17 +58,47 @@
 
 <body>
 
-  <!-- ======= Top Bar ======= -->
-  <div id="topbar" class="d-flex align-items-center fixed-top">
+
+  <!-- ======= Top Bar Repeat for DEMO======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top" >
     <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
+      <div class="align-items-center d-none d-md-flex">
+        <i class="bi bi-clock"></i> APLICATIE DEMO demouseri: <i class="bi bi-person-badge"></i> client@apxsoftware.ro password: 1234
+      </div>
+      <div class="d-flex align-items-center">
+        <i class="bi bi-person-badge-fill"></i> doctor@apxsoftware.ro password: 1234
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Top Bar ======= -->
+   <div id="topbar" class="d-flex align-items-center fixed-top topbarDemo" style="top:30px;">
+    <div class="container d-flex align-items-center justify-content-center justify-content-md-between" >
       <div class="align-items-center d-none d-md-flex">
         <i class="bi bi-clock"></i> Luni - Sambata, 8AM to 6PM
       </div>
       <div class="d-flex align-items-center">
-        <i class="bi bi-phone"></i> sunati-ne la +40 341 5548 55
+        <i class="bi bi-phone"></i> telefon: +40 341 5548 55
       </div>
     </div>
-  </div>
+  </div> 
+  
+  <script type="text/javascript" th:inline="javascript">
+  	setInterval(changeTopBarStyle, 3000);
+  	
+  	function changeTopBarStyle () {
+  		var topBarTop = $(".topbarDemo").css('top');
+  		console.log(topBarTop);
+  		
+  		if(topBarTop == '30px') {
+	  		$(".topbarDemo").css('top','0px');
+  		} else {
+  			$(".topbarDemo").css('top','30px');
+  		}
+  	
+  	}
+  
+  </script>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
@@ -543,17 +573,16 @@
               </script>
             </div>
             <div class="col-md-4 form-group mt-3">
-              <input type="date" th:field="${appointment.date}"  name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" 
-              		th:attr="onchange=|(getTimes())|" readonly required >
-              <!--  -->
-                          <!--   th:attr="onclick=|insertBusyDates('${busyDates}')|" -->
-             <!--  <ul style="display: none;" id="busyDates">
-              	<li th:each="date : ${busyDates}" th:value="date">date</li>
-              </ul>     -->       
+              <input type="date" th:field="${appointment.date}"  name="date" class="form-control datepicker readonly" id="date" placeholder="Data programarii" 
+              		th:attr="onchange=|(getTimes())|" onclick="event.preventDefault()" required>
+      
             </div>
+
            <script type="text/javascript" th:inline="javascript">
            			
 					var busyDatesArray = [[${busyDates}]];
+					
+				
 					
 					console.log(busyDatesArray);
 	            	$("#date").datepicker({ 
@@ -619,7 +648,7 @@
               	
                	<select th:name="time" id="time" class="form-select" required>
               		<option id="optionTime" value="">Selecteaza ziua</option>
-              		<option id="optionTime" th:each="time : ${fixedTimes}" th:text="${time}" th:value="${time}">time</option>
+              		<option id="optionTime" th:if="${fixedTimes} != null" th:each="time : ${fixedTimes}" th:text="${time}" th:value="${time}">time</option>
               	
               	
               	</select> 
