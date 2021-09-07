@@ -1,6 +1,6 @@
 package ro.apxsoftware.demodoc.controllers;
 
-import javax.naming.AuthenticationException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,7 +10,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -112,11 +111,14 @@ public class LoginController {
 			ConfirmationToken confirmationToken = new ConfirmationToken(userAccount);
 			confTokenServ.saveToken(confirmationToken);
 			
-			SimpleMailMessage mailMessage = emailServ.simpleChangePassMessage(emailAddress, "BZBees - Change your password", confirmationToken.getConfirmationToken());
-			emailServ.sendEmail(mailMessage);
-			redirAttr.addAttribute("sendPassChange", "We sent you an email for reseting your password.");
+			MimeMessage mailMimeMessage = emailServ.passwordChangeEmail(emailAddress, "DENTAL132 - Schimbati-va parola", confirmationToken.getConfirmationToken());
+			emailServ.sendMimeEmail(mailMimeMessage);
+//			SimpleMailMessage mailMessage = emailServ.simpleChangePassMessage(emailAddress, "DENTAL132 - Schimbati-va parola", confirmationToken.getConfirmationToken());
+//			emailServ.sendEmail(mailMessage);
+
+			redirAttr.addAttribute("sendPassChange", "Un email a fost trimis la adresa: <strong>" + emailAddress + "</strong> pentru resetarea parolei.");
 		} else {
-			redirAttr.addAttribute("sendPassChange", "Email incorrect");
+			redirAttr.addAttribute("sendPassChange", "Email incorect :<-- <strong>" + emailAddress + "</strong> --> Nu exista in baza de date.");
 		}
 		
 		return "redirect:/login/forgot";
