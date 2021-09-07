@@ -2711,27 +2711,51 @@
 								
 									<div class="col-md-4 form-group mt-3 mt-md-0">
 										<input th:field="${userAccount.email}" 
-											type="email" class="form-control" name="email" autocomplete="off"
-											 placeholder="adresa de email" required>
+											type="email" class="form-control" name="email" autocomplete="off" placeholder="email"
+											 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Introduceti o adresa de email valida." required>
 											<!-- <input type="hidden" th:field="${userAccount.username}" th:value="${userAccount.email}"> -->
 									</div>
 									
 								
 									<div class="col-md-4 form-group mt-3 mt-md-0">
-										<input th:field="${userAccount.password}" type="password" class="form-control" 
+										<input th:field="${userAccount.password}" type="password" class="form-control" id="registerPassword" name="password"
+											pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+											title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+											onchange="checkPassword()"
 											 placeholder="parola" required>
 									</div>
 									<div class="col-md-4 form-group mt-3 mt-md-0">
-										<input type="password" class="form-control" 
+										<input type="password" class="form-control" id="confirmRegisterPassword"
+											onchange="checkPassword()"
 											placeholder="verificare parola" required>
+											<span id="confirmPasswordMessage"></span>
 									</div>
+									
+									<script type="text/javascript" th:inline="javascript">
+										function checkPassword() {
+											var password = document.getElementById("registerPassword");
+											var confirm = document.getElementById("confirmRegisterPassword");
+										
+											if($('#registerPassword').val() == $("#confirmRegisterPassword").val()) {
+	        										$("#confirmPasswordMessage").html("matching").css("color", "green");
+											      	confirm.setCustomValidity(" ");
+											    } else {
+												  	confirm.setCustomValidity('Parolele introduse nu sunt aceleasi.');
+											        $("#confirmPasswordMessage").html("not matching").css("color", "red");
+												}
+											 
+										
+										}
+									
+									
+									</script>
 								</div>
 								<div class="row">
 								
 									<div class="col-md-4 form-group">
 										<input th:field="${person.firstName}" 
-											type="text" name="name" class="form-control" 
-											placeholder="nume si prenume" required>
+											type="text" name="name" class="form-control" placeholder="numele dvs"
+											pattern="(?:\s*[a-zA-Z]+\s{0,2}){1,3}" minlength="3" title="pentru nume sunt necesare minim 3 litere, fara alte caractere speciale"	required>
 									</div>
 									
 									
@@ -2744,15 +2768,15 @@
 									</div>
 									
 									<div class="col-md-4 form-group mt-3 mt-md-0">
-										<input type="tel" class="form-control" name="phone" 
-											placeholder="numarul de telefon" required>
+										<input type="tel" class="form-control" name="phone" placeholder="numarul de telefon"
+											pattern="^\+|(?:[0-9]?){6,14}[0-9]+|\s{1,1}$" title="introduceti un numar de telefon valid" required>
 									</div>
 								</div>
 
-								<div class="form-group mt-3">
+<!-- 								<div class="form-group mt-3">
 									<textarea class="form-control" name="message" rows="5"
 										placeholder="Message (Optional)"></textarea>
-								</div>
+								</div> -->
 								<div class="my-3">
 									<div class="loading">Loading</div>
 									<div class="error-message"></div>
@@ -2765,12 +2789,98 @@
 									<button type="submit">Creati contul</button>
 								</div>
 
+								<div id="password-message" style="display:none;">
+									<h4>Password must contain the following:</h4>
+									
+									<p id="letter" class="invalid">
+										
+										  A <b>lowercase</b> letter
+									</p>										   
+									
+									<p id="capital" class="invalid">
+										A <b>capital (uppercase)</b> letter
+									</p>
+									<p id="number" class="invalid">
+										A <b>number</b>
+									</p>
+									<p id="length" class="invalid">
+										Minimum <b>8 characters</b>
+									</p>
+								</div>
+
 							</form>
+							
+							
 
-
-
-
-
+					<script type="text/javascript" th:inline="javascript">
+					
+					var myInput = document.getElementById("registerPassword");
+					var letter = document.getElementById("letter");
+					
+					
+					var capital = document.getElementById("capital");
+					var number = document.getElementById("number");
+					var length = document.getElementById("length");
+					
+					// When the user clicks on the password field, show the message box
+					myInput.onfocus = function() {
+					  $("#password-message").show();
+					  
+					}
+					
+					// When the user clicks outside of the password field, hide the message box
+					myInput.onblur = function() {
+					  document.getElementById("password-message").style.display = "none";
+					}
+					
+					// When the user starts to type something inside the password field
+					myInput.onkeyup = function() {
+					  // Validate lowercase letters
+					  var lowerCaseLetters = /[a-z]/g;
+					  if(myInput.value.match(lowerCaseLetters)) {  
+					    letter.classList.remove("invalid");
+					    letter.classList.add("valid");
+					   
+					    
+					  } else {
+					    letter.classList.remove("invalid");
+					    letter.classList.add("valid");
+ 
+					  }
+					  
+					  // Validate capital letters
+					  var upperCaseLetters = /[A-Z]/g;
+					  if(myInput.value.match(upperCaseLetters)) {  
+					    capital.classList.remove("invalid");
+					    capital.classList.add("valid");
+					  } else {
+					    capital.classList.remove("valid");
+					    capital.classList.add("invalid");
+					  }
+					
+					  // Validate numbers
+					  var numbers = /[0-9]/g;
+					  if(myInput.value.match(numbers)) {  
+					    number.classList.remove("invalid");
+					    number.classList.add("valid");
+					  } else {
+					    number.classList.remove("valid");
+					    number.classList.add("invalid");
+					  }
+					  
+					  // Validate length
+					  if(myInput.value.length >= 8) {
+					    length.classList.remove("invalid");
+					    length.classList.add("valid");
+					  } else {
+					    length.classList.remove("valid");
+					    length.classList.add("invalid");
+					  }
+					}
+					
+					
+					
+					</script>
 
 
 						</div>
