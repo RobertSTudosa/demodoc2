@@ -371,6 +371,34 @@ public class HomeController {
 		Set<CompanyService> appointServices = theAppoint.getCompanyServices();
 		model.addAttribute("appointmentServices", appointServices);
 		
+		
+		List<String> stringBusyDates = dtServ.getAllBusyDates(model, redirAttr);			 
+		model.addAttribute("busyDates", stringBusyDates);
+		
+		Set<Person> doctors = persServ.getDoctors();
+		model.addAttribute("doctors", doctors);
+		
+		//SEND AN ARRAY OF LOCALTIME FROM 09 TO 18 TO THE VIEW AS TIMES 
+		List<LocalTime> fixedTimes = new ArrayList<LocalTime>() {{
+			 add(LocalTime.of(9,0,0,0));
+			 add(LocalTime.of(10,0,0,0));
+			 add(LocalTime.of(11,0,0,0));
+			 add(LocalTime.of(12,0,0,0));
+			 add(LocalTime.of(14,0,0,0));
+			 add(LocalTime.of(15,0,0,0));
+			 add(LocalTime.of(16,0,0,0));
+			 add(LocalTime.of(17,0,0,0));
+			 add(LocalTime.of(18,0,0,0));
+			 
+			 
+		 }};
+		 
+		
+		 
+		 model.addAttribute("fixedTimes", fixedTimes);
+		 
+		 
+		
 		return "pacientAppointment";
 	}
 	
@@ -1339,6 +1367,48 @@ public class HomeController {
 		//return "doctor/dashboard :: #searchResults";
 				return null;
 	}
+	
+	@GetMapping(value="/cancelAppointmentFM")
+	public String cancelAppointment(@RequestParam("appToken") String token, Model model, Authentication auth, RedirectAttributes redirAttr) {
+		Person person = new Person ();
+		
+		if(auth != null) {
+			User user = (User) userServ.loadUserByUsername(auth.getName());
+			model.addAttribute("userAccount", user);
+			
+			person = persServ.findPersonByUserId(user.getUserId());
+			
+			model.addAttribute("person", person);
+			
+		}
+		
+		Appointment appToCancel = appServ.getAppointmentByToken(token);
+		appToCancel.setCanceled(true);
+		
+		if(auth != null) {
+			appToCancel.setCanceledId(person.getPersonId());			
+		}
+
+		appServ.saveApp(appToCancel);
+		
+		
+		List<Appointment> clientAppointments = appServ.getAllAppointmentsByPersonIdByCurrentMonthNotCanceled(person.getPersonId());
+		model.addAttribute("doctorAppointments", clientAppointments);
+		
+		List<Appointment> canceledClientAppointments = appServ.getAllAppointmentsByPersonIdAndUpToCurrentMonthCanceled(person.getPersonId());
+		model.addAttribute("canceledDoctorAppointments", clientAppointments);
+		
+		MimeMessage mimeAppointMail = emailServ.canceledAppointmentMimeEmail(appToCancel.getPacientEmail(), 
+				"Your Appointment with Medicio", appToCancel.getAppointmentToken(), appToCancel.getStringCompanyServicesNames());
+		
+		emailServ.sendMimeEmail(mimeAppointMail);
+
+		
+		redirAttr.addFlashAttribute("appointmentMade", new String("Programarea dvs a fost anulata."));
+		
+		return "redirect:/";
+	}
+	
 	
 	
 }

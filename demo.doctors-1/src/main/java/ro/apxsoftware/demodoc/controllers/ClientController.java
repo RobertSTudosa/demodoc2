@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -222,21 +223,26 @@ public class ClientController {
 	
 	
 	@GetMapping(value="/cancelAppointment")
-	public String cancelAppointment(@RequestParam("appToken") String token, Model model, Authentication auth) {
-		if(auth == null) {
-			return "redirect: /";
+	public String cancelAppointment(@RequestParam("appToken") String token, Model model, Authentication auth, RedirectAttributes redirAttr) {
+		Person person = new Person ();
+		
+		if(auth != null) {
+			User user = (User) userServ.loadUserByUsername(auth.getName());
+			model.addAttribute("userAccount", user);
+			
+			person = persServ.findPersonByUserId(user.getUserId());
+			
+			model.addAttribute("person", person);
+			
 		}
-	
-		User user = (User) userServ.loadUserByUsername(auth.getName());
-		model.addAttribute("userAccount", user);
-		
-		Person person = persServ.findPersonByUserId(user.getUserId());
-		
-		model.addAttribute("person", person);
 		
 		Appointment appToCancel = appServ.getAppointmentByToken(token);
 		appToCancel.setCanceled(true);
-		appToCancel.setCanceledId(person.getPersonId());
+		
+		if(auth != null) {
+			appToCancel.setCanceledId(person.getPersonId());			
+		}
+
 		appServ.saveApp(appToCancel);
 		
 		
@@ -246,10 +252,18 @@ public class ClientController {
 		List<Appointment> canceledClientAppointments = appServ.getAllAppointmentsByPersonIdAndUpToCurrentMonthCanceled(person.getPersonId());
 		model.addAttribute("canceledDoctorAppointments", clientAppointments);
 		
+		MimeMessage mimeAppointMail = emailServ.canceledAppointmentMimeEmail(appToCancel.getPacientEmail(), 
+				"Your Appointment with Medicio", appToCancel.getAppointmentToken(), appToCancel.getStringCompanyServicesNames());
 		
-		System.out.println("adding the pacient appointments");
-		
-		return "pacient/historyAppointments :: #canceledClientAppointments";
+		emailServ.sendMimeEmail(mimeAppointMail);
+
+		if(auth !=null) {
+			return "pacient/historyAppointments :: #canceledClientAppointments";			
+		}
+
+		redirAttr.addFlashAttribute("appointmentMade", new String("Programarea dvs a fost anulata."));
+		return "redirect:/";
+
 	}
 	
 	@Transactional
@@ -258,7 +272,9 @@ public class ClientController {
 			@RequestParam(value="service", required=false) String service,
 			@RequestParam(value="time", required=true) CharSequence time,
 			@RequestParam(value="date", required = false) CharSequence date,
-			@RequestParam(value="appointmentToken") String token, Model model, User userAccount, Person person, 
+			@RequestParam(value="appointmentToken") String token, 
+			@RequestParam(value="email") String email, 
+			@RequestParam(value="message", required=false) String message, Model model, User userAccount, Person person, 
 			Authentication auth, HttpSession session, RedirectAttributes redirAttr) {
 
 		Appointment appointment = appServ.getAppointmentByToken(token);
@@ -272,6 +288,8 @@ public class ClientController {
 		LocalTime theTime = LocalTime.parse(time);
 		LocalDate theDate = dtServ.formatToLocalDate(date);
 		Person nextDoctor = persServ.findNextDoctorAvailable(theDate,theTime);
+		
+		
 		
 		long personId = 0L;
 		
@@ -296,6 +314,8 @@ public class ClientController {
 				appointment.setDate(patchApp.getDate());
 				appointment.setRescheduledId(person.getPersonId());
 				appointment.setRescheduled(true);
+				appointment.setMessage(message);
+				
 				
 				CompanyService coServ = new CompanyService();
 				coServ.setName(service + "");
@@ -318,6 +338,8 @@ public class ClientController {
 				appointment.setCompanyServices(coServices);
 				appointment.setRescheduledId(person.getPersonId());
 				appointment.setRescheduled(true);
+				appointment.setMessage(message);
+				
 				
 				CompanyService coServ = new CompanyService();
 				coServ.setName(service + "");
@@ -339,11 +361,12 @@ public class ClientController {
 				//appointment.setDoctor(null);
 				appointment.setDoctor(nextDoctor);
 				appointment.setPacient(null);
-				appointment.setPacientEmail(patchApp.getPacientEmail());
+				appointment.setPacientEmail(email);
 				appointment.setAppointmentTime(theTime);
 				appointment.setDate(patchApp.getDate());
 				appointment.setRescheduledId(person.getPersonId());
 				appointment.setRescheduled(true);
+				appointment.setMessage(message);
 				
 				
 				appServ.saveApp(appointment);
@@ -359,11 +382,12 @@ public class ClientController {
 				
 				appointment.setDoctor(doctor);
 				appointment.setPacient(null);
-				appointment.setPacientEmail(patchApp.getPacientEmail());
+				appointment.setPacientEmail(email);
 				appointment.setAppointmentTime(theTime);
 				appointment.setDate(patchApp.getDate());
 				appointment.setRescheduledId(person.getPersonId());
 				appointment.setRescheduled(true);
+				appointment.setMessage(message);
 
 
 				CompanyService coServ = new CompanyService();
@@ -383,7 +407,18 @@ public class ClientController {
 //		SimpleMailMessage appointMail = emailServ.simpleAppointmentConfirmation(appointment.getPacientEmail(), 
 //				"Your Appointment with Medicio", appointment.getAppointmentToken());
 //		emailServ.sendEmail(appointMail);
-		redirAttr.addFlashAttribute("appointmentMade", new String("Programarea dvs a fost efectuata. Am trimis detaliile pe adresa dvs: " + appointment.getPacientEmail() + "."));
+		
+		MimeMessage mimeAppointMail = emailServ.rescheduledAppointmentMimeEmail(email, 
+				"Your Appointment with Medicio", appointment.getAppointmentToken(), service);
+		
+		emailServ.sendMimeEmail(mimeAppointMail);
+		
+		
+		redirAttr.addFlashAttribute("appointmentMade", new String("Programarea dvs a fost efectuata. Am trimis detaliile pe adresa dvs: " + email + "."));
+		
+		if(auth == null) {
+			return "redirect:/";
+		}
 		
 		return "redirect:/client/historyAppointments?personId=" + personId;
 	}
