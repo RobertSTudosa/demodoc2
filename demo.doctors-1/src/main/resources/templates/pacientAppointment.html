@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Medicio Bootstrap Template - Index</title>
+  <title>Cabinet Medical Dental132 - Programarea dvs</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -47,33 +47,57 @@
   
   <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 
-  <!-- =======================================================
-  * Template Name: Medicio - v4.3.0
-  * Template URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body>
 
-  <!-- ======= Top Bar ======= -->
-  <div id="topbar" class="d-flex align-items-center fixed-top">
+ <!-- ======= Top Bar Repeat for DEMO======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top" >
     <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
       <div class="align-items-center d-none d-md-flex">
-        <i class="bi bi-clock"></i> Monday - Saturday, 8AM to 10PM
+        <i class="bi bi-clock"></i> APLICATIE DEMO demouseri: <i class="bi bi-person-badge"></i> client@apxsoftware.ro password: 1234
       </div>
       <div class="d-flex align-items-center">
-        <i class="bi bi-phone"></i> Call us now +1 5589 55488 55
+        <i class="bi bi-person-badge-fill"></i> doctor@apxsoftware.ro password: 1234
       </div>
     </div>
   </div>
 
+  <!-- ======= Top Bar ======= -->
+<div id="topbar" class="d-flex align-items-center fixed-top topbarDemo" style="top:30px;">
+    <div class="container d-flex align-items-center justify-content-center justify-content-md-between" >
+      <div class="align-items-center d-none d-md-flex">
+        <i class="bi bi-clock"></i> Luni - Sambata, 8AM to 6PM
+      </div>
+      <div class="d-flex align-items-center">
+        <i class="bi bi-phone"></i> telefon: +40 341 5548 55
+      </div>
+    </div>
+  </div> 
+  
+  <script type="text/javascript" th:inline="javascript">
+  	setInterval(changeTopBarStyle, 3000);
+  	
+  	function changeTopBarStyle () {
+  		var topBarTop = $(".topbarDemo").css('top');
+  		console.log(topBarTop);
+  		
+  		if(topBarTop == '30px') {
+	  		$(".topbarDemo").css('top','0px');
+  		} else {
+  			$(".topbarDemo").css('top','30px');
+  		}
+  	
+  	}
+  
+  </script>
+
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
+ <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <a href="index.html" class="logo me-auto"><img src="pacient/assets/img/logo.png" alt=""></a>
+      <a th:href="@{/}" class="logo me-auto"><img src="assets/img/logo.png" alt=""></a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
 
@@ -81,13 +105,10 @@
         <ul>
           
                     <li class="nav-link scrollto dropdown nav-link scrollto d-block d-sm-inline d-md-inline d-lg-none d-xl-none" sec:authorize="isAuthenticated()">
-												<a href="#"> 
-							<span class="iconify rounded-circle img-thumbnail"  th:if="${#lists.isEmpty(lastPicList)}" data-icon="bx:bxs-user-rectangle" data-inline="false" 
-                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
-							<img th:if="${not #lists.isEmpty(lastPicList)}"
-							th:src="@{/doctor/img(imgId=${lastPicList[#lists.size(lastPicList)-1].picId})}" 
+						<a
+						href="#"> <img src="doctor/plugins/images/users/varun.jpg"
 							alt="user-img" width="36" class="rounded-circle img-thumbnail"
-							style="margin-left: auto;object-fit: cover;width: 40px;height:40px;"><span
+							style="margin-left: auto;"><span
 							class="text-black font-small text-center text-wrap ms-1"
 							style="font-size: 0.7rem;" th:text="${#authentication.name}">Steave</span><i class="bi bi-chevron-down"></i></a>
 							
@@ -97,41 +118,36 @@
 								<li><a class="nav-link scrollto" th:href="@{/logout}">Logout</a></li>
 							</ul>
 					</li>
-		  <li ><a class="nav-link scrollto" href="#hero">Home</a></li>
-          <li sec:authorize="isAnonymous()"><a class="nav-link scrollto d-block d-sm-inline d-md-none d-lg-none d-xl-none" href="#hero">Login</a></li>
-          <li><a class="nav-link scrollto" href="#about">Despre</a></li>
-          <li><a class="nav-link scrollto" href="#services">Servicii</a></li>
-          <li><a class="nav-link scrollto" href="#departments">Departmente</a></li>
-          <li><a class="nav-link scrollto" href="#doctors">Doctori</a></li>
-          <li class="dropdown"><a href="#pricing"><span>Info</span> <i class="bi bi-chevron-down"></i></a>
+		  <li ><a class="nav-link scrollto" th:href="@{/}">Home</a></li>
+          <li sec:authorize="isAnonymous()"><a class="nav-link scrollto d-block d-sm-inline d-md-none d-lg-none d-xl-none" th:href="@{/login}">Login</a></li>
+          <li><a class="nav-link scrollto" th:href="@{/#about}">Despre</a></li>
+          <li><a class="nav-link scrollto"  th:href="@{/#services}">Servicii</a></li>
+          <li><a class="nav-link scrollto" th:href="@{/#departments}">Testimoniale</a></li>
+          <li><a class="nav-link scrollto" th:href="@{/#doctors}">Doctori</a></li>
+          <li class="dropdown"><a href=""><span>Info</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+              <li><a th:href="@{/#contact}">Contact</a></li>
+              <li class="dropdown"><a th:href="@{/#pricing}"><span>Preturi</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
+                  <li><a th:href="@{/#pricing}">Detartraj</a></li>
+                  <li><a th:href="@{/#pricing}">Extractie</a></li>
+                  <li><a th:href="@{/#pricing}">Obturatie de canal</a></li>
+                  <li><a th:href="@{/#pricing}">Implant</a></li>
+                  
                 </ul>
               </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
+              <li><a href="#">Drop Down 2?</a></li>
+              <li><a href="#">Drop Down 3?</a></li>
+              <li><a href="#">Drop Down 4?</a></li>
             </ul>
           </li>
          
           <li class="dropdown" sec:authorize="isAuthenticated()">
-						<a class="d-none d-md-none d-lg-inline d-xl-inline"
-						href="#"> 
-						<span class="iconify rounded-circle img-thumbnail"  th:if="${#lists.isEmpty(lastPicList)}" data-icon="bx:bxs-user-rectangle" data-inline="false" 
-                                        	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
-                                      
-						<img th:if="${not #lists.isEmpty(lastPicList)}"
-							th:src="@{/doctor/img(imgId=${lastPicList[#lists.size(lastPicList)-1].picId})}" 
+						<a
+						class="d-none d-md-none d-lg-inline d-xl-inline"
+						href="#"> <img src="doctor/plugins/images/users/varun.jpg"
 							alt="user-img" width="36" class="rounded-circle img-thumbnail"
-							style="margin-left: auto;object-fit: cover;width: 40px;height:40px;">
-							<span
+							style="margin-left: auto;"><span
 							class="text-black font-small text-center text-wrap ms-1"
 							style="font-size: 0.7rem;" th:text="${#authentication.name}">Steave</span><i class="bi bi-chevron-down"></i></a>
 							
@@ -146,7 +162,7 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Faceti o</span> programare</a>
+<!--       <a th:href="@{/#appointment}" class="appointment-btn scrollto"><span class="d-none d-md-inline">Faceti o</span> programare</a>  -->
      
        <a sec:authorize="isAnonymous()" th:href="@{/login}" class="appointment-btn scrollto d-none d-md-inline d-lg-inline"><span class="d-none d-md-inline"></span> Login</a>
 
@@ -156,6 +172,7 @@
 		</div>
   </header><!-- End Header -->
 
+ 
  
 
   <main id="main">
@@ -183,18 +200,17 @@
 
         <div class="section-title">
           <h2>Programarea dvs</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p></p>
         </div>
 
         <div class="row">
           <div class="col-lg-6" data-aos="fade-right">
-            <img src="pacient/assets/img/about.jpg" class="img-fluid" alt="">
+            <img src="pacient/assets/img/gallery/gallery-8.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <h3>Gasiti detaliile programarii dvs mai in jos: </h3>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              Puteti oricand sa modificati sau sa anulati programarea accesand butoanele de mai in jos. 
             </p>
             <ul>
               <li ><i class="bi bi-check-circle"></i> Data programarii : <strong><span th:text="${#temporals.format(appointment.date, 'dd-MM-yyyy')}" ></span></strong></li>
@@ -206,8 +222,114 @@
               		</ul>
               		
             </ul>
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+            
+            
+           
+            
+            <a class="btn text-danger bi bi-x-circle" name="openCancelFM" id="openCancelFM"
+                   style="cursor: pointer; font-size: calc(10% + 3vw + 3vh);"   th:attr="onclick=|openCancelAppointment(${appointment.appointmentId})|">
+                   <label for="openCancelFM" class="align-middle" style="font-size: calc(15% + 1vw + 1vh);">
+                         reprogramare </label></a>
+                   
+                                            			
+                     <script type="text/javascript" th:inline="javascript">
+                                            		
+                              function openCancelAppointment(appId) {
+                              console.log('open modal for canceling appointment by client');
+                              $("#cancelAppointment" + appId).appendTo("body").modal("show");
+                           }
+                                            		
+                                            		
+					</script>	
+                                            			
+             <div th:replace="usermodals :: cancelAppointmentFromMail "></div>                                			
+                                            			
+            <a class="btn text-success bi bi-calendar2-event" name="openResAppFM" id="openResAppFromMail"
+                        style="cursor: pointer; font-size: calc(10% + 3vw + 3vh);"   th:attr="onclick=|openRescheduleAppointment(${appointment.appointmentId})|">
+                        <label for="openResAppFromMail" class="align-middle" style="font-size: calc(15% + 1vw + 1vh);">
+                         reprogramare </label></a>
+                                            			
+              <script type="text/javascript" th:inline="javascript">
+                                            		
+                                            		function openRescheduleAppointment(appId) {
+                                            			console.log('open modal for rescheduling appointment by client');
+                                            			                                            			
+                                            			$("#rescheduleAppointment" + appId).appendTo("body").modal("show");
+                                            			
+
+															console.log('embeded getTime() on opening the modal');
+															
+															var dateVal = $("#date" + appId).val(); //this is in the getTimes() scope
+															var doctorId = $("select#doctor" + appId).children("option:selected").val(); //use again in the function select hours by doctor 
+									              			//console.log("doctor's id is selected --> " + doctorId);
+															
+															if(doctorId > 0) {
+															
+																console.log("doctor is present");
+																$.ajax({
+																type: "GET",
+																url: "/selectTimeByDateByDoctor?date=" + dateVal + "&doctor=" + doctorId,
+																beforeSend: function () {},
+																complete: function () {},					
+																success: function (data) {
+																	console.log(data);
+																	var select = $("#time" + appId);
+																	select.empty().append('<option value="">Selecteaza ora</option>');
+																	for(var i = 0; i < data.length; i++) {
+																		console.log("added the time by date and doctor" + data[i]);
+																		select.append("<option value='" + data[i] + "'>" + data[i] + "</option>");
+																	}
+																	
+																	
+																	
+																},
+																});
+															
+															};
+															
+															if(doctorId === "") {
+																console.log("doctor is NOT present");
+																console.log("dateVal checked is " + dateVal);
+																$.ajax({
+																type: "GET",
+																url: "/selectTimeByDate?date=" + dateVal,
+																beforeSend: function () {},
+																complete: function () {},					
+																success: function (data) {
+																
+																	console.log(data);
+																	var select = $("#time" + appId);
+																	select.empty().append('<option value="">Selecteaza ora</option>');
+																	for(var i = 0; i < data.length; i++) {
+																		console.log("added the time by date " + data[i]);
+																		select.append("<option value='" + data[i] + "'>" + data[i] + "</option>");
+																	}
+																	
+																	
+																	
+																},
+																
+																failure: function (data) {
+									                    			alert(data);
+									                			}
+															});
+																
+															
+															}
+															
+																					
+															
+														
+														
+                                            			
+                                            		}
+                                            		
+                                            		
+                                            		</script>
+                                            		
+                                            		<div th:replace="usermodals :: rescheduleAppointmentFromMail "></div>                               			
+                                            			                                			
+              <p> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
               velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
               culpa qui officia deserunt mollit anim id est laborum
             </p>

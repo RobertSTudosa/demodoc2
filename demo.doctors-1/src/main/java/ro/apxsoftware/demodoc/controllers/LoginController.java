@@ -227,10 +227,12 @@ public class LoginController {
 //		} else {
 //			model.addAttribute("userNotifs", new ArrayList<>());
 //		}
+//		String userPass = user.getPassword();
 		
-		request.getSession();		
-		Authentication authentication = new UsernamePasswordAuthenticationToken(user,null, user.getAuthorities());
-		SecurityContextHolder.getContext().setAuthentication(authentication);
+//		request.getSession();		
+//		Authentication authentication = new UsernamePasswordAuthenticationToken(user,userPass, user.getAuthorities());
+//		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
 		
 		return "confirmation";
 		
