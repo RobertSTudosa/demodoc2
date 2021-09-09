@@ -90,6 +90,14 @@ public class AppointmentService {
 		return appRepo.getAppointmentByDoctorIdAndMonth(doctorId, month);
 	}
 	
+	public List<Appointment> getAppointmentByPersonIdAndMonthNotLimitCanceled (long doctorId, String month) {
+		return appRepo.getAppointmentByPersonIdAndMonthNotLimitCanceled (doctorId, month);
+	}
+	
+	public List<Appointment> getAppointmentByPersonIdAndMonthNotLimit (long doctorId, String month) {
+		return appRepo.getAppointmentByPersonIdAndMonthNotLimit (doctorId, month);
+	}
+	
 	public List<Appointment> getAllAppointmentsByPersonIdByMonth(long personId, String month) {
 		return appRepo.getAppointmentByPersonIdAndMonth(personId, month);
 	}

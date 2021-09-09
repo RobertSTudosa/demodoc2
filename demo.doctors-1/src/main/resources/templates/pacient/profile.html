@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Cabinet Medical Dr.John</title>
+  <title>Cabinet Medical Dr.John - profile</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -65,23 +65,52 @@
 
 <body>
 
-  <!-- ======= Top Bar ======= -->
-  <div id="topbar" class="d-flex align-items-center fixed-top">
+  <!-- ======= Top Bar Repeat for DEMO======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top" >
     <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
+      <div class="align-items-center d-none d-md-flex">
+        <i class="bi bi-clock"></i> APLICATIE DEMO demouseri: <i class="bi bi-person-badge"></i> client@apxsoftware.ro password: 1234
+      </div>
+      <div class="d-flex align-items-center">
+        <i class="bi bi-person-badge-fill"></i> doctor@apxsoftware.ro password: 1234
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Top Bar ======= -->
+   <div id="topbar" class="d-flex align-items-center fixed-top topbarDemo" style="top:30px;">
+    <div class="container d-flex align-items-center justify-content-center justify-content-md-between" >
       <div class="align-items-center d-none d-md-flex">
         <i class="bi bi-clock"></i> Luni - Sambata, 8AM to 6PM
       </div>
       <div class="d-flex align-items-center">
-        <i class="bi bi-phone"></i> sunati-ne la +40 341 5548 55
+        <i class="bi bi-phone"></i> telefon: +40 341 5548 55
       </div>
     </div>
-  </div>
+  </div> 
+  
+  <script type="text/javascript" th:inline="javascript">
+  	setInterval(changeTopBarStyle, 3000);
+  	
+  	function changeTopBarStyle () {
+  		var topBarTop = $(".topbarDemo").css('top');
+  		console.log(topBarTop);
+  		
+  		if(topBarTop == '30px') {
+	  		$(".topbarDemo").css('top','0px');
+  		} else {
+  			$(".topbarDemo").css('top','30px');
+  		}
+  	
+  	}
+  
+  </script>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt=""></a>
+      <a th:href="@{/}" class="logo me-auto"><img src="assets/img/logo.png" alt=""></a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
 
@@ -100,33 +129,33 @@
 							style="font-size: 0.7rem;" th:text="${#authentication.name}">Steave</span><i class="bi bi-chevron-down"></i></a>
 							
 							<ul>
-								 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+								 <li><a class="nav-link scrollto" th:href="@{/#contact}">Contact</a></li>
 								 <li><a class="nav-link scrollto" th:href="@{/client/profile}">Profile</a></li>	
 								 <li><a class="nav-link scrollto" th:href="@{/client/historyAppointments(personId=${person.personId})}">Istoric programari</a></li>
 								<li><a class="nav-link scrollto" th:href="@{/logout}">Logout</a></li>
 							</ul>
 					</li>
-		  <li ><a class="nav-link scrollto" href="#hero">Home</a></li>
+		  <li ><a class="nav-link scrollto" th:href="@{/#hero}">Home</a></li>
           <li sec:authorize="isAnonymous()"><a class="nav-link scrollto d-block d-sm-inline d-md-none d-lg-none d-xl-none" href="#hero">Login</a></li>
-          <li><a class="nav-link scrollto" href="#about">Despre</a></li>
-          <li><a class="nav-link scrollto" href="#services">Servicii</a></li>
-          <li><a class="nav-link scrollto" href="#departments">Departmente</a></li>
-          <li><a class="nav-link scrollto" href="#doctors">Doctori</a></li>
-          <li class="dropdown"><a href="#pricing"><span>Info</span> <i class="bi bi-chevron-down"></i></a>
+          <li><a class="nav-link scrollto" th:href="@{/#about}">Despre</a></li>
+          <li><a class="nav-link scrollto" th:href="@{/#services}">Servicii</a></li>
+          <li><a class="nav-link scrollto" th:href="@{/#departments}">Departmente</a></li>
+          <li><a class="nav-link scrollto" th:href="@{/#doctors}">Doctori</a></li>
+          <li class="dropdown"><a th:href="@{/#pricing}"><span>Info</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+              <li><a th:href="@{/#contact}">Contact</a></li>
+              <li class="dropdown"><a th:href="@{/#pricing}"><span>Preturi</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
+                  <li><a href="@{/#pricing}">Detartraj</a></li>
+                  <li><a href="@{/#pricing}">Extractie</a></li>
+                  <li><a href="@{/#pricing}">Obturatie de canal</a></li>
+                  <li><a href="@{/#pricing}">Implant</a></li>
+                  
                 </ul>
               </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
+              <li><a href="#">Drop Down 2?</a></li>
+              <li><a href="#">Drop Down 3?</a></li>
+              <li><a href="#">Drop Down 4?</a></li>
             </ul>
           </li>
          
@@ -145,7 +174,7 @@
 							style="font-size: 0.7rem;" th:text="${#authentication.name}">Steave</span><i class="bi bi-chevron-down"></i></a>
 							
 							<ul>
-								 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+								 <li><a class="nav-link scrollto" th:href="@{/#contact}">Contact</a></li>
 								 <li><a class="nav-link scrollto" th:href="@{/client/profile}">Profile</a></li>	
 								 <li><a class="nav-link scrollto" th:href="@{/client/historyAppointments(personId=${person.personId})}">Istoric programari</a></li>
 								<li><a class="nav-link scrollto" th:href="@{/logout}">Logout</a></li>
@@ -196,7 +225,10 @@
 		
         <div class="section-title">
           <h2 >Modifica detaliile contului tau</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>
+          	Modificarile vor fi facute in mod automat la apasarea butonului "salvati detalii".  
+          
+          </p>
         </div>
 		
 		<div class="row">
@@ -221,7 +253,8 @@
 			<div class="col-lg-9 col-md-6 d-flex align-items-stretch">
 					<div class="member col-lg-9 col-md-6" data-aos="fade-up" data-aos-delay="100">
 					
-						  <form class="form-horizontal form-material php-email-form mx-auto mt-4 aos-init aos-animate" th:object="${userAccount}" th:action="@{/doctor/updateProfile}" method="GET"
+						  <form class="form-horizontal form-material php-email-form mx-auto mt-4 aos-init aos-animate" th:object="${userAccount}" 
+						  	th:action="@{/doctor/updateProfile}" method="GET"
 						  		 data-aos="fade-up" data-aos-delay="100">
                                 
 	                                <input type="hidden" th:field="${userAccount.userId}" />
@@ -241,17 +274,142 @@
 											<input type="email" th:field="${userAccount.email}"
 												placeholder="johnathan@admin.com"
 												class="form-control p-0 border-0 mx-auto" name="example-email"
-												id="example-email" readonly>
+												id="example-email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Introduceti o adresa de email valida." 
+												onchange="checkPassword()" readonly>
 										</div>
 									</div>
 									<div class="form-group mb-4">
 										<label class="col-md-12 mt-1 mb-1 ms-2 text-start form-text ">New password</label>
 										<div class="col-md-12 col-lg-9 border-bottom ms-4">
 											<input type="password" th:text="${newPassword}"
-												value="password" name="newPassword"
-												class="form-control p-0 border-0 mx-auto">
+												value="password" name="newPassword" id="newPassword"
+												class="form-control p-0 border-0 mx-auto" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+											title="Parola trebuie sa contina o litera mare, un numar si minim 8 caractere." 
+											onchange="checkPassword()" required>
+										</div>
+										
+										</div>										
+										
+										
+										<div id="password-message" style="display:none;">
+									<h5>Parola trebuie sa contina:</h5>
+									
+									<p id="letter" class="invalid">
+										
+										  O litera <b>mica</b> 
+									</p>										   
+									
+									<p id="capital" class="invalid">
+										O litera <b>majuscula(mare)</b> 
+									</p>
+									<p id="number" class="invalid">
+										Un <b>numar</b>
+									</p>
+									<p id="length" class="invalid">
+										Minimum <b>8 caractere</b>
+									</p>
+								</div>
+								
+								
+																	
+									<div class="form-group mb-4">
+										<label class="col-md-12 mt-1 mb-1 ms-2 text-start form-text ">check password</label>
+										<div class="col-md-12 col-lg-9 border-bottom ms-4">
+											<input type="password" id="checkProfilePassword"
+												class="form-control p-0 border-0 mx-auto" onchange="checkPassword()"  required>
+												<span id="confirmPasswordMessage"></span>
 										</div>
 									</div>
+								
+								<script type="text/javascript" th:inline="javascript">
+								
+								//---- check password function ------//
+									function checkPassword() {
+											var password = document.getElementById("newPassword");
+											var confirm = document.getElementById("checkProfilePassword");
+											
+											if($('#newPassword').val() == $("#checkProfilePassword").val()) {
+	        										$("#confirmPasswordMessage").html("matching").css("color", "green");
+											      	confirm.setCustomValidity("");
+											    } else {
+												  	confirm.setCustomValidity('Parolele introduse nu sunt aceleasi.');
+											        $("#confirmPasswordMessage").html("not matching").css("color", "red");
+												}
+											 
+										
+										}
+					
+									var myInput = document.getElementById("newPassword");
+									var letter = document.getElementById("letter");
+									
+									
+									var capital = document.getElementById("capital");
+									var number = document.getElementById("number");
+									var length = document.getElementById("length");
+									
+									// When the user clicks on the password field, show the message box
+									myInput.onfocus = function() {
+									  $("#password-message").show();
+									  
+									}
+									
+									// When the user clicks outside of the password field, hide the message box
+									myInput.onblur = function() {
+									  document.getElementById("password-message").style.display = "none";
+									}
+									
+									// When the user starts to type something inside the password field
+									myInput.onkeyup = function() {
+									  // Validate lowercase letters
+									  var lowerCaseLetters = /[a-z]/g;
+									  if(myInput.value.match(lowerCaseLetters)) {  
+									    letter.classList.remove("invalid");
+									    letter.classList.add("valid");
+									   
+									    
+									  } else {
+									    letter.classList.remove("invalid");
+									    letter.classList.add("valid");
+				 
+									  }
+									  
+									  // Validate capital letters
+									  var upperCaseLetters = /[A-Z]/g;
+									  if(myInput.value.match(upperCaseLetters)) {  
+									    capital.classList.remove("invalid");
+									    capital.classList.add("valid");
+									  } else {
+									    capital.classList.remove("valid");
+									    capital.classList.add("invalid");
+									  }
+									
+									  // Validate numbers
+									  var numbers = /[0-9]/g;
+									  if(myInput.value.match(numbers)) {  
+									    number.classList.remove("invalid");
+									    number.classList.add("valid");
+									  } else {
+									    number.classList.remove("valid");
+									    number.classList.add("invalid");
+									  }
+									  
+									  // Validate length
+									  if(myInput.value.length >= 8) {
+									    length.classList.remove("invalid");
+									    length.classList.add("valid");
+									  } else {
+									    length.classList.remove("valid");
+									    length.classList.add("invalid");
+									  }
+									}
+									
+									
+									
+
+								</script>
+								
+									
+
 
 								</div>
                                     
@@ -307,12 +465,12 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="footer-info">
-              <h3>Medicio</h3>
+              <h3>Dental132</h3>
               <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
+                A108 Tomis Street <br>
+                CT 900533, RO<br><br>
+                <strong>Phone:</strong> +40 722 676 355<br>
+                <strong>Email:</strong> info@dental132.ro<br>
               </p>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -325,31 +483,31 @@
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+            <h4>Utile</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#}">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#about}">Despre</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#services}">Servicii</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#}">Termeni si conditii</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#}">Politica de confidentialitate</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
+            <h4>Serviciile noastre</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#services}">Implantologie</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#services}">Endodontie</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#services}">Stomatologie pediatrica</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#services}">Protetica dentara</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#services}">Preventie dentara</a></li>
             </ul>
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
+            <h4>Newsletter-ul nostru</h4>
+            <p>Introduceti adresa de email pentru ultimile oferte: </p>
+            <form th:action="@{/subscribe}" method="post">
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
 
@@ -361,18 +519,15 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Medicio</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>Dental132</span></strong>. Toate drepturile rezervate
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medicio-free-bootstrap-theme/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Designed by <a href="https://apxsoftware.ro/">APX Software</a>
       </div>
     </div>
   </footer><!-- End Footer -->
-
+ 
+ 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

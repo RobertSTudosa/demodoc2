@@ -69,6 +69,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 			+ " and Month(appointment.date) = ?2 "
 			+ " and appointment.date >= date(now()) "
 			+ " and YEAR(appointment.date) = YEAR(CURRENT_DATE()) "
+			+ " and appointment.canceled = 0 "
 			+ " order by appointment.date ASC "
 			+ " LIMIT 6 ;")
 	public List<Appointment> getFutureAppointmentsByPersonIdAndCurrentMonth (long personId, String month);
@@ -177,7 +178,18 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 			+ " LIMIT 6 ;")
 	public List<Appointment> getAppointmentByPersonIdAndMonth (long doctorId, String month);
 	
+	@Query(nativeQuery= true, value= "SELECT * FROM appointment where pacient_person_id = ?1 "
+			+ " and Month(appointment.date) = ?2 "
+			+ " and YEAR(appointment.date) = YEAR(CURRENT_DATE()) "
+			+ " and appointment.canceled = 1 "
+			+ " order by appointment.date ASC ;")
+	public List<Appointment> getAppointmentByPersonIdAndMonthNotLimitCanceled (long doctorId, String month);
 	
+	@Query(nativeQuery= true, value= "SELECT * FROM appointment where pacient_person_id = ?1 "
+			+ " and Month(appointment.date) = ?2 "
+			+ " and YEAR(appointment.date) = YEAR(CURRENT_DATE()) "
+			+ " order by appointment.date ASC ;")
+	public List<Appointment> getAppointmentByPersonIdAndMonthNotLimit (long doctorId, String month);
 	
 	@Query(nativeQuery= true, value= "SELECT * FROM appointment where doctor_person_id = ?1 "
 			+ " and appointment.date >= date(now()) "

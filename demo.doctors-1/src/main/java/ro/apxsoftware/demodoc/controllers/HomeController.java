@@ -796,7 +796,8 @@ public class HomeController {
 	
 	@GetMapping(value="/getMonthAppointments", produces = {" application/json" })
 //	@ResponseStatus(HttpStatus.OK)
-	public String currentMonthAppointmentsByDoctorId(Model model, @RequestParam("month") String month, @RequestParam(value="canceled", required=false ) String isCanceled, RedirectAttributes redirAttr, 
+	public String currentMonthAppointmentsByDoctorId(Model model, @RequestParam("month") String month, 
+			@RequestParam(value="canceled", required=false ) String isCanceled, RedirectAttributes redirAttr, 
 			Authentication auth)  {
 		
 		List<Appointment> userAppointmentsByMonth = new ArrayList<>();
@@ -1022,9 +1023,9 @@ public class HomeController {
 					}//end if Current Month is bigger than selected month
 					
 					if(canceled == 1 ) {
-						allPersonAppointmentsByMonth = appServ.getAllFutureAppointmentsByPersonIdByMonthNoLimitAndCanceled(user.getUserId(), month);
+						allPersonAppointmentsByMonth = appServ.getAppointmentByPersonIdAndMonthNotLimitCanceled(user.getUserId(), month);
 					} else {
-						allPersonAppointmentsByMonth = appServ.getAllFutureAppointmentsByPersonIdByMonthNoLimit(user.getUserId(), month);
+						allPersonAppointmentsByMonth = appServ.getAppointmentByPersonIdAndMonthNotLimit(user.getUserId(), month);
 					}
 					
 					System.out.println("pacientAppointmentsByMonthNoLimit " + allPersonAppointmentsByMonth.size());
@@ -1039,6 +1040,12 @@ public class HomeController {
 							}
 
 						}
+					}
+					
+					if(canceled == 1) {
+						System.out.println("in the canceledDoctorAppointments");
+						model.addAttribute("canceledDoctorAppointments", sixMoreAppointments);
+						return "pacient/historyAppointments :: #canceledClientAppointments";
 					}
 					
 					model.addAttribute("doctorAppointments", sixMoreAppointments);

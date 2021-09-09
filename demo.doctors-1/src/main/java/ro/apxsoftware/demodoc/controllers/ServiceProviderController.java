@@ -134,15 +134,18 @@ public class ServiceProviderController {
 	}
 	
 	@GetMapping("/updateProfile")
-	public String editDoctorProfile(@Valid @ModelAttribute(value="userAccount") User patchUser, Model model, User user, 
+	public String editDoctorProfile(@Valid @ModelAttribute(value="userAccount") User patchUser, Model model, @RequestParam(value="newPassword", required=false) String pass, 
+				User user, 
 				Person person, HttpServletRequest request, RedirectAttributes redirAtrr, Authentication auth ) {
 		
 		System.out.println("patch User is ---> " + patchUser.getUsername());
 		user = userServ.findUserByPersonId(patchUser.getUserId());
 		user.setEmail(patchUser.getEmail());
 		user.setUserName(patchUser.getEmail());
-		String newPassword = request.getParameter("newPassword");
-		user.setPassword(bCryptEncoder.encode(newPassword));
+		if(pass != null) {
+			String newPassword = request.getParameter("newPassword");
+			user.setPassword(bCryptEncoder.encode(newPassword));
+		}
 		
 		
 		person = persServ.findPersonById(patchUser.getUserId());
@@ -156,7 +159,7 @@ public class ServiceProviderController {
 
 		
 		
-		System.out.println("new password is ---> " + newPassword);
+		
 //		redirAtrr.addAttribute("userAccount", user);
 		model.addAttribute("userAccount", user);
 		
@@ -164,6 +167,28 @@ public class ServiceProviderController {
 		for(GrantedAuthority userauth : listAuth) {
 			if(userauth.getAuthority().equals("PACIENT")) {
 				return "redirect:/client/profile";
+			} 
+			
+			if(userauth.getAuthority().equals("DOCTOR")) {
+				//get the pics from the profileImg repo
+				List<ProfileImg> personPics = profileImgServ.getPicsByPersonId(person.getPersonId());
+				
+				//get the last pic of the person's profile from profileImg repo
+				ProfileImg theImg = profileImgServ.getLastProfilePic(person.getPersonId());
+				if(theImg != null) {
+					System.out.println("in the if !null of the image");
+					model.addAttribute("img", theImg);	
+					
+					List<ProfileImg> lastPicList = new ArrayList<>();
+					lastPicList.add(profileImgServ.getLastProfilePic(person.getPersonId()));
+					model.addAttribute("lastPicList", lastPicList);
+					
+				} else {
+					personPics.clear();
+					System.out.println("ALL CLEAR");
+					model.addAttribute("img", new ProfileImg());
+					model.addAttribute("lastPicList", new ArrayList<>());
+				}
 			}
 				
 			}
@@ -759,6 +784,11 @@ public class ServiceProviderController {
 			
 		}
 		
+		if(doctorId == null) {
+			Person doctor = persServ.findNextDoctorAvailable(theDate, theTime);
+			appointment.setDoctor(doctor);
+		}
+		
 		appointment.setPacient(client);
 		appointment.setPacientName(client.getFirstName());
 		appointment.setAppointmentToken(UUID.randomUUID().toString());
@@ -766,6 +796,7 @@ public class ServiceProviderController {
 		appointment.setPacientEmail(client.getEmail());
 		appointment.setTemporary(true);
 		appointment.setDate(theDate);
+		appointment.setPacientPhone(client.getPhone());
 
 
 		

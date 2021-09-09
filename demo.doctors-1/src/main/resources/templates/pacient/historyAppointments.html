@@ -260,24 +260,46 @@
     									let futureMonth = new Date();
     									let currentMonth = new Date();
     									console.log('futureMonth before plus ---> ' + futureMonth.getMonth());
-										console.log('currentMonth before plus ---> ' + currentMonth.getMonth());  
-										var monthToAdd = 11 - futureMonth.getMonth() - 2; 
-										if(monthToAdd > 0) { 									
+										console.log('currentMonth before plus ---> ' + currentMonth.getMonth());
+										  
+										var monthToAdd = 11 - futureMonth.getMonth();
+										
+										// 11 - 0   = 11  -> futureMonth = 11 & current month = 1
+										// 11 - 1   = 10  -> futureMonth = 11 & current month = 2
+										// 11 - 2   =  9  -> futureMonth = 11 & current month = 3
+										// 11 - 3   =  8  -> futureMonth = 11 & current month = 4
+										// 11 - 4   =  7  -> futureMonth = 11 & current month = 5
+										// 11 - 5   =  6  -> futureMonth = 11 & current month = 6
+										// 11 - 6   =  5  -> futureMonth = 11 & current month = 7
+										// 11 - 7   =  4  -> futureMonth = 11 & current month = 8 
+										// 11 - 8   =  3  -> futureMonth = 11 & current month = 9 
+										// 11 - 9   =  2  -> futureMonth = 11 & current month = 10 
+										// 11 - 10  =  1  -> futureMonth = 11 & current month = 10 --- special case
+										// 11 - 11  =  0  -> futureMonth = 11 & current month = 10 ---special case
+										
+
+										if(monthToAdd > 1) { 									
     										futureMonth.setMonth(futureMonth.getMonth() + monthToAdd);
     										currentMonth.setMonth(currentMonth.getMonth() + 1);
+    										console.log('futureMonth when monthToAdd > 0 ' + futureMonth.getMonth());
+    										console.log('currentMonth when monthToAdd > 0 ' + currentMonth.getMonth());
     									} else {
-    										monthToAdd = 2;
+    										if (monthToAdd === 1) {
+    											futureMonth.setMonth(futureMonth.getMonth() + monthToAdd);
+    											currentMonth.setMonth(currentMonth.getMonth() );
+    										}	
+    										
     										futureMonth.setMonth(futureMonth.getMonth() + monthToAdd);
-    										currentMonth.setMonth(currentMonth.getMonth() + 1);
+    										currentMonth.setMonth(currentMonth.getMonth() - 1);
+    										console.log('futureMonth when monthToAdd !> 0 ' + futureMonth.getMonth());
+    										console.log('currentMonth when monthToAdd !> 0 ' + currentMonth.getMonth());
     									
     									}    
-    									console.log('futureMonth after plus ' + futureMonth.getMonth());	
-    									console.log('currentMonth after plus ' + currentMonth.getMonth());								
 
     									console.log('before while');
 
-									    while (currentMonth.getMonth() <= futureMonth.getMonth()) {
-									    	console.log('currentMonth is now updating to ' + currentMonth.getMonth());
+									    while (currentMonth.getMonth() < futureMonth.getMonth()) {
+									    	console.log('currentMonth to be updated ' + currentMonth.getMonth());
 	      									let dateOption = document.createElement('option');
 	      									dateOption.text = monthNames[currentMonth.getMonth()-1] + ' ' + currentYear;
 	      									console.log('month Name is ' + monthNames[currentMonth.getMonth()-1] );
@@ -287,7 +309,9 @@
 	      									console.log('currentMonth before adding 1 --->' + currentMonth.getMonth() );
 	      									var theDays = 30;
 	      									currentMonth.setDate(currentMonth.getDate() + theDays);
+	      									console.log('futureMonth is --> ' + futureMonth.getMonth());
 	      									console.log('new currentMonth ' + currentMonth.getMonth());
+    									
     									};
     									
 										    									
@@ -534,7 +558,9 @@
   </div>
               
                 
-                <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
+                <!-- <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. 
+                Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. 
+                Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p> -->
               </div>
               
     
@@ -755,7 +781,10 @@
   </div>
               
               	
-                <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
+               <!-- <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. 
+                Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. 
+                Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p> -->
+              
               </div>
               
               
@@ -795,23 +824,18 @@
    									 	
     									var cancelfutureMonth = new Date();
     									var cancelcurrentMonth = new Date();
-    									console.log("canceled start month without minus 4 is " + cancelfutureMonth.getMonth());
-    									cancelfutureMonth.setMonth(cancelfutureMonth.getMonth() - 4);
-    									cancelcurrentMonth.setMonth(cancelcurrentMonth.getMonth());    
-    									console.log('cancelfutureMonth is ' + cancelfutureMonth.getMonth());									
-    																
     									
-    									
-    									console.log('before cancel while');
-
-									    while (cancelcurrentMonth.getMonth() >= cancelfutureMonth.getMonth()) {
-									    	console.log('cancelcurrentMonth is now upgradint to ' + cancelcurrentMonth.getMonth());
-	      									let dateOption = document.createElement('option');
-	      									dateOption.text = cancelMonthNames[cancelcurrentMonth.getMonth()] + ' ' + cancelcurrentYear;
-	     									dateOption.value = cancelcurrentMonth.getMonth();
+    									for(var i = 0; i < cancelMonthNames.length; i++) {
+    										let dateOption = document.createElement('option');
+	      									dateOption.text = cancelMonthNames[i] + ' ' + cancelcurrentYear;
+	      									
+	     									dateOption.value = i+1;
 	      									cancelDateDropdown.add(dateOption);
-	      									cancelcurrentMonth.setMonth(cancelcurrentMonth.getMonth() - 1);
-    									};
+    									
+    									}
+    									
+    									
+    									
     									
 										    									
     									
@@ -985,7 +1009,10 @@
   </div>
               
               	
-                <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
+                 <!-- <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. 
+                Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. 
+                Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p> -->
+              
               </div>
               
               

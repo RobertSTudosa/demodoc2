@@ -12,7 +12,7 @@
     <meta name="description"
         content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Dr. Ion Popescu's admin</title>
+    <title>Dr. Ion Popescu's admin - Dental132</title>
     
     <!-- Bootstrap to test for nav bar -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -612,7 +612,7 @@
                                 <h3 class="box-title mb-0">Programari viitoare</h3>
                                 <div class="d-flex mt-2 col-md-3 col-sm-4 col-xs-6 ms-auto"> 
                                 	<span class="iconify" data-icon="fluent:checkbox-indeterminate-16-regular" style="color:#e8ccd0"></span>
-                                		<h5>Reprogramat</h5>
+                                		<h5>reprogramate</h5>
                                 	
                                 	</div>
                                 
@@ -638,22 +638,25 @@
     									let currentMonth = new Date();
     									console.log('futureMonth before plus ---> ' + futureMonth.getMonth());
 										console.log('currentMonth before plus ---> ' + currentMonth.getMonth());  
-										var monthToAdd = 11 - futureMonth.getMonth() - 2; 
-										if(monthToAdd > 0) { 									
+										var monthToAdd = 11 - futureMonth.getMonth();
+										if(monthToAdd > 1) { 									
     										futureMonth.setMonth(futureMonth.getMonth() + monthToAdd);
     										currentMonth.setMonth(currentMonth.getMonth() + 1);
     									} else {
-    										monthToAdd = 2;
+    										if (monthToAdd === 1) {
+	    										futureMonth.setMonth(futureMonth.getMonth() + monthToAdd);
+	    										currentMonth.setMonth(currentMonth.getMonth());
+    										}
+    										
     										futureMonth.setMonth(futureMonth.getMonth() + monthToAdd);
-    										currentMonth.setMonth(currentMonth.getMonth() + 1);
-    									
+	    										currentMonth.setMonth(currentMonth.getMonth() - 1);
     									}    
     									console.log('futureMonth after plus ' + futureMonth.getMonth());	
     									console.log('currentMonth after plus ' + currentMonth.getMonth());								
 
     									console.log('before while');
 
-									    while (currentMonth.getMonth() <= futureMonth.getMonth()) {
+									    while (currentMonth.getMonth() < futureMonth.getMonth()) {
 									    	console.log('currentMonth is now updating to ' + currentMonth.getMonth());
 	      									let dateOption = document.createElement('option');
 	      									dateOption.text = monthNames[currentMonth.getMonth()-1] + ' ' + currentYear;
@@ -1490,8 +1493,8 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
-                    href="https://www.wrappixel.com/">wrappixel.com</a>
+             <footer class="footer text-center"> 2021 © Dental132 brought to you by <a
+                    href="https://apxsoftware.ro/">apxsoftware.ro</a>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->

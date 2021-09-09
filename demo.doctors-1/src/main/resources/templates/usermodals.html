@@ -311,10 +311,10 @@
                                 
                             </form>
 				
-				
-				<div class="row alert d-flex align-items-center alert-dismissible fade show mx-2 mt-2" id="modalSearchClientsWrapper" >
+				<div id="modalSearchClientsWrapper" > 
+				<div class="row alert d-flex align-items-center alert-dismissible fade show mt-2" >
 				<div class="col-md-12 col-lg-12 col-sm-12 tab-pane fade active show" id="search" role="tabpanel" aria-labelledby="future-tab"  th:if="${selectClients}!=null">
-                        <div class="white-box" style="width: 10rem;">
+                        <div class="white-box" style="width: 100%;">
                             <div class="d-md-flex mb-3">
                                 <h3 class="box-title mb-0">Selecteaza candidat : </h3>
 
@@ -324,16 +324,16 @@
 							<div class="table-responsive next-appointments" id="searchResultsModal">
                                 <table class="table no-wrap" >
                                     <thead>
-                                        <tr><th class="border-top-0">select</th>
-                                            <th class="border-top-0">#</th>
-                                            <th class="border-top-0">Nume</th>
-                                            <th class="border-top-0">Email</th>
-                                            <th class="border-top-0">Telefon</th>
-                                            <th class="border-top-0">Data nasterii</th>
+                                        <tr><th class="border-top-0" style="font-size: calc(20% + 1vw + 1vh);">select</th>
+                                            <th class="border-top-0" style="font-size: calc(20% + 1vw + 1vh);">#</th>
+                                            <th class="border-top-0" style="font-size: calc(20% + 1vw + 1vh);">Nume</th>
+                                            <th class="border-top-0" style="font-size: calc(20% + 1vw + 1vh);">Email</th>
+                                            <th class="border-top-0" style="font-size: calc(20% + 1vw + 1vh);">Telefon</th>
+                                            <th class="border-top-0" style="font-size: calc(20% + 1vw + 1vh);">Data nasterii</th>
                                         </tr>
                                     </thead>
                                     <tbody  >
-                                        <tr th:each="client, iterApp : ${selectClients}"  >
+                                        <tr th:each="client, iterApp : ${selectClients}"  style="font-size: calc(20% + 1vw + 1vh);">
                                         	<td>
                                         			<input type="checkbox" name="myClient" th:id="'selectedClient' + ${client.personId}" 
                                         				th:attr="onChange=|showNextModal('${client.personId}')|">
@@ -345,7 +345,7 @@
                                             	th:data-bs-target="'#detailClient' + ${client.personId}">
                                             	
                                             	<!-- replace with detailClient  -->
-                                            	<span class="iconify thumb-sm img-circle"  th:if="${client.lastImgId < 1}" 
+                                            	<span class="iconify thumb-sm img-circle d-none d-sm-block d-md-block d-lg-block"  th:if="${client.lastImgId < 1}" 
                                             	
                                             	data-icon="bx:bxs-user-circle" data-inline="false" 
                                         	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
@@ -358,7 +358,7 @@
                                         
 										<img th:if="${client.lastImgId != null}"
 												th:src="@{/doctor/lastImg(personId=${client.getPersonId()})}" 
-												class="thumb-sm img-circle" 
+												class="thumb-sm img-circle d-none d-sm-block d-md-block d-lg-block" 
 												style="border: 0.3px solid white;width:40px;height:40px;object-fit: cover;border-radius: 50%;">
 										<span  class="text-black font-medium ms-1" th:text="${client.firstName}">Steave</span></a>
 										
@@ -372,16 +372,16 @@
                                         </tr>
                                         
                                         
-                                       	<tr>
+                                    <!--    	<tr>
                                        		<td class="d-none d-sm-block"></td>
                                        		<td></td>
-                                       		<!-- <td class="text-center">
+                                       		<td class="text-center">
                                        			
                                  				<button type="button" class="btn btn-outline-primary load_more_app align-self-center" th:if="${not #lists.isEmpty(selectClients) OR #lists.size(keywords) > 0}"
 													th:attr="onclick=|seeMoreSearchResults('${selectClients[#lists.size(selectClients)-1].personId}','${searchMessage}')|">load more</button>
                            						
-                           					</td>         -->
-                                        </tr>
+                           					</td>        
+                                        </tr> -->
                                     </tbody>
                                 
                                     
@@ -424,9 +424,9 @@
                 
 	
 	
-	</div>	
+				</div>	
              
-       
+       			</div>
 				
 				</div>
 				

@@ -26,6 +26,9 @@ File: scss
   -webkit-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   -moz-transform: rotate(45deg); }
+  
+ 
+  
 
 /*******************************/
 /*******************************/
@@ -517,6 +520,12 @@ pre {
   padding-left: 10px;
   margin-right: auto;
   margin-left: auto; }
+  
+  
+  
+
+  
+  
 
 @media (min-width: 576px) {
   .container, .container-sm {
@@ -10357,6 +10366,10 @@ File: scss
 .profiletimeline .sl-date {
   font-size: 12px;
   color: #a1aab2; }
+  
+  
+  
+  
 
 /*
 Template Name: Admin Template

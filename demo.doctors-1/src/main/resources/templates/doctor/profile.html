@@ -17,6 +17,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.svg">
     <!-- Custom CSS -->
    <link href="css/style.min.css" rel="stylesheet">
+   <link href="css/validPassword.css" rel="stylesheet">
+   
    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
     
@@ -101,14 +103,14 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class=" in">
+                       <!--  <li class=" in">
                             <form role="search" class="app-search d-none d-md-block me-3">
                                 <input type="text" placeholder="Search..." class="form-control mt-0">
                                 <a href="" class="active">
                                     <i class="fa fa-search"></i>
                                 </a>
                             </form>
-                        </li>
+                        </li> -->
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -258,7 +260,7 @@
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-12">
                         <div class="white-box">
-                            <div class="user-bg"> <img width="100%" alt="user" src="plugins/images/large/img1.jpg"> <!-- the bg picture -->
+                            <div class="user-bg"> <img width="100%" alt="user" src="plugins/images/large/departments-1.jpg"> <!-- the bg picture -->
                                 <div class="overlay-box">
                                     <div class="user-content">
                                     	
@@ -313,7 +315,7 @@
                                         <label class="col-md-12 p-0">Full Name</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="text" th:field="${userAccount.person.firstName}" placeholder="Johnathan Doe"
-                                                class="form-control p-0 border-0"> </div>
+                                                class="form-control p-0 border-0" required> </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <label for="example-email" class="col-md-12 p-0">Email</label>
@@ -326,9 +328,133 @@
                                     <div class="form-group mb-4">
                                         <label class="col-md-12 p-0">New password</label>
                                         <div class="col-md-12 border-bottom p-0">
-                                            <input type="password" th:text="${newPassword}" value="password" name="newPassword" class="form-control p-0 border-0">
+                                            <input type="password" th:text="${newPassword}" value="password" name="newPassword" class="form-control p-0 border-0" 
+                                            id="newPassword"
+												pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+											title="Parola trebuie sa contina o litera mare, un numar si minim 8 caractere." 
+											onchange="checkPassword()" >
+                                        </div>
+                                    </div> 
+                                    
+                                    
+                                    <div id="password-message" style="display:none;">
+									<h5>Parola trebuie sa contina:</h5>
+									
+									<p id="letter" class="invalid">
+										
+										  O litera <b>mica</b> 
+									</p>										   
+									
+									<p id="capital" class="invalid">
+										O litera <b>majuscula(mare)</b> 
+									</p>
+									<p id="number" class="invalid">
+										Un <b>numar</b>
+									</p>
+									<p id="length" class="invalid">
+										Minimum <b>8 caractere</b>
+									</p>
+								</div>
+								
+								
+                                    
+                                    <div class="form-group mb-4">
+                                        <label class="col-md-12 p-0">check password</label>
+                                        <div class="col-md-12 border-bottom p-0">
+                                            <input type="password" th:text="${newPassword}" value="password" name="newPassword" class="form-control p-0 border-0" 
+                                            id="checkProfilePassword"
+											onchange="checkPassword()" >
+											<span id="confirmPasswordMessage"></span>
                                         </div>
                                     </div>
+                                    
+                                    <script type="text/javascript" th:inline="javascript">
+								
+								//---- check password function ------//
+									function checkPassword() {
+											var password = document.getElementById("newPassword");
+											var confirm = document.getElementById("checkProfilePassword");
+											
+											if($('#newPassword').val() == $("#checkProfilePassword").val()) {
+	        										$("#confirmPasswordMessage").html("matching").css("color", "green");
+											      	confirm.setCustomValidity("");
+											    } else {
+												  	confirm.setCustomValidity('Parolele introduse nu sunt aceleasi.');
+											        $("#confirmPasswordMessage").html("not matching").css("color", "red");
+												}
+											 
+										
+										}
+					
+									var myInput = document.getElementById("newPassword");
+									var letter = document.getElementById("letter");
+									
+									
+									var capital = document.getElementById("capital");
+									var number = document.getElementById("number");
+									var length = document.getElementById("length");
+									
+									// When the user clicks on the password field, show the message box
+									myInput.onfocus = function() {
+									  $("#password-message").show();
+									  
+									}
+									
+									// When the user clicks outside of the password field, hide the message box
+									myInput.onblur = function() {
+									  document.getElementById("password-message").style.display = "none";
+									}
+									
+									// When the user starts to type something inside the password field
+									myInput.onkeyup = function() {
+									  // Validate lowercase letters
+									  var lowerCaseLetters = /[a-z]/g;
+									  if(myInput.value.match(lowerCaseLetters)) {  
+									    letter.classList.remove("invalid");
+									    letter.classList.add("valid");
+									   
+									    
+									  } else {
+									    letter.classList.remove("invalid");
+									    letter.classList.add("valid");
+				 
+									  }
+									  
+									  // Validate capital letters
+									  var upperCaseLetters = /[A-Z]/g;
+									  if(myInput.value.match(upperCaseLetters)) {  
+									    capital.classList.remove("invalid");
+									    capital.classList.add("valid");
+									  } else {
+									    capital.classList.remove("valid");
+									    capital.classList.add("invalid");
+									  }
+									
+									  // Validate numbers
+									  var numbers = /[0-9]/g;
+									  if(myInput.value.match(numbers)) {  
+									    number.classList.remove("invalid");
+									    number.classList.add("valid");
+									  } else {
+									    number.classList.remove("valid");
+									    number.classList.add("invalid");
+									  }
+									  
+									  // Validate length
+									  if(myInput.value.length >= 8) {
+									    length.classList.remove("invalid");
+									    length.classList.add("valid");
+									  } else {
+									    length.classList.remove("valid");
+									    length.classList.add("invalid");
+									  }
+									}
+									
+									
+									
+
+								</script>
+                                    
                                     <div class="form-group mb-4">
                                         <label class="col-md-12 p-0">Phone No</label>
                                         <div class="col-md-12 border-bottom p-0">
@@ -384,8 +510,8 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
-                    href="https://www.wrappixel.com/">wrappixel.com</a>
+            <footer class="footer text-center"> 2021 © Dental132 brought to you by <a
+                    href="https://apxsoftware.ro/">apxsoftware.ro</a>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
