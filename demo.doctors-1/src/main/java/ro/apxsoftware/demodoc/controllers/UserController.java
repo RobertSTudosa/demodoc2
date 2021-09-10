@@ -1,7 +1,6 @@
 package ro.apxsoftware.demodoc.controllers;
 
-import java.util.Calendar;
-
+import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -131,12 +130,14 @@ public class UserController {
 							ConfirmationToken confirmationToken = new ConfirmationToken(userAccount);
 							System.out.println("confirmationToken is " + confirmationToken.getConfirmationToken());
 							confTokenServ.saveToken(confirmationToken);
-							SimpleMailMessage mailMessage = emailService.simpleConfirmationMessage(userAccount.getEmail(), 
-									"BZBees - please confirm your account, jobs are ready", confirmationToken.getConfirmationToken());
-							
-							
-			
-				emailService.sendEmail(mailMessage);
+				
+							MimeMessage confirmMailMime = emailService.confirmAccountMimeEmail(userAccount.getEmail(), 
+									"Dental132 - Your account is waiting for confirmation", confirmationToken.getConfirmationToken());
+							emailService.sendMimeEmail(confirmMailMime);
+
+//							SimpleMailMessage mailMessage = emailService.simpleConfirmationMessage(userAccount.getEmail(), 
+//									"BZBees - please confirm your account, jobs are ready", confirmationToken.getConfirmationToken());
+//				emailService.sendEmail(mailMessage);
 				System.out.println("Email was sent according to spring boot");
 				
 				User checkUser = entityManager.find(User.class, 1L);
