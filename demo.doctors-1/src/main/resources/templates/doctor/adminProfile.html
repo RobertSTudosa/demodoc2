@@ -676,22 +676,25 @@
     									let currentMonth = new Date();
     									console.log('futureMonth before plus ---> ' + futureMonth.getMonth());
 										console.log('currentMonth before plus ---> ' + currentMonth.getMonth());  
-										var monthToAdd = 11 - futureMonth.getMonth() - 2; 
-										if(monthToAdd > 0) { 									
+										var monthToAdd = 11 - futureMonth.getMonth();
+										if(monthToAdd > 1) { 									
     										futureMonth.setMonth(futureMonth.getMonth() + monthToAdd);
     										currentMonth.setMonth(currentMonth.getMonth() + 1);
     									} else {
-    										monthToAdd = 2;
+    										if (monthToAdd === 1) {
+	    										futureMonth.setMonth(futureMonth.getMonth() + monthToAdd);
+	    										currentMonth.setMonth(currentMonth.getMonth());
+    										}
+    										
     										futureMonth.setMonth(futureMonth.getMonth() + monthToAdd);
-    										currentMonth.setMonth(currentMonth.getMonth() + 1);
-    									
+	    										currentMonth.setMonth(currentMonth.getMonth() - 1);
     									}    
     									console.log('futureMonth after plus ' + futureMonth.getMonth());	
     									console.log('currentMonth after plus ' + currentMonth.getMonth());								
 
     									console.log('before while');
 
-									    while (currentMonth.getMonth() <= futureMonth.getMonth()) {
+									    while (currentMonth.getMonth() < futureMonth.getMonth()) {
 									    	console.log('currentMonth is now updating to ' + currentMonth.getMonth());
 	      									let dateOption = document.createElement('option');
 	      									dateOption.text = monthNames[currentMonth.getMonth()-1] + ' ' + currentYear;
@@ -740,7 +743,7 @@
                                             <td class="txt-oflo" >
                                             	<a class="d-flex align-items-center profile-pic" type="button" href="#" data-bs-toggle="modal"
                                             	th:data-bs-target="'#detailAppointment' + ${doctorApp.appointmentId}">
-                                            	<span class="iconify thumb-sm img-circle"  th:if="${doctorApp.pacient == null OR doctorApp.pacient.lastImgId < 1}" 
+                                            	<span class="iconify thumb-sm img-circle"  th:if="${doctorApp.pacient == null}" 
                                             	
                                             	data-icon="bx:bxs-user-circle" data-inline="false" 
                                         	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
@@ -751,7 +754,7 @@
                                         
                                        
                                         
-										<img th:if="${doctorApp.pacient != null AND doctorApp.pacient.lastImgId != null}"
+										<img th:if="${doctorApp.pacient != null AND doctorApp.pacient.lastImgId > 0}"
 												th:src="@{/doctor/lastImg(personId=${doctorApp.pacient.getPersonId()})}" 
 												class="thumb-sm img-circle" 
 												style="border: 0.3px solid white;width:40px;height:40px;object-fit: cover;border-radius: 50%;">

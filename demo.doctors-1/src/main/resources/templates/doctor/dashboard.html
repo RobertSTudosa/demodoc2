@@ -704,7 +704,7 @@
                                             <td class="txt-oflo" >
                                             	<a class="d-flex align-items-center profile-pic" type="button" href="#" data-bs-toggle="modal"
                                             	th:data-bs-target="'#detailAppointment' + ${doctorApp.appointmentId}">
-                                            	<span class="iconify thumb-sm img-circle"  th:if="${doctorApp.pacient == null OR doctorApp.pacient.lastImgId < 1}" 
+                                            	<span class="iconify thumb-sm img-circle"  th:if="${doctorApp.pacient == null}" 
                                             	
                                             	data-icon="bx:bxs-user-circle" data-inline="false" 
                                         	 style="border: 0.3px solid white;width:40px;height:40px;"></span>
@@ -715,7 +715,7 @@
                                         
                                        
                                         
-										<img th:if="${doctorApp.pacient != null AND doctorApp.pacient.lastImgId != null}"
+										<img th:if="${doctorApp.pacient != null AND doctorApp.pacient.lastImgId > 0}"
 												th:src="@{/doctor/lastImg(personId=${doctorApp.pacient.getPersonId()})}" 
 												class="thumb-sm img-circle" 
 												style="border: 0.3px solid white;width:40px;height:40px;object-fit: cover;border-radius: 50%;">
@@ -1087,7 +1087,7 @@
 													href="#" data-bs-toggle="modal"
 													th:data-bs-target="'#detailAppointment' + ${doctorApp.appointmentId}">
 														<span class="iconify thumb-sm img-circle"
-														th:if="${doctorApp.pacient == null OR doctorApp.pacient.lastImgId < 1}"
+														th:if="${doctorApp.pacient == null}"
 														data-icon="bx:bxs-user-circle" data-inline="false"
 														style="border: 0.3px solid white; width: 40px; height: 40px;"></span>
 
@@ -1099,7 +1099,7 @@
 
 
 														<img
-														th:if="${doctorApp.pacient != null AND doctorApp.pacient.lastImgId != null}"
+														th:if="${doctorApp.pacient != null} AND ${doctorApp.pacient.lastImgId > 0}"
 														th:src="@{/doctor/lastImg(personId=${doctorApp.pacient.getPersonId()})}"
 														class="thumb-sm img-circle"
 														style="border: 0.3px solid white; width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
