@@ -3127,7 +3127,7 @@
 										
 											if($('#registerPassword').val() == $("#confirmRegisterPassword").val()) {
 	        										$("#confirmPasswordMessage").html("matching").css("color", "green");
-											      	confirm.setCustomValidity(" ");
+											      	confirm.setCustomValidity("");
 											    } else {
 												  	confirm.setCustomValidity('Parolele introduse nu sunt aceleasi.');
 											        $("#confirmPasswordMessage").html("not matching").css("color", "red");

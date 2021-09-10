@@ -27,6 +27,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -81,7 +82,8 @@ public class HomeController {
 	AppDateFormater adf;
 	
 	@GetMapping("/")
-	public String displayIndex(Model model, HttpSession session, Authentication auth, RedirectAttributes redirAttr) throws JsonProcessingException {
+	public String displayIndex(Model model, 
+			HttpSession session, Authentication auth, RedirectAttributes redirAttr) throws JsonProcessingException {
 
 		model.addAttribute("appointment", new Appointment());
 		

@@ -143,8 +143,9 @@ public class UserController {
 				User checkUser = entityManager.find(User.class, 1L);
 //				System.out.println("What usery is this? : " + checkUser.getEmail());
 				
-				redirAttr.addAttribute("createdUser", "Thank you for signing up. The user account " + "'" + userAccount.getUsername() +"'" + " is created.");
-				redirAttr.addAttribute("activateUser", "We sent an email to " + userAccount.getEmail() + ". Please check your email to activate your account");
+				redirAttr.addFlashAttribute("createdUser", "Thank you for signing up. The user account " + "'" + userAccount.getUsername() +"'" + " is created." + 
+											"We sent an email to " + userAccount.getEmail() + ". Please check your email to activate your account");
+				
 
 						}
 							
@@ -221,10 +222,10 @@ public class UserController {
 			
 		}
 		
-		
+		redirAttr.addFlashAttribute("activateUser", "Userul : " + userAccount.getEmail() + " este activ. Va puteti accesa contul folosind butonul de login.");
 
 	
-	return "index";
+	return "redirect:/";
 	}	
 	
 	

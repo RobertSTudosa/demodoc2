@@ -2784,19 +2784,19 @@ public MimeMessage canceledAppointmentMimeEmail(String to, String subject, Strin
 				+ "\r\n"
 				+ "                                        </p>\r\n"
 				+ "                                        <p style=\"line-height: 24px;margin-bottom:15px;\">\r\n"
-				+ "                                             Contul dvs. la Dental132\r\n" 
+				+ "                                             Contul tau la Dental132\r\n" 
 
 				+ "                                            a fost <strong> creat </strong> cu succes.\r\n"
 				
 				+ "                                        </p>\r\n"
 				
 				+ "                                        <p style=\"line-height: 24px;margin-bottom:15px;\">\r\n"
-				+ "                                            Ne bucuram sa te avem de client. Contul creat ne va ajuta sa te identificam mai repede si "
-				+ "sa va oferim o experienta comfortabila si eficienta. \r\n" 
+				+ "                                            Ne bucuram ca esti clientul nostru. Contul creat ne va ajuta sa te identificam mai repede si "
+				+ "sa-ti oferim o experienta comfortabila si eficienta. \r\n" 
 				+ "                                        </p>\r\n"
 				
 				+ "                                        <p style=\"line-height: 24px; margin-bottom:20px;\">\r\n"
-				+ "                                            Pentru a putea sa va folositi contul proaspat creat va rugam sa confirmati prin apasarea butonului de mai in jos : \r\n"
+				+ "                                            Pentru a putea sa folosesti contul te rugam sa confirmi ca ai creat contul prin apasarea butonului de mai in jos : \r\n"
 				+ "                                        </p>\r\n"
 				+ "                                        <table border=\"0\" align=\"center\" width=\"180\" cellpadding=\"0\" cellspacing=\"0\" bgcolor=\"3fbabf\" style=\"margin-bottom:20px;\">\r\n"
 				+ "\r\n"
@@ -2809,7 +2809,8 @@ public MimeMessage canceledAppointmentMimeEmail(String to, String subject, Strin
 				+ "                                                    <!-- main section button -->\r\n"
 				+ "\r\n"
 				+ "                                                    <div style=\"line-height: 22px;\">\r\n"
-				+ "                                                        <a href=\"https://demo.apxsoftware.ro/#appointment\""
+				
+				+ "                                                        <a href=\"https://demo.apxsoftware.ro/user/confirm-account?t0=" + confirmationToken + "\""
 				+ "style=\"color: #ffffff; text-decoration: none;\">confirmati</a>\r\n"
 				+ "                                                    </div>\r\n"
 				+ "                                                </td>\r\n"
