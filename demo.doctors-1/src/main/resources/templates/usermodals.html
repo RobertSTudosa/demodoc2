@@ -1,5 +1,351 @@
 <html>
 <body>
+	<div th:fragment="adminSimpleAppointment">
+		<div class="modal fade" tabindex=-501
+			aria-labelledby="exampleModalLabel" aria-hidden="true"
+			id="simpleAppointment">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="modal-title" id="exampleModalLabel">
+							<h2 text="Programare pacient">
+								Programare pacient 
+							</h2>
+						</div>
+						<button type="button" class="btn btn-secondary close"
+							data-bs-dismiss="modal" aria-label="Close" th:attr="onclick=|resetSimpleApp()|">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						
+						<script type="text/javascript" th:inline="javascript">
+						
+							function resetSimpleApp () {
+								console.log("reset simple app" );
+								$("#simpleAppModal").trigger("reset");							
+							}
+						
+						
+						</script>
+						
+						
+						
+					</div>
+					<div class="modal-body">
+					
+						 <form th:action="@{/makeAppointment}" th:object="${appointment}" id="simpleAppModal" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+          <div class="row">
+            <div class="col-md-4 form-group" >
+            	<input type="hidden" value="adminLoggedIn" name="adminLoggedIn">
+            
+              <input type="text" th:field="${appointment.pacientName}" name="name" class="form-control" id="name" placeholder="Numele pacientului." 
+              		pattern="(?:\s*[a-zA-Z]+\s{0,2}){1,3}" minlength="3" title="pentru nume sunt necesare minim 3 litere, fara alte caractere speciale"	required>
+           			<p th:if="${#fields.hasErrors('pacientName')}" th:errors="${appointment.pacientName}"></p>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="email" th:value="${appointment.pacientEmail}" class="form-control" name="email" id="email" placeholder="Email" 
+              		pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Introduceti o adresa de email valida." required>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="tel" th:field="${appointment.pacientPhone}" class="form-control" name="phone" id="phone" placeholder="numarul de telefon" 
+              		pattern="^\+|(?:[0-9]?){6,14}[0-9]+|\s{1,1}$" title="introduceti un numar de telefon valid" required>
+            </div>
+          </div>
+          <div class="row">
+            
+
+            <div class="col-md-4 form-group mt-3">
+              <select name="doctor" id="doctorTWO" class="form-select doctor" th:attr="onchange=|(getDoctorBusyDatesSimpleApp())|" >
+                <option th:value=null >Selecteaza Doctor</option>
+                <option th:each="doctor : ${doctors}" th:value="${doctor.personId}" id="doctorId" th:text="${doctor.firstName}" >Doctor's name</option>
+              
+              </select>
+              
+              <script type="text/javascript" th:inline="javascript">
+              	
+              		var busyDatesArray = [[${busyDates}]];
+   	
+              	function getDoctorBusyDatesSimpleApp () {
+              			console.log("getDoctorBusyDates is calling");
+              			var doctorId = $("select#doctorTWO").children("option:selected").val(); //use again in the function select hours by doctor 
+              			console.log("doctor's id is selected --> " + doctorId);
+              			var dateVal = $("#date").val(); 
+              			var now = new Date();
+              			
+              			if(doctorId > 0 ) {
+			
+							$.ajax({
+							type: "GET",
+							url: "/allBusyDates",
+							beforeSend: function () {},
+							complete: function () {},					
+							success: function (data) {
+								
+								console.log(data);
+								busyDatesArray = data;
+							},
+						});
+						
+							if(dateVal == "") {
+              					
+              					console.log("date is not selected");
+              				
+              					} else {
+              					
+              					console.log("date is selected");              						
+              					getTimes();
+
+              					};
+							
+              			} 
+              			
+              			if(doctorId === ""){ 
+              				
+              				$.ajax({
+							type: "GET",
+							url: "/",
+							beforeSend: function () {},
+							complete: function () {},					
+							success: function () {
+								console.log("success");
+								busyDatesArray = [[${busyDates}]];
+							},
+						});
+						
+						if(dateVal == "") {
+              					
+              					console.log("date is not selected");
+              				
+              					} else {
+              					
+              					console.log("date is selected");              						
+              					getTimes();
+
+              					
+              					
+              					};
+              			
+              			}
+              	
+              	}
+              
+              
+              </script>
+            </div>
+            <div class="col-md-4 form-group mt-3">
+              <input type="date" th:field="${appointment.date}"  name="date" class="form-control datepicker readonly" id="date" placeholder="Data programarii" 
+              		th:attr="onchange=|(getTimesSimpleApp())|" onclick="event.preventDefault()" required>
+      
+            </div>
+
+           <script type="text/javascript" th:inline="javascript">
+           			
+					var busyDatesArray = [[${busyDates}]];
+					
+				
+					
+					console.log(busyDatesArray);
+	            	$("#date").datepicker({ 
+	            	
+	            			beforeShowDay: function(date) {
+	            			  var string2 = formatDate(date);
+						      var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+						      if (contains(busyDatesArray,string2)) {
+						        debugger;
+						        return [false, '']
+						      } else {
+						        var day = date.getDay();
+						        return [(day != 0) && (day != 6), ''];
+						      }
+						    },
+	            			minDate: 0,
+      						showButtonPanel: true,
+	            			inline: true,
+						    showOtherMonths: true,
+      						dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+	            			changeMonth: true,
+							changeYear: true,
+	            			dateFormat:'yy-mm-dd' });
+	            			
+	            	function contains(a, obj) {
+					    var i = a.length;
+					    while (i--) {
+					       if (a[i] === obj) {
+					           return true;
+					       }
+					    }
+					    return false;
+					}	
+					
+					
+					function formatDate(date) {
+					    var d = new Date(date),
+					        month = '' + (d.getMonth() + 1),
+					        day = '' + d.getDate(),
+					        year = d.getFullYear();
+					
+					    if (month.length < 2) 
+					        month = '0' + month;
+					    if (day.length < 2) 
+					        day = '0' + day;
+					
+					    return [year, month, day].join('-');
+					}	
+					
+					
+			// keep this here in case the datepicker beforeShowDay is not working	
+	        //  beforeShowDay: function(date){
+       			//			var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+        			//			return [ busyDatesArray.indexOf(string) == -1 ]
+    					//	},  	
+		          
+            		
+            </script> 
+            
+             <div class="col-md-4 form-group mt-3" >
+             <!--  <input type="time" th:field="${appointment.appointmentTime}" th:value="${appointment.getFixedTimes()}" name="time" 
+              	step="3600" class="form-control datepicker" id="time" placeholder="Ora programarii" required>  -->
+              	
+               	<select th:name="time" id="time" class="form-select" required>
+              		<option id="optionTime" value="">Selecteaza ziua</option>
+              		<option id="optionTime" th:if="${fixedTimes} != null" th:each="time : ${fixedTimes}" th:text="${time}" th:value="${time}">time</option>
+              	
+              	
+              	</select> 
+              
+            </div>
+            
+           <script type="text/javascript" th:inline="javascript">
+           		 
+           		 function getTimesSimpleApp () {
+						
+
+						console.log('calling getTime()');
+						
+						var dateVal = $("#date").val(); //this is in the getTimes() scope
+						var doctorId = $("select#doctorTWO").children("option:selected").val(); //use again in the function select hours by doctor 
+              			console.log("doctor's id is selected --> " + doctorId);
+						
+						if(doctorId > 0) {
+						
+							console.log("doctor is present");
+							$.ajax({
+							type: "GET",
+							url: "/selectTimeByDateByDoctor?date=" + dateVal + "&doctor=" + doctorId,
+							beforeSend: function () {},
+							complete: function () {},					
+							success: function (data) {
+								console.log(data);
+								var select = $("#time");
+								select.empty().append('<option value="">Selecteaza ora</option>');
+								for(var i = 0; i < data.length; i++) {
+									console.log("added the time by date and doctor" + data[i]);
+									select.append("<option value='" + data[i] + "'>" + data[i] + "</option>");
+								}
+								
+								
+								
+							},
+							});
+						
+						};
+						
+						if(doctorId === "") {
+							console.log("doctor is NOT present");
+							console.log("dateVal checked is " + dateVal);
+							$.ajax({
+							type: "GET",
+							url: "/selectTimeByDate?date=" + dateVal,
+							beforeSend: function () {},
+							complete: function () {},					
+							success: function (data) {
+							
+								console.log(data);
+								var select = $("#time");
+								select.empty().append('<option value="">Selecteaza ora</option>');
+								for(var i = 0; i < data.length; i++) {
+									console.log("added the time by date " + data[i]);
+									select.append("<option value='" + data[i] + "'>" + data[i] + "</option>");
+								}
+								
+								
+								
+							},
+							
+							failure: function (data) {
+                    			alert(data);
+                			}
+						});
+							
+						
+						}
+						
+												
+						
+					
+					};
+            	
+            </script>
+          </div>
+          
+          <!-- onclick="(this.type='time')" onblur="(this.type='text')" -->
+
+          <div class="form-group mt-3 d-flex flex-column flex-md-column flex-xl-row justify-content-between g-3">
+          	  <div class="col-md-4 form-group mt-0 me-2" >
+
+            <select name="service" id="department" placeholder="Selecteaza tratament" class="form-select" multiple>
+                <!-- <option value="">Selecteaza Tratament</option> -->
+                <option th:value="Extractie">Extractie</option>
+                <option th:value="Plomba">Plomba</option>
+                <option th:value="Obturatie_de_canal">Obturatie de canal</option>
+                <option th:value="Detartraj">Detartraj</option>
+                <option th:value="Albire">Albire</option>
+			</select>
+							
+			
+            </div>
+            
+            <textarea class="form-control " name="message" rows="5" placeholder="Message (Optional)" th:field="${appointment.message}"></textarea>
+            
+          </div>
+          
+         
+<!--           <div class="my-3">
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
+          </div> -->
+          <div class="text-center mb-5"><button type="submit" class="btn btn-info text-white">Programeaza</button></div>
+        </form>
+						
+					
+					
+					</div>
+
+
+					<div class="modal-footer"></div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+<html>
+<body>
 <div th:fragment="adminClientDetails">
 
 
@@ -251,9 +597,22 @@
 					<div class="modal-header">
 						<h5 class="modal-title" id="staticBackdropLabel">Programare
 							recurenta - alegeti pacientul</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
+						<button type="button" class="btn-close" data-bs-dismiss="modal" th:attr="onclick=|resetForm()|"
 							aria-label="Close"></button>
-					</div>
+							
+						<script type="text/javascript" th:inline="javascript">
+							function resetForm() {
+							console.log("reseting search form");
+								$("#searchAppClient").trigger("reset");
+							
+							}
+						
+						
+						
+						
+						</script>
+							
+				</div>
 				<div class="modal-body">
 				<form role="search" class="app-search d-block d-sm-block d-md-block me-3 row"  method="get" th:action="@{/doctor/searchClients}" id="searchAppClient">
 
@@ -292,7 +651,7 @@
 										success: function (data) {
 										//console.log(JSON.stringify(data));	
 										
-										$("#searchAppClient")[0].reset();
+										$("#searchAppClient").trigger("reset");
 														
 										$("#modalSearchClientsWrapper").html(data);	
 									},
@@ -513,7 +872,9 @@
 							                    },
 												complete: function () {},					
 												success: function (data) {
-												
+													console.log("reseting recurrent form");
+													
+													$("#tempAppointForm").trigger("reset");
 													$("#tempAppointList").html(data);
 												}
 									 		
@@ -581,7 +942,7 @@
               		var doctorId = $("select#doctorUNO").children("option:selected").val();	
               		console.log("doctor is selected --->" + doctorId);
    	
-              			var dateVal = $("#date").val(); 
+              			var dateVal = $("#dateRecurrent").val(); 
               			var now = new Date();
               			
               			if(doctorId > 0 ) {
@@ -644,9 +1005,9 @@
               </script>
             </div>
             <div class="col-md-4 form-group mt-3">
-              <input type="date" th:field="${appointment.date}"  name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" 
+              <input type="date" th:field="${appointment.date}"  name="date" class="form-control datepicker" id="dateRecurrent" placeholder="Appointment Date" 
               		th:attr="onchange=|(getRecAppTimes())|" readonly required >
-              <!--  -->
+              <!-- dateRecurrent -->
                           <!--   th:attr="onclick=|insertBusyDates('${busyDates}')|" -->
              <!--  <ul style="display: none;" id="busyDates">
               	<li th:each="date : ${busyDates}" th:value="date">date</li>
@@ -657,7 +1018,7 @@
 					var busyDatesArray = [[${busyDates}]];
 					
 					console.log(busyDatesArray);
-	            	$("#date").datepicker({ 
+	            	$("#dateRecurrent").datepicker({ 
 	            	
 	            			beforeShowDay: function(date) {
 	            				var string2 = formatDate(date);
@@ -733,7 +1094,7 @@
 
 						console.log('calling getRecAppTime()');
 						
-						var dateVal = $("#date").val(); //this is in the getTimes() scope
+						var dateVal = $("#dateRecurrent").val(); //this is in the getTimes() scope
 						var doctorId = $("select#doctorUNO").children("option:selected").val();	//use again in the function select hours by doctor 
               			console.log("doctor's id is selected --> " + doctorId);
 						
@@ -839,7 +1200,7 @@
         		var time = $("select#timeModal1").children("option:selected").val(); 
         		console.log('time selected is ' + time);
         		
-        		var reDate = $("#date").val();
+        		var reDate = $("#dateRecurrent").val();
 				console.log('date is passed ' + reDate); 
 				
 				

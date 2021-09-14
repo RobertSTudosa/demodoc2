@@ -379,8 +379,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     @Query(nativeQuery= true, value= "select count(count)  from "
     		+ " (select count(appointment.appointment_id) as count from appointment "
-    		+ " where appointment.date < date(now())  "
-    		+ " and appointment.canceled = 0 "
+
+    		+ " where appointment.canceled = 0 "
     		+ " group by appointment_id) as mCount;   ")	
 	public int getTotalAppointmentsNotCanceledPast();
 

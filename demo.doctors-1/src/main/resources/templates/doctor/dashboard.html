@@ -107,7 +107,9 @@
                         <!-- ============================================================== -->
                         <li class=" in">
                             <form role="search" class="app-search d-none d-md-block me-3"  method="get" th:action="@{/searchAppointments}" id="searchApp">
+	                           	
 	                           	<input type="hidden" value="appointSearch" name="search" id="appointSearch">
+	                           	
 	                           	<input type="text" placeholder="search..." class="form-control mt-0" name="keyword" th:value="${keyword}" id="keyword">
                                 <a href="" class="active">
 	                                <button type="submit" id="searchBtn" class="active"><i class="fa fa-search" ></i></button>
@@ -277,10 +279,10 @@
                             <ol class="breadcrumb ms-auto">
                             <li class=" in">
                             <form role="search" class="app-search d-block d-sm-block d-md-none me-3 row"  method="get" th:action="@{/searchAppointments}" id="searchApp">
-
+										
 
 										<div class="input-group mb-3">
-
+											<input type="hidden" value="appointSearch" name="search" id="appointSearch">
 											<input type="text" placeholder="search..."
 												class="form-control mt-0" name="keyword"
 												th:value="${keyword}" id="keyword">
@@ -290,6 +292,15 @@
 												<i class="fa fa-search"></i>
 											</button>
 										</div>
+										
+										
+											
+	                           	
+	                           	
+                               <!--  <a href="" class="active">
+	                                <button type="submit" id="searchBtn" class="active"><i class="fa fa-search" ></i></button>
+                                
+                                </a> -->
 
 
 										<script type="text/javascript" th:inline="javascript">
@@ -302,12 +313,15 @@
                             </form>
                         	</li>
                         	<!-- <li><span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span></li> -->
-                                <li><a href="#" class="fw-normal" data-bs-toggle="modal"
-                                     data-bs-target="#recurrentAppointment1" >Progamare recurenta</a></li>
+                        		<li><a href="#" class="fw-normal btn btn-sm btn-info fw-normal mx-2 text-white" data-bs-toggle="modal"
+                                     data-bs-target="#simpleAppointment" style="font-size: calc(10% + 1vw + 1vh);">Programare simpla</a></li>
+                                <li><a href="#" class="fw-normal btn btn-sm btn-info fw-normal mx-2 text-white" data-bs-toggle="modal"
+                                     data-bs-target="#recurrentAppointment1" style="font-size: calc(10% + 1vw + 1vh);">Programare recurenta</a></li>
                                      
                                      
                             </ol>
                             
+                            <div th:replace="usermodals :: adminSimpleAppointment"></div>
                             <div th:replace="usermodals :: reAppointmentSelect"></div>
                             
                             <a th:href="@{/logout}" target="_blank"
@@ -398,7 +412,10 @@
   </div>
 </div> -->
                 <!-- ============= END TAB EXAMPLE ==================== -->
-                
+     <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2" role="alert" th:if="${appointmentMade}!=null" >
+  	 <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i><span th:text="${appointmentMade}">You should check in on some of those fields below.</span>
+ 	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>          
                 
                 
      <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2" role="alert" th:if="${searchMessage}!=null" id="alertMessage">
@@ -409,67 +426,6 @@
   	 
 	</div>
 	
-			<div id="appointsMadeList"  >
-						
-								<div th:if="${appointsMade} != null"
-									class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 "
-									role="alert" id="tempAppoint"
-									style="border-left: 3px solid #3FBBC0;">
-									<h4>Programari recurente adaugate: </h4>
-									
-						<ul >
-							<li th:each="appointment : ${appointsMade}" style="list-style: none;">
-									<div class="wrapper">
-
-										<span class="iconify"
-											data-icon="icon-park-outline:appointment"
-											style="font-size: 1.2rem;"></span>
-										<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
-										<span class="fw-bold">progamare adaugata: </span> 
-										<span
-											th:text="' : ' + ${#temporals.format(appointment.date,'dd-MM-yyyy')}">You
-											should check your results.</span> 
-										 	
-											<span
-											th:text="' : ' + ${appointment.appointmentTime}">You
-											should check your results.</span> <span class="fw-bold">,
-											pacient: </span> <span th:text="' ' + ${appointment.pacientName}">You
-											should check your results.</span> <span class="fw-bold">,
-											requested: </span> <span
-											th:text="' ' + ${appointment.companyServices} ">You
-											should check your results.</span>
-									</div>
-									
-								</li>
-
-							</ul>
-									
-									 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><!-- the close for the alert  -->
-									
-								</div>
-
-
-
-
-					</div>
-	
-	<div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 " 
-		role="alert" th:if="${lastAppointment}!=null" id="lastAppointment" style="border-left: 3px solid #3FBBC0;">
-		<div class="wrapper">
-		
-			<span class="iconify" data-icon="icon-park-outline:appointment" style="font-size: 1.2rem;"></span>
-			<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
-			<span class="fw-bold" >Urmatoarea progamare  </span>  	 
-		  	<span th:text="' : ' + ${#temporals.format(lastAppointment.date,'dd-MM-yyyy')}" >You should check your results.</span>	
-			<span class="fw-bold">, pacient: </span>
-			<span th:text="' ' + ${lastAppointment.pacientName}">You should check your results.</span>	
-			<span class="fw-bold">, requested: </span>
-			<span th:text="' ' + ${lastAppointment.getStringCompanyServicesNames()} ">You should check your results.</span>	
-		
-		</div>
-  	 
- 	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-	</div>
 	
 	 <div class="row alert d-flex align-items-center alert-dismissible fade show mx-2 mt-2"  th:if="${keywords}!=null" id="searchResultsWrapper">
 			<div class="col-md-12 col-lg-12 col-sm-12 tab-pane fade active show" id="search" role="tabpanel" aria-labelledby="future-tab" >
@@ -582,6 +538,70 @@
 	</div>	
 	
    
+	
+	
+			<div id="appointsMadeList"  >
+						
+								<div th:if="${appointsMade} != null"
+									class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 "
+									role="alert" id="tempAppoint"
+									style="border-left: 3px solid #3FBBC0;">
+									<h4>Programari recurente adaugate: </h4>
+									
+						<ul >
+							<li th:each="appointment : ${appointsMade}" style="list-style: none;">
+									<div class="wrapper">
+
+										<span class="iconify"
+											data-icon="icon-park-outline:appointment"
+											style="font-size: 1.2rem;"></span>
+										<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
+										<span class="fw-bold">progamare adaugata: </span> 
+										<span
+											th:text="' : ' + ${#temporals.format(appointment.date,'dd-MM-yyyy')}">You
+											should check your results.</span> 
+										 	
+											<span
+											th:text="' : ' + ${appointment.appointmentTime}">You
+											should check your results.</span> <span class="fw-bold">,
+											pacient: </span> <span th:text="' ' + ${appointment.pacientName}">You
+											should check your results.</span> <span class="fw-bold">,
+											requested: </span> <span
+											th:text="' ' + ${appointment.companyServices} ">You
+											should check your results.</span>
+									</div>
+									
+								</li>
+
+							</ul>
+									
+									 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><!-- the close for the alert  -->
+									
+								</div>
+
+
+
+
+					</div>
+	
+	<div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 " 
+		role="alert" th:if="${lastAppointment}!=null" id="lastAppointment" style="border-left: 3px solid #3FBBC0;">
+		<div class="wrapper">
+		
+			<span class="iconify" data-icon="icon-park-outline:appointment" style="font-size: 1.2rem;"></span>
+			<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
+			<span class="fw-bold" >Urmatoarea progamare  </span>  	 
+		  	<span th:text="' : ' + ${#temporals.format(lastAppointment.date,'dd-MM-yyyy')}" >You should check your results.</span>	
+			<span class="fw-bold">, pacient: </span>
+			<span th:text="' ' + ${lastAppointment.pacientName}">You should check your results.</span>	
+			<span class="fw-bold">, requested: </span>
+			<span th:text="' ' + ${lastAppointment.getStringCompanyServicesNames()} ">You should check your results.</span>	
+		
+		</div>
+  	 
+ 	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	
 	
                 
                    <!-- ============================================================== -->

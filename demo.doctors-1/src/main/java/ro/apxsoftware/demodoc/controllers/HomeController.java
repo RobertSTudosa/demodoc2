@@ -235,7 +235,8 @@ public class HomeController {
 	@PostMapping("/makeAppointment")
 	@Transactional
 	public String makeAnAppointment(Model model, @Valid  Appointment appointment, @RequestParam(value="doctor", required=false) Long doctorId, @RequestParam(value="service", required=false) String service,
-			@RequestParam(value="time", required=true) CharSequence time, @RequestParam(value="date", required = true) CharSequence date,
+			@RequestParam(value="time", required=true) CharSequence time, @RequestParam(value="date", required = true) CharSequence date, 
+			@RequestParam(value="email", required= false) String email,
 				  BindingResult result, Errors errors, User userAccount, Person person, Authentication auth, HttpSession session, RedirectAttributes redirAttr) {
 
 	
@@ -265,7 +266,15 @@ public class HomeController {
 				appointment.setPacient(person);
 				appointment.setAppointmentToken(UUID.randomUUID().toString());
 				appointment.setAppointmentTime(theTime);
-				appointment.setPacientEmail(person.getEmail());
+				if(email != null) {
+					System.out.println(email);
+					System.out.println("adminLogged ========== valid");
+					appointment.setPacientEmail(email);
+				} else {
+					appointment.setPacientEmail(person.getEmail());
+				}
+				
+				appointment.setPacientPhone(person.getPhone());
 
 				
 				appServ.saveApp(appointment);
@@ -281,7 +290,15 @@ public class HomeController {
 				appointment.setPacient(person);
 				appointment.setAppointmentToken(UUID.randomUUID().toString());
 				appointment.setAppointmentTime(theTime);
-				appointment.setPacientEmail(person.getEmail());
+				if(email != null) {
+					System.out.println(email);
+					System.out.println("adminLogged ========== valid");
+					appointment.setPacientEmail(email);
+				} else {
+					appointment.setPacientEmail(person.getEmail());
+				}
+				
+				appointment.setPacientPhone(person.getPhone());
 
 
 				
@@ -303,7 +320,7 @@ public class HomeController {
 				//get the next available doctor and assign this to him 
 				//appointment.setDoctor(null);
 				appointment.setDoctor(persServ.findNextDoctorAvailable(theDate, theTime));
-				
+			
 				
 				appointment.setPacient(null);
 				appointment.setAppointmentToken(UUID.randomUUID().toString());
@@ -352,6 +369,15 @@ public class HomeController {
 		
 //		SimpleMailMessage appointMail = emailServ.simpleAppointmentConfirmation(appointment.getPacientEmail(), 
 //				"Your Appointment with Medicio", appointment.getAppointmentToken());
+		String toEmail ="";
+		
+		if(email != null) {
+			System.out.println(email);
+			System.out.println("adminLogged ========== valid");
+			toEmail = appointment.getPacientEmail();
+			
+		}
+		
 		
 		MimeMessage mimeAppointMail = emailServ.confirmAppointmentMimeEmail(appointment.getPacientEmail(), 
 				"Your Appointment with Medicio", appointment.getAppointmentToken(),service);
@@ -359,6 +385,7 @@ public class HomeController {
 		emailServ.sendMimeEmail(mimeAppointMail);
 		
 //		emailServ.sendEmail(appointMail);
+		
 		redirAttr.addFlashAttribute("appointmentMade", new String("Programarea dvs a fost efectuata. Am trimis detaliile pe adresa dvs: " + appointment.getPacientEmail() + "."));
 		
 		return "redirect:/";

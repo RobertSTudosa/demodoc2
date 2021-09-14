@@ -284,11 +284,11 @@
                         	
                             <ol class="breadcrumb ms-auto">
                             <li class=" in">
-                            <form role="search" class="app-search d-block d-sm-block d-md-none me-3 row"  method="get" th:action="@{/doctor/searchAppointments}" id="searchApp">
+                            <form role="search" class="app-search d-block d-sm-block d-md-none me-3 row"  method="get" th:action="@{/doctor/searchAppointmentsAdmin}" id="searchApp">
 
 
 										<div class="input-group mb-3">
-
+											<input type="hidden" value="appointSearch" name="search" id="appointSearch">
 											<input type="text" placeholder="search..."
 												class="form-control mt-0" name="keyword"
 												th:value="${keyword}" id="keyword">
@@ -298,6 +298,14 @@
 												<i class="fa fa-search"></i>
 											</button>
 										</div>
+										
+										
+										
+	                           	<!-- <input type="text" placeholder="search..." class="form-control mt-0" name="keyword" th:value="${keyword}" id="keyword">
+                                <a href="" class="active">
+	                                <button type="submit" id="searchBtn" class="active"><i class="fa fa-search" ></i></button>
+                                
+                                </a> -->
 
 
 										<script type="text/javascript" th:inline="javascript">
@@ -336,155 +344,18 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Three charts -->
-                <!-- ============================================================== -->
-             <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-12">
-                        <div class="white-box analytics-info">
-                            <h3 class="box-title">Total Clienti</h3>
-                            <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <li>
-                                    <div id="sparklinedash"><canvas width="67" height="30"
-                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
-                                            <span class="iconify" data-icon="fluent:stack-star-24-regular"></span>
-                                    </div>
-                                </li>
-                                <li class="ms-auto"><span th:text="${totalClients}" class="counter text-success">659</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="white-box analytics-info">
-                            <h3 class="box-title">Total Programari</h3>
-                            <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <li>
-                                    <div id="sparklinedash2"><canvas width="67" height="30"
-                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
-                                    </div>
-                                </li>
-                                <li class="ms-auto"><span th:text="${totalAppointments}" class="counter text-purple">869</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="white-box analytics-info">
-                            <h3 class="box-title">Total Programari Anulate</h3>
-                            <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <li>
-                                    <div id="sparklinedash3"><canvas width="67" height="30"
-                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
-                                    </div>
-                                </li>
-                                <li class="ms-auto"><span th:text="${totalCanceledAppointments}" class="counter text-info">911</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-              
-                
-                <!-- ============= TAB EXAMPLE ==================== -->
-		     <!-- <div class="bd-example">
-  <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <p><strong>This is some placeholder content the Home tab's associated content.</strong> Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
-    </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <p><strong>This is some placeholder content the Profile tab's associated content.</strong> Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
-    </div>
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-      <p><strong>This is some placeholder content the Contact tab's associated content.</strong> Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
-    </div>
-  </div>
-</div> -->
-                <!-- ============= END TAB EXAMPLE ==================== -->
-                
-                
-                
+            
+            
      <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2" role="alert" th:if="${searchMessage}!=null" id="alertMessage">
-  	 <div class="wrapper">
-  	 	<i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i><span class="wrapper">You searched for  </span><span th:text="' : ' + ${searchMessage}">You should check your results.</span>
- 	 	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  	 </div>
+	  	 <div class="wrapper">
+	  	 	<i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i><span class="wrapper">You searched for  </span><span th:text="' : ' + ${searchMessage}">You should check your results.</span>
+	 	 	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	  	 </div>
   	 
 	</div>
 	
-			<div id="appointsMadeList"  >
-						
-								<div th:if="${appointsMade} != null"
-									class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 "
-									role="alert" id="tempAppoint"
-									style="border-left: 3px solid #3FBBC0;">
-									<h4>Programari recurente adaugate: </h4>
-									
-						<ul >
-							<li th:each="appointment : ${appointsMade}" style="list-style: none;">
-									<div class="wrapper">
-
-										<span class="iconify"
-											data-icon="icon-park-outline:appointment"
-											style="font-size: 1.2rem;"></span>
-										<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
-										<span class="fw-bold">progamare adaugata: </span> 
-										<span
-											th:text="' : ' + ${#temporals.format(appointment.date,'dd-MM-yyyy')}">You
-											should check your results.</span> 
-										 	
-											<span
-											th:text="' : ' + ${appointment.appointmentTime}">You
-											should check your results.</span> <span class="fw-bold">,
-											pacient: </span> <span th:text="' ' + ${appointment.pacientName}">You
-											should check your results.</span> <span class="fw-bold">,
-											requested: </span> <span
-											th:text="' ' + ${appointment.companyServices} ">You
-											should check your results.</span>
-									</div>
-									
-								</li>
-
-							</ul>
-									
-									 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><!-- the close for the alert  -->
-									
-								</div>
-
-
-
-
-					</div>
 	
-	<div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 " 
-		role="alert" th:if="${lastAppointment}!=null" id="lastAppointment" style="border-left: 3px solid #3FBBC0;">
-		<div class="wrapper">
-		
-			<span class="iconify" data-icon="icon-park-outline:appointment" style="font-size: 1.2rem;"></span>
-			<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
-			<span class="fw-bold" >Urmatoarea progamare  </span>  	 
-		  	<span th:text="' : ' + ${#temporals.format(lastAppointment.date,'dd-MM-yyyy')}" >You should check your results.</span>	
-			<span class="fw-bold">, pacient: </span>
-			<span th:text="' ' + ${lastAppointment.pacientName}">You should check your results.</span>	
-			<span class="fw-bold">, requested: </span>
-			<span th:text="' ' + ${lastAppointment.getStringCompanyServicesNames()} ">You should check your results.</span>	
-		
-		</div>
-  	 
- 	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-	</div>
-	
-	 <div class="row alert d-flex align-items-center alert-dismissible fade show mx-2 mt-2"  th:if="${keywords}!=null" id="searchResultsWrapper">
+	<div class="row alert d-flex align-items-center alert-dismissible fade show mx-2 mt-2"  th:if="${keywords}!=null" id="searchResultsWrapper">
 			<div class="col-md-12 col-lg-12 col-sm-12 tab-pane fade active show" id="search" role="tabpanel" aria-labelledby="future-tab" >
                         <div class="white-box">
                             <div class="d-md-flex mb-3">
@@ -594,6 +465,151 @@
 		
 	</div>	
 	
+	
+	
+                <!-- ============================================================== -->
+                <!-- Three charts -->
+                <!-- ============================================================== -->
+             <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Total Clienti</h3>
+                            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                                <li>
+                                    <div id="sparklinedash"><canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                            <span class="iconify" data-icon="fluent:stack-star-24-regular"></span>
+                                    </div>
+                                </li>
+                                <li class="ms-auto"><span th:text="${totalClients}" class="counter text-success">659</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Total Programari</h3>
+                            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                                <li>
+                                    <div id="sparklinedash2"><canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                    </div>
+                                </li>
+                                <li class="ms-auto"><span th:text="${totalAppointments}" class="counter text-purple">869</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Total Programari Anulate</h3>
+                            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                                <li>
+                                    <div id="sparklinedash3"><canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                    </div>
+                                </li>
+                                <li class="ms-auto"><span th:text="${totalCanceledAppointments}" class="counter text-info">911</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+              
+                
+                <!-- ============= TAB EXAMPLE ==================== -->
+		     <!-- <div class="bd-example">
+  <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <p><strong>This is some placeholder content the Home tab's associated content.</strong> Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <p><strong>This is some placeholder content the Profile tab's associated content.</strong> Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <p><strong>This is some placeholder content the Contact tab's associated content.</strong> Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+    </div>
+  </div>
+</div> -->
+                <!-- ============= END TAB EXAMPLE ==================== -->
+                
+                
+                
+
+	
+			<div id="appointsMadeList"  >
+						
+								<div th:if="${appointsMade} != null"
+									class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 "
+									role="alert" id="tempAppoint"
+									style="border-left: 3px solid #3FBBC0;">
+									<h4>Programari recurente adaugate: </h4>
+									
+						<ul >
+							<li th:each="appointment : ${appointsMade}" style="list-style: none;">
+									<div class="wrapper">
+
+										<span class="iconify"
+											data-icon="icon-park-outline:appointment"
+											style="font-size: 1.2rem;"></span>
+										<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
+										<span class="fw-bold">progamare adaugata: </span> 
+										<span
+											th:text="' : ' + ${#temporals.format(appointment.date,'dd-MM-yyyy')}">You
+											should check your results.</span> 
+										 	
+											<span
+											th:text="' : ' + ${appointment.appointmentTime}">You
+											should check your results.</span> <span class="fw-bold">,
+											pacient: </span> <span th:text="' ' + ${appointment.pacientName}">You
+											should check your results.</span> <span class="fw-bold">,
+											requested: </span> <span
+											th:text="' ' + ${appointment.companyServices} ">You
+											should check your results.</span>
+									</div>
+									
+								</li>
+
+							</ul>
+									
+									 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><!-- the close for the alert  -->
+									
+								</div>
+
+
+
+
+					</div>
+	
+	<div class="alert alert-warning d-flex align-items-center alert-dismissible fade show mx-2 mt-2 " 
+		role="alert" th:if="${lastAppointment}!=null" id="lastAppointment" style="border-left: 3px solid #3FBBC0;">
+		<div class="wrapper">
+		
+			<span class="iconify" data-icon="icon-park-outline:appointment" style="font-size: 1.2rem;"></span>
+			<!-- <i class="bi flex-shrink-0 me-2 fas fa-check-circle"></i> -->
+			<span class="fw-bold" >Urmatoarea progamare  </span>  	 
+		  	<span th:text="' : ' + ${#temporals.format(lastAppointment.date,'dd-MM-yyyy')}" >You should check your results.</span>	
+			<span class="fw-bold">, pacient: </span>
+			<span th:text="' ' + ${lastAppointment.pacientName}">You should check your results.</span>	
+			<span class="fw-bold">, requested: </span>
+			<span th:text="' ' + ${lastAppointment.getStringCompanyServicesNames()} ">You should check your results.</span>	
+		
+		</div>
+  	 
+ 	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	
+	 
    
 	
                 
