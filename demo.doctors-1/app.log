@@ -11004,3 +11004,460 @@ java.lang.ClassCastException: class java.io.ObjectStreamClass cannot be cast to 
 2021-09-14 15:08:46.155  INFO 15532 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
 2021-09-14 15:08:46.304  INFO 15532 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : Started ApplicationTests in 13.72 seconds (JVM running for 15.078)
 2021-09-14 15:08:46.908  INFO 15532 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-09-14 15:26:37.564  INFO 20276 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : Starting ApplicationTests using Java 15.0.1 on DESKTOP-626N0R4 with PID 20276 (started by rober in C:\Users\rober\Documents\GitHub\demodoc2\demo.doctors-1)
+2021-09-14 15:26:37.566 DEBUG 20276 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : Running with Spring Boot v2.5.2, Spring v5.3.8
+2021-09-14 15:26:37.567  INFO 20276 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : The following profiles are active: dev
+2021-09-14 15:26:38.935  INFO 20276 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-09-14 15:26:38.940  INFO 20276 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2021-09-14 15:26:38.999  INFO 20276 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.AppointmentRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:26:39.001  INFO 20276 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.CompanyServiceRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:26:39.002  INFO 20276 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.ConfirmationTokenRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:26:39.005  INFO 20276 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.PersonRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:26:39.007  INFO 20276 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.ProfileImgRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:26:39.009  INFO 20276 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.RoleRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:26:39.013  INFO 20276 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.UserRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:26:39.014  INFO 20276 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 67 ms. Found 0 JDBC repository interfaces.
+2021-09-14 15:26:39.025  INFO 20276 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-09-14 15:26:39.026  INFO 20276 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-09-14 15:26:39.100  INFO 20276 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 67 ms. Found 7 JPA repository interfaces.
+2021-09-14 15:26:43.186  INFO 20276 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-09-14 15:26:44.277 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:26:44.279 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE passwordEncoder EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.WebConfig.passwordEncoder () with arguments[s] = []
+2021-09-14 15:26:44.281 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:26:44.308 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:26:44.308 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER passwordEncoder EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.WebConfig.passwordEncoder () with arguments[s] = []
+2021-09-14 15:26:44.309 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:26:44.765 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:26:44.765 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE authenticationManagerBean EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.authenticationManagerBean () with arguments[s] = []
+2021-09-14 15:26:44.765 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:26:44.777 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:26:44.778 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER authenticationManagerBean EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.authenticationManagerBean () with arguments[s] = []
+2021-09-14 15:26:44.778 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:26:45.000 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:26:45.001 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE successHandler EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.successHandler () with arguments[s] = []
+2021-09-14 15:26:45.001 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:26:45.002 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:26:45.002 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER successHandler EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.successHandler () with arguments[s] = []
+2021-09-14 15:26:45.002 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:26:45.163  INFO 20276 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@620260ad, org.springframework.security.web.context.SecurityContextPersistenceFilter@40874f54, org.springframework.security.web.header.HeaderWriterFilter@30623109, org.springframework.security.web.csrf.CsrfFilter@2286dfcd, org.springframework.security.web.authentication.logout.LogoutFilter@74fd5fb0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7ecd6861, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2862bac6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1d2aa638, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@232899d1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@216c6825, org.springframework.security.web.session.SessionManagementFilter@665e18d5, org.springframework.security.web.access.ExceptionTranslationFilter@6b61a4b0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@740530b]
+2021-09-14 15:26:45.185 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:26:45.186 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE servletContainer EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.ServerConfig.servletContainer () with arguments[s] = []
+2021-09-14 15:26:45.186 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:26:45.263 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:26:45.264 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER servletContainer EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.ServerConfig.servletContainer () with arguments[s] = []
+2021-09-14 15:26:45.264 DEBUG 20276 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:26:46.129  INFO 20276 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-09-14 15:26:47.277  INFO 20276 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2021-09-14 15:26:47.354  INFO 20276 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : Started ApplicationTests in 10.172 seconds (JVM running for 11.306)
+2021-09-14 15:26:47.711  INFO 20276 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-09-14 15:35:51.953  INFO 20984 --- [restartedMain] ro.apxsoftware.demodoc.Application       : Starting Application using Java 15.0.1 on DESKTOP-626N0R4 with PID 20984 (C:\Users\rober\Documents\GitHub\demodoc2\demo.doctors-1\target\classes started by rober in C:\Users\rober\Documents\GitHub\demodoc2\demo.doctors-1)
+2021-09-14 15:35:51.956 DEBUG 20984 --- [restartedMain] ro.apxsoftware.demodoc.Application       : Running with Spring Boot v2.5.2, Spring v5.3.8
+2021-09-14 15:35:51.956  INFO 20984 --- [restartedMain] ro.apxsoftware.demodoc.Application       : The following profiles are active: dev
+2021-09-14 15:35:52.005  INFO 20984 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-09-14 15:35:52.006  INFO 20984 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-09-14 15:35:53.052  INFO 20984 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-09-14 15:35:53.054  INFO 20984 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2021-09-14 15:35:53.093  INFO 20984 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.AppointmentRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:35:53.095  INFO 20984 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.CompanyServiceRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:35:53.096  INFO 20984 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.ConfirmationTokenRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:35:53.098  INFO 20984 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.PersonRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:35:53.100  INFO 20984 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.ProfileImgRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:35:53.102  INFO 20984 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.RoleRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:35:53.104  INFO 20984 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.UserRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:35:53.105  INFO 20984 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 0 JDBC repository interfaces.
+2021-09-14 15:35:53.114  INFO 20984 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-09-14 15:35:53.116  INFO 20984 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-09-14 15:35:53.173  INFO 20984 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 7 JPA repository interfaces.
+2021-09-14 15:35:53.701 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:35:53.702 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE servletContainer EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.ServerConfig.servletContainer () with arguments[s] = []
+2021-09-14 15:35:53.704 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:35:53.762 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:35:53.762 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER servletContainer EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.ServerConfig.servletContainer () with arguments[s] = []
+2021-09-14 15:35:53.762 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:35:54.052 DEBUG 20984 --- [restartedMain] r.a.demodoc.security.ServerConfig$1      : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.5.2\spring-boot-2.5.2.jar
+2021-09-14 15:35:54.053 DEBUG 20984 --- [restartedMain] r.a.demodoc.security.ServerConfig$1      : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.5.2\spring-boot-2.5.2.jar
+2021-09-14 15:35:54.054 DEBUG 20984 --- [restartedMain] r.a.demodoc.security.ServerConfig$1      : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2021-09-14 15:35:54.170  INFO 20984 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 8080 (http)
+2021-09-14 15:35:54.311  INFO 20984 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2305 ms
+2021-09-14 15:35:56.036  INFO 20984 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://209.159.147.190:3306/bpeople_demo_doctors?autoReconnect=true&serverTimezone=UTC'
+2021-09-14 15:35:57.554  INFO 20984 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-09-14 15:35:58.268 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:35:58.269 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE passwordEncoder EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.WebConfig.passwordEncoder () with arguments[s] = []
+2021-09-14 15:35:58.269 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:35:58.277 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:35:58.277 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER passwordEncoder EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.WebConfig.passwordEncoder () with arguments[s] = []
+2021-09-14 15:35:58.278 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:35:58.588 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:35:58.588 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE authenticationManagerBean EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.authenticationManagerBean () with arguments[s] = []
+2021-09-14 15:35:58.588 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:35:58.593 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:35:58.593 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER authenticationManagerBean EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.authenticationManagerBean () with arguments[s] = []
+2021-09-14 15:35:58.594 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:35:58.725 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:35:58.725 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE successHandler EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.successHandler () with arguments[s] = []
+2021-09-14 15:35:58.725 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:35:58.726 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:35:58.726 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER successHandler EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.successHandler () with arguments[s] = []
+2021-09-14 15:35:58.726 DEBUG 20984 --- [restartedMain] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:35:58.838  INFO 20984 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2fa60364, org.springframework.security.web.context.SecurityContextPersistenceFilter@4f8c969d, org.springframework.security.web.header.HeaderWriterFilter@6332922d, org.springframework.security.web.csrf.CsrfFilter@50f59dfc, org.springframework.security.web.authentication.logout.LogoutFilter@46c75cdc, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4f453902, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2f5c0e1d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@a6081ea, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@1e4c14a5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5a0d7f0c, org.springframework.security.web.session.SessionManagementFilter@358248a8, org.springframework.security.web.access.ExceptionTranslationFilter@767a9272, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6b7072d3]
+2021-09-14 15:35:59.319  INFO 20984 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-09-14 15:36:00.440  INFO 20984 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-09-14 15:36:00.451  INFO 20984 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2021-09-14 15:36:01.048  INFO 20984 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 8080 (http) with context path ''
+2021-09-14 15:36:01.062  INFO 20984 --- [restartedMain] ro.apxsoftware.demodoc.Application       : Started Application in 9.499 seconds (JVM running for 10.361)
+2021-09-14 15:36:55.177  INFO 20984 --- [https-jsse-nio-443-exec-9] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-09-14 15:36:55.180  INFO 20984 --- [https-jsse-nio-443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-09-14 15:36:55.221 DEBUG 20984 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:36:55.222 DEBUG 20984 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE displayIndex EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.displayIndex () with arguments[s] = [{person=ro.apxsoftware.demodoc.entities.Person@7a099698, userAccount=ro.apxsoftware.demodoc.entities.User@786243ce}, org.apache.catalina.session.StandardSessionFacade@719ab505, UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=stef@bpeople.ro, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[DOCTOR, USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=A059B577E07FFB1663A84B6BCEAECB79], Granted Authorities=[DOCTOR, USER]], {}]
+2021-09-14 15:36:55.222 DEBUG 20984 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:03.685 DEBUG 20984 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:03.686 DEBUG 20984 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER displayIndex EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.displayIndex () with arguments[s] = [{person=ro.apxsoftware.demodoc.entities.Person@7a099698, userAccount=ro.apxsoftware.demodoc.entities.User@786243ce, appointment=Appointment [appointmentId=0, date=null, time=null, doctor=null, pacient=null], fixedTimes=[09:00, 10:00, 11:00, 12:00, 14:00, 15:00, 16:00, 17:00, 18:00], busyDates=[], doctors=[ro.apxsoftware.demodoc.entities.Person@7a099698, ro.apxsoftware.demodoc.entities.Person@7a099698, ro.apxsoftware.demodoc.entities.Person@7a099698], userId=2, doctorAppointments=[Appointment [appointmentId=60, date=2021-09-15, time=11:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=ro.apxsoftware.demodoc.entities.Person@7a099698], Appointment [appointmentId=62, date=2021-09-22, time=11:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=ro.apxsoftware.demodoc.entities.Person@7a099698], Appointment [appointmentId=63, date=2021-09-22, time=13:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=ro.apxsoftware.demodoc.entities.Person@7a099698], Appointment [appointmentId=64, date=2021-09-22, time=12:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=null], Appointment [appointmentId=65, date=2021-09-22, time=14:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=ro.apxsoftware.demodoc.entities.Person@7a099698], Appointment [appointmentId=66, date=2021-09-22, time=16:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=ro.apxsoftware.demodoc.entities.Person@7a099698]], pastDoctorAppointments=[], cancelDoctorAppointments=[], img=ProfileImg [picId=43, picName=samuel-raita-RiDxDgHg7pw-unsplash.jpg, picType=image/jpeg, person=ro.apxsoftware.demodoc.entities.Person@7a099698], lastPicList=[ProfileImg [picId=43, picName=samuel-raita-RiDxDgHg7pw-unsplash.jpg, picType=image/jpeg, person=ro.apxsoftware.demodoc.entities.Person@7a099698]], lastAppointment=Appointment [appointmentId=60, date=2021-09-15, time=11:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=ro.apxsoftware.demodoc.entities.Person@7a099698]}, org.apache.catalina.session.StandardSessionFacade@719ab505, UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=stef@bpeople.ro, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[DOCTOR, USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=A059B577E07FFB1663A84B6BCEAECB79], Granted Authorities=[DOCTOR, USER]], {}]
+2021-09-14 15:37:03.687 DEBUG 20984 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:04.390 DEBUG 20984 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:04.390 DEBUG 20984 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE showProfileImg EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.ServiceProviderController.showProfileImg () with arguments[s] = [43, ro.apxsoftware.demodoc.entities.Person@7a099698]
+2021-09-14 15:37:04.390 DEBUG 20984 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:05.280 DEBUG 20984 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:05.280 DEBUG 20984 --- [https-jsse-nio-443-exec-10] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:05.281 DEBUG 20984 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE showLastProfileImg EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.ServiceProviderController.showLastProfileImg () with arguments[s] = [2]
+2021-09-14 15:37:05.281 DEBUG 20984 --- [https-jsse-nio-443-exec-10] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE showLastProfileImg EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.ServiceProviderController.showLastProfileImg () with arguments[s] = [8]
+2021-09-14 15:37:05.282 DEBUG 20984 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:05.282 DEBUG 20984 --- [https-jsse-nio-443-exec-10] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:05.408 DEBUG 20984 --- [https-jsse-nio-443-exec-2] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:05.408 DEBUG 20984 --- [https-jsse-nio-443-exec-2] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE showLastProfileImg EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.ServiceProviderController.showLastProfileImg () with arguments[s] = [3]
+2021-09-14 15:37:05.409 DEBUG 20984 --- [https-jsse-nio-443-exec-2] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:05.458 DEBUG 20984 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:05.459 DEBUG 20984 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER showProfileImg EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.ServiceProviderController.showProfileImg () with arguments[s] = [43, ro.apxsoftware.demodoc.entities.Person@7a099698]
+2021-09-14 15:37:05.459 DEBUG 20984 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:06.118 DEBUG 20984 --- [https-jsse-nio-443-exec-2] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:06.119 DEBUG 20984 --- [https-jsse-nio-443-exec-2] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER showLastProfileImg EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.ServiceProviderController.showLastProfileImg () with arguments[s] = [3]
+2021-09-14 15:37:06.119 DEBUG 20984 --- [https-jsse-nio-443-exec-2] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:06.282 DEBUG 20984 --- [https-jsse-nio-443-exec-10] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:06.283 DEBUG 20984 --- [https-jsse-nio-443-exec-10] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER showLastProfileImg EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.ServiceProviderController.showLastProfileImg () with arguments[s] = [8]
+2021-09-14 15:37:06.284 DEBUG 20984 --- [https-jsse-nio-443-exec-10] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:06.286 DEBUG 20984 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:06.287 DEBUG 20984 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER showLastProfileImg EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.ServiceProviderController.showLastProfileImg () with arguments[s] = [2]
+2021-09-14 15:37:06.288 DEBUG 20984 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:10.617 DEBUG 20984 --- [https-jsse-nio-443-exec-3] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:10.618 DEBUG 20984 --- [https-jsse-nio-443-exec-3] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getAllBusyDates EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.getAllBusyDates () with arguments[s] = [{person=ro.apxsoftware.demodoc.entities.Person@7a099698, userAccount=ro.apxsoftware.demodoc.entities.User@786243ce}, {}]
+2021-09-14 15:37:10.618 DEBUG 20984 --- [https-jsse-nio-443-exec-3] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:12.800 DEBUG 20984 --- [https-jsse-nio-443-exec-8] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:12.800 DEBUG 20984 --- [https-jsse-nio-443-exec-8] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getFixedTimesByDateByDoctor EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.getFixedTimesByDateByDoctor () with arguments[s] = [2021-09-22, 2, {person=ro.apxsoftware.demodoc.entities.Person@7a099698, userAccount=ro.apxsoftware.demodoc.entities.User@786243ce}, {}]
+2021-09-14 15:37:12.801 DEBUG 20984 --- [https-jsse-nio-443-exec-8] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:13.878 DEBUG 20984 --- [https-jsse-nio-443-exec-8] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:13.878 DEBUG 20984 --- [https-jsse-nio-443-exec-8] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getFixedTimesByDateByDoctor EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.getFixedTimesByDateByDoctor () with arguments[s] = [2021-09-22, 2, {person=ro.apxsoftware.demodoc.entities.Person@7a099698, userAccount=ro.apxsoftware.demodoc.entities.User@786243ce, fixedTimes=[09:00, 10:00, 11:00, 12:00, 14:00, 15:00, 16:00, 17:00, 18:00]}, {}]
+2021-09-14 15:37:13.878 DEBUG 20984 --- [https-jsse-nio-443-exec-8] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:14.917 DEBUG 20984 --- [https-jsse-nio-443-exec-4] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:14.917 DEBUG 20984 --- [https-jsse-nio-443-exec-4] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE displayIndex EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.displayIndex () with arguments[s] = [{person=ro.apxsoftware.demodoc.entities.Person@7a099698, userAccount=ro.apxsoftware.demodoc.entities.User@786243ce}, org.apache.catalina.session.StandardSessionFacade@719ab505, UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=stef@bpeople.ro, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[DOCTOR, USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=A059B577E07FFB1663A84B6BCEAECB79], Granted Authorities=[DOCTOR, USER]], {}]
+2021-09-14 15:37:14.917 DEBUG 20984 --- [https-jsse-nio-443-exec-4] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:14.917 DEBUG 20984 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:14.918 DEBUG 20984 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getFixedTimesByDate EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.getFixedTimesByDate () with arguments[s] = [2021-09-22, {person=ro.apxsoftware.demodoc.entities.Person@7a099698, userAccount=ro.apxsoftware.demodoc.entities.User@786243ce}, {}]
+2021-09-14 15:37:14.918 DEBUG 20984 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:15.761 DEBUG 20984 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:15.762 DEBUG 20984 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getFixedTimesByDate EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.getFixedTimesByDate () with arguments[s] = [2021-09-22, {person=ro.apxsoftware.demodoc.entities.Person@7a099698, userAccount=ro.apxsoftware.demodoc.entities.User@786243ce, fixedTimes=[09:00, 10:00, 11:00, 12:00, 14:00, 15:00, 16:00, 17:00, 18:00]}, {}]
+2021-09-14 15:37:15.762 DEBUG 20984 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:16.429 DEBUG 20984 --- [https-jsse-nio-443-exec-3] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:16.430 DEBUG 20984 --- [https-jsse-nio-443-exec-3] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getAllBusyDates EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.getAllBusyDates () with arguments[s] = [{person=ro.apxsoftware.demodoc.entities.Person@7a099698, userAccount=ro.apxsoftware.demodoc.entities.User@786243ce, fixedTimes=[09:00, 10:00, 11:00, 12:00, 14:00, 15:00, 16:00, 17:00, 18:00]}, {}]
+2021-09-14 15:37:16.431 DEBUG 20984 --- [https-jsse-nio-443-exec-3] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:23.272 DEBUG 20984 --- [https-jsse-nio-443-exec-4] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:23.274 DEBUG 20984 --- [https-jsse-nio-443-exec-4] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER displayIndex EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.displayIndex () with arguments[s] = [{person=ro.apxsoftware.demodoc.entities.Person@7a099698, userAccount=ro.apxsoftware.demodoc.entities.User@786243ce, appointment=Appointment [appointmentId=0, date=null, time=null, doctor=null, pacient=null], fixedTimes=[09:00, 10:00, 11:00, 12:00, 14:00, 15:00, 16:00, 17:00, 18:00], busyDates=[], doctors=[ro.apxsoftware.demodoc.entities.Person@7a099698, ro.apxsoftware.demodoc.entities.Person@7a099698, ro.apxsoftware.demodoc.entities.Person@7a099698], userId=2, doctorAppointments=[Appointment [appointmentId=60, date=2021-09-15, time=11:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=ro.apxsoftware.demodoc.entities.Person@7a099698], Appointment [appointmentId=62, date=2021-09-22, time=11:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=ro.apxsoftware.demodoc.entities.Person@7a099698], Appointment [appointmentId=63, date=2021-09-22, time=13:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=ro.apxsoftware.demodoc.entities.Person@7a099698], Appointment [appointmentId=64, date=2021-09-22, time=12:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=null], Appointment [appointmentId=65, date=2021-09-22, time=14:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=ro.apxsoftware.demodoc.entities.Person@7a099698], Appointment [appointmentId=66, date=2021-09-22, time=16:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=ro.apxsoftware.demodoc.entities.Person@7a099698]], pastDoctorAppointments=[], cancelDoctorAppointments=[], img=ProfileImg [picId=43, picName=samuel-raita-RiDxDgHg7pw-unsplash.jpg, picType=image/jpeg, person=ro.apxsoftware.demodoc.entities.Person@7a099698], lastPicList=[ProfileImg [picId=43, picName=samuel-raita-RiDxDgHg7pw-unsplash.jpg, picType=image/jpeg, person=ro.apxsoftware.demodoc.entities.Person@7a099698]], lastAppointment=Appointment [appointmentId=60, date=2021-09-15, time=11:00, doctor=ro.apxsoftware.demodoc.entities.Person@7a099698, pacient=ro.apxsoftware.demodoc.entities.Person@7a099698]}, org.apache.catalina.session.StandardSessionFacade@719ab505, UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=stef@bpeople.ro, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[DOCTOR, USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=A059B577E07FFB1663A84B6BCEAECB79], Granted Authorities=[DOCTOR, USER]], {}]
+2021-09-14 15:37:23.275 DEBUG 20984 --- [https-jsse-nio-443-exec-4] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:32.903  INFO 20984 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-09-14 15:37:32.993  INFO 20984 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-09-14 15:37:50.889  INFO 22404 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : Starting ApplicationTests using Java 15.0.1 on DESKTOP-626N0R4 with PID 22404 (started by rober in C:\Users\rober\Documents\GitHub\demodoc2\demo.doctors-1)
+2021-09-14 15:37:50.892 DEBUG 22404 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : Running with Spring Boot v2.5.2, Spring v5.3.8
+2021-09-14 15:37:50.893  INFO 22404 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : The following profiles are active: dev
+2021-09-14 15:37:52.321  INFO 22404 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-09-14 15:37:52.325  INFO 22404 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2021-09-14 15:37:52.383  INFO 22404 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.AppointmentRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:37:52.385  INFO 22404 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.CompanyServiceRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:37:52.387  INFO 22404 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.ConfirmationTokenRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:37:52.389  INFO 22404 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.PersonRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:37:52.391  INFO 22404 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.ProfileImgRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:37:52.394  INFO 22404 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.RoleRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:37:52.397  INFO 22404 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.UserRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-09-14 15:37:52.398  INFO 22404 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66 ms. Found 0 JDBC repository interfaces.
+2021-09-14 15:37:52.413  INFO 22404 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-09-14 15:37:52.415  INFO 22404 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-09-14 15:37:52.499  INFO 22404 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 77 ms. Found 7 JPA repository interfaces.
+2021-09-14 15:37:57.284  INFO 22404 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-09-14 15:37:58.521 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:58.524 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE passwordEncoder EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.WebConfig.passwordEncoder () with arguments[s] = []
+2021-09-14 15:37:58.525 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:58.545 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:58.546 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER passwordEncoder EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.WebConfig.passwordEncoder () with arguments[s] = []
+2021-09-14 15:37:58.546 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:59.010 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:59.011 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE authenticationManagerBean EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.authenticationManagerBean () with arguments[s] = []
+2021-09-14 15:37:59.011 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:59.022 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:59.022 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER authenticationManagerBean EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.authenticationManagerBean () with arguments[s] = []
+2021-09-14 15:37:59.022 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:59.610 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:59.611 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE successHandler EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.successHandler () with arguments[s] = []
+2021-09-14 15:37:59.611 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:59.612 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:59.612 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER successHandler EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.successHandler () with arguments[s] = []
+2021-09-14 15:37:59.612 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:37:59.941  INFO 22404 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6ae55678, org.springframework.security.web.context.SecurityContextPersistenceFilter@6a486afb, org.springframework.security.web.header.HeaderWriterFilter@5edd2170, org.springframework.security.web.csrf.CsrfFilter@68a7bc12, org.springframework.security.web.authentication.logout.LogoutFilter@70e07ef8, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@444720b7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4fe8ac61, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2862bac6, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@2d4aadc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4bc75792, org.springframework.security.web.session.SessionManagementFilter@6b61a4b0, org.springframework.security.web.access.ExceptionTranslationFilter@6a5a99d9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@33319df0]
+2021-09-14 15:37:59.988 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:37:59.989 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE servletContainer EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.ServerConfig.servletContainer () with arguments[s] = []
+2021-09-14 15:37:59.989 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:38:00.122 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-09-14 15:38:00.123 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER servletContainer EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.ServerConfig.servletContainer () with arguments[s] = []
+2021-09-14 15:38:00.123 DEBUG 22404 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-09-14 15:38:01.480  INFO 22404 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-09-14 15:38:03.631  INFO 22404 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2021-09-14 15:38:03.739  INFO 22404 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : Started ApplicationTests in 13.256 seconds (JVM running for 14.426)
+2021-09-14 15:38:04.271  INFO 22404 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
