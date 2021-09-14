@@ -68,7 +68,7 @@
               			console.log("getDoctorBusyDates is calling");
               			var doctorId = $("select#doctorTWO").children("option:selected").val(); //use again in the function select hours by doctor 
               			console.log("doctor's id is selected --> " + doctorId);
-              			var dateVal = $("#date").val(); 
+              			var dateVal = $("#dateSimpleApp").val(); 
               			var now = new Date();
               			
               			if(doctorId > 0 ) {
@@ -132,7 +132,7 @@
               </script>
             </div>
             <div class="col-md-4 form-group mt-3">
-              <input type="date" th:field="${appointment.date}"  name="date" class="form-control datepicker readonly" id="date" placeholder="Data programarii" 
+              <input type="date" th:field="${appointment.date}"  name="date" class="form-control datepicker readonly" id="dateSimpleApp" placeholder="Data programarii" 
               		th:attr="onchange=|(getTimesSimpleApp())|" onclick="event.preventDefault()" required>
       
             </div>
@@ -144,7 +144,7 @@
 				
 					
 					console.log(busyDatesArray);
-	            	$("#date").datepicker({ 
+	            	$("#dateSimpleApp").datepicker({ 
 	            	
 	            			beforeShowDay: function(date) {
 	            			  var string2 = formatDate(date);
@@ -219,9 +219,9 @@
            		 function getTimesSimpleApp () {
 						
 
-						console.log('calling getTime()');
+						console.log('calling getTimeSimpleApp()');
 						
-						var dateVal = $("#date").val(); //this is in the getTimes() scope
+						var dateVal = $("#dateSimpleApp").val(); //this is in the getTimes() scope
 						var doctorId = $("select#doctorTWO").children("option:selected").val(); //use again in the function select hours by doctor 
               			console.log("doctor's id is selected --> " + doctorId);
 						
