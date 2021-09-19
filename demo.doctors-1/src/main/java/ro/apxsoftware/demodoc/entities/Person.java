@@ -1,6 +1,7 @@
 package ro.apxsoftware.demodoc.entities;
 
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +20,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 
 
@@ -136,7 +138,11 @@ public class Person implements Serializable {
 //	private List<SocialMedia> socialMedia = new ArrayList<>();
 //	
 
+	@DateTimeFormat(iso = ISO.TIME)
+	private LocalTime startDay;
 	
+	@DateTimeFormat(iso=ISO.TIME)
+	private LocalTime endDay;
 	
 	@OneToOne(mappedBy="person")
 	private User user;
@@ -590,6 +596,28 @@ public class Person implements Serializable {
 
 	public void setProfileImg(List<ProfileImg> profileImg) {
 		this.profileImg = profileImg;
+	}
+	
+	
+
+
+	public LocalTime getStartDay() {
+		return startDay;
+	}
+
+
+	public void setStartDay(LocalTime startDay) {
+		this.startDay = startDay;
+	}
+
+
+	public LocalTime getEndDay() {
+		return endDay;
+	}
+
+
+	public void setEndDay(LocalTime endDay) {
+		this.endDay = endDay;
 	}
 
 
