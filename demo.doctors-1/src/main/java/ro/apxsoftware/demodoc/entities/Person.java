@@ -48,95 +48,7 @@ public class Person implements Serializable {
 	
 	private boolean unreadNotifs = false;	
 		
-//	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
-//			fetch = FetchType.LAZY)
-//	@JoinTable(name="person_docs",
-//			joinColumns=@JoinColumn(name="person_id"),
-//			inverseJoinColumns=@JoinColumn(name="doc_id"))
-//	private List<Doc> docs= new ArrayList<>();
-//	
-//	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
-//			fetch = FetchType.LAZY)
-//	@JoinTable(name="person_pics",
-//			joinColumns=@JoinColumn(name="person_id"),
-//			inverseJoinColumns=@JoinColumn(name="pic_id"))
-//	private List<ProfileImg> pics= new ArrayList<>();
-//	
-//
-//	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
-//			fetch = FetchType.LAZY)
-//	@JoinTable(name="person_skills",
-//			joinColumns=@JoinColumn(name="person_id"),
-//			inverseJoinColumns=@JoinColumn(name="skill_id"))
-//	private List<Skill> skills = new ArrayList<>();
-//	
-//	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
-//			fetch = FetchType.LAZY)
-//	@JoinTable(name="person_lang",
-//			joinColumns=@JoinColumn(name="person_id"),
-//			inverseJoinColumns=@JoinColumn(name="lang_id"))
-//	private List<Language> languages = new ArrayList<>();
-//	
-//	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
-//			fetch = FetchType.LAZY)
-//	@JoinTable(name="person_jobs",
-//			joinColumns=@JoinColumn(name="person_id"),
-//			inverseJoinColumns=@JoinColumn(name="job_id"))
-//	private List<Job> jobs = new ArrayList<>();
-//	
-//	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
-//			fetch = FetchType.LAZY)
-//	@JoinTable(name="person_jobsInList",
-//			joinColumns=@JoinColumn(name="person_id"),
-//			inverseJoinColumns=@JoinColumn(name="job_id"))
-//	private Set<Job> jobsInList = new HashSet<>();
-//	
-//	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
-//			fetch = FetchType.LAZY)
-//	@JoinTable(name="person_jobsApplied",
-//			joinColumns=@JoinColumn(name="person_id"),
-//			inverseJoinColumns=@JoinColumn(name="job_id"))
-//	private Set<Job> jobsApplied = new HashSet<>();
-//	
-//	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
-//			fetch = FetchType.LAZY)
-//	@JoinTable(name="person_jobsApproved",
-//			joinColumns=@JoinColumn(name="person_id"),
-//			inverseJoinColumns=@JoinColumn(name="job_id"))
-//	private Set<Job> jobsApproved = new HashSet<>();
-//	
-//	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
-//			fetch = FetchType.LAZY)
-//	@JoinTable(name="person_jobsRejected",
-//			joinColumns=@JoinColumn(name="person_id"),
-//			inverseJoinColumns=@JoinColumn(name="job_id"))
-//	private Set<Job> jobsRejected = new HashSet<>();
-//	
-//	
-//	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
-//			fetch = FetchType.LAZY)
-//	@JoinTable(name="person_jobsValidDate",
-//			joinColumns=@JoinColumn(name="person_id"),
-//			inverseJoinColumns=@JoinColumn(name="job_id"))
-//	private Set<Job> jobsValidDate = new HashSet<>();
-//	
-//	
-//	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
-//			fetch = FetchType.LAZY)
-//	@JoinTable(name="person_notifications",
-//			joinColumns=@JoinColumn(name="person_id"),
-//			inverseJoinColumns=@JoinColumn(name="notification_id"))
-//	private List<Notification> notifications = new ArrayList<>();
-//	
-//	
-//	
-//	@OneToMany(
-//	        mappedBy = "person",
-//	        cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
-//	        orphanRemoval = true
-//	    )
-//	private List<SocialMedia> socialMedia = new ArrayList<>();
-//	
+
 
 	@DateTimeFormat(iso = ISO.TIME)
 	private LocalTime startDay;
@@ -190,6 +102,21 @@ public class Person implements Serializable {
 	@OneToMany(mappedBy="person" ,
 			cascade= {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST})
 	private List<ProfileImg> profileImg;
+	
+	
+	@Column(name="day_start_time")
+	private LocalTime dayStartTime;
+	
+	@Column(name="day_end_time")
+	private LocalTime dayEndTime;
+	
+	
+	@Column(name="lunch_start_time")
+	private LocalTime lunchStartTime;
+	
+	@Column(name="lunch_end_time")
+	private LocalTime lunchEndTime;
+	
 	
 	
 	public Person() {
@@ -618,6 +545,49 @@ public class Person implements Serializable {
 
 	public void setEndDay(LocalTime endDay) {
 		this.endDay = endDay;
+	}
+	
+	
+	
+
+
+	public LocalTime getDayStartTime() {
+		return dayStartTime;
+	}
+
+
+	public void setDayStartTime(LocalTime dayStartTime) {
+		this.dayStartTime = dayStartTime;
+	}
+
+
+	public LocalTime getDayEndTime() {
+		return dayEndTime;
+	}
+
+
+	public void setDayEndTime(LocalTime dayEndTime) {
+		this.dayEndTime = dayEndTime;
+	}
+
+
+	public LocalTime getLunchStartTime() {
+		return lunchStartTime;
+	}
+
+
+	public void setLunchStartTime(LocalTime lunchStartTime) {
+		this.lunchStartTime = lunchStartTime;
+	}
+
+
+	public LocalTime getLunchEndTime() {
+		return lunchEndTime;
+	}
+
+
+	public void setLunchEndTime(LocalTime lunchEndTime) {
+		this.lunchEndTime = lunchEndTime;
 	}
 
 

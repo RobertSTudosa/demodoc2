@@ -1,5 +1,7 @@
 package ro.apxsoftware.demodoc.entities;
 
+import java.time.LocalTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,14 +27,18 @@ public class CompanyService {
 	
 	@ManyToOne(fetch=FetchType.LAZY, optional=true)
 	private Appointment appointment;
+	
+	@Column(name="duration")
+	private LocalTime duration;
 
 	public CompanyService() {
 		
 	}
 
-	public CompanyService(String name, Appointment appointement) {
+	public CompanyService(String name, Appointment appointement, LocalTime duration) {
 		this.appointment = appointment;
 		this.name = name;
+		this.duration = duration;
 	}
 
 	public long getCompanyservId() {
@@ -59,7 +65,17 @@ public class CompanyService {
 		this.appointment = appointment;
 	}
 	
-	//overridden methods
+	
+	
+	public LocalTime getDuration() {
+		return duration;
+	}
+
+	public void setDuration(LocalTime duration) {
+		this.duration = duration;
+	}
+
+		//overridden methods
 		@Override
 		public int hashCode() {
 			return getClass().hashCode();

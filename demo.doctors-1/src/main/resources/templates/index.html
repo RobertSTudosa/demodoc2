@@ -656,6 +656,9 @@
              <!--  <input type="time" th:field="${appointment.appointmentTime}" th:value="${appointment.getFixedTimes()}" name="time" 
               	step="3600" class="form-control datepicker" id="time" placeholder="Ora programarii" required>  -->
               	
+              	
+              	
+              	
                	<select th:name="time" id="time" class="form-select" required>
               		<option id="optionTime" value="">Selecteaza ziua</option>
               		<option id="optionTime" th:if="${fixedTimes} != null" th:each="time : ${fixedTimes}" th:text="${time}" th:value="${time}">time</option>

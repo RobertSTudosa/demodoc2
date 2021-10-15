@@ -97,6 +97,12 @@ public class Appointment implements Serializable {
 	 @Column(name="temporary")
 	 private boolean temporary;
 	 
+	 @Column(name="start_time")
+	 private LocalTime startTime;
+	 
+	 @Column(name="end_time")
+	 private LocalTime endTime;
+	 
 	 @ElementCollection
 	 private List<LocalTime> fixedTimes = new ArrayList<LocalTime>() {{
 		 add(LocalTime.of(9,0,0,0));
@@ -369,6 +375,34 @@ public class Appointment implements Serializable {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	
+	
+
+
+
+	public LocalTime getStartTime() {
+		return startTime;
+	}
+
+
+
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
+	}
+
+
+
+	public LocalTime getEndTime() {
+		return endTime;
+	}
+
+
+
+	public void setEndTime(LocalTime endTime) {
+		this.endTime = endTime;
+	}
+	
+	
 
 
 
