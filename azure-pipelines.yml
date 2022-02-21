@@ -31,9 +31,19 @@ stages:
 
     steps:
     - task: Maven@3
-      displayName: 'Maven Package'
       inputs:
-        mavenPomFile: '$(Build.ArtifactStagingDirectory)/demo.doctors-1/pom.xml'
+        mavenPomFile: 'pom.xml'
+        publishJUnitResults: false
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
+
+#    - task: Maven@3
+#      displayName: 'Maven Package'
+#      inputs:
+#        mavenPomFile: '$(Build.ArtifactStagingDirectory)/demo.doctors-1/pom.xml'
 
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
