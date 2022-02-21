@@ -4,18 +4,18 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- main
+- master
 
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '3e0a323f-df02-43be-ad43-35764c101069'
+  azureSubscription: 'd6492675-dc06-49ca-a236-299a36dab5f4'
 
   # Web app name
-  webAppName: 'demodocazure1882'
+  webAppName: 'my-java-app'
 
   # Environment name
-  environmentName: 'demodocazure1882'
+  environmentName: 'my-java-app'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -33,7 +33,7 @@ stages:
     - task: Maven@3
       displayName: 'Maven Package'
       inputs:
-        mavenPomFile: '../demo.doctors-1/pom.xml'
+        mavenPomFile: 'pom.xml'
 
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
@@ -60,7 +60,7 @@ stages:
         deploy:
           steps:
           - task: AzureWebApp@1
-            displayName: 'Azure Web App Deploy: demodocazure1882'
+            displayName: 'Azure Web App Deploy: my-java-app'
             inputs:
               azureSubscription: $(azureSubscription)
               appType: webAppLinux
