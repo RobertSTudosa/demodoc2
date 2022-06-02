@@ -21,3 +21,14 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'wsl --distribution Ubuntu-20.04'
+- task: CopyFiles@2
+  inputs:
+    Contents: '**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    OverWrite: true
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'test'
+    publishLocation: 'filepath'
+    fileSharePath: '\'
