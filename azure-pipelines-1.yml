@@ -28,3 +28,8 @@ steps:
     artifact: 'test'
     publishLocation: 'filepath'
     fileSharePath: '\'
+- task: DownloadFileshareArtifacts@1
+  inputs:
+    filesharePath: 'D:\'
+    artifactName: 'test'
+    downloadPath: '$(System.ArtifactsDirectory)\test'
