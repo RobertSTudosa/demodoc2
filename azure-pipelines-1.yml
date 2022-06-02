@@ -20,4 +20,4 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'wsl --distribution Ubuntu-20.04 2'
+    script: 'wsl --distribution Ubuntu-20.04'
