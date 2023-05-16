@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Cabinet Medical Dental132 - Parola schimbata</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+  
+  <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+  
+    <!-- Custom CSS and JS for multiple select -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <script
+  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+  crossorigin="anonymous"></script>
+  
+  <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+  
+</head>
+
+<body>
+
+ <!-- ======= Top Bar Repeat for DEMO======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top" >
+    <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
+      <div class="align-items-center d-none d-md-flex">
+        <i class="bi bi-clock"></i> APLICATIE DEMO demouseri: <i class="bi bi-person-badge"></i> client@apxsoftware.ro password: 1234
+      </div>
+      <div class="d-flex align-items-center">
+        <i class="bi bi-person-badge-fill"></i> doctor@apxsoftware.ro password: 1234
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Top Bar ======= -->
+<div id="topbar" class="d-flex align-items-center fixed-top topbarDemo" style="top:30px;">
+    <div class="container d-flex align-items-center justify-content-center justify-content-md-between" >
+      <div class="align-items-center d-none d-md-flex">
+        <i class="bi bi-clock"></i> Luni - Sambata, 8AM to 6PM
+      </div>
+      <div class="d-flex align-items-center">
+        <i class="bi bi-phone"></i> telefon: +40 341 5548 55
+      </div>
+    </div>
+  </div> 
+  
+  <script type="text/javascript" th:inline="javascript">
+  	setInterval(changeTopBarStyle, 3000);
+  	
+  	function changeTopBarStyle () {
+  		var topBarTop = $(".topbarDemo").css('top');
+  		console.log(topBarTop);
+  		
+  		if(topBarTop == '30px') {
+	  		$(".topbarDemo").css('top','0px');
+  		} else {
+  			$(".topbarDemo").css('top','30px');
+  		}
+  	
+  	}
+  
+  </script>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <a th:href="@{/}" class="logo me-auto"><img src="assets/img/logo.png" alt=""></a>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          
+                    <li class="nav-link scrollto dropdown nav-link scrollto d-block d-sm-inline d-md-inline d-lg-none d-xl-none" sec:authorize="isAuthenticated()">
+						<a
+						href="#"> <img src="doctor/plugins/images/users/varun.jpg"
+							alt="user-img" width="36" class="rounded-circle img-thumbnail"
+							style="margin-left: auto;"><span
+							class="text-black font-small text-center text-wrap ms-1"
+							style="font-size: 0.7rem;" th:text="${#authentication.name}">Steave</span><i class="bi bi-chevron-down"></i></a>
+							
+							<ul>
+								 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+								 <li><a class="nav-link scrollto" href="#contact">Istoric programari</a></li>
+								<li><a class="nav-link scrollto" th:href="@{/logout}">Logout</a></li>
+							</ul>
+					</li>
+		  <li ><a class="nav-link scrollto" th:href="@{/}">Home</a></li>
+          <li sec:authorize="isAnonymous()"><a class="nav-link scrollto d-block d-sm-inline d-md-none d-lg-none d-xl-none" th:href="@{/login}">Login</a></li>
+          <li><a class="nav-link scrollto" th:href="@{/#about}">Despre</a></li>
+          <li><a class="nav-link scrollto"  th:href="@{/#services}">Servicii</a></li>
+          <li><a class="nav-link scrollto" th:href="@{/#departments}">Testimoniale</a></li>
+          <li><a class="nav-link scrollto" th:href="@{/#doctors}">Doctori</a></li>
+          <li class="dropdown"><a href=""><span>Info</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a th:href="@{/#contact}">Contact</a></li>
+              <li class="dropdown"><a th:href="@{/#pricing}"><span>Preturi</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a th:href="@{/#pricing}">Detartraj</a></li>
+                  <li><a th:href="@{/#pricing}">Extractie</a></li>
+                  <li><a th:href="@{/#pricing}">Obturatie de canal</a></li>
+                  <li><a th:href="@{/#pricing}">Implant</a></li>
+                  
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2?</a></li>
+              <li><a href="#">Drop Down 3?</a></li>
+              <li><a href="#">Drop Down 4?</a></li>
+            </ul>
+          </li>
+         
+          <li class="dropdown" sec:authorize="isAuthenticated()">
+						<a
+						class="d-none d-md-none d-lg-inline d-xl-inline"
+						href="#"> <img src="doctor/plugins/images/users/varun.jpg"
+							alt="user-img" width="36" class="rounded-circle img-thumbnail"
+							style="margin-left: auto;"><span
+							class="text-black font-small text-center text-wrap ms-1"
+							style="font-size: 0.7rem;" th:text="${#authentication.name}">Steave</span><i class="bi bi-chevron-down"></i></a>
+							
+							<ul>
+								 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+								 <li><a class="nav-link scrollto" href="#contact">Istoric programari</a></li>
+								<li><a class="nav-link scrollto" th:href="@{/logout}">Logout</a></li>
+							</ul>
+					</li>
+          <li><a sec:authorize="isAuthenticated()" class="nav-link scrollto d-none d-sm-inline d-md-none" th:href="@{/logout}">Logout</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    <!--   <a th:href="@{/#appointment}" class="appointment-btn scrollto"><span class="d-none d-md-inline">Faceti o</span> programare</a>
+     
+       <a sec:authorize="isAnonymous()" th:href="@{/login}" class="appointment-btn scrollto d-none d-md-inline d-lg-inline"><span class="d-none d-md-inline"></span> Login</a>
+ -->
+
+      
+
+		</div>
+  </header><!-- End Header -->
+ 
+ 
+
+  <main id="main">
+  
+      <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Login</h2>
+         
+          <ol>
+            <li><a th:href="@{/}">Home</a></li>
+            <li>schimbare parola</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+  
+  
+		<section class="inner-page appointment section-bg"  id="appointment">
+      <div class="container">
+    
+            
+           <h4 th:text="${success}"></h4>
+            <h6 th:text="${passChanged}"></h6>
+            
+            
+			<div class="input_elements">
+             	<h6 style="">You will be redirected to login page in a few moments.</h6>
+             	<progress value="0" max="5" id="progressBar"></progress>
+            </div>
+            
+            <script type="text/javascript" th:inline="javascript">
+            	
+            	var timeleft = 100;
+				var downloadTimer = setInterval(function(){
+				  if(timeleft <= 0){
+				    clearInterval(downloadTimer);
+				    setInterval(window.location.replace("https://demo.apxsoftware.ro/login"), 1000);
+				  } 
+				  document.getElementById("progressBar").value = 100 - timeleft;
+				  timeleft -= 1;
+				}, 100);
+            	
+            
+            </script>
+            
+            
+            
+      </div>
+      
+      <div th:replace="usermodals :: registerForm"></div>
+    </section>
+		
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>Dental132</h3>
+              <p>
+                A108 Tomis Street <br>
+                CT 900533, RO<br><br>
+                <strong>Phone:</strong> +40 722 676 355<br>
+                <strong>Email:</strong> info@dental132.ro<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Utile</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#about}">Despre</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#services}">Servicii</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Termeni si conditii</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Politica de confidentialitate</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Serviciile noastre</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#services}">Implantologie</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="@{/#services}">Endodontie</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="@{/#services}">Stomatologie pediatrica</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="@{/#services}">Protetica dentara</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="@{/#services}">Preventie dentara</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Newsletter-ul nostru</h4>
+            <p>Introduceti adresa de email pentru ultimile oferte: </p>
+            <form th:action="@{/subscribe}" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Dental132</span></strong>. Toate drepturile rezervate
+      </div>
+      <div class="credits">
+        Designed by <a href="https://apxsoftware.ro/">APX Software</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+ 
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/purecounter/purecounter.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
