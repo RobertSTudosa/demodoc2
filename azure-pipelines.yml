@@ -10,6 +10,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: CmdLine@2
+  inputs:
+    script: |
+      dir /s /b *pom.xml
+      
+
+     
 - task: Maven@4
   inputs:
     mavenPomFile: 'demo.doctors-1/pom.xml'
