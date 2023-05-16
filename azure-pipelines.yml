@@ -13,7 +13,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      dir /s /b *pom.xml
+      dir /s /b *.xml
       
 
      
