@@ -25,6 +25,7 @@ steps:
 - task: Maven@4
   inputs:
     mavenPomFile: 'demo.doctors-1/pom.xml'
+    goals: 'clean install'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
