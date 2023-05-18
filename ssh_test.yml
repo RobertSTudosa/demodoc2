@@ -10,14 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: SSH@0
-  inputs:
-    sshEndpoint: 'SSH connect'
-    runOptions: 'inline'
-    inline: |
-      #!
-      ping https://20.23.231.76
-    readyTimeout: '20000'
+
 
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
@@ -26,3 +19,17 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'SSH connect'
+    runOptions: 'inline'
+    inline: |
+      #!
+      scp -o UserKnownHostsFile=known_hosts.txt \a\1\s\ robert@20.23.231.76:/home/robert
+    readyTimeout: '20000'
