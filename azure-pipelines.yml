@@ -52,7 +52,7 @@ steps:
     runOptions: 'inline'
     inline: |
       #!
-      sudo apt install openjdk-11-jre-headless
+      sudo apt install -y openjdk-11-jre-headless
       sudo java -jar demo.doctors-1-0.0.1.mono.jar program-name & diswon 
     readyTimeout: '20000'
 
