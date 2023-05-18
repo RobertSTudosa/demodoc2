@@ -36,7 +36,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/demo.doctors-1/target/demo.doctors-1-0.0.1.mono.jar'
     ArtifactName: 'drop'
     publishLocation: 'Container'
     
