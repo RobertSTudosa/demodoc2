@@ -25,6 +25,13 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'SSH connect'
+    sourceFolder: '$(System.DefaultWorkingDirectory)'
+    contents: '**'
+    targetFolder: '/home/robert'
+    readyTimeout: '20000'
 - task: SSH@0
   inputs:
     sshEndpoint: 'SSH connect'
