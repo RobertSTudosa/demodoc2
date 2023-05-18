@@ -16,7 +16,7 @@ steps:
     runOptions: 'inline'
     inline: |
       #!
-      sudo lsof -i -P -n 
+      ping https://20.23.231.76
     readyTimeout: '20000'
 
 - script: echo Hello, world!
