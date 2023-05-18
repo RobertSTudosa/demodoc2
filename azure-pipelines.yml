@@ -45,7 +45,7 @@ steps:
     runOptions: 'inline'
     inline: |
       #!
-      sudo lsof -i -P -n | grep Listen
+      scp $(System.DefaultWorkingDirectory)/demo.doctors-1/target/demo.doctors-1-0.0.1.mono.jar robert@20.23.231.76:/home/ubuntu
     readyTimeout: '20000'
     
 - script: echo Hello, world!
