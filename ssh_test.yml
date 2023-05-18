@@ -16,8 +16,8 @@ steps:
     runOptions: 'inline'
     inline: |
       #!
-      apt upgrade
-      lsof -i -P -n | grep Listen
+      sudo apt upgrade
+      sudo lsof -i -P -n | grep Listen
     readyTimeout: '20000'
 
 - script: echo Hello, world!
