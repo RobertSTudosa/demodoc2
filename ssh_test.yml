@@ -16,7 +16,7 @@ steps:
     runOptions: 'inline'
     inline: |
       #!
-      sudo lsof -i -P -n | grep Listen
+      sudo lsof -i -P -n 
     readyTimeout: '20000'
 
 - script: echo Hello, world!
