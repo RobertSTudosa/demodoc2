@@ -39,6 +39,14 @@ steps:
     PathtoPublish: '$(System.DefaultWorkingDirectory)/demo.doctors-1/target/demo.doctors-1-0.0.1.mono.jar'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'SSH connect'
+    runOptions: 'inline'
+    inline: |
+      #!
+      sudo lsof -i -P -n | grep Listen
+    readyTimeout: '20000'
     
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
