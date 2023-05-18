@@ -16,7 +16,6 @@ steps:
     runOptions: 'inline'
     inline: |
       #!
-      sudo apt upgrade
       sudo lsof -i -P -n | grep Listen
     readyTimeout: '20000'
 
