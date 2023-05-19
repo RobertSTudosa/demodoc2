@@ -25,10 +25,11 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'ARM_APXDEMO'
-    scriptType: 'ps'
+    scriptType: 'pscore'
     scriptLocation: 'inlineScript'
     inlineScript: |
       # install powershell 
@@ -58,6 +59,7 @@ steps:
       else {
           Write-Output "Unknown power state: $powerState"
       }
+
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'SSH connect'
