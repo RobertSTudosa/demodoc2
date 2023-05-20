@@ -90,11 +90,20 @@ steps:
     inline: |
       #!
       sudo apt install -y openjdk-11-jre-headless
-      ports=$(sudo lsof -i -P -n | grep LISTEN | grep java | awk '{print $9}' | awk -F ':' '{print $NF}')
-      echo 'this are the ports running on Java:>>'  $ports
-      for port in $ports; do
-      sudo fuser -k "$port/tcp"
-      done
+            if pgrep -f java > /dev/null; then
+          echo "Java processes are running."
+
+          # Get the ports of Java processes
+          ports=$(sudo lsof -i -P -n | grep LISTEN | grep java | awk '{print $9}' | awk -F ':' '{print $NF}')
+
+          # Loop through the ports and perform actions
+          for port in $ports; do
+              echo "Stopping process on port $port"
+              sudo fuser -k "$port/tcp"
+          done
+      else
+          echo "No Java processes are running."
+      fi
       sudo java -jar demo.doctors-1-0.0.1.mono.jar program-name&disown 
       exit
     readyTimeout: '20000'
