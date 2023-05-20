@@ -66,22 +66,17 @@ steps:
       # Set the VM name and resource group name
       $vmName = "UbuntuRunningDemoVM"
       $resourceGroup = "ApxDemo"
-      
+
       echo $vmName
       echo $resourceGroup
-      
+
       $powerState = az vm show --name $vmName --resource-group $resourceGroup --show-details --query powerState --output table
-      
+
       echo $powerState
-      
-      
+
+
       # Check the power state and take action accordingly
-      if ($powerState -eq "VM running") {
-          Write-Output "VM is running. Stopping the VM..."
-          echo $vmName
-          az vm deallocate --name $vmName --resource-group $resourceGroup --no-wait
-      }
-      elseif ($powerState -eq "VM deallocated" -or $powerState -eq "VM stopped") {
+      if ($powerState -eq "VM deallocated" -or $powerState -eq "VM stopped") {
           Write-Output "VM is deallocated or stopped. Starting the VM..."
           az vm start --name $vmName --resource-group $resourceGroup --no-wait
       }
