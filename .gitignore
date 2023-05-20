@@ -1,6 +1,4 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-*.vsidx
-/.vs/slnx.sqlite
+**.vsidx
+**slnx.sqlite
+**.lock
+/.vs/DemoDocs/v17/.wsuo
