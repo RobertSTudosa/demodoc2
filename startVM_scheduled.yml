@@ -3,6 +3,10 @@ trigger: none
 schedules:
 - cron: "25 08 * * *" 
   displayName: 'Changing name'
+  branches:
+     include:
+     - main
+     - VS_build
   always: true
 
 pool:
