@@ -62,7 +62,7 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       # install powershell 
-      Install-Module -Name Az -Repository PSGallery -Force
+      # Install-Module -Name Az -Repository PSGallery -Force
       # Set the VM name and resource group name
       $vmName = "UbuntuRunningDemoVM"
       $resourceGroup = "ApxDemo"
