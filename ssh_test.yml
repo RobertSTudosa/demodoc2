@@ -1,0 +1,77 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'ARM_APXDEMO'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      # install powershell 
+      Install-Module -Name Az -Repository PSGallery -Force
+      # Set the VM name and resource group name
+      $vmName = "UbuntuRunningDemoVM"
+      $resourceGroup = "ApxDemo"
+      
+      echo $vmName
+      echo $resourceGroup
+      
+      $powerState = az vm show --name $vmName --resource-group $resourceGroup --show-details --query powerState --output table
+      
+      echo $powerState
+      
+      
+      # Check the power state and take action accordingly
+      if ($powerState -eq "VM running") {
+          Write-Output "VM is running. Stopping the VM..."
+          echo $vmName
+          az vm deallocate --name $vmName --resource-group $resourceGroup --no-wait
+      }
+      elseif ($powerState -eq "VM deallocated" -or $powerState -eq "VM stopped") {
+          Write-Output "VM is deallocated or stopped. Starting the VM..."
+          az vm start --name $vmName --resource-group $resourceGroup --no-wait
+      }
+      else {
+          Write-Output "Unknown power state: $powerState"
+      }
+
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'SSH connect'
+    sourceFolder: '$(System.DefaultWorkingDirectory)'
+    contents: '**'
+    targetFolder: '/home/robert'
+    readyTimeout: '20000'
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'SSH connect'
+    runOptions: 'inline'
+    inline: |
+      #!
+      scp -o UserKnownHostsFile=known_hosts.txt \a\1\s\ robert@20.23.231.76:/home/robert
+    readyTimeout: '20000'

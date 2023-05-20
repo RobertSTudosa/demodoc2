@@ -1,0 +1,68 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- none
+
+pool:
+  vmImage: windows-latest
+
+steps:
+- task: CmdLine@2
+  inputs:
+    script: |
+      dir /s /b *.xml
+      
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "##vso[task.setvariable variable=JAVA_HOME]$(JAVA_HOME_11_X64)"
+      echo "##vso[task.setvariable variable=PATH]$(JAVA_HOME_11_X64)\bin;$(PATH)"
+     
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'demo.doctors-1/pom.xml'
+    goals: 'clean install'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/demo.doctors-1/target/demo.doctors-1-0.0.1.mono.jar'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'SSH connect'
+    sourceFolder: '$(System.DefaultWorkingDirectory)/demo.doctors-1/target'
+    contents: '**/*.jar'
+    targetFolder: '/home/robert'
+    readyTimeout: '20000'
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'SSH connect'
+    runOptions: 'inline'
+    inline: |
+      #!
+      sudo apt install -y openjdk-11-jre-headless
+      sudo java -jar demo.doctors-1-0.0.1.mono.jar program-name&disown 
+      exit
+    readyTimeout: '20000'
+  continueOnError: true
+
+    
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
