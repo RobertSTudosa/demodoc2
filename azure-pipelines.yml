@@ -52,6 +52,16 @@ steps:
     runOptions: 'inline'
     inline: |
       #!
+      sudo apt install net-tools
+    readyTimeout: '20000'
+  continueOnError: true
+
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'SSH connect'
+    runOptions: 'inline'
+    inline: |
+      #!
       sudo apt install -y openjdk-11-jre-headless
       sudo java -jar demo.doctors-1-0.0.1.mono.jar program-name&disown 
       exit
