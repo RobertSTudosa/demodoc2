@@ -1,0 +1,73 @@
+trigger: none
+
+schedules:
+- cron: "00 07 * * *" 
+  displayName: 'Changing name'
+  branches:
+     include:
+     - main
+  always: true
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'ARM_APXDEMO'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      $vmName = "UbuntuRunningDemoVM"
+      $resourceGroup = "ApxDemo"
+
+      echo $vmName
+      echo $resourceGroup
+
+      $powerState = az vm show --name $vmName --resource-group $resourceGroup --show-details --query powerState --output table
+
+      echo $powerState
+
+
+      # Check the power state and take action accordingly
+      if ($powerState -eq "VM deallocated" -or $powerState -eq "VM stopped") {
+          Write-Output "VM is deallocated or stopped. Starting the VM..."
+          az vm start --name $vmName --resource-group $resourceGroup --no-wait
+      }
+      else {
+          Write-Output "VM is running, no need to start: $powerState"
+      }
+- task: SSH@0
+  displayName: 'kill ports | start app'
+  inputs:
+    sshEndpoint: 'SSH connect'
+    runOptions: 'inline'
+    inline: |
+      #!
+            if pgrep -f java > /dev/null; then
+          echo "Java processes are running."
+
+          # Get the ports of Java processes
+          ports=$(sudo lsof -i -P -n | grep LISTEN | grep java | awk '{print $9}' | awk -F ':' '{print $NF}')
+
+          # Loop through the ports and perform actions
+          for port in $ports; do
+              echo "Stopping process on port $port"
+              sudo fuser -k "$port/tcp"
+          done
+      else
+          echo "No Java processes are running."
+      fi
+      sudo java -jar demo.doctors-1-0.0.1.mono.jar program-name&disown 
+      exit
+    readyTimeout: '20000'
+  continueOnError: true

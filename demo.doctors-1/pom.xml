@@ -136,16 +136,6 @@
 	</dependency>
 	</dependencies>
 	
-	<repository>
-  		<id>TestFeed</id>
-  		<url>https://pkgs.dev.azure.com/Tailspin1882/da5f2891-fdc7-4192-9f0b-d0a2108cd90b/_packaging/TestFeed/maven/v1</url>
-  		<releases>
-    			<enabled>true</enabled>
-  		</releases>
-  		<snapshots>
-    			<enabled>true</enabled>
-  		</snapshots>
-	</repository>
 
 	<build>
 		<plugins>

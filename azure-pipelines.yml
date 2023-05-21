@@ -1,78 +1,68 @@
-# Maven package Java project Web App to Linux on Azure
-# Build your Java project and deploy it to Azure as a Linux web app
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
 
 trigger:
-- master
+- none
 
-variables:
+pool:
+  vmImage: windows-latest
 
-  # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: 'd6492675-dc06-49ca-a236-299a36dab5f4'
+steps:
+- task: CmdLine@2
+  inputs:
+    script: |
+      dir /s /b *.xml
+      
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "##vso[task.setvariable variable=JAVA_HOME]$(JAVA_HOME_11_X64)"
+      echo "##vso[task.setvariable variable=PATH]$(JAVA_HOME_11_X64)\bin;$(PATH)"
+     
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'demo.doctors-1/pom.xml'
+    goals: 'clean install'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
 
-  # Web app name
-  webAppName: 'my-java-app'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/demo.doctors-1/target/demo.doctors-1-0.0.1.mono.jar'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'SSH connect'
+    sourceFolder: '$(System.DefaultWorkingDirectory)/demo.doctors-1/target'
+    contents: '**/*.jar'
+    targetFolder: '/home/robert'
+    readyTimeout: '20000'
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'SSH connect'
+    runOptions: 'inline'
+    inline: |
+      #!
+      sudo apt install -y openjdk-11-jre-headless
+      sudo java -jar demo.doctors-1-0.0.1.mono.jar program-name&disown 
+      exit
+    readyTimeout: '20000'
+  continueOnError: true
 
-  # Environment name
-  environmentName: 'my-java-app'
+    
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
 
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
-
-stages:
-- stage: Build
-  displayName: Build stage
-  jobs:
-  - job: MavenPackageAndPublishArtifacts
-    displayName: Maven Package and Publish Artifacts
-    pool:
-      vmImage: $(vmImageName)
-
-    steps:
-    - task: Maven@3
-      inputs:
-        mavenPomFile: 'pom.xml'
-        publishJUnitResults: false
-        javaHomeOption: 'JDKVersion'
-        mavenVersionOption: 'Default'
-        mavenAuthenticateFeed: false
-        effectivePomSkip: false
-        sonarQubeRunAnalysis: false
-
-#    - task: Maven@3
-#      displayName: 'Maven Package'
-#      inputs:
-#        mavenPomFile: '$(Build.ArtifactStagingDirectory)/demo.doctors-1/pom.xml'
-
-    - task: CopyFiles@2
-      displayName: 'Copy Files to artifact staging directory'
-      inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/target/*.?(war|jar)'
-        TargetFolder: $(Build.ArtifactStagingDirectory)
-
-    - upload: $(Build.ArtifactStagingDirectory)
-      artifact: drop
-
-- stage: Deploy
-  displayName: Deploy stage
-  dependsOn: Build
-  condition: succeeded()
-  jobs:
-  - deployment: DeployLinuxWebApp
-    displayName: Deploy Linux Web App
-    environment: $(environmentName)
-    pool:
-      vmImage: $(vmImageName)
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: AzureWebApp@1
-            displayName: 'Azure Web App Deploy: my-java-app'
-            inputs:
-              azureSubscription: $(azureSubscription)
-              appType: webAppLinux
-              appName: $(webAppName)
-              package: '$(Pipeline.Workspace)/drop/**/target/*.?(war|jar)'
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
