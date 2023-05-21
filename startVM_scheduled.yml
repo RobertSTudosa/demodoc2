@@ -46,3 +46,28 @@ steps:
       else {
           Write-Output "VM is running, no need to start: $powerState"
       }
+- task: SSH@0
+  displayName: 'kill ports | start app'
+  inputs:
+    sshEndpoint: 'SSH connect'
+    runOptions: 'inline'
+    inline: |
+      #!
+            if pgrep -f java > /dev/null; then
+          echo "Java processes are running."
+
+          # Get the ports of Java processes
+          ports=$(sudo lsof -i -P -n | grep LISTEN | grep java | awk '{print $9}' | awk -F ':' '{print $NF}')
+
+          # Loop through the ports and perform actions
+          for port in $ports; do
+              echo "Stopping process on port $port"
+              sudo fuser -k "$port/tcp"
+          done
+      else
+          echo "No Java processes are running."
+      fi
+      sudo java -jar demo.doctors-1-0.0.1.mono.jar program-name&disown 
+      exit
+    readyTimeout: '20000'
+  continueOnError: true
