@@ -4,20 +4,18 @@
 # https://aka.ms/yaml
 
 trigger:
-- VS_build
+- none
 
 pool:
   vmImage: windows-latest
 
 steps:
 - task: CmdLine@2
-  displayName: 'search for .xml(pom)'
   inputs:
     script: |
       dir /s /b *.xml
       
 - task: PowerShell@2
-  displayName: 'set JAVA_HOME path to Java 11'
   inputs:
     targetType: 'inline'
     script: |
@@ -25,7 +23,6 @@ steps:
       echo "##vso[task.setvariable variable=PATH]$(JAVA_HOME_11_X64)\bin;$(PATH)"
      
 - task: Maven@4
-  displayName: 'build '
   inputs:
     mavenPomFile: 'demo.doctors-1/pom.xml'
     goals: 'clean install'
@@ -38,85 +35,34 @@ steps:
     sonarQubeRunAnalysis: false
 
 - task: PublishBuildArtifacts@1
-  displayName: 'publish build artifact to pipeline scope'
   inputs:
     PathtoPublish: '$(System.DefaultWorkingDirectory)/demo.doctors-1/target/demo.doctors-1-0.0.1.mono.jar'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 - task: CopyFilesOverSSH@0
-  displayName: 'copy artifact (.jar) to Azure VM'
   inputs:
     sshEndpoint: 'SSH connect'
     sourceFolder: '$(System.DefaultWorkingDirectory)/demo.doctors-1/target'
     contents: '**/*.jar'
     targetFolder: '/home/robert'
     readyTimeout: '20000'
-
-- task: AzureCLI@2
-  displayName: 'start VM (if)'
-  inputs:
-    azureSubscription: 'ARM_APXDEMO'
-    scriptType: 'pscore'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      # install powershell 
-      # Install-Module -Name Az -Repository PSGallery -Force
-      # Set the VM name and resource group name
-      $vmName = "UbuntuRunningDemoVM"
-      $resourceGroup = "ApxDemo"
-
-      echo $vmName
-      echo $resourceGroup
-
-      $powerState = az vm show --name $vmName --resource-group $resourceGroup --show-details --query powerState --output table
-
-      echo $powerState
-
-
-      # Check the power state and take action accordingly
-      if ($powerState -eq "VM deallocated" -or $powerState -eq "VM stopped") {
-          Write-Output "VM is deallocated or stopped. Starting the VM..."
-          az vm start --name $vmName --resource-group $resourceGroup --no-wait
-      }
-      else {
-          Write-Output "VM is running, no need to start: $powerState"
-      }
-
 - task: SSH@0
-  displayName: 'install net-tools on Ubuntu'
-  inputs:
-    sshEndpoint: 'SSH connect'
-    runOptions: 'inline'
-    inline: |
-      #!
-      sudo apt install net-tools
-    readyTimeout: '20000'
-  continueOnError: true
-- task: SSH@0
-  displayName: 'AzVM >> install java 11 | kill ports | start app'
   inputs:
     sshEndpoint: 'SSH connect'
     runOptions: 'inline'
     inline: |
       #!
       sudo apt install -y openjdk-11-jre-headless
-            if pgrep -f java > /dev/null; then
-          echo "Java processes are running."
-
-          # Get the ports of Java processes
-          ports=$(sudo lsof -i -P -n | grep LISTEN | grep java | awk '{print $9}' | awk -F ':' '{print $NF}')
-
-          # Loop through the ports and perform actions
-          for port in $ports; do
-              echo "Stopping process on port $port"
-              sudo fuser -k "$port/tcp"
-          done
-      else
-          echo "No Java processes are running."
-      fi
       sudo java -jar demo.doctors-1-0.0.1.mono.jar program-name&disown 
       exit
     readyTimeout: '20000'
   continueOnError: true
 
+    
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
 
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
