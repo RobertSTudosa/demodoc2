@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- none
+- VS_build
 
 pool:
   vmImage: windows-latest
@@ -59,14 +59,12 @@ steps:
       # Check the power state and take action accordingly
       if ($powerState -eq "VM deallocated" -or $powerState -eq "VM stopped") {
           Write-Output "VM is deallocated or stopped. Starting the VM..."
-          az vm start --name $vmName --resource-group $resourceGroup --no-wait
+          az vm start --name $vmName --resource-group $resourceGroup 
       }
       else {
           Write-Output "VM is running, no need to start: $powerState"
       }
-- task: Delay@1
-  inputs: 
-   delayForMinutes: '5'
+      
 - task: SSH@0
   displayName: 'kill ports | start app'
   inputs:
