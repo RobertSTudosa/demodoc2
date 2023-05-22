@@ -1,7 +1,7 @@
 trigger: none
 
 schedules:
-- cron: "00 07 * * *" 
+- cron: "06 07 * * *" 
   displayName: 'Changing name'
   branches:
      include:
@@ -46,6 +46,9 @@ steps:
       else {
           Write-Output "VM is running, no need to start: $powerState"
       }
+- task: Delay@1
+  inputs: 
+   delayForMinutes: '5'
 - task: SSH@0
   displayName: 'kill ports | start app'
   inputs:
