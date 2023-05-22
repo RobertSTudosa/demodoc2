@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- none
+- VS_build
 
 pool:
   vmImage: windows-latest
