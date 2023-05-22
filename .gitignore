@@ -1,5 +1,18 @@
 **.vsidx
 **slnx.sqlite
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 84f61182d88a2de2481afecb23d70807587f093a
 **.lock
 /.vs/DemoDocs/v17/.wsuo
 /.vs/slnx.sqlite
+=======
+**.lock
+>>>>>>> fb20849 (commit gitignore)
+/.vs/DemoDocs/v17/.wsuo
+=======
+**.lock
+>>>>>>> fb20849 (commit gitignore)
+/.vs/DemoDocs/v17/.wsuo
