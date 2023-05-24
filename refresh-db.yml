@@ -3,8 +3,22 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- main
+trigger: none
+
+schedules:
+- cron: "0 9,11,13,15,17,19,21,23 * * *" 
+  displayName: 'Changing name'
+  branches:
+     include:
+     - main
+  always: true
+
+resources:
+  pipelines:
+  - pipeline: refresh-database # Name of the pipeline resource.
+    source: Build_demo_docs # The name of the pipeline referenced by this pipeline resource.
+    project: DemoDocs # Required only if the source pipeline is in another project
+    trigger: true # Run this pipeline when any run of Build_demo_docs completes
 
 variables:
 - name: sql-server
