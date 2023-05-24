@@ -112,9 +112,9 @@ steps:
     SQL-PASSWORD: $(sql-password)
   inputs:
     azureSubscription: 'ARM_APXDEMO'
-    scriptType: 'batch'
+    scriptType: 'pscore'
     scriptLocation: 'inlineScript'
-    inlineScript: | 
+    inlineScript: |
       az config set extension.use_dynamic_install=yes_without_prompt
       az mysql flexible-server execute --admin-password $(SQL-PASSWORD) --admin-user $(sql-user) --name $(sql-server) --database-name $(sql-database) --file-path $(System.DefaultWorkingDirectory)/demo.doctors-1/data.sql
 
