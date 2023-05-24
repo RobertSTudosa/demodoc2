@@ -1,0 +1,31 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+variables:
+- name: sql-server
+  value: 'mysql1flex1server'
+- name: sql-database
+  value: 'bpeople_demo_doctors'
+- name: sql-user
+  value: 'robert'
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- task: AzureCLI@2
+  env: 
+    SQL-PASSWORD: $(sql-password)
+  inputs:
+    azureSubscription: 'ARM_APXDEMO'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az config set extension.use_dynamic_install=yes_without_prompt
+      az mysql flexible-server execute --admin-password $(SQL-PASSWORD) --admin-user $(sql-user) --name $(sql-server) --database-name $(sql-database) --file-path $(System.DefaultWorkingDirectory)/demo.doctors-1/data.sql
