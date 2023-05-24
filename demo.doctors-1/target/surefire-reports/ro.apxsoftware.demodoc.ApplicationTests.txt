@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ro.apxsoftware.demodoc.ApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.622 s - in ro.apxsoftware.demodoc.ApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 33.719 s - in ro.apxsoftware.demodoc.ApplicationTests
