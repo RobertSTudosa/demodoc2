@@ -117,15 +117,15 @@ steps:
     inlineScript: | 
       az mysql -flexible-server execute --admin-password $(SQL-PASSWORD) --admin-user $(sql-user) --name $(sql-server) --database-name $(sql-database) --file-path $(System.DefaultWorkingDirectory)/demo.doctors-1/data.sql
 
-- task: CmdLine@2
-  displayName: 'Run data.sql'
-  env: 
-    SLQ-PASSWORD: $(slq-password)
-  inputs:
-    script: |
-      mysql --host=$(sql-server) --user=$(sql-user) //
-      --password=$(SQL-PASSWORD) -D $(sql-database) //
-      --execute="$(System.DefaultWorkingDirectory)/demo.doctors-1/data.sql"
+# - task: CmdLine@2
+#   displayName: 'Run data.sql'
+#   env: 
+#     SLQ-PASSWORD: $(slq-password)
+#   inputs:
+#     script: |
+#       mysql --host=$(sql-server) --user=$(sql-user) //
+#       --password=$(SQL-PASSWORD) -D $(sql-database) //
+#       --execute="$(System.DefaultWorkingDirectory)/demo.doctors-1/data.sql"
 
 # - task: SSH@0
 #   inputs:
