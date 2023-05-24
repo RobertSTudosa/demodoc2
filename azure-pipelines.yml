@@ -15,15 +15,15 @@ variables:
   value: 'robert'
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
 steps:
-- task: CmdLine@2
-  inputs:
-    script: |
-      dir /s /b *.xml
-      ========== finding the .sql on the repo ======= 
-      dir /s /b *.sql
+# - task: CmdLine@2
+#   inputs:
+#     script: |
+#       dir /s /b *.xml
+#       ========== finding the .sql on the repo ======= 
+#       dir /s /b *.sql
       
 - task: PowerShell@2
   inputs:
