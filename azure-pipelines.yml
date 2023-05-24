@@ -64,7 +64,13 @@ steps:
       else {
           Write-Output "VM is running, no need to start: $powerState"
       }
-      
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'SSH connect'
+    sourceFolder: '$(System.DefaultWorkingDirectory)/demo.doctors-1/target'
+    contents: '**/*.jar'
+    targetFolder: '/home/robert'
+    readyTimeout: '20000'
 - task: SSH@0
   displayName: 'kill ports | start app'
   inputs:
@@ -90,24 +96,18 @@ steps:
       exit
     readyTimeout: '20000'
   continueOnError: true
-- task: CopyFilesOverSSH@0
-  inputs:
-    sshEndpoint: 'SSH connect'
-    sourceFolder: '$(System.DefaultWorkingDirectory)/demo.doctors-1/target'
-    contents: '**/*.jar'
-    targetFolder: '/home/robert'
-    readyTimeout: '20000'
-- task: SSH@0
-  inputs:
-    sshEndpoint: 'SSH connect'
-    runOptions: 'inline'
-    inline: |
-      #!
-      sudo apt install -y openjdk-11-jre-headless
-      sudo java -jar demo.doctors-1-0.0.1.mono.jar program-name&disown 
-      exit
-    readyTimeout: '20000'
-  continueOnError: true
+
+# - task: SSH@0
+#   inputs:
+#     sshEndpoint: 'SSH connect'
+#     runOptions: 'inline'
+#     inline: |
+#       #!
+#       sudo apt install -y openjdk-11-jre-headless
+#       sudo java -jar demo.doctors-1-0.0.1.mono.jar program-name&disown 
+#       exit
+#     readyTimeout: '20000'
+#   continueOnError: true
 
     
 - script: echo Hello, world!
