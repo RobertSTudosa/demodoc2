@@ -936,3 +936,716 @@ org.springframework.transaction.UnexpectedRollbackException: Transaction silentl
  
  
 2023-05-17 19:19:39.863  INFO 42148 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-05-24 09:22:11.594  INFO 37512 --- [main] ro.apxsoftware.demodoc.Application       : Starting Application v0.0.1.mono using Java 18.0.2.1 on LAPTOP-E7SHKH7I with PID 37512 (C:\Users\rtudosa\source\repos\DemoDocs\demo.doctors-1\target\demo.doctors-1-0.0.1.mono.jar started by rtudosa in C:\Users\rtudosa\Source\Repos\DemoDocs\demo.doctors-1\target)
+2023-05-24 09:22:11.604 DEBUG 37512 --- [main] ro.apxsoftware.demodoc.Application       : Running with Spring Boot v2.5.2, Spring v5.3.8
+2023-05-24 09:22:11.604  INFO 37512 --- [main] ro.apxsoftware.demodoc.Application       : The following profiles are active: dev
+2023-05-24 09:22:16.090  INFO 37512 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2023-05-24 09:22:16.095  INFO 37512 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-05-24 09:22:16.193  INFO 37512 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.AppointmentRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 09:22:16.198  INFO 37512 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.CompanyServiceRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 09:22:16.203  INFO 37512 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.ConfirmationTokenRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 09:22:16.219  INFO 37512 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.PersonRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 09:22:16.222  INFO 37512 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.ProfileImgRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 09:22:16.235  INFO 37512 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.RoleRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 09:22:16.239  INFO 37512 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.UserRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 09:22:16.242  INFO 37512 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 138 ms. Found 0 JDBC repository interfaces.
+2023-05-24 09:22:16.274  INFO 37512 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2023-05-24 09:22:16.281  INFO 37512 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-24 09:22:16.617  INFO 37512 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 322 ms. Found 7 JPA repository interfaces.
+2023-05-24 09:22:18.023 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:22:18.028 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE servletContainer EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.ServerConfig.servletContainer () with arguments[s] = []
+2023-05-24 09:22:18.031 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:22:18.239 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:22:18.242 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER servletContainer EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.ServerConfig.servletContainer () with arguments[s] = []
+2023-05-24 09:22:18.245 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:22:18.988 DEBUG 37512 --- [main] r.a.demodoc.security.ServerConfig$1      : Code archive: C:\Users\rtudosa\source\repos\DemoDocs\demo.doctors-1\target\demo.doctors-1-0.0.1.mono.jar
+2023-05-24 09:22:18.998 DEBUG 37512 --- [main] r.a.demodoc.security.ServerConfig$1      : Code archive: C:\Users\rtudosa\source\repos\DemoDocs\demo.doctors-1\target\demo.doctors-1-0.0.1.mono.jar
+2023-05-24 09:22:18.999 DEBUG 37512 --- [main] r.a.demodoc.security.ServerConfig$1      : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2023-05-24 09:22:19.096  INFO 37512 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 8080 (http)
+2023-05-24 09:22:19.298  INFO 37512 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7480 ms
+2023-05-24 09:22:26.166  INFO 37512 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-24 09:22:28.061 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:22:28.272 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE passwordEncoder EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.WebConfig.passwordEncoder () with arguments[s] = []
+2023-05-24 09:22:28.415 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:22:28.525 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:22:28.548 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER passwordEncoder EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.WebConfig.passwordEncoder () with arguments[s] = []
+2023-05-24 09:22:28.629 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:22:29.801 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:22:29.806 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE authenticationManagerBean EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.authenticationManagerBean () with arguments[s] = []
+2023-05-24 09:22:29.811 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:22:29.829 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:22:29.838 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER authenticationManagerBean EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.authenticationManagerBean () with arguments[s] = []
+2023-05-24 09:22:29.844 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:22:30.549 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:22:30.558 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE successHandler EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.successHandler () with arguments[s] = []
+2023-05-24 09:22:30.560 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:22:30.560 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:22:30.562 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER successHandler EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.successHandler () with arguments[s] = []
+2023-05-24 09:22:30.563 DEBUG 37512 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:22:30.895  INFO 37512 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@147cc940, org.springframework.security.web.context.SecurityContextPersistenceFilter@2e952845, org.springframework.security.web.header.HeaderWriterFilter@7f4a1cac, org.springframework.security.web.csrf.CsrfFilter@3009eed7, org.springframework.security.web.authentication.logout.LogoutFilter@3b5a19ed, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7364f68, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@509a6095, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@11810917, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@4bc9ca97, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@755a7218, org.springframework.security.web.session.SessionManagementFilter@5fd43e58, org.springframework.security.web.access.ExceptionTranslationFilter@5333f08f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@46bb0bdf]
+2023-05-24 09:22:32.502  INFO 37512 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-05-24 09:22:34.443  INFO 37512 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-05-24 09:22:34.958  INFO 37512 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 8080 (http) with context path ''
+2023-05-24 09:22:35.025  INFO 37512 --- [main] ro.apxsoftware.demodoc.Application       : Started Application in 25.716 seconds (JVM running for 27.436)
+2023-05-24 09:23:02.126  INFO 37512 --- [https-jsse-nio-443-exec-7] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-24 09:23:02.144  INFO 37512 --- [https-jsse-nio-443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2023-05-24 09:23:02.431 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:02.446 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE displayIndex EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.displayIndex () with arguments[s] = [{}, org.apache.catalina.session.StandardSessionFacade@1d53ab75, null, {}]
+2023-05-24 09:23:02.447 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:02.458 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:02.467 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getHowManyUserOfType EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.getHowManyUserOfType () with arguments[s] = [DOCTOR]
+2023-05-24 09:23:02.467 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:02.727 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:02.729 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getHowManyUserOfType EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.getHowManyUserOfType () with arguments[s] = [DOCTOR]
+2023-05-24 09:23:02.729 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:02.729 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:02.730 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getListOfUsersIdsOfType EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.getListOfUsersIdsOfType () with arguments[s] = [DOCTOR]
+2023-05-24 09:23:02.731 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:02.793 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:02.795 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getListOfUsersIdsOfType EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.getListOfUsersIdsOfType () with arguments[s] = [DOCTOR]
+2023-05-24 09:23:02.795 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:02.796 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:02.797 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getAppointmentsAfterCurrentDateNotCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAppointmentsAfterCurrentDateNotCanceled () with arguments[s] = []
+2023-05-24 09:23:02.797 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:02.882 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:02.885 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getAppointmentsAfterCurrentDateNotCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAppointmentsAfterCurrentDateNotCanceled () with arguments[s] = []
+2023-05-24 09:23:02.886 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:02.892 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:02.894 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getDoctors EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.PersonService.getDoctors () with arguments[s] = []
+2023-05-24 09:23:02.898 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:03.088 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:03.090 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getDoctors EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.PersonService.getDoctors () with arguments[s] = []
+2023-05-24 09:23:03.090 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:03.091 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:03.097 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER displayIndex EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.displayIndex () with arguments[s] = [{appointment=Appointment [appointmentId=0, date=null, time=null, doctor=null, pacient=null], fixedTimes=null, busyDates=[], doctors=[ro.apxsoftware.demodoc.entities.Person@3899782c]}, org.apache.catalina.session.StandardSessionFacade@1d53ab75, null, {}]
+2023-05-24 09:23:03.098 DEBUG 37512 --- [https-jsse-nio-443-exec-7] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:04.592 DEBUG 37512 --- [https-jsse-nio-443-exec-6] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:04.709 DEBUG 37512 --- [https-jsse-nio-443-exec-6] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE showLastProfileImg EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.ServiceProviderController.showLastProfileImg () with arguments[s] = [1]
+2023-05-24 09:23:04.756 DEBUG 37512 --- [https-jsse-nio-443-exec-6] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:04.772 DEBUG 37512 --- [https-jsse-nio-443-exec-6] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:04.778 DEBUG 37512 --- [https-jsse-nio-443-exec-6] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getLastProfilePic EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.ProfileImgService.getLastProfilePic () with arguments[s] = [1]
+2023-05-24 09:23:04.809 DEBUG 37512 --- [https-jsse-nio-443-exec-6] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:04.967 DEBUG 37512 --- [https-jsse-nio-443-exec-6] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:04.978 DEBUG 37512 --- [https-jsse-nio-443-exec-6] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getLastProfilePic EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.ProfileImgService.getLastProfilePic () with arguments[s] = [1]
+2023-05-24 09:23:04.986 DEBUG 37512 --- [https-jsse-nio-443-exec-6] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:04.992 DEBUG 37512 --- [https-jsse-nio-443-exec-6] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:04.993 DEBUG 37512 --- [https-jsse-nio-443-exec-6] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER showLastProfileImg EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.ServiceProviderController.showLastProfileImg () with arguments[s] = [1]
+2023-05-24 09:23:04.993 DEBUG 37512 --- [https-jsse-nio-443-exec-6] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:07.098 DEBUG 37512 --- [https-jsse-nio-443-exec-4] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:07.099 DEBUG 37512 --- [https-jsse-nio-443-exec-4] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE displayLoginForm EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.LoginController.displayLoginForm () with arguments[s] = [{}, org.apache.catalina.session.StandardSessionFacade@1d53ab75, null]
+2023-05-24 09:23:07.099 DEBUG 37512 --- [https-jsse-nio-443-exec-4] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:07.106 DEBUG 37512 --- [https-jsse-nio-443-exec-4] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:07.107 DEBUG 37512 --- [https-jsse-nio-443-exec-4] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER displayLoginForm EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.LoginController.displayLoginForm () with arguments[s] = [{person=ro.apxsoftware.demodoc.entities.Person@3899782c, userAccount=ro.apxsoftware.demodoc.entities.User@4f0100a7}, org.apache.catalina.session.StandardSessionFacade@1d53ab75, null]
+2023-05-24 09:23:07.107 DEBUG 37512 --- [https-jsse-nio-443-exec-4] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.274 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.287 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE displayIndex EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.displayIndex () with arguments[s] = [{person=ro.apxsoftware.demodoc.entities.Person@3899782c, userAccount=ro.apxsoftware.demodoc.entities.User@4f0100a7}, org.apache.catalina.session.StandardSessionFacade@1d53ab75, UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=doctor@apxsoftware.ro, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[DOCTOR, USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=93BBA36ED2A8EB2957AE24623A4F4F51], Granted Authorities=[DOCTOR, USER]], {}]
+2023-05-24 09:23:23.294 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.303 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.321 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getHowManyUserOfType EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.getHowManyUserOfType () with arguments[s] = [DOCTOR]
+2023-05-24 09:23:23.334 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.460 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.462 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getHowManyUserOfType EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.getHowManyUserOfType () with arguments[s] = [DOCTOR]
+2023-05-24 09:23:23.465 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.466 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.467 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getListOfUsersIdsOfType EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.getListOfUsersIdsOfType () with arguments[s] = [DOCTOR]
+2023-05-24 09:23:23.467 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.521 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.522 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getListOfUsersIdsOfType EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.getListOfUsersIdsOfType () with arguments[s] = [DOCTOR]
+2023-05-24 09:23:23.522 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.522 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.523 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getAppointmentsAfterCurrentDateNotCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAppointmentsAfterCurrentDateNotCanceled () with arguments[s] = []
+2023-05-24 09:23:23.523 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.584 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.588 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getAppointmentsAfterCurrentDateNotCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAppointmentsAfterCurrentDateNotCanceled () with arguments[s] = []
+2023-05-24 09:23:23.593 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.595 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.595 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getDoctors EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.PersonService.getDoctors () with arguments[s] = []
+2023-05-24 09:23:23.595 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.725 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.726 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getDoctors EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.PersonService.getDoctors () with arguments[s] = []
+2023-05-24 09:23:23.726 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.727 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.731 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE loadUserByUsername EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.loadUserByUsername () with arguments[s] = [doctor@apxsoftware.ro]
+2023-05-24 09:23:23.732 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.792 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.793 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER loadUserByUsername EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.loadUserByUsername () with arguments[s] = [doctor@apxsoftware.ro]
+2023-05-24 09:23:23.793 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.795 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.795 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE findPersonByUserId EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.PersonService.findPersonByUserId () with arguments[s] = [1]
+2023-05-24 09:23:23.796 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.866 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.866 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER findPersonByUserId EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.PersonService.findPersonByUserId () with arguments[s] = [1]
+2023-05-24 09:23:23.867 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.871 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.871 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE findNextAppointByDoctorId EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.findNextAppointByDoctorId () with arguments[s] = [1]
+2023-05-24 09:23:23.872 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.931 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:23.958 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER findNextAppointByDoctorId EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.findNextAppointByDoctorId () with arguments[s] = [1]
+2023-05-24 09:23:23.979 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:23.996 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:24.022 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getAllAppointmentsByDoctorIdByCurrentMonthNotCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAllAppointmentsByDoctorIdByCurrentMonthNotCanceled () with arguments[s] = [1]
+2023-05-24 09:23:24.028 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:24.095 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:24.095 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getAllAppointmentsByDoctorIdByCurrentMonthNotCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAllAppointmentsByDoctorIdByCurrentMonthNotCanceled () with arguments[s] = [1]
+2023-05-24 09:23:24.095 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:24.096 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:24.096 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getAllAppointmentsByDoctorIdAndUpToCurrentMonth EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAllAppointmentsByDoctorIdAndUpToCurrentMonth () with arguments[s] = [1]
+2023-05-24 09:23:24.096 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:24.164 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:24.171 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getAllAppointmentsByDoctorIdAndUpToCurrentMonth EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAllAppointmentsByDoctorIdAndUpToCurrentMonth () with arguments[s] = [1]
+2023-05-24 09:23:24.171 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:24.172 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:24.172 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getAllAppointmentsByDoctorIdAndUpToCurrentMonthAndCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAllAppointmentsByDoctorIdAndUpToCurrentMonthAndCanceled () with arguments[s] = [1]
+2023-05-24 09:23:24.173 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:24.234 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:24.235 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getAllAppointmentsByDoctorIdAndUpToCurrentMonthAndCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAllAppointmentsByDoctorIdAndUpToCurrentMonthAndCanceled () with arguments[s] = [1]
+2023-05-24 09:23:24.236 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:24.237 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:24.238 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getPicsByPersonId EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.ProfileImgService.getPicsByPersonId () with arguments[s] = [1]
+2023-05-24 09:23:24.239 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:24.304 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:24.310 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getPicsByPersonId EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.ProfileImgService.getPicsByPersonId () with arguments[s] = [1]
+2023-05-24 09:23:24.312 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:24.321 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:24.323 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getLastProfilePic EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.ProfileImgService.getLastProfilePic () with arguments[s] = [1]
+2023-05-24 09:23:24.329 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:24.407 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:24.411 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getLastProfilePic EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.ProfileImgService.getLastProfilePic () with arguments[s] = [1]
+2023-05-24 09:23:24.424 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:24.436 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:24.442 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER displayIndex EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.displayIndex () with arguments[s] = [{person=ro.apxsoftware.demodoc.entities.Person@3899782c, userAccount=ro.apxsoftware.demodoc.entities.User@4f0100a7, appointment=Appointment [appointmentId=0, date=null, time=null, doctor=null, pacient=null], fixedTimes=null, busyDates=[], doctors=[ro.apxsoftware.demodoc.entities.Person@3899782c], userId=1, doctorAppointments=[], pastDoctorAppointments=[], cancelDoctorAppointments=[], img=ProfileImg [picId=0, picName=null, picType=null, person=null], lastPicList=[], lastAppointment=null}, org.apache.catalina.session.StandardSessionFacade@1d53ab75, UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=doctor@apxsoftware.ro, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[DOCTOR, USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=93BBA36ED2A8EB2957AE24623A4F4F51], Granted Authorities=[DOCTOR, USER]], {}]
+2023-05-24 09:23:24.443 DEBUG 37512 --- [https-jsse-nio-443-exec-5] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.324 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.325 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE displayIndex EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.displayIndex () with arguments[s] = [{person=ro.apxsoftware.demodoc.entities.Person@3899782c, userAccount=ro.apxsoftware.demodoc.entities.User@4f0100a7}, org.apache.catalina.session.StandardSessionFacade@1d53ab75, UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=doctor@apxsoftware.ro, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[DOCTOR, USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=93BBA36ED2A8EB2957AE24623A4F4F51], Granted Authorities=[DOCTOR, USER]], {}]
+2023-05-24 09:23:56.327 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.328 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.328 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getHowManyUserOfType EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.getHowManyUserOfType () with arguments[s] = [DOCTOR]
+2023-05-24 09:23:56.329 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.433 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.441 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getHowManyUserOfType EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.getHowManyUserOfType () with arguments[s] = [DOCTOR]
+2023-05-24 09:23:56.442 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.445 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.445 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getListOfUsersIdsOfType EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.getListOfUsersIdsOfType () with arguments[s] = [DOCTOR]
+2023-05-24 09:23:56.446 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.498 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.500 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getListOfUsersIdsOfType EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.getListOfUsersIdsOfType () with arguments[s] = [DOCTOR]
+2023-05-24 09:23:56.504 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.506 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.507 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getAppointmentsAfterCurrentDateNotCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAppointmentsAfterCurrentDateNotCanceled () with arguments[s] = []
+2023-05-24 09:23:56.507 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.562 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.563 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getAppointmentsAfterCurrentDateNotCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAppointmentsAfterCurrentDateNotCanceled () with arguments[s] = []
+2023-05-24 09:23:56.569 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.575 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.576 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getDoctors EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.PersonService.getDoctors () with arguments[s] = []
+2023-05-24 09:23:56.577 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.687 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.688 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getDoctors EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.PersonService.getDoctors () with arguments[s] = []
+2023-05-24 09:23:56.688 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.689 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.690 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE loadUserByUsername EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.loadUserByUsername () with arguments[s] = [doctor@apxsoftware.ro]
+2023-05-24 09:23:56.691 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.749 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.749 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER loadUserByUsername EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.UserService.loadUserByUsername () with arguments[s] = [doctor@apxsoftware.ro]
+2023-05-24 09:23:56.751 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.755 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.756 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE findPersonByUserId EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.PersonService.findPersonByUserId () with arguments[s] = [1]
+2023-05-24 09:23:56.756 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.812 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.815 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER findPersonByUserId EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.PersonService.findPersonByUserId () with arguments[s] = [1]
+2023-05-24 09:23:56.816 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.819 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.820 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE findNextAppointByDoctorId EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.findNextAppointByDoctorId () with arguments[s] = [1]
+2023-05-24 09:23:56.821 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.875 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.881 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER findNextAppointByDoctorId EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.findNextAppointByDoctorId () with arguments[s] = [1]
+2023-05-24 09:23:56.881 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.882 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.885 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getAllAppointmentsByDoctorIdByCurrentMonthNotCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAllAppointmentsByDoctorIdByCurrentMonthNotCanceled () with arguments[s] = [1]
+2023-05-24 09:23:56.885 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.940 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.943 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getAllAppointmentsByDoctorIdByCurrentMonthNotCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAllAppointmentsByDoctorIdByCurrentMonthNotCanceled () with arguments[s] = [1]
+2023-05-24 09:23:56.943 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.943 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:56.945 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getAllAppointmentsByDoctorIdAndUpToCurrentMonth EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAllAppointmentsByDoctorIdAndUpToCurrentMonth () with arguments[s] = [1]
+2023-05-24 09:23:56.945 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:56.999 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:57.001 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getAllAppointmentsByDoctorIdAndUpToCurrentMonth EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAllAppointmentsByDoctorIdAndUpToCurrentMonth () with arguments[s] = [1]
+2023-05-24 09:23:57.002 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:57.002 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:57.003 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getAllAppointmentsByDoctorIdAndUpToCurrentMonthAndCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAllAppointmentsByDoctorIdAndUpToCurrentMonthAndCanceled () with arguments[s] = [1]
+2023-05-24 09:23:57.004 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:57.061 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:57.061 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getAllAppointmentsByDoctorIdAndUpToCurrentMonthAndCanceled EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.AppointmentService.getAllAppointmentsByDoctorIdAndUpToCurrentMonthAndCanceled () with arguments[s] = [1]
+2023-05-24 09:23:57.062 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:57.063 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:57.064 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getPicsByPersonId EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.ProfileImgService.getPicsByPersonId () with arguments[s] = [1]
+2023-05-24 09:23:57.064 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:57.120 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:57.122 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getPicsByPersonId EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.ProfileImgService.getPicsByPersonId () with arguments[s] = [1]
+2023-05-24 09:23:57.122 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:57.123 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:57.123 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE getLastProfilePic EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.ProfileImgService.getLastProfilePic () with arguments[s] = [1]
+2023-05-24 09:23:57.124 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:57.177 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:57.177 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER getLastProfilePic EXECUTION**************** 
+ ro.apxsoftware.demodoc.service.ProfileImgService.getLastProfilePic () with arguments[s] = [1]
+2023-05-24 09:23:57.178 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 09:23:57.178 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 09:23:57.179 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER displayIndex EXECUTION**************** 
+ ro.apxsoftware.demodoc.controllers.HomeController.displayIndex () with arguments[s] = [{person=ro.apxsoftware.demodoc.entities.Person@3899782c, userAccount=ro.apxsoftware.demodoc.entities.User@4f0100a7, appointment=Appointment [appointmentId=0, date=null, time=null, doctor=null, pacient=null], fixedTimes=null, busyDates=[], doctors=[ro.apxsoftware.demodoc.entities.Person@3899782c], userId=1, doctorAppointments=[], pastDoctorAppointments=[], cancelDoctorAppointments=[], img=ProfileImg [picId=0, picName=null, picType=null, person=null], lastPicList=[], lastAppointment=null}, org.apache.catalina.session.StandardSessionFacade@1d53ab75, UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=doctor@apxsoftware.ro, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[DOCTOR, USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=93BBA36ED2A8EB2957AE24623A4F4F51], Granted Authorities=[DOCTOR, USER]], {}]
+2023-05-24 09:23:57.182 DEBUG 37512 --- [https-jsse-nio-443-exec-9] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
