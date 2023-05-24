@@ -108,6 +108,8 @@ steps:
   continueOnError: true
 
 - task: AzureCLI@2
+  env: 
+    SQL-PASSWORD: $(sql-password)
   inputs:
     azureSubscription: 'ARM_APXDEMO'
     scriptType: 'batch'
