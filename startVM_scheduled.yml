@@ -1,7 +1,7 @@
 trigger: none
 
 schedules:
-- cron: "05 09 * * *" 
+- cron: "05 05 * * *" 
   displayName: 'Changing name'
   branches:
      include:
