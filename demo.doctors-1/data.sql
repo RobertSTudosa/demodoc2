@@ -1,4 +1,24 @@
 -- Clear information on tables -- 
+DELETE from bpeople_demo_doctors.appointment;
+INSERT INTO bpeople_demo_doctors.appointment_seq ( next_val ) VALUES (
+	1
+);
+
+DELETE from bpeople_demo_doctors.companyserv;
+INSERT INTO bpeople_demo_doctors.companyserv_seq ( next_val ) VALUES (
+	1
+);
+
+DELETE from bpeople_demo_doctors.profile_img;
+INSERT INTO bpeople_demo_doctors.pics_seq ( next_val ) VALUES (
+	1
+);
+
+DELETE from bpeople_demo_doctors.confirmation_token;
+INSERT INTO bpeople_demo_doctors.token_seq ( next_val ) VALUES (
+	1
+);
+
 DELETE from bpeople_demo_doctors.persons;
 DELETE from bpeople_demo_doctors.person_seq;
 INSERT INTO bpeople_demo_doctors.person_seq ( next_val ) VALUES(
@@ -12,7 +32,6 @@ INSERT INTO bpeople_demo_doctors.user_seq ( next_val ) VALUES(
 );
 -- update bpeople_demo_doctors.user_seq set next_val = 1;
 DELETE from bpeople_demo_doctors.user_role;
-
 
 
 -- INSERTING A DOCTOR USER --
@@ -75,5 +94,3 @@ INSERT INTO bpeople_demo_doctors.user_role (role_id, user_id  ) VALUES(
 INSERT INTO bpeople_demo_doctors.user_role (role_id, user_id  ) VALUES(
       2, 2
 );
-
-
