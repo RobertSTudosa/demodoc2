@@ -807,3 +807,97 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '1
 2023-05-24 13:56:05.206  INFO 44432 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
 2023-05-24 13:56:05.308  INFO 44432 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : Started ApplicationTests in 32.698 seconds (JVM running for 34.441)
 2023-05-24 13:56:05.962  INFO 44432 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-05-24 22:15:17.428  INFO 36408 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : Starting ApplicationTests using Java 18.0.2.1 on LAPTOP-E7SHKH7I with PID 36408 (started by rtudosa in C:\Users\rtudosa\source\repos\DemoDocs\demo.doctors-1)
+2023-05-24 22:15:17.437 DEBUG 36408 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : Running with Spring Boot v2.5.2, Spring v5.3.8
+2023-05-24 22:15:17.438  INFO 36408 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : The following profiles are active: dev
+2023-05-24 22:15:19.254  INFO 36408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2023-05-24 22:15:19.258  INFO 36408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-05-24 22:15:19.373  INFO 36408 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.AppointmentRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 22:15:19.380  INFO 36408 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.CompanyServiceRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 22:15:19.384  INFO 36408 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.ConfirmationTokenRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 22:15:19.391  INFO 36408 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.PersonRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 22:15:19.395  INFO 36408 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.ProfileImgRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 22:15:19.403  INFO 36408 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.RoleRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 22:15:19.413  INFO 36408 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface ro.apxsoftware.demodoc.dao.UserRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-24 22:15:19.414  INFO 36408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 148 ms. Found 0 JDBC repository interfaces.
+2023-05-24 22:15:19.436  INFO 36408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2023-05-24 22:15:19.438  INFO 36408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-24 22:15:19.551  INFO 36408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 106 ms. Found 7 JPA repository interfaces.
+2023-05-24 22:15:42.505  INFO 36408 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-24 22:15:44.257 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 22:15:44.260 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE passwordEncoder EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.WebConfig.passwordEncoder () with arguments[s] = []
+2023-05-24 22:15:44.263 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 22:15:44.291 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 22:15:44.292 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER passwordEncoder EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.WebConfig.passwordEncoder () with arguments[s] = []
+2023-05-24 22:15:44.292 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 22:15:44.897 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 22:15:44.898 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE authenticationManagerBean EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.authenticationManagerBean () with arguments[s] = []
+2023-05-24 22:15:44.898 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 22:15:44.913 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 22:15:44.914 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER authenticationManagerBean EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.authenticationManagerBean () with arguments[s] = []
+2023-05-24 22:15:44.916 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 22:15:45.189 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 22:15:45.189 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE successHandler EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.successHandler () with arguments[s] = []
+2023-05-24 22:15:45.189 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 22:15:45.190 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 22:15:45.190 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER successHandler EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.SecurityConfiguration.successHandler () with arguments[s] = []
+2023-05-24 22:15:45.190 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 22:15:45.381  INFO 36408 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@32a29361, org.springframework.security.web.context.SecurityContextPersistenceFilter@443d94ae, org.springframework.security.web.header.HeaderWriterFilter@6c37c36, org.springframework.security.web.csrf.CsrfFilter@59f56892, org.springframework.security.web.authentication.logout.LogoutFilter@326d39fd, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@62d818c6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@36e95b7b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7a4199e5, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@1d3bf0af, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d6ccad7, org.springframework.security.web.session.SessionManagementFilter@60be9fdf, org.springframework.security.web.access.ExceptionTranslationFilter@39eea4f6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7c9b0c16]
+2023-05-24 22:15:45.405 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 22:15:45.406 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** BEFORE servletContainer EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.ServerConfig.servletContainer () with arguments[s] = []
+2023-05-24 22:15:45.406 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 22:15:45.522 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2023-05-24 22:15:45.522 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : ***************** AFTER servletContainer EXECUTION**************** 
+ ro.apxsoftware.demodoc.security.ServerConfig.servletContainer () with arguments[s] = []
+2023-05-24 22:15:45.522 DEBUG 36408 --- [main] r.a.d.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2023-05-24 22:15:46.467  INFO 36408 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-05-24 22:15:47.692  INFO 36408 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-05-24 22:15:47.770  INFO 36408 --- [main] ro.apxsoftware.demodoc.ApplicationTests  : Started ApplicationTests in 30.825 seconds (JVM running for 32.195)
+2023-05-24 22:15:48.097  INFO 36408 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
