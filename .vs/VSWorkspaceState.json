@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\demodoc2",
-    "\\demodoc2\\demo.doctors-1",
-    "\\demodoc2\\demo.doctors-1\\src",
-    "\\demodoc2\\demo.doctors-1\\src\\main",
-    "\\demodoc2\\demo.doctors-1\\src\\main\\java",
-    "\\demodoc2\\demo.doctors-1\\src\\main\\java\\ro",
-    "\\demodoc2\\demo.doctors-1\\src\\main\\java\\ro\\apxsoftware",
-    "\\demodoc2\\demo.doctors-1\\src\\main\\java\\ro\\apxsoftware\\demodoc",
-    "\\demodoc2\\demo.doctors-1\\src\\main\\java\\ro\\apxsoftware\\demodoc\\dao"
+    "\\demo.doctors-1",
+    "\\demo.doctors-1\\src",
+    "\\demo.doctors-1\\src\\main",
+    "\\demo.doctors-1\\src\\main\\java",
+    "\\demo.doctors-1\\src\\main\\java\\ro",
+    "\\demo.doctors-1\\src\\main\\java\\ro\\apxsoftware",
+    "\\demo.doctors-1\\src\\main\\java\\ro\\apxsoftware\\demodoc",
+    "\\demo.doctors-1\\src\\main\\java\\ro\\apxsoftware\\demodoc\\service",
+    "\\demo.doctors-1\\src\\main\\resources",
+    "\\demo.doctors-1\\src\\main\\resources\\static\\doctor"
   ],
-  "SelectedNode": "\\demodoc2\\demo.doctors-1\\src\\main\\java\\ro\\apxsoftware\\demodoc\\service\\AppointmentService.java",
   "PreviewInSolutionExplorer": false
 }
