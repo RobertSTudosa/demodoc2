@@ -13,6 +13,13 @@ schedules:
      - main
   always: true
 
+resources:
+  pipelines:
+  - pipeline: refresh-database # Name of the pipeline resource.
+    source: Build_demo_docs # The name of the pipeline referenced by this pipeline resource.
+    project: DemoDocs # Required only if the source pipeline is in another project
+    trigger: true # Run this pipeline when any run of Build_demo_docs completes
+
 variables:
 - name: sql-server
   value: 'mysql1flex1server'
