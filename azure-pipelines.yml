@@ -106,6 +106,15 @@ steps:
       exit
     readyTimeout: '20000'
   continueOnError: true
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'ARM_APXDEMO'
+    scriptType: 'batch'
+    scriptLocation: 'inlineScript'
+    inlineScript: | 
+      az mysql -flexible-server execute --admin-password $(SQL-PASSWORD) --admin-user $(sql-user) --name $(sql-server) --database-name $(sql-database) --file-path $(System.DefaultWorkingDirectory)/demo.doctors-1/data.sql
+
 - task: CmdLine@2
   displayName: 'Run data.sql'
   env: 
