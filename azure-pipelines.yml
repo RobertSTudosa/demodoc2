@@ -106,7 +106,7 @@ steps:
     SqlUsername: 'robert'
     SqlPassword: 'R0b3rt05#'
     TaskNameSelector: 'SqlTaskFile'
-    SqlFile: '/data.sql'
+    SqlFile: '$(System.DefaultWorkingDirectory)/demo.doctors-1/data.sql'
     IpDetectionMethod: 'AutoDetect'
 
 # - task: SSH@0
