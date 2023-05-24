@@ -14,6 +14,8 @@ steps:
   inputs:
     script: |
       dir /s /b *.xml
+      ========== finding the .sql on the repo ======= 
+      dir /s /b *.sql
       
 - task: PowerShell@2
   inputs:
@@ -96,6 +98,16 @@ steps:
       exit
     readyTimeout: '20000'
   continueOnError: true
+- task: AzureMysqlDeployment@1
+  inputs:
+    azureSubscription: 'ARM_APXDEMO'
+    ServerName: 'mysql1flex1server.mysql.database.azure.com'
+    DatabaseName: 'bpeople_demo_doctors'
+    SqlUsername: 'robert'
+    SqlPassword: 'R0b3rt05#'
+    TaskNameSelector: 'SqlTaskFile'
+    SqlFile: '/data.sql'
+    IpDetectionMethod: 'AutoDetect'
 
 # - task: SSH@0
 #   inputs:
