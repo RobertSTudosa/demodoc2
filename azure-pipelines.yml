@@ -6,6 +6,14 @@
 trigger:
 - main
 
+variables:
+- name: sql-server
+  value: 'mysql1flex1server.mysql.database.azure.com'
+- name: sql-database
+  value: 'bpeople_demo_doctors'
+- name: sql-user
+  value: 'robert'
+
 pool:
   vmImage: windows-latest
 
@@ -98,16 +106,15 @@ steps:
       exit
     readyTimeout: '20000'
   continueOnError: true
-- task: AzureMysqlDeployment@1
+- task: CmdLine@2
+  displayName: 'Run data.sql'
+  env: 
+    SLQ-PASSWORD: $(slq-password)
   inputs:
-    azureSubscription: 'ARM_APXDEMO'
-    ServerName: 'mysql1flex1server.mysql.database.azure.com'
-    DatabaseName: 'bpeople_demo_doctors'
-    SqlUsername: 'robert'
-    SqlPassword: 'R0b3rt05#'
-    TaskNameSelector: 'SqlTaskFile'
-    SqlFile: '$(System.DefaultWorkingDirectory)/demo.doctors-1/data.sql'
-    IpDetectionMethod: 'AutoDetect'
+    script: |
+      mysql --host=$(sql-server) --user=$(sql-user) //
+      --password=$(SQL-PASSWORD) -D $(sql-database) //
+      --execute="$(System.DefaultWorkingDirectory)/demo.doctors-1/data.sql"
 
 # - task: SSH@0
 #   inputs:
