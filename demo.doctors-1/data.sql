@@ -1,4 +1,7 @@
 -- Clear information on tables -- 
+
+Delete from bpeople_demo_doctors.appointment_fixed_times;
+
 DELETE from bpeople_demo_doctors.appointment;
 INSERT INTO bpeople_demo_doctors.appointment_seq ( next_val ) VALUES (
 	1
