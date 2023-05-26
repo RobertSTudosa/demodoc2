@@ -1,16 +1,17 @@
--- Clear information on tables -- 
+-- Clear information on tables ORDER is IMPORTANT -- 
 
 Delete from bpeople_demo_doctors.appointment_fixed_times;
+
+DELETE from bpeople_demo_doctors.companyserv;
+INSERT INTO bpeople_demo_doctors.companyserv_seq ( next_val ) VALUES (
+	1
+);
 
 DELETE from bpeople_demo_doctors.appointment;
 INSERT INTO bpeople_demo_doctors.appointment_seq ( next_val ) VALUES (
 	1
 );
 
-DELETE from bpeople_demo_doctors.companyserv;
-INSERT INTO bpeople_demo_doctors.companyserv_seq ( next_val ) VALUES (
-	1
-);
 
 DELETE from bpeople_demo_doctors.profile_img;
 INSERT INTO bpeople_demo_doctors.pics_seq ( next_val ) VALUES (
