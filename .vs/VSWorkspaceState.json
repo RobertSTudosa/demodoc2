@@ -8,9 +8,9 @@
     "\\demo.doctors-1\\src\\main\\java\\ro",
     "\\demo.doctors-1\\src\\main\\java\\ro\\apxsoftware",
     "\\demo.doctors-1\\src\\main\\java\\ro\\apxsoftware\\demodoc",
-    "\\demo.doctors-1\\src\\main\\java\\ro\\apxsoftware\\demodoc\\service",
-    "\\demo.doctors-1\\src\\main\\resources",
-    "\\demo.doctors-1\\src\\main\\resources\\static\\doctor"
+    "\\demo.doctors-1\\src\\main\\java\\ro\\apxsoftware\\demodoc\\controllers",
+    "\\demo.doctors-1\\src\\main\\java\\ro\\apxsoftware\\demodoc\\dao"
   ],
+  "SelectedNode": "\\demo.doctors-1\\data.sql",
   "PreviewInSolutionExplorer": false
 }
