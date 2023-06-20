@@ -22,7 +22,7 @@ resources:
 
 variables:
 - name: sql-server
-  value: 'mysql1flex1server'
+  value: 'mysql1flex1server2'
 - name: sql-database
   value: 'bpeople_demo_doctors'
 - name: sql-user
